@@ -1,0 +1,43 @@
+<dokument>
+	<naziv_i_sediste_organa></naziv_i_sediste_organa>
+	<naslov> З А Х Т Е В </naslov>
+	<svrha_zahteva> за приступ информацији од јавног значаја </svrha_zahteva>
+	
+	<opis_zahteva>
+		<tekst_zahteva>
+			На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
+		</tekst_zahteva>
+
+		<zahtevi>
+			<zahtev rb="1"> обавештење да ли поседује тражену информацију;</zahtev>
+			<zahtev rb="2"> увид у документ који садржи тражену информацију;</zahtev>
+			<zahtev rb="3"> копију документа који садржи тражену информацију;</zahtev>
+			<zahtev rb="4"> 
+				достављање копије документа који садржи тражену информацију:**
+				<nacini_slanja>
+					<nacin_slanja>поштом</nacin_slanja>
+					<nacin_slanja>електронском поштом</nacin_slanja>
+					<nacin_slanja>факсом</nacin_slanja>
+					<nacin_slanja>на други начин:***</nacin_slanja>
+				</nacini_slanja>
+			</zahtev>
+		</zahtevi>
+
+		<opis_dodatne_informacije></opis_dodatne_informacije>
+	</opis_zahteva>
+
+	<datum></datum>
+
+	<trazilac>
+		<ime_i_prezime></ime_i_prezime>
+		<adresa></adresa>
+		<kontakt></kontakt>
+		<potpis></potpis>
+	</trazilac>
+
+	<footer>
+		* У кућици означити која законска права на приступ информацијама желите да остварите.
+		** У кућици означити начин достављања копије докумената.
+		*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.
+	</footer>
+</dokument>
