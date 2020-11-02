@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dokument>
+    <osnovni_podaci>
+        <organ>
+            <naziv></naziv>
+            <sediste></sediste>
+        </organ>
+        <broj_predmeta></broj_predmeta>
+        <datum></datum>
+        <podnosioc_zahteva>
+            <ime></ime>
+            <prezime></prezime>
+            <naziv></naziv>
+            <adresa>
+                <grad></grad>
+                <ulica></ulica>
+                <broj></broj>
+            </adresa>
+        </podnosioc_zahteva>
+    </osnovni_podaci>
+    
+    <sadrzaj>
+        <naslov>O B A V E S T E N J E</naslov>
+        <podnaslov>o stavljanju na uvid...</podnaslov>
+        
+        <delovi>
+            <deo redni_broj="1">
+                na osnovu clana...
+                ...od <godina></godina>
+                kojim ste trazili...
+                ...u vezi sa: <opis_informacije></opis_informacije>
+            </deo>
+            <deo redni_broj="2">
+                Obavestavamo vas da dana <dan></dan>, u <vreme></vreme> casova,...
+                ...vremenu od <pocetak_cas></pocetak_cas> do <kraj_cas></kraj_cas> ...
+                ...prostorijama organa u <grad_organa></grad_organa> ul. <ulica_organa></ulica_organa> br. <broj_organa></broj_organa>..
+                ...kancelarija br. <broj_kancelarije></broj_kancelarije> mozete...
+            </deo>
+            <deo redni_broj="3">
+                Tom prilikom...
+            </deo>
+            <deo redni_broj="4">
+                Troskovi su utvrdjeni...
+            </deo>
+            <deo redni_broj="5">
+                Iznos ukupne...
+            </deo>
+            
+        </delovi>
+        
+        <dostavljeno>
+            <primer redni_broj="1">Imenovanom</primer>
+            <primer redni_broj="2">Arhivi</primer>
+        </dostavljeno>
+        
+        <!-- Da li ovako MP ?? -->
+        <MP>
+            (M.P.)
+            <potpis></potpis>
+            (Potpis ovlascenog...)
+        </MP> <!-- Potpis vlastitom rukom -->
+        
+    </sadrzaj>
+    
+    
+</dokument>
