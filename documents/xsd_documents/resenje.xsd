@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.0" vc:maxVersion="1.1" targetNamespace="http://www.ftn.uns.ac.rs/resenje"
-    xmlns:ftn="http://www.ftn.uns.ac.rs/resenje">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/resenje" xmlns:ftn="http://www.ftn.uns.ac.rs/resenje">
 
     <xs:element name="Resenje_obrazac">
         <xs:complexType>
@@ -36,14 +34,14 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="Resenje">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element ref="ftn:Lista"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="Obrazlozenje">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element ref="ftn:Lista"/>
             </xs:sequence>
