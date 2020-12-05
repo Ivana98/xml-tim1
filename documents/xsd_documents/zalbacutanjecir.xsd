@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.0" vc:maxVersion="1.1"
+    targetNamespace="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
+    xmlns:ftn="http://www.ftn.uns.ac.rs/zalba-na-cutanje">
+    <xs:element name="Zalba_na_cutanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Namena" type="xs:string"/>
+                <xs:element name="Adresa_za_postu">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Mesto" type="xs:string"/>
+                            <xs:element name="Ulica" type="xs:string"/>
+                            <xs:element name="Broj" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Sadrzaj">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element ref="ftn:Zalba"/>
+                            <xs:element name="Datum_podnosenja_zahteva" type="xs:date"/>
+                            <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" name="Pasus" type="xs:string"/>
+                            <xs:element minOccurs="0" name="Napomena" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ftn:Podnosilac_zalbe"/>
+                <xs:element name="Vreme_i_mesto">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Mesto" type="xs:string"/>
+                            <xs:element name="Datum" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Naslov" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zalba">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Naziv_organa">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Razlozi_zalbe" type="ftn:Select"/>
+            </xs:sequence>
+            <xs:attribute name="Naslov" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Podnosilac_zalbe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Ime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Prezime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Adresa">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="30"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Kontakt_podaci">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Select">
+        <xs:sequence>
+            <xs:element name="Option" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="id" type="xs:int"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="selected" type="xs:int"/>
+    </xs:complexType>
+</xs:schema>
