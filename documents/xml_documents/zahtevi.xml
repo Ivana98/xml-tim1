@@ -23,9 +23,14 @@
 			</zahtev>
 		</zahtevi>
 
-		<opis_dodatne_informacije></opis_dodatne_informacije>
+		<dodatne_informacije>
+			Овај захтев се односи на следеће информације:
+			<opis_dodatne_informacije></opis_dodatne_informacije>
+			(навести што прецизнији опис информације која се тражи као и друге податке који олакшавају проналажење тражене информације)
+		</dodatne_informacije>
 	</opis_zahteva>
 
+	<mesto></mesto>
 	<datum></datum>
 
 	<trazilac>
