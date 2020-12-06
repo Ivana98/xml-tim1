@@ -1,5 +1,10 @@
-<dokument>
-	<naziv_i_sediste_organa></naziv_i_sediste_organa>
+<dokument xmlns="http://www.ftn.uns.ac.rs/zahtevi"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtevi ../xsd_documents/zahtevi.xsd">
+	<info_organa>
+		<naziv></naziv>
+		<sediste></sediste>
+	</info_organa>
 	<naslov> З А Х Т Е В </naslov>
 	<svrha_zahteva> за приступ информацији од јавног значаја </svrha_zahteva>
 	
@@ -7,21 +12,24 @@
 		<tekst_zahteva>
 			На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*
 		</tekst_zahteva>
+		
+		
 
-		<zahtevi>
-			<zahtev rb="1"> обавештење да ли поседује тражену информацију;</zahtev>
-			<zahtev rb="2"> увид у документ који садржи тражену информацију;</zahtev>
-			<zahtev rb="3"> копију документа који садржи тражену информацију;</zahtev>
-			<zahtev rb="4"> 
-				достављање копије документа који садржи тражену информацију:**
+		<tipovi_zahteva>
+			<tip rb="1" tekst="обавештење да ли поседује тражену информацију;" selektovan="false"></tip>
+			<tip rb="2" tekst="увид у документ који садржи тражену информацију;" selektovan="false"></tip>
+			<tip rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip>
+			<tip rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
 				<nacini_slanja>
-					<nacin_slanja>поштом</nacin_slanja>
-					<nacin_slanja>електронском поштом</nacin_slanja>
-					<nacin_slanja>факсом</nacin_slanja>
-					<nacin_slanja>на други начин:***</nacin_slanja>
+					<nacin rb="1" tekst="поштом" selektovan="false"></nacin>
+					<nacin rb="2" tekst="електронском поштом" selektovan="false"></nacin>
+					<nacin rb="3" tekst="факсом" selektovan="false"></nacin>
+					<nacin rb="4" tekst="на други начин:***" selektovan="false">
+						<detaljan_opis></detaljan_opis>
+					</nacin>
 				</nacini_slanja>
-			</zahtev>
-		</zahtevi>
+			</tip>
+		</tipovi_zahteva>
 
 		<dodatne_informacije>
 			Овај захтев се односи на следеће информације:
