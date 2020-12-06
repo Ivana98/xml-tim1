@@ -1,62 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba_na_cutanje>
-    
-    <naslov>
-        ЖАЛБА КАДА ОРГАН ВЛАСТИ
-        <podvuceno>НИЈЕ ПОСТУПИО/није поступио у целости/ПО ЗАХТЕВУ</podvuceno>
-        ТРАЖИОЦА У ЗАКОНСКОМ РОКУ (ЋУТАЊЕ УПРАВЕ)
-    </naslov>
-
-    <namena>Поверенику за информације од јавног значаја и заштиту података о личности</namena>
-    <adresa_za_postu>
-        <mesto>Београд</mesto>
-        <ulica>Булевар краља Александрa</ulica>
-        <broj>15</broj>
-    </adresa_za_postu>
-    
-    <tekst_zalbe>
+<Zalba_na_cutanje 
+    naslov="ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)"
+    xmlns="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd">
+    <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>
+    <Adresa_za_postu>
+        <Mesto>Београд</Mesto>
+        <Ulica>Булевар краља Александрa</Ulica>
+        <Broj>15</Broj>
+    </Adresa_za_postu>
+    <Sadrzaj>
         У складу са чланом 22. Закона о слободном приступу информацијама од јавног значаја подносим:
-        <zalba>
-            <naslov tip="zalba">ЖАЛБУ</naslov>
-            против
-            <naziv_organa></naziv_organa>
-            
-            због тога што орган власти:
-            <razlozi_zalbe>               
-                <razlog id="1">није поступио</razlog>
-                <razlog id="2">није поступио у целости</razlog>
-                <razlog id="3">у законском року</razlog>
-            </razlozi_zalbe>
-        </zalba>
-        
-        по мом захтеву  за слободан приступ информацијама од јавног значаја који сам поднео  том органу  дана 
-        <datum_podnosenja_zahteva>
-            <dan></dan> 
-            <mesec></mesec>
-            <godina></godina>
-        </datum_podnosenja_zahteva>
+        Ж А Л Б У
+        против
+        <Naziv_organa></Naziv_organa>
+        због тога што орган власти: 
+        <Razlozi_zalbe selected="1">
+            <Option id="1">није поступио</Option>
+            <Option id="2">није поступио у целости </Option>
+            <Option id="3">није поступио у законском року</Option>
+        </Razlozi_zalbe>
+        по мом захтеву  за слободан приступ информацијама од јавног значаја који сам поднео  том органу  дана
+        <Datum_podnosenja_zahteva>2020-12-05</Datum_podnosenja_zahteva>
         године, а којим сам тражио/ла да ми се у складу са Законом о слободном приступу информацијама од јавног значаја омогући увид- копија документа који садржи информације  о /у вези са :
-        <podaci_o_zahtevu></podaci_o_zahtevu>
-        
-        <pasus>На основу изнетог, предлажем да Повереник уважи моју жалбу и омогући ми приступ траженој/им  информацији/ма.</pasus>
-        <pasus>Као доказ , уз жалбу достављам копију захтева са доказом о предаји органу власти.</pasus>
-        <napomena>Код жалбе  због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.</napomena>
-    </tekst_zalbe>
-    
-    <podnosliac_zalbe>
-        <ime></ime>
-        <prezime></prezime>
-        <adresa></adresa>
-        <kontakt_podaci></kontakt_podaci>
-    </podnosliac_zalbe>
-    
-    <vreme_i_mesto>
-        <mesto></mesto>
-        <datum_podnosenja_zalbe>
-            <dan></dan>
-            <mesec></mesec>
-            <godina></godina>
-        </datum_podnosenja_zalbe>
-    </vreme_i_mesto>
-    
-</zalba_na_cutanje>
+        <Podaci_o_zahtevu></Podaci_o_zahtevu>
+        <Pasus>На основу изнетог, предлажем да Повереник уважи моју жалбу и омогући ми приступ траженој/им  информацији/ма.</Pasus>
+        <Pasus>Као доказ , уз жалбу достављам копију захтева са доказом о предаји органу власти.</Pasus>
+        <Napomena>Код жалбе  због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.</Napomena>
+    </Sadrzaj>
+    <Podnosilac_zalbe>
+        <Ime></Ime>
+        <Prezime></Prezime>
+        <Adresa></Adresa>
+        <Kontakt_podaci></Kontakt_podaci>
+    </Podnosilac_zalbe>
+    <Vreme_i_mesto>
+        <Mesto></Mesto>
+        <Datum>2020-12-05</Datum>
+    </Vreme_i_mesto>
+</Zalba_na_cutanje>
