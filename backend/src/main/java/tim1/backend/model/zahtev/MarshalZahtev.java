@@ -41,7 +41,16 @@ public class MarshalZahtev {
         addToOutput("tekst zahteva", zahtev.getOpisZahteva().getTekstZahteva(), "\n");
         printTipoviZahteva(zahtev);
         printDodatneInformacije(zahtev);
+
+        addToOutput("mesto", zahtev.getMesto(), "\n");
+        addToOutput("datum", String.valueOf(zahtev.getDatum()), "\n");
         
+        addToOutput("trazilac", zahtev.getTrazilac().getImeIPrezime(), "\n");
+        addToOutput("adresa", zahtev.getTrazilac().getAdresa(), "\n");
+        addToOutput("kontakt", zahtev.getTrazilac().getKontakt(), "\n");
+        addToOutput("potpis", zahtev.getTrazilac().getPotpis(), "\n");
+        
+        addToOutput("footer", zahtev.getFooter(), "\n");
     }
 
     private static void printTipoviZahteva(Zahtev zahtev){
@@ -80,7 +89,6 @@ public class MarshalZahtev {
 
         x = zahtev.getOpisZahteva().getDodatneInformacije().getContent().get(2).toString();
         addToOutput("tekst", x , "\n");
-
     }
 
     private static void addToOutput(String tag, String content, String end){
