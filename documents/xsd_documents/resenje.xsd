@@ -36,21 +36,22 @@
     <xs:element name="Resenje">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element ref="ftn:Lista"/>
+                <xs:element maxOccurs="unbounded" name="Pasus" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="Obrazlozenje">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element ref="ftn:Lista"/>
+                <xs:element name="Sadrzaj_obrazlozenja">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="Cena" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
-    </xs:element>
-    <xs:element name="Lista">
-        <xs:simpleType>
-            <xs:list itemType="ftn:Paragraf"/>
-        </xs:simpleType>
     </xs:element>
     <xs:element name="Poverenik">
         <xs:complexType>
@@ -72,7 +73,4 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:simpleType name="Paragraf">
-        <xs:restriction base="xs:string"/>
-    </xs:simpleType>
 </xs:schema>
