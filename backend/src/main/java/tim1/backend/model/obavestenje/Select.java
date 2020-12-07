@@ -5,7 +5,6 @@
 //         Generated on: 2020.12.07 at 11:10:35 AM CET 
 //
 
-
 package tim1.backend.model.obavestenje;
 
 import java.util.ArrayList;
@@ -18,11 +17,13 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
-
 /**
- * <p>Java class for Select complex type.
+ * <p>
+ * Java class for Select complex type.
  * 
- * <p>The following schema fragment specifies the expected         content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="Select"&gt;
@@ -48,30 +49,36 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Select", propOrder = {
-    "primer"
-})
+@XmlType(name = "Select", propOrder = { "primer" })
 public class Select {
 
     @XmlElement(name = "Primer", required = true)
     protected List<Select.Primer> primer;
     @XmlAttribute(name = "Selected")
-    @XmlSchemaType(name = "anySimpleType")
-    protected String selected;
+    // @XmlSchemaType(name = "anySimpleType")
+    protected Integer selected;
+
+    public Select.Primer getSelectedOption() {
+        if (selected == null) {
+            return null;
+        }
+        return this.primer.get(selected - 1);
+    }
 
     /**
      * Gets the value of the primer property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the primer property.
+     * This accessor method returns a reference to the live list, not a snapshot.
+     * Therefore any modification you make to the returned list will be present
+     * inside the JAXB object. This is why there is not a <CODE>set</CODE> method
+     * for the primer property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getPrimer().add(newItem);
+     * getPrimer().add(newItem);
      * </pre>
      * 
      * 
@@ -91,32 +98,30 @@ public class Select {
     /**
      * Gets the value of the selected property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
-    public String getSelected() {
+    public Integer getSelected() {
         return selected;
     }
 
     /**
      * Sets the value of the selected property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
-    public void setSelected(String value) {
+    public void setSelected(Integer value) {
         this.selected = value;
     }
 
-
     /**
-     * <p>Java class for anonymous complex type.
+     * <p>
+     * Java class for anonymous complex type.
      * 
-     * <p>The following schema fragment specifies the expected         content contained within this class.
+     * <p>
+     * The following schema fragment specifies the expected content contained within
+     * this class.
      * 
      * <pre>
      * &lt;complexType&gt;
@@ -131,9 +136,7 @@ public class Select {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "value"
-    })
+    @XmlType(name = "", propOrder = { "value" })
     public static class Primer {
 
         @XmlValue
@@ -144,10 +147,8 @@ public class Select {
         /**
          * Gets the value of the value property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         * @return possible object is {@link String }
+         * 
          */
         public String getValue() {
             return value;
@@ -156,10 +157,8 @@ public class Select {
         /**
          * Sets the value of the value property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         * @param value allowed object is {@link String }
+         * 
          */
         public void setValue(String value) {
             this.value = value;
@@ -168,10 +167,8 @@ public class Select {
         /**
          * Gets the value of the id property.
          * 
-         * @return
-         *     possible object is
-         *     {@link Integer }
-         *     
+         * @return possible object is {@link Integer }
+         * 
          */
         public Integer getID() {
             return id;
@@ -180,10 +177,8 @@ public class Select {
         /**
          * Sets the value of the id property.
          * 
-         * @param value
-         *     allowed object is
-         *     {@link Integer }
-         *     
+         * @param value allowed object is {@link Integer }
+         * 
          */
         public void setID(Integer value) {
             this.id = value;
