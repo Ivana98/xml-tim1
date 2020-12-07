@@ -1,7 +1,6 @@
 package tim1.backend.model.zahtev;
 
 import java.io.File;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -10,7 +9,7 @@ import javax.xml.bind.Unmarshaller;
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.backend.model.zahtev.TipZahteva.NaciniSlanja;
 
-public class MarshalZahtev {
+public class UnmarshallingZahtev {
     
     private static String output = "";
     
