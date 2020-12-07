@@ -34,7 +34,7 @@ public class MarshalingObavestenjecir {
 
             obavestenje.setOsnovniPodaci(getOsnovniPodatak());
             obavestenje.getSadrzaj().getParagraf().getContent().set(0, "Prva recenica promenjena..");
-            // obavestenje.setSadrzaj(getSadrzaj());
+            obavestenje.setSadrzaj(getSadrzaj());
 
             Marshaller marshaller = context.createMarshaller();
 
@@ -167,9 +167,9 @@ public class MarshalingObavestenjecir {
         p.getContent().add("tekst7");
         p.getContent().add("Ulica");
         p.getContent().add("tekst8");
-        JAXBElement<XMLGregorianCalendar> jaxbInt = new JAXBElement(new QName("year"), Integer.class, xmlDate);
+        // JAXBElement<Integer> jaxbInt = new JAXBElement(new QName("broj"), Integer.class, 3);
 
-        p.getContent().add(jaxbInt);
+        p.getContent().add("3");
         p.getContent().add("tekst9");
         p.getContent().add("22a");
         p.getContent().add("tekst10 velikiiiiiiii\niiiiiiiiiiiii");

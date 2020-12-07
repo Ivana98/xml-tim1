@@ -17,7 +17,7 @@ public class XmlBackendApplication {
 		try {
 			// UnmarshalingObavestenjecir.test();
 			// MarshalingObavestenjecir.test();
-			Validation.test();
+			// Validation.test();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
