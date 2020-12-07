@@ -2,6 +2,7 @@
 <Zalba_na_cutanje 
     naslov="ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)"
     xmlns="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd">
     <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>

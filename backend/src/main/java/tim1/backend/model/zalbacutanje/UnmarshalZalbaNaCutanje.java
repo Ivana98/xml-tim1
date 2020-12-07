@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+
+import org.xml.sax.SAXException;
 
 
 public class UnmarshalZalbaNaCutanje {
@@ -22,11 +30,21 @@ public class UnmarshalZalbaNaCutanje {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbacutanjecir.xsd"));
+			
+			unmarshaller.setSchema(schema);
+            unmarshaller.setEventHandler(new MyValidationEventHandler());
+			
 			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbacutanjecir.xml"));
 
+			zalba.getVremeIMesto().setMesto("Новом Саду");
+			
 			printZalba(zalba);
 			
 		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
 			e.printStackTrace();
 		}
 	}
@@ -46,22 +64,26 @@ public class UnmarshalZalbaNaCutanje {
 	}
 	
 	private static void printSadrzaj(ZalbaNaCutanje.Sadrzaj sadrzaj) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
+		JAXBElement<XMLGregorianCalendar> el3 = null;
 		for(Serializable element : sadrzaj.getContent()) {
 			if(element.getClass().equals(String.class)) {
 				System.out.print(element);
 			}
 			else {
 				try {
-					JAXBElement<String> el = (JAXBElement<String>) element;
-					System.out.print(el.getValue());
+					JAXBElement<String> el1 = (JAXBElement<String>) element;
+					System.out.print(el1.getValue());
 				} catch (Exception e) {
 					try {
-						JAXBElement<Select> el = (JAXBElement<Select>) element;
-						System.out.print(el.getValue().getSelectedOption().getValue());
+						JAXBElement<Select> el2 = (JAXBElement<Select>) element;
+						System.out.print(el2.getValue().getSelectedOption().getValue());
 					} catch (Exception e2) {
 						try {
-							JAXBElement<Date> el = (JAXBElement<Date>) element;
-							System.out.print(el.getValue());
+							el3 = (JAXBElement<XMLGregorianCalendar>) element;
+							XMLGregorianCalendar datum = el3.getValue();
+							String datumString = datum.getDay() + "." + datum.getMonth() + "." + datum.getYear() + ".";
+							System.out.print(datumString);
 						} catch (Exception e3) {
 							e.printStackTrace();
 						}
@@ -69,6 +91,7 @@ public class UnmarshalZalbaNaCutanje {
 				}
 				
 			}
+
 		}
 		System.out.println();
 	}
@@ -82,8 +105,9 @@ public class UnmarshalZalbaNaCutanje {
 	}
 	
 	private static void printVremeIMesto(ZalbaNaCutanje.VremeIMesto vremeIMesto) {
-		
-		System.out.println("У " + vremeIMesto.getMesto() + ", дана " + vremeIMesto.getDatum() + " године.");
+		XMLGregorianCalendar datum = vremeIMesto.getDatum();
+		String datumString = datum.getDay() + "." + datum.getMonth() + "." + datum.getYear() + ".";
+		System.out.println("У " + vremeIMesto.getMesto() + ", дана " + datumString + " године.");
 	}
 	
 }

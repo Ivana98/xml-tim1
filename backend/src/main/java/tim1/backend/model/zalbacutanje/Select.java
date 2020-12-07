@@ -90,7 +90,7 @@ public class Select {
         if (selected == null) {
             return null;
         }
-        return this.option.get(selected);
+        return this.option.get(selected - 1);
     }
 
     /**
