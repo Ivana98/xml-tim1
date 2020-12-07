@@ -402,19 +402,6 @@ public class ZalbaNaCutanje {
         "content"
     })
     public static class Sadrzaj {
-    	/*@XmlElement(required = true)
-	    protected String Naziv_organa;
-		@XmlElement(required = true)
-	    protected Select Razlozi_zalbe;
-		@XmlElement(required = true)
-	    protected Date Datum_podnosenja_zahteva;
-		@XmlElement(required = true)
-	    protected String Podaci_o_zahtevu;
-		@XmlElement(required = true)
-	    protected List<String> Pasus;
-		@XmlElement(required = false)
-	    protected String Napomena;
-		*/
 
         @XmlElementRefs({
             @XmlElementRef(name = "Naziv_organa", namespace = "http://www.ftn.uns.ac.rs/zalba-na-cutanje", type = JAXBElement.class),

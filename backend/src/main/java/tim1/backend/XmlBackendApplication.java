@@ -11,6 +11,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import tim1.backend.model.zalbacutanje.MarshalZalbaNaCutanje;
 import tim1.backend.model.zalbacutanje.UnmarshalZalbaNaCutanje;
+import tim1.backend.model.zalbaodluka.UnmarshalZalbaNaOdluku;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
 
@@ -25,26 +26,28 @@ public class XmlBackendApplication {
 
 		System.out.println(System.getProperty("user.dir"));
 		//zahtev
-		UnmarshallingZahtev.testXmlToObject();
-		MarshallingZahtev.testObjectToXml();
-		Validation.test();
-		//zalba na cutanje
-		MarshalZalbaNaCutanje.test();
-		System.out.println("\n\n");
-		UnmarshalZalbaNaCutanje.test();
-
-
+//		UnmarshallingZahtev.testXmlToObject();
+//		MarshallingZahtev.testObjectToXml();
+//		Validation.test();
+//		//zalba na cutanje
+//		MarshalZalbaNaCutanje.test();
+//		System.out.println("\n\n");
+//		UnmarshalZalbaNaCutanje.test();
+//
+//
+//		
+//		try {
+//			UnmarshalingObavestenjecir.test();
+//			MarshalingObavestenjecir.test();
+//			tim1.backend.model.obavestenje.Validation.test();
+//
+//			MarshalingResenje.test();
+//			UnmarshallingResenje.test();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
-		try {
-			UnmarshalingObavestenjecir.test();
-			MarshalingObavestenjecir.test();
-			tim1.backend.model.obavestenje.Validation.test();
-
-			MarshalingResenje.test();
-			UnmarshallingResenje.test();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		UnmarshalZalbaNaOdluku.test();
 
 	}
 
