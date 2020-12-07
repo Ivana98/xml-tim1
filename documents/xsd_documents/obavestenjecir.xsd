@@ -95,7 +95,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="Selected"/>
+        <xs:attribute name="Selected" type="xs:int"/>
     </xs:complexType>
     <xs:element name="Dostavljeno" type="ftn:Select"/>
 </xs:schema>

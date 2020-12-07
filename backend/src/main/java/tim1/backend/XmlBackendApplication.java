@@ -11,6 +11,9 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import tim1.backend.model.zalbacutanje.MarshalZalbaNaCutanje;
 import tim1.backend.model.zalbacutanje.UnmarshalZalbaNaCutanje;
+import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
+import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
+
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -29,6 +32,16 @@ public class XmlBackendApplication {
 		UnmarshalZalbaNaCutanje.test();
 
 
+		
+		try {
+			UnmarshalingObavestenjecir.test();
+			MarshalingObavestenjecir.test();
+			tim1.backend.model.obavestenje.Validation.test();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
