@@ -17,12 +17,12 @@
 			<tip_zahteva rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip_zahteva>
 			<tip_zahteva rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
 				<nacini_slanja>
-					<nacin rb="1" tekst="поштом" selektovan="false"></nacin>
-					<nacin rb="2" tekst="електронском поштом" selektovan="false"></nacin>
-					<nacin rb="3" tekst="факсом" selektovan="false"></nacin>
-					<nacin rb="4" tekst="на други начин:***" selektovan="false">
+					<nacin_slanja rb="1" tekst="поштом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="2" tekst="електронском поштом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="3" tekst="факсом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="4" tekst="на други начин:***" selektovan="false">
 						<detaljan_opis></detaljan_opis>
-					</nacin>
+					</nacin_slanja>
 				</nacini_slanja>
 			</tip_zahteva>
 		</tipovi_zahteva>

@@ -10,6 +10,7 @@ package tim1.backend.model.zahtev;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -25,11 +26,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ime_i_prezime" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="adresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="kontakt" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="potpis" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="detaljan_opis" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="rb" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="selektovan" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
+ *       &lt;attribute name="tekst" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,117 +40,118 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "imeIPrezime",
-    "adresa",
-    "kontakt",
-    "potpis"
+    "detaljanOpis"
 })
-@XmlRootElement(name = "trazilac")
-public class Trazilac {
+@XmlRootElement(name = "nacin_slanja")
+public class NacinSlanja {
 
-    @XmlElement(name = "ime_i_prezime", required = true)
-    protected String imeIPrezime;
-    @XmlElement(required = true)
-    protected String adresa;
-    @XmlElement(required = true)
-    protected String kontakt;
-    @XmlElement(required = true)
-    protected String potpis;
+    @XmlElement(name = "detaljan_opis")
+    protected String detaljanOpis;
+    @XmlAttribute(name = "rb")
+    protected Integer rb;
+    @XmlAttribute(name = "selektovan")
+    protected Boolean selektovan;
+    @XmlAttribute(name = "tekst")
+    protected String tekst;
 
     /**
-     * Gets the value of the imeIPrezime property.
+     * Gets the value of the detaljanOpis property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getImeIPrezime() {
-        return imeIPrezime;
+    public String getDetaljanOpis() {
+        return detaljanOpis;
     }
 
     /**
-     * Sets the value of the imeIPrezime property.
+     * Sets the value of the detaljanOpis property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setImeIPrezime(String value) {
-        this.imeIPrezime = value;
+    public void setDetaljanOpis(String value) {
+        this.detaljanOpis = value;
     }
 
     /**
-     * Gets the value of the adresa property.
+     * Gets the value of the rb property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getRb() {
+        return rb;
+    }
+
+    /**
+     * Sets the value of the rb property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setRb(Integer value) {
+        this.rb = value;
+    }
+
+    /**
+     * Gets the value of the selektovan property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public boolean isSelektovan() {
+        if (selektovan == null) {
+            return false;
+        } else {
+            return selektovan;
+        }
+    }
+
+    /**
+     * Sets the value of the selektovan property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSelektovan(Boolean value) {
+        this.selektovan = value;
+    }
+
+    /**
+     * Gets the value of the tekst property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAdresa() {
-        return adresa;
+    public String getTekst() {
+        return tekst;
     }
 
     /**
-     * Sets the value of the adresa property.
+     * Sets the value of the tekst property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAdresa(String value) {
-        this.adresa = value;
-    }
-
-    /**
-     * Gets the value of the kontakt property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getKontakt() {
-        return kontakt;
-    }
-
-    /**
-     * Sets the value of the kontakt property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setKontakt(String value) {
-        this.kontakt = value;
-    }
-
-    /**
-     * Gets the value of the potpis property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPotpis() {
-        return potpis;
-    }
-
-    /**
-     * Sets the value of the potpis property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPotpis(String value) {
-        this.potpis = value;
+    public void setTekst(String value) {
+        this.tekst = value;
     }
 
 }

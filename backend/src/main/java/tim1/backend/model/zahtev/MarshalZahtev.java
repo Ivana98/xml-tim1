@@ -5,6 +5,8 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
+import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
+
 public class MarshalZahtev {
     
     private static String output = "";
@@ -35,7 +37,13 @@ public class MarshalZahtev {
         addToOutput("svrha zahteva", zahtev.getSvrhaZahteva());
 
         addToOutput("tekst zahteva", zahtev.getOpisZahteva().getTekstZahteva());
-        
+        TipoviZahteva tipoviZahteva = zahtev.getOpisZahteva().getTipoviZahteva();
+        for (TipZahteva tipZahteva : tipoviZahteva.getTipZahteva()) {
+            addToOutput("\t tekst", tipZahteva.getTekst());
+            addToOutput("\t rb", String.valueOf(tipZahteva.getRb()));
+            addToOutput("\t selektovan", String.valueOf(tipZahteva.isSelektovan()));
+                
+        }
         
     }
 
@@ -45,7 +53,10 @@ public class MarshalZahtev {
         String YELLOW = "\u001B[33m";
         String BLUE = "\u001B[34m";
         String PURPLE = "\u001B[35m";
-        output +=YELLOW + tag + ": " + BLUE + content + '\n';
+        if(tag.contains("\t"))
+            output +=PURPLE + tag + ": " + BLUE + content + '\n';
+        else
+            output +=YELLOW + tag + ": " + BLUE + content + '\n';
     }
 
 }
