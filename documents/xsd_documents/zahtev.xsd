@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/zahtevi" xmlns:ftn="http://www.ftn.uns.ac.rs/zahtevi">
-    <xs:element name="dokument">
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns:ftn="http://www.ftn.uns.ac.rs/zahtev">
+    <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="info_organa">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="naziv" type="xs:string"/>
-                            <xs:element name="sediste" type="xs:string"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element ref="ftn:info_organa"/>
                 <xs:element name="naslov" type="xs:string"/>
                 <xs:element name="svrha_zahteva" type="xs:string"/>
                 <xs:element ref="ftn:opis_zahteva"/>
-                <xs:element name="mesto"/>
-                <xs:element name="datum"/>
+                <xs:element name="mesto" type="xs:string"/>
+                <xs:element name="datum" type="xs:date"/>
                 <xs:element ref="ftn:trazilac"/>
                 <xs:element name="footer" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="info_organa">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naziv" type="xs:string"/>
+                <xs:element name="sediste" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -26,20 +27,10 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="tekst_zahteva" type="xs:string"/>
-                <xs:element name="tipovi_zahteva" maxOccurs="1">
+                <xs:element name="tipovi_zahteva">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="tip" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element maxOccurs="unbounded" minOccurs="0"
-                                            ref="ftn:nacini_slanja"/>
-                                    </xs:sequence>
-                                    <xs:attribute name="tekst" type="xs:string"/>
-                                    <xs:attribute default="false" name="selektovan" type="xs:boolean" />
-                                    <xs:attribute name="rb"/>
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element maxOccurs="unbounded" ref="ftn:tip_zahteva"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -53,20 +44,30 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="nacini_slanja">
+    <xs:element name="tip_zahteva">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="nacin" maxOccurs="unbounded">
+                <xs:element minOccurs="0" name="nacini_slanja">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element minOccurs="0" name="detaljan_opis"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="1" ref="ftn:nacin_slanja"/>
                         </xs:sequence>
-                        <xs:attribute name="rb"/>
-                        <xs:attribute default="false" name="selektovan" type="xs:boolean"/>
-                        <xs:attribute name="tekst"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="selektovan" type="xs:boolean"/>
+            <xs:attribute name="rb" type="xs:int"/>
+            <xs:attribute name="tekst" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="nacin_slanja">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="detaljan_opis" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="rb" type="xs:int"/>
+            <xs:attribute default="false" name="selektovan" type="xs:boolean"/>
+            <xs:attribute name="tekst" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="trazilac">

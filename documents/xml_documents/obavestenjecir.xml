@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd">
     <Osnovni_podaci>
         <Organ>
-            <Naziv></Naziv>
-            <Sediste></Sediste>
+            <Naziv>Neki naziv</Naziv>
+            <Sediste>Novi Sad</Sediste>
         </Organ>
         <Broj_predmeta>5</Broj_predmeta>
         <Datum>2020-05-22</Datum>
         <Podnosioc_zahteva>
-            <Ime></Ime>
-            <Prezime></Prezime>
-            <Naziv></Naziv>
-            <Adresa></Adresa>
+            <Ime>Veljko</Ime>
+            <Prezime>Plecas</Prezime>
+            <Naziv>Naziv 1</Naziv>
+            <Adresa>Teodora Drajzera</Adresa>
         </Podnosioc_zahteva>
     </Osnovni_podaci>
     
@@ -27,11 +27,11 @@
         <Paragraf>
             На основу члана 16. ст. 1. Закона о слободном приступу информацијама од јавног
             значаја, поступајући по вашем захтеву за слободан приступ информацијама од 
-            <Godina>2020</Godina>год., којим сте тражили увид у документ/е са информацијама о / у вези са: 
-            <Opis_informacije></Opis_informacije>
+            <Godina>2020</Godina> год., којим сте тражили увид у документ/е са информацијама о / у вези са: 
+            <Opis_informacije>...opis...</Opis_informacije>
             обавештавамо вас да дана <Datum_uvida>2020-05-22</Datum_uvida>, u <Vreme_uvida>09:00:00</Vreme_uvida> часова, односно у времену од <Pocetak_cas>08:00:00</Pocetak_cas> do 
-            <Kraj_cas>10:00:00</Kraj_cas> часова, у просторијама органа у <Grad_organa></Grad_organa> ул. <Ulica_organa></Ulica_organa> бр. 
-            <Broj_organa></Broj_organa>, канцеларија бр. <Broj_kancelarije></Broj_kancelarije> можете извршити увид у документ/е у коме је садржана 
+            <Kraj_cas>10:00:00</Kraj_cas> часова, у просторијама органа у <Grad_organa>Novi Sad</Grad_organa> ул. <Ulica_organa>Misiceva</Ulica_organa> бр. 
+            <Broj_organa>3</Broj_organa>, канцеларија бр. <Broj_kancelarije>12a</Broj_kancelarije> можете извршити увид у документ/е у коме је садржана 
             тражена информација.
 
             Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.
@@ -48,7 +48,7 @@
         </Paragraf>
         
         
-        <Dostavljeno>
+        <Dostavljeno Selected="2">
             <Primer ID="1">1. Именованом </Primer>
             <Primer ID="2">2. Архиви</Primer>
         </Dostavljeno>

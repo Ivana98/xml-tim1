@@ -1,0 +1,48 @@
+<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd">
+	<info_organa>
+		<naziv></naziv>
+		<sediste></sediste>
+	</info_organa>
+	<naslov> З А Х Т Е В </naslov>
+	<svrha_zahteva> за приступ информацији од јавног значаја </svrha_zahteva>
+	
+	<opis_zahteva>
+		<tekst_zahteva>На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*</tekst_zahteva>
+		
+		<tipovi_zahteva>
+			<tip_zahteva rb="1" tekst="обавештење да ли поседује тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="2" tekst="увид у документ који садржи тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
+				<nacini_slanja>
+					<nacin_slanja rb="1" tekst="поштом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="2" tekst="електронском поштом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="3" tekst="факсом" selektovan="false"></nacin_slanja>
+					<nacin_slanja rb="4" tekst="на други начин:***" selektovan="false">
+						<detaljan_opis></detaljan_opis>
+					</nacin_slanja>
+				</nacini_slanja>
+			</tip_zahteva>
+		</tipovi_zahteva>
+
+		<dodatne_informacije>Овај захтев се односи на следеће информације:<opis_dodatne_informacije></opis_dodatne_informacije>(навести што прецизнији опис информације која се тражи као и друге податке који олакшавају проналажење тражене информације)</dodatne_informacije>
+	</opis_zahteva>
+
+	<mesto></mesto>
+	<datum>2020-12-07</datum>
+
+	<trazilac>
+		<ime_i_prezime></ime_i_prezime>
+		<adresa></adresa>
+		<kontakt></kontakt>
+		<potpis></potpis>
+	</trazilac>
+
+	<footer>
+		* У кућици означити која законска права на приступ информацијама желите да остварите.
+		** У кућици означити начин достављања копије докумената.
+		*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.
+	</footer>
+</zahtev>
