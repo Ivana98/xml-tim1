@@ -14,6 +14,8 @@ import tim1.backend.model.zalbacutanje.UnmarshalZalbaNaCutanje;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
 
+import tim1.backend.model.resenje.MarshalingResenje;
+import tim1.backend.model.resenje.UnmarshallingResenje;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -37,11 +39,13 @@ public class XmlBackendApplication {
 			UnmarshalingObavestenjecir.test();
 			MarshalingObavestenjecir.test();
 			tim1.backend.model.obavestenje.Validation.test();
+
+			MarshalingResenje.test();
+			UnmarshallingResenje.test();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 }
