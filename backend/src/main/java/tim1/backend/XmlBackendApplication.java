@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tim1.backend.model.zahtev.MarshallingZahtev;
 import tim1.backend.model.zahtev.UnmarshallingZahtev;
+import tim1.backend.model.zahtev.Validation;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -14,6 +15,7 @@ public class XmlBackendApplication {
 
 		UnmarshallingZahtev.testXmlToObject();
 		MarshallingZahtev.testObjectToXml();
+		Validation.test();
 	}
 
 }
