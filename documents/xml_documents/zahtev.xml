@@ -1,6 +1,6 @@
-<dokument xmlns="http://www.ftn.uns.ac.rs/zahtevi"
+<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtevi ../xsd_documents/zahtevi.xsd">
+ xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd">
 	<info_organa>
 		<naziv></naziv>
 		<sediste></sediste>
@@ -16,10 +16,10 @@
 		
 
 		<tipovi_zahteva>
-			<tip rb="1" tekst="обавештење да ли поседује тражену информацију;" selektovan="false"></tip>
-			<tip rb="2" tekst="увид у документ који садржи тражену информацију;" selektovan="false"></tip>
-			<tip rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip>
-			<tip rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
+			<tip_zahteva rb="1" tekst="обавештење да ли поседује тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="2" tekst="увид у документ који садржи тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip_zahteva>
+			<tip_zahteva rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
 				<nacini_slanja>
 					<nacin rb="1" tekst="поштом" selektovan="false"></nacin>
 					<nacin rb="2" tekst="електронском поштом" selektovan="false"></nacin>
@@ -28,7 +28,7 @@
 						<detaljan_opis></detaljan_opis>
 					</nacin>
 				</nacini_slanja>
-			</tip>
+			</tip_zahteva>
 		</tipovi_zahteva>
 
 		<dodatne_informacije>
@@ -39,7 +39,7 @@
 	</opis_zahteva>
 
 	<mesto></mesto>
-	<datum></datum>
+	<datum>2020-12-07</datum>
 
 	<trazilac>
 		<ime_i_prezime></ime_i_prezime>
@@ -53,4 +53,4 @@
 		** У кућици означити начин достављања копије докумената.
 		*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.
 	</footer>
-</dokument>
+</zahtev>
