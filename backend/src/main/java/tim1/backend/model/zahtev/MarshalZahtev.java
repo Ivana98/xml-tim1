@@ -33,12 +33,12 @@ public class MarshalZahtev {
     private static void printZahtev(Zahtev zahtev){
         //info organa
         
-        addToOutput("naziv organa", zahtev.getInfoOrgana().getNaziv());
-        addToOutput("sediste organa", zahtev.getInfoOrgana().getSediste());
-        addToOutput("naslov", zahtev.getNaslov());
-        addToOutput("svrha zahteva", zahtev.getSvrhaZahteva());
+        addToOutput("naziv organa", zahtev.getInfoOrgana().getNaziv(), "\n");
+        addToOutput("sediste organa", zahtev.getInfoOrgana().getSediste(), "\n");
+        addToOutput("naslov", zahtev.getNaslov(), "\n");
+        addToOutput("svrha zahteva", zahtev.getSvrhaZahteva(), "\n");
 
-        addToOutput("tekst zahteva", zahtev.getOpisZahteva().getTekstZahteva());
+        addToOutput("tekst zahteva", zahtev.getOpisZahteva().getTekstZahteva(), "\n");
         printTipoviZahteva(zahtev);
 
         
@@ -47,23 +47,23 @@ public class MarshalZahtev {
     private static void printTipoviZahteva(Zahtev zahtev){
         TipoviZahteva tipoviZahteva = zahtev.getOpisZahteva().getTipoviZahteva();
         for (TipZahteva tipZahteva : tipoviZahteva.getTipZahteva()) {
-            addToOutput("\t tip zahteva:", tipZahteva.getTekst());
-            addToOutput("\t rb", String.valueOf(tipZahteva.getRb()));
-            addToOutput("\t selektovan", String.valueOf(tipZahteva.isSelektovan()));
+            addToOutput("\t tip", tipZahteva.getTekst(), "");
+            addToOutput(" rb", String.valueOf(tipZahteva.getRb()), "");
+            addToOutput(" selektovan", String.valueOf(tipZahteva.isSelektovan()), "\n");
 
             //nacini slanja
             NaciniSlanja nacini =tipZahteva.getNaciniSlanja();
             if(null != nacini){
                 for (NacinSlanja nacinSlanja : nacini.getNacinSlanja()) {
                     if(null == nacinSlanja.getDetaljanOpis())  {
-                        addToOutput("\t\t nacin slanja", nacinSlanja.getTekst());
+                        addToOutput("\t\t slanje", nacinSlanja.getTekst(), "");
                     }
                     else{
-                        addToOutput("\t\t nacin slanja", nacinSlanja.getTekst() + nacinSlanja.getDetaljanOpis());
+                        addToOutput("\t\t slanje", 
+                        nacinSlanja.getTekst() + nacinSlanja.getDetaljanOpis(), "");
                     }
-                    addToOutput("\t\t rb", String.valueOf(nacinSlanja.getRb()));
-                    addToOutput("\t\t selektovan", String.valueOf(nacinSlanja.isSelektovan()));
-                    
+                    addToOutput(" rb", String.valueOf(nacinSlanja.getRb()), "");
+                    addToOutput(" selektovan", String.valueOf(nacinSlanja.isSelektovan()), "\n");   
                 }
             }
         }
@@ -71,14 +71,14 @@ public class MarshalZahtev {
 
 
 
-    private static void addToOutput(String tag, String content){
+    private static void addToOutput(String tag, String content, String end){
         String YELLOW = "\u001B[33m";
         String BLUE = "\u001B[34m";
         String PURPLE = "\u001B[35m";
         if(tag.contains("\t"))
-            output +=PURPLE + tag + ": " + BLUE + content + '\n';
+            output +=PURPLE + tag + ": " + BLUE + content + end;
         else
-            output +=YELLOW + tag + ": " + BLUE + content + '\n';
+            output +=YELLOW + tag + ": " + BLUE + content + end;
     }
 
 }
