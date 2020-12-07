@@ -1,61 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dokument>
+<zalba_na_odluku
+    naslov="ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ"
+    xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd">
     
-    <naslov>
-        <podvuceno></podvuceno>
-    </naslov>
+    <podaci_o_povereniku>
+        <namena> 
+            Поверенику за информације од јавног значаја и заштиту података о личности 
+        </namena>
+        <adresa pripada="posta">
+            Адреса за пошту: 
+            <grad> Београд </grad>
+            <ulica> Булевар краља Александрa </ulica>
+            <broj> 15 </broj>
+        </adresa>
+    </podaci_o_povereniku>
     
-    <namena></namena>
-    <adresa>
-        <grad></grad>
-        <ulica></ulica>
-        <broj></broj>
-    </adresa>
     
     <zalba>
+        <naslov> Ж А Л Б А  </naslov>
+        
         <zalilac>
             <ime></ime>
             <prezime></prezime>
             <naziv></naziv>
-            <adresa></adresa>
+            <adresa pripada="zalilac">
+                <grad></grad>
+                <ulica></ulica>
+                <broj></broj>
+            </adresa>
             <sediste></sediste>
         </zalilac>
+        (Име, презиме, односно назив, адреса и седиште жалиоца)
         
+        против решења-закључка 
         <naziv_organa></naziv_organa>
+        (назив органа који је донео одлуку)
         
-        <resenje_ili_zakljucak>
-            <broj></broj>
-            <godina></godina>
-        </resenje_ili_zakljucak>
-        
-        <paragraf_zalbe>
-            <dan></dan>
-            <mesec></mesec>
-            <godina></godina>
-            <deo_odluke></deo_odluke>
-        </paragraf_zalbe>
-        <paragrafi>
-            <paragraf></paragraf>
-        </paragrafi>
+        <zahtev broj="" godina="">
+            Број 
+            
+            од
+            
+            године.
+        </zahtev>
+       
+        <sadrzaj>
+            <paragraf id="1">
+                Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми 
+                са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-
+                упутио/ла дана 
+                <datum> </datum>
+                године и тако ми ускраћено-онемогућено остваривање уставног и
+                законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у
+                целости, односно у делу којим
+                <deo_odluke></deo_odluke>
+                јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
+            </paragraf>
+            <paragraf id="2">
+                На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи
+                одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
+            </paragraf>
+            <paragraf id="3">
+                Жалбу подносим благовремено, у законском року утврђеном у 
+                <zakon ime="Закон о слободном приступу информацијама од јавног значаја" clan="22" stav="1">
+                    члану 22. ст. 1. Закона о
+                    слободном приступу информацијама од јавног значаја.
+                </zakon>
+            </paragraf>
+        </sadrzaj>
         
         <podnosilac>
             <ime></ime>
             <prezime></prezime>
-            <adresa></adresa>
+            <adresa pripada="podnosilac">
+                <grad></grad>
+                <ulica></ulica>
+                <broj></broj>
+            </adresa>
             <kontakt_podaci></kontakt_podaci>>
         </podnosilac>
         
         <vreme_i_mesto>
             <grad></grad>
-            <dan></dan>
-            <mesec></mesec>
-            <godina></godina>
+            <datum> </datum>
         </vreme_i_mesto>
         
     </zalba>
     
-    <lista_napomena>
-        <napomena></napomena>
-    </lista_napomena>
+    <napomene>
+        <naslov> Напомена: </naslov>
+        <napomena id="1">
+            У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив
+            органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у
+            жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити.
+            Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити. 
+        </napomena>
+        <napomena id="2">
+            Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу
+            као и копију одлуке органа која се оспорава жалбом.
+        </napomena>
+    </napomene>
     
-</dokument>
+</zalba_na_odluku>
