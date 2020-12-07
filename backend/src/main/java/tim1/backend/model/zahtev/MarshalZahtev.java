@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
@@ -31,8 +32,7 @@ public class MarshalZahtev {
     }
 
     private static void printZahtev(Zahtev zahtev){
-        //info organa
-        
+
         addToOutput("naziv organa", zahtev.getInfoOrgana().getNaziv(), "\n");
         addToOutput("sediste organa", zahtev.getInfoOrgana().getSediste(), "\n");
         addToOutput("naslov", zahtev.getNaslov(), "\n");
@@ -40,7 +40,7 @@ public class MarshalZahtev {
 
         addToOutput("tekst zahteva", zahtev.getOpisZahteva().getTekstZahteva(), "\n");
         printTipoviZahteva(zahtev);
-
+        printDodatneInformacije(zahtev);
         
     }
 
@@ -69,7 +69,19 @@ public class MarshalZahtev {
         }
     }
 
+    private static void printDodatneInformacije(Zahtev zahtev){
+        String x;
+        x = zahtev.getOpisZahteva().getDodatneInformacije().getContent().get(0).toString();
+        addToOutput("dodatne informacije", x , "\n");
 
+        //ono sto je korisnik uneo, ako je uneo
+        JAXBElement<String> text = (JAXBElement<String>)zahtev.getOpisZahteva().getDodatneInformacije().getContent().get(1);
+        addToOutput("korisnik uneo",text.getValue(), "\n");
+
+        x = zahtev.getOpisZahteva().getDodatneInformacije().getContent().get(2).toString();
+        addToOutput("tekst", x , "\n");
+
+    }
 
     private static void addToOutput(String tag, String content, String end){
         String YELLOW = "\u001B[33m";
