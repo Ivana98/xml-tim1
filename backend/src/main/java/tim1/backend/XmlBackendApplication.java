@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
+import tim1.backend.model.obavestenje.Validation;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -15,7 +16,8 @@ public class XmlBackendApplication {
 		
 		try {
 			// UnmarshalingObavestenjecir.test();
-			MarshalingObavestenjecir.test();
+			// MarshalingObavestenjecir.test();
+			Validation.test();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
