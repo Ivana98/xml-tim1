@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/resenje" xmlns:ftn="http://www.ftn.uns.ac.rs/resenje">
+
+    <xs:element name="Resenje_obrazac">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element form="qualified" name="Datum" type="xs:date" nillable="false"/>
+                <xs:element name="Uvod" type="xs:string"/>
+                <xs:element name="Sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ftn:Resenje"/>
+                            <xs:element ref="ftn:Obrazlozenje"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ftn:Poverenik"/>
+            </xs:sequence>
+            <xs:attribute name="naslov">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Resenje">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Pasus" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Obrazlozenje">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Sadrzaj_obrazlozenja">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="Cena" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Poverenik">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Ime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Prezime">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
