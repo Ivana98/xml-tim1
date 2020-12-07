@@ -6,21 +6,21 @@
     <xs:element name="zalba_na_odluku">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="ftn:naslov"/>
+                <xs:element name="naslov" type="xs:string"/>
                 <xs:element ref="ftn:podaci_o_povereniku"/>
                 <xs:element ref="ftn:zalba"/>
                 <xs:element ref="ftn:napomene"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="naslov" type="xs:string"/>
     <xs:element name="zalba">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element name="podnaslov" type="xs:string"/>
                 <xs:element ref="ftn:zalilac"/>
                 <xs:element name="naziv_organa" type="xs:string"/>
-                <xs:element ref="ftn:zahtev"/>
+                <xs:element name="broj_zahteva" type="xs:int"/>
+                <xs:element name="godina" type="xs:gYear"/>
                 <xs:element ref="ftn:sadrzaj"/>
                 <xs:element ref="ftn:podnosilac"/>
                 <xs:element ref="ftn:vreme_i_mesto"/>
@@ -28,7 +28,7 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="sadrzaj">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element name="datum" type="xs:date"/>
                 <xs:element name="deo_odluke" type="xs:string"/>
@@ -74,14 +74,17 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="napomene">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element name="napomena">
+                <xs:element name="napomena" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:attribute name="id" type="xs:long"/>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="id" type="xs:long"/>
+                            </xs:extension>
+                        </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element ref="ftn:naslov"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
