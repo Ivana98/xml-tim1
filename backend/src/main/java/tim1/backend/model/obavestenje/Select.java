@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -55,7 +54,6 @@ public class Select {
     @XmlElement(name = "Primer", required = true)
     protected List<Select.Primer> primer;
     @XmlAttribute(name = "Selected")
-    // @XmlSchemaType(name = "anySimpleType")
     protected Integer selected;
 
     public Select.Primer getSelectedOption() {

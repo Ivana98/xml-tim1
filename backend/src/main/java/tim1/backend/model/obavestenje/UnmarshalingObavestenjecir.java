@@ -1,15 +1,13 @@
 package tim1.backend.model.obavestenje;
 
 import java.io.File;
-import java.io.Serializable;
-import java.time.Year;
 import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 
-public class MarshalObavestenjecir {
+public class UnmarshalingObavestenjecir {
 
     public static void test() {
 
@@ -32,10 +30,12 @@ public class MarshalObavestenjecir {
 
     private static void printObavestenjecir(Obavestenje obavestenje) {
 
-        // printOsnovniPodaci(obavestenje.getOsnovniPodaci());
+        printOsnovniPodaci(obavestenje.getOsnovniPodaci());
+        System.out.println();
 
-        // printSadrzaj(obavestenje.getSadrzaj());
+        printSadrzaj(obavestenje.getSadrzaj());
 
+        System.out.println();
         printDostavljeno(obavestenje.getSadrzaj().getDostavljeno());
 
     }
