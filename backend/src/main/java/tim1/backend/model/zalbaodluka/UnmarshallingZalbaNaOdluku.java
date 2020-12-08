@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
 import tim1.backend.model.zalbacutanje.MyValidationEventHandler;
 import tim1.backend.model.zalbaodluka.Napomene.Napomena;
 
-public class UnmarshalZalbaNaOdluku {
+public class UnmarshallingZalbaNaOdluku {
 	
 	public static void test() {
 		try {
@@ -29,12 +29,12 @@ public class UnmarshalZalbaNaOdluku {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("documents/xsd_documents/zalbanaodlukucir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbanaodlukucir.xsd"));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
 
 			
 			
@@ -58,34 +58,38 @@ public class UnmarshalZalbaNaOdluku {
 	}
 	
 	private static void printZalba(Zalba zalba) {
-		JAXBElement<String> podnaslov = (JAXBElement<String>) zalba.getContent().get(1);
-		System.out.println("\n" + podnaslov.getValue());
+		//JAXBElement<String> podnaslov = (JAXBElement<String>) zalba.getContent().get(1);
+		//System.out.println("\n" + podnaslov.getValue());
+		System.out.println("\n" + zalba.getContent().get(0));
 		
-		Zalilac zalilac = (Zalilac) zalba.getContent().get(3);
-		System.out.println(zalilac.getIme() + " " + zalilac.getPrezime() + " " + zalilac.getNaziv());
-		System.out.println(zalilac.getAdresa().getGrad() + zalilac.getAdresa().getUlica() + " " + zalilac.getAdresa().getBroj());
-		System.out.print(zalilac.getSediste());
+		//System.out.println(zalba.getContent().get(1));
+		JAXBElement<TFizickoLice> z = (JAXBElement<TFizickoLice>) zalba.getContent().get(1);
+		TFizickoLice zalilac = z.getValue();
+		System.out.println("Подаци о жалиоцу");
+		System.out.println("Име и презиме: " + zalilac.getIme() + " " + zalilac.getPrezime());
+		System.out.println("Адреса: " + zalilac.getAdresa().getGrad() + zalilac.getAdresa().getUlica() + " бр. " + zalilac.getAdresa().getBroj());
+		System.out.println("Седиште: " + zalilac.getSediste());
 		
-		System.out.println(zalba.getContent().get(4));
+		System.out.println(zalba.getContent().get(2));
 		
-		JAXBElement<String> nazivOrgana = (JAXBElement<String>) zalba.getContent().get(5);
+		JAXBElement<String> nazivOrgana = (JAXBElement<String>) zalba.getContent().get(3);
 		System.out.print(nazivOrgana.getValue());
 		
-		System.out.print(zalba.getContent().get(6));	
-		JAXBElement<Integer> broj = (JAXBElement<Integer>) zalba.getContent().get(7);
+		System.out.print(zalba.getContent().get(4));	
+		JAXBElement<Integer> broj = (JAXBElement<Integer>) zalba.getContent().get(5);
 		System.out.print(broj.getValue());
-		System.out.print(zalba.getContent().get(8));
-		JAXBElement<XMLGregorianCalendar> datum = (JAXBElement<XMLGregorianCalendar>) zalba.getContent().get(9);
+		System.out.print(zalba.getContent().get(6));
+		JAXBElement<XMLGregorianCalendar> datum = (JAXBElement<XMLGregorianCalendar>) zalba.getContent().get(7);
 		System.out.print(datum.getValue().getYear()+".");
-		System.out.println(zalba.getContent().get(10));
+		System.out.println(zalba.getContent().get(8));
 		
-		Sadrzaj sadrzaj = (Sadrzaj) zalba.getContent().get(11);
+		Sadrzaj sadrzaj = (Sadrzaj) zalba.getContent().get(9);
 		printSadrzaj(sadrzaj);
 		
-		Podnosilac podnosilac = (Podnosilac) zalba.getContent().get(13);
+		Podnosilac podnosilac = (Podnosilac) zalba.getContent().get(11);
 		printPodnosilac(podnosilac);
 		
-		VremeIMesto vremeIMesto = (VremeIMesto) zalba.getContent().get(15);
+		VremeIMesto vremeIMesto = (VremeIMesto) zalba.getContent().get(13);
 		printVremeIMesto(vremeIMesto);
 		
 	}

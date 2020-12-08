@@ -11,24 +11,22 @@ package tim1.backend.model.zalbaodluka;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * &lt;p&gt;Java class for anonymous complex type.
+ * &lt;p&gt;Java class for TLice complex type.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
  * 
  * &lt;pre&gt;
- * &amp;lt;complexType&amp;gt;
+ * &amp;lt;complexType name="TLice"&amp;gt;
  *   &amp;lt;complexContent&amp;gt;
  *     &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&amp;gt;
  *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name="grad" type="{http://www.w3.org/2001/XMLSchema}string"/&amp;gt;
- *         &amp;lt;element name="datum" type="{http://www.w3.org/2001/XMLSchema}date"/&amp;gt;
+ *         &amp;lt;element ref="{http://www.ftn.uns.ac.rs/zalba-na-odluku}adresa"/&amp;gt;
+ *         &amp;lt;element name="sediste" type="{http://www.w3.org/2001/XMLSchema}string"/&amp;gt;
  *       &amp;lt;/sequence&amp;gt;
  *     &amp;lt;/restriction&amp;gt;
  *   &amp;lt;/complexContent&amp;gt;
@@ -38,65 +36,67 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "grad",
-    "datum"
+@XmlType(name = "TLice", propOrder = {
+    "adresa",
+    "sediste"
 })
-@XmlRootElement(name = "vreme_i_mesto")
-public class VremeIMesto {
+@XmlSeeAlso({
+    TFizickoLice.class,
+    TPravnoLice.class
+})
+public abstract class TLice {
 
     @XmlElement(required = true)
-    protected String grad;
+    protected Adresa adresa;
     @XmlElement(required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datum;
+    protected String sediste;
 
     /**
-     * Gets the value of the grad property.
+     * Gets the value of the adresa property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Adresa }
+     *     
+     */
+    public Adresa getAdresa() {
+        return adresa;
+    }
+
+    /**
+     * Sets the value of the adresa property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Adresa }
+     *     
+     */
+    public void setAdresa(Adresa value) {
+        this.adresa = value;
+    }
+
+    /**
+     * Gets the value of the sediste property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getGrad() {
-        return grad;
+    public String getSediste() {
+        return sediste;
     }
 
     /**
-     * Sets the value of the grad property.
+     * Sets the value of the sediste property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setGrad(String value) {
-        this.grad = value;
-    }
-
-    /**
-     * Gets the value of the datum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatum() {
-        return datum;
-    }
-
-    /**
-     * Sets the value of the datum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatum(XMLGregorianCalendar value) {
-        this.datum = value;
+    public void setSediste(String value) {
+        this.sediste = value;
     }
 
 }

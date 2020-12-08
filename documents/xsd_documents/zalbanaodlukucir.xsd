@@ -16,8 +16,7 @@
     <xs:element name="zalba">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element name="podnaslov" type="xs:string"/>
-                <xs:element ref="ftn:zalilac"/>
+                <xs:element name="zalilac" type="ftn:TLice"/>
                 <xs:element name="naziv_organa" type="xs:string"/>
                 <xs:element name="broj_zahteva" type="xs:int"/>
                 <xs:element name="godina" type="xs:gYear"/>
@@ -49,17 +48,6 @@
             <xs:sequence>
                 <xs:element name="namena" type="xs:string"/>
                 <xs:element ref="ftn:adresa"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="zalilac">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ime" type="xs:string"/>
-                <xs:element name="prezime" type="xs:string"/>
-                <xs:element name="naziv" type="xs:string"/>
-                <xs:element ref="ftn:adresa"/>
-                <xs:element name="sediste" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -105,4 +93,50 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:complexType abstract="true" name="TLice">
+        <xs:sequence>
+            <xs:element ref="ftn:adresa"/>
+            <xs:element name="sediste" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TFizickoLice">
+        <xs:complexContent>
+            <xs:extension base="ftn:TLice">
+                <xs:sequence>
+                    <xs:element name="ime">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="0"/>
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="prezime">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="0"/>
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TPravnoLice">
+        <xs:complexContent>
+            <xs:extension base="ftn:TLice">
+                <xs:sequence>
+                    <xs:element name="naziv">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="0"/>
+                                <xs:maxLength value="100"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 </xs:schema>

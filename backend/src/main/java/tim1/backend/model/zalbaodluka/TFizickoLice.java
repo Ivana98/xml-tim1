@@ -11,26 +11,37 @@ package tim1.backend.model.zalbaodluka;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * &lt;p&gt;Java class for anonymous complex type.
+ * &lt;p&gt;Java class for TFizickoLice complex type.
  * 
  * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
  * 
  * &lt;pre&gt;
- * &amp;lt;complexType&amp;gt;
+ * &amp;lt;complexType name="TFizickoLice"&amp;gt;
  *   &amp;lt;complexContent&amp;gt;
- *     &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&amp;gt;
+ *     &amp;lt;extension base="{http://www.ftn.uns.ac.rs/zalba-na-odluku}TLice"&amp;gt;
  *       &amp;lt;sequence&amp;gt;
- *         &amp;lt;element name="ime" type="{http://www.w3.org/2001/XMLSchema}string"/&amp;gt;
- *         &amp;lt;element name="prezime" type="{http://www.w3.org/2001/XMLSchema}string"/&amp;gt;
- *         &amp;lt;element ref="{http://www.ftn.uns.ac.rs/zalba-na-odluku}adresa"/&amp;gt;
- *         &amp;lt;element name="kontakt_podaci" type="{http://www.w3.org/2001/XMLSchema}string"/&amp;gt;
+ *         &amp;lt;element name="ime"&amp;gt;
+ *           &amp;lt;simpleType&amp;gt;
+ *             &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&amp;gt;
+ *               &amp;lt;minLength value="0"/&amp;gt;
+ *               &amp;lt;maxLength value="30"/&amp;gt;
+ *             &amp;lt;/restriction&amp;gt;
+ *           &amp;lt;/simpleType&amp;gt;
+ *         &amp;lt;/element&amp;gt;
+ *         &amp;lt;element name="prezime"&amp;gt;
+ *           &amp;lt;simpleType&amp;gt;
+ *             &amp;lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&amp;gt;
+ *               &amp;lt;minLength value="0"/&amp;gt;
+ *               &amp;lt;maxLength value="30"/&amp;gt;
+ *             &amp;lt;/restriction&amp;gt;
+ *           &amp;lt;/simpleType&amp;gt;
+ *         &amp;lt;/element&amp;gt;
  *       &amp;lt;/sequence&amp;gt;
- *     &amp;lt;/restriction&amp;gt;
+ *     &amp;lt;/extension&amp;gt;
  *   &amp;lt;/complexContent&amp;gt;
  * &amp;lt;/complexType&amp;gt;
  * &lt;/pre&gt;
@@ -38,23 +49,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
+@XmlType(name = "TFizickoLice", propOrder = {
     "ime",
-    "prezime",
-    "adresa",
-    "kontaktPodaci"
+    "prezime"
 })
-@XmlRootElement(name = "podnosilac")
-public class Podnosilac {
+public class TFizickoLice
+    extends TLice
+{
 
     @XmlElement(required = true)
     protected String ime;
     @XmlElement(required = true)
     protected String prezime;
-    @XmlElement(required = true)
-    protected Adresa adresa;
-    @XmlElement(name = "kontakt_podaci", required = true)
-    protected String kontaktPodaci;
 
     /**
      * Gets the value of the ime property.
@@ -102,54 +108,6 @@ public class Podnosilac {
      */
     public void setPrezime(String value) {
         this.prezime = value;
-    }
-
-    /**
-     * Gets the value of the adresa property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Adresa }
-     *     
-     */
-    public Adresa getAdresa() {
-        return adresa;
-    }
-
-    /**
-     * Sets the value of the adresa property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Adresa }
-     *     
-     */
-    public void setAdresa(Adresa value) {
-        this.adresa = value;
-    }
-
-    /**
-     * Gets the value of the kontaktPodaci property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getKontaktPodaci() {
-        return kontaktPodaci;
-    }
-
-    /**
-     * Sets the value of the kontaktPodaci property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setKontaktPodaci(String value) {
-        this.kontaktPodaci = value;
     }
 
 }

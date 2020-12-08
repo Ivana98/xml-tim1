@@ -17,19 +17,19 @@
     </podaci_o_povereniku>
     
     <zalba>
-        <podnaslov> Ж А Л Б А  </podnaslov>
-        <zalilac>
-            <ime></ime>
-            <prezime></prezime>
-            <naziv></naziv>
+        Ж А Л Б А  
+        <zalilac xsi:type = "TFizickoLice">
             <adresa>
                 <grad></grad>
                 <ulica></ulica>
                 <broj></broj>
             </adresa>
             <sediste></sediste>
-        </zalilac>        
+            <ime></ime>
+            <prezime></prezime>
+        </zalilac>
         против решења-закључка 
+        
         <naziv_organa></naziv_organa>
         Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.
         
