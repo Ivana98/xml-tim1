@@ -11,6 +11,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import tim1.backend.model.zalbacutanje.MarshalZalbaNaCutanje;
 import tim1.backend.model.zalbacutanje.UnmarshalZalbaNaCutanje;
+import tim1.backend.model.zalbaodluka.MarshalingZalbaNaOdluku;
 import tim1.backend.model.zalbaodluka.UnmarshalZalbaNaOdluku;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
@@ -47,7 +48,8 @@ public class XmlBackendApplication {
 //			e.printStackTrace();
 //		}
 		
-		UnmarshalZalbaNaOdluku.test();
+		//UnmarshalZalbaNaOdluku.test();
+		MarshalingZalbaNaOdluku.test();
 
 	}
 

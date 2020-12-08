@@ -1,16 +1,13 @@
 package tim1.backend.model.zalbaodluka;
 
 import java.io.File;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
+
 
 public class MarshalingZalbaNaOdluku {
     
@@ -22,24 +19,28 @@ public class MarshalingZalbaNaOdluku {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("documents/xml_documents/zalbanaodlukucir.xml"));
 			
-			Date date = new Date();
 
-	        // XMLGregorianCalendar xmlDate = null;
-	        // GregorianCalendar gc = new GregorianCalendar();
-	        // gc.setTime(date);
-
-	        // try {
-	        //     xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
-	        // } catch (NullPointerException e) {
-	        //     e.printStackTrace();
-	        // } catch (Exception e) {
-	        //     e.printStackTrace();
-	        // }
 			
-			zalba.getPodaciOPovereniku().setNamena("Neka nova namenaaaaa");
-			// TODO: setovati jos atributa...
+			zalba.getPodaciOPovereniku().setNamena("Neka nova namena");
+			zalba.getPodaciOPovereniku().getAdresa().setGrad("Novi Sad");
+			zalba.getPodaciOPovereniku().getAdresa().setBroj("29");
+
+			ObjectFactory factory = new ObjectFactory();
+			Adresa adresa = factory.createAdresa();
+			adresa.setBroj("12");
+			adresa.setGrad("Beograd");
+			adresa.setUlica("Beogradski kej");
+			
+			Zalilac z = (Zalilac) zalba.getZalba().getContent().get(3);
+			z.setAdresa(adresa);
+			z.setIme("Marko");
+			z.setPrezime("Petrovic");
+			z.setSediste("Novi Beograd");
+
+			VremeIMesto vremeIMesto = (VremeIMesto) zalba.getZalba().getContent().get(15);
+			vremeIMesto.setGrad("Novi Sad");
 
 			Marshaller marshaller = context.createMarshaller();
 			
