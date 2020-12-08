@@ -50,16 +50,16 @@ public class UnmarshalZalbaNaOdluku {
 	
 	private static void printZalbaNaOdluku(ZalbaNaOdluku zalba) {
 		System.out.println(zalba.getNaslov());
-		System.out.println(zalba.getPodaciOPovereniku().getNamena());
+		System.out.println("\n" + zalba.getPodaciOPovereniku().getNamena());
 		Adresa adresa = zalba.getPodaciOPovereniku().getAdresa();
-		System.out.println(adresa.getGrad() + ", " + adresa.getUlica() + " " + adresa.getBroj());
+		System.out.println("Адреса за пошту" + adresa.getGrad() + ", " + adresa.getUlica() + " бр. " + adresa.getBroj());
 		printZalba(zalba.getZalba());
 		printNapomene(zalba.getNapomene());
 	}
 	
 	private static void printZalba(Zalba zalba) {
 		JAXBElement<String> podnaslov = (JAXBElement<String>) zalba.getContent().get(1);
-		System.out.println(podnaslov.getValue());
+		System.out.println("\n" + podnaslov.getValue());
 		
 		Zalilac zalilac = (Zalilac) zalba.getContent().get(3);
 		System.out.println(zalilac.getIme() + " " + zalilac.getPrezime() + " " + zalilac.getNaziv());
@@ -114,9 +114,11 @@ public class UnmarshalZalbaNaOdluku {
 	}
 	
 	private static void printPodnosilac(Podnosilac podnosilac) {
-		System.out.println(podnosilac.getIme() + " " + podnosilac.getPrezime());
-		System.out.println(podnosilac.getAdresa().getGrad() + ", " + podnosilac.getAdresa().getUlica() + " " + podnosilac.getAdresa().getBroj());
-		System.out.println(podnosilac.getKontaktPodaci());
+		System.out.println();
+		System.out.println("Подносилац жалбе");
+		System.out.println("Име и презиме: " + podnosilac.getIme() + " " + podnosilac.getPrezime());
+		System.out.println("Адреса: " + podnosilac.getAdresa().getGrad() + ", " + podnosilac.getAdresa().getUlica() + " " + podnosilac.getAdresa().getBroj());
+		System.out.println("Контект подаци: " + podnosilac.getKontaktPodaci());
 	}
 	
 	private static void printVremeIMesto(VremeIMesto vremeIMesto) {
