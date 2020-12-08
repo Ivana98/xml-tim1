@@ -29,12 +29,12 @@ public class UnmarshallingZalbaNaOdluku {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbanaodlukucir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File("documents/xsd_documents/zalbanaodlukucir.xsd"));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("documents/xml_documents/zalbanaodlukucir.xml"));
 
 			
 			

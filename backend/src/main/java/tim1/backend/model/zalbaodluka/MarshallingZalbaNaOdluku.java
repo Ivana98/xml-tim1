@@ -20,7 +20,7 @@ public class MarshallingZalbaNaOdluku {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("documents/xml_documents/zalbanaodlukucir.xml"));
 			
 
 			
