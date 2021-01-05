@@ -43,9 +43,8 @@ public class XmlBackendApplication {
 		System.out.println("-----------------------------------------------------------");
 		
 		try {
-			printZahtevi();
-			// saveFileToDB();
-			
+			//printZahtevi();
+			saveFileToDB();
 		} catch (Exception e) {
 			System.out.println("555555555555555555555555555555555555555555555");
 			System.out.println("555555555555555555555555555555555555555555555");
@@ -61,7 +60,7 @@ public class XmlBackendApplication {
 
 		String collectionId = "/db/sample/library";
 		String documentId = "obavestnjePrimer.xml";
-		String filePath = "documents/xml_documents/obavestenjecir.xml";
+		String filePath = "./../documents/xml_documents/obavestenjecir.xml";
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
