@@ -22,7 +22,7 @@ public class MarshalZalbaNaCutanje {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("documents/xml_documents/zalbacutanjecir.xml"));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbacutanjecir.xml"));
 			
 			Date date = new Date();
 

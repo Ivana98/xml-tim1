@@ -29,12 +29,12 @@ public class UnmarshalZalbaNaCutanje {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("documents/xsd_documents/zalbacutanjecir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbacutanjecir.xsd"));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("documents/xml_documents/zalbacutanjecir.xml"));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbacutanjecir.xml"));
 
 			zalba.getVremeIMesto().setMesto("Новом Саду");
 			

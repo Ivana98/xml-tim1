@@ -21,7 +21,7 @@ public class MarshallingZahtev {
 
             Zahtev zahtev = generateZahtev();
 
-            File file = new File("documents/xml_documents/new_zahtev.xml");
+            File file = new File("./../documents/xml_documents/new_zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 

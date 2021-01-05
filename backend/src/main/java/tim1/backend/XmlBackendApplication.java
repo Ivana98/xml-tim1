@@ -40,9 +40,16 @@ public class XmlBackendApplication {
 	//TODO: prebaciti metode u klasu DBManager
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
+		System.out.println("-----------------------------------------------------------");
+		
 		try {
-			saveFileToDB();
+			printZahtevi();
+			// saveFileToDB();
+			
 		} catch (Exception e) {
+			System.out.println("555555555555555555555555555555555555555555555");
+			System.out.println("555555555555555555555555555555555555555555555");
+			System.out.println("555555555555555555555555555555555555555555555");
 			e.printStackTrace();
 		}
 	}

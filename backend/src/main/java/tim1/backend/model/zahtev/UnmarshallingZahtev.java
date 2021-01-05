@@ -15,7 +15,7 @@ public class UnmarshallingZahtev {
     
     public static void testXmlToObject(){
         try {
-            File file = new File("documents/xml_documents/zahtev.xml");
+            File file = new File("./../documents/xml_documents/zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
