@@ -28,7 +28,7 @@ public class UnmarshalingObavestenjecir {
         }
     }
 
-    private static void printObavestenjecir(Obavestenje obavestenje) {
+    public static void printObavestenjecir(Obavestenje obavestenje) {
 
         printOsnovniPodaci(obavestenje.getOsnovniPodaci());
         System.out.println();
