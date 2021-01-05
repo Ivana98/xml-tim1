@@ -7,6 +7,9 @@ import tim1.backend.utils.DBManager;
 
 @Repository
 public class ObavestenjeRepository {
+
   @Autowired
   private DBManager dbManager;
+
+  
 }
