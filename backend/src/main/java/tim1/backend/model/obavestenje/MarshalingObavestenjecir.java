@@ -1,7 +1,6 @@
 package tim1.backend.model.obavestenje;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -10,7 +9,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.util.JAXBSource;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
