@@ -41,7 +41,7 @@ public class DBManager {
 	private static ConnectionProperties conn;
 	private static String collectionId = "/db/sample/library";
 
-	public static void readFileFromDB(String name) throws XMLDBException, ClassNotFoundException,
+	public static XMLResource readFileFromDB(String name) throws XMLDBException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException, JAXBException {
 
 		conn = AuthenticationUtilities.loadProperties();
@@ -95,7 +95,9 @@ public class DBManager {
 					xe.printStackTrace();
 				}
 			}
+
 		}
+		return res;
 	}
 
 	public static void saveFileToDB(String name)
@@ -248,4 +250,6 @@ public class DBManager {
 		UnmarshallingZalbaNaOdluku.test();
 		MarshallingZalbaNaOdluku.test();
 	}
+
+
 }
