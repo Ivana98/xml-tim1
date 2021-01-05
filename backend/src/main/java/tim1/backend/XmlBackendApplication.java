@@ -41,6 +41,7 @@ public class XmlBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
 		try {
+			//printZahtevi();
 			saveFileToDB();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +55,7 @@ public class XmlBackendApplication {
 
 		String collectionId = "/db/sample/library";
 		String documentId = "obavestnjePrimer.xml";
-		String filePath = "documents/xml_documents/obavestenjecir.xml";
+		String filePath = "./../documents/xml_documents/obavestenjecir.xml";
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);

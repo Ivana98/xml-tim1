@@ -24,7 +24,7 @@ public class UnmarshallingResenje {
 	
 	        Unmarshaller unmarshaller = context.createUnmarshaller();
 	
-	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("documents/xml_documents/resenje.xml"));
+	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./../documents/xml_documents/resenje.xml"));
 	
 	        printResenjeObrazac(resenjeObrazac);
 

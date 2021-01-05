@@ -19,7 +19,7 @@ public class UnmarshalingObavestenjecir {
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             Obavestenje obavestenje = (Obavestenje) unmarshaller
-                    .unmarshal(new File("documents/xml_documents/obavestenjecir.xml"));
+                    .unmarshal(new File("./../documents/xml_documents/obavestenjecir.xml"));
 
             printObavestenjecir(obavestenje);
 

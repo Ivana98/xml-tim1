@@ -14,7 +14,7 @@ public class Validation {
         try {
             
 
-            File file = new File("documents/xml_documents/zahtev.xml");
+            File file = new File("./../documents/xml_documents/zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -22,7 +22,7 @@ public class Validation {
 
             // XML schema validacija
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(new File("documents/xsd_documents/zahtev.xsd"));
+            Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zahtev.xsd"));
 
             // // Podešavanje unmarshaller-a za XML schema validaciju
             jaxbUnmarshaller.setSchema(schema);

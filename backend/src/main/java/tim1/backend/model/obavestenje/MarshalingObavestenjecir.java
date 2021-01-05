@@ -28,7 +28,7 @@ public class MarshalingObavestenjecir {
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             Obavestenje obavestenje = (Obavestenje) unmarshaller
-                    .unmarshal(new File("documents/xml_documents/obavestenjecir.xml"));
+                    .unmarshal(new File("./../documents/xml_documents/obavestenjecir.xml"));
 
             obavestenje.setOsnovniPodaci(getOsnovniPodatak());
             obavestenje.getSadrzaj().getParagraf().getContent().set(0, "Prva recenica promenjena..");
