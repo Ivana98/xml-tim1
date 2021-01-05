@@ -25,8 +25,7 @@ public class XmlBackendApplication {
 		SpringApplication.run(XmlBackendApplication.class, args);
 
 		try {
-			//String documentName = "resenje.xml";
-			String documentName = "obavestenjecir.xml";
+			String documentName = "resenje.xml";
 			DBManager.saveFileToDB(documentName);
 			DBManager.readFileFromDB(documentName);
 
@@ -34,11 +33,13 @@ public class XmlBackendApplication {
 			DBManager.saveFileToDB(documentName);
 			DBManager.readFileFromDB(documentName);
 
+			documentName = "obavestenjecir.xml";
 			ObavestenjeRepository repo = new ObavestenjeRepository();
+			System.out.println("\nSAVE");
+			repo.save(documentName);
+			System.out.println("\nGET BY ID");
 			XMLResource res = repo.getById(documentName);
-			System.out.println("pre");
 			System.out.println(res);
-			System.out.println("posle");
 
 		} catch (Exception e) {
 			e.printStackTrace();

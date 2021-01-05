@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import tim1.backend.utils.DBManager;
 
-public class ZalbaNaCutanje {
+public class ZalbaNaCutanjeRepository {
   @Autowired
   private DBManager dbManager;
 }

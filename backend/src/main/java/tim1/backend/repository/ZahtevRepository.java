@@ -7,4 +7,6 @@ import tim1.backend.utils.DBManager;
 public class ZahtevRepository {
   @Autowired
   private DBManager dbManager;
+
+  
 }

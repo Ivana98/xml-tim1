@@ -24,6 +24,16 @@ public class ObavestenjeRepository {
     return res;
 
   }
+
+  public void save(String id) throws Exception {
+	  try {
+		dbManager.saveFileToDB(id);
+	  }
+	  catch (Exception e) {
+		throw e;
+	  }
+  }
+
   /*
   public void save(XMLResource res, String id) throws Exception {
 		Marshaller marshaller = marshallerFactory.createMarshaller(contextPath, schemaPath);
