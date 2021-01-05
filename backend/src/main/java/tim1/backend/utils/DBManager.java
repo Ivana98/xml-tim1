@@ -39,17 +39,16 @@ import tim1.backend.model.resenje.UnmarshallingResenje;
 public class DBManager {
 
 	private static ConnectionProperties conn;
+	private static String collectionId = "/db/sample/library";
 
 	public static void readFileFromDB(String name) throws XMLDBException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException, JAXBException {
 
 		conn = AuthenticationUtilities.loadProperties();
-		String s = pathToName(name);
 
 		System.out.println("[INFO] " + "READ FILE FROM DB");
 
-		String collectionId = "/db/sample/library";
-		String documentId = s + "Primer.xml";
+		String documentId = name;
 
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
 		Class<?> cl = Class.forName(conn.driver);
@@ -74,18 +73,8 @@ public class DBManager {
 			if (res == null) {
 				System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
 			} else {
-				System.out.println("[INFO] Binding XML resouce to an JAXB instance: ");
-				JAXBContext context = JAXBContext.newInstance(Obavestenje.class);
-				// JAXBContext context =
-				// JAXBContext.newInstance("rs.ac.uns.ftn.examples.xmldb.bookstore");
-
-				Unmarshaller unmarshaller = context.createUnmarshaller();
-
-				Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(res.getContentAsDOM());
-
-				System.out.println("[INFO] Showing the document as JAXB instance: ");
-				System.out.println(obavestenje);
-				UnmarshalingObavestenjecir.printObavestenjecir(obavestenje);
+				System.out.println("[INFO] Showing the document as XML resource: ");
+				System.out.println(res.getContent());
 
 			}
 		} finally {
@@ -114,10 +103,7 @@ public class DBManager {
 
 		conn = AuthenticationUtilities.loadProperties();
 
-		String s = pathToName(name);
-
-		String collectionId = "/db/sample/library";
-		String documentId = s + "Primer.xml";
+		String documentId = name;
 		String filePath = "./../documents/xml_documents/" + name; //
 
 		// initialize database driver
@@ -261,10 +247,5 @@ public class DBManager {
 
 		UnmarshallingZalbaNaOdluku.test();
 		MarshallingZalbaNaOdluku.test();
-	}
-
-	private static String pathToName(String s) {
-
-		return s.substring(0, s.indexOf(".xml"));
 	}
 }

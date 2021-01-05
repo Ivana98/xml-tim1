@@ -16,8 +16,13 @@ public class XmlBackendApplication {
 		SpringApplication.run(XmlBackendApplication.class, args);
 
 		try {
-			DBManager.saveFileToDB("obavestenjecir.xml");
-			DBManager.readFileFromDB("obavestenjecir.xml");
+			String documentName = "resenje.xml";
+			DBManager.saveFileToDB(documentName);
+			DBManager.readFileFromDB(documentName);
+
+			documentName = "zalbanaodlukucir.xml";
+			DBManager.saveFileToDB(documentName);
+			DBManager.readFileFromDB(documentName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
