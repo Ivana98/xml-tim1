@@ -9,6 +9,16 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.xmldb.api.modules.XMLResource;
@@ -18,6 +28,7 @@ import tim1.backend.utils.DBManager;
 import tim1.backend.utils.FueskiAuthenticationUtilities;
 import tim1.backend.utils.SparqlUtil;
 import tim1.backend.utils.FueskiAuthenticationUtilities.ConnectionProperties;
+import tim1.backend.utils.MetadataExtractor;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -89,6 +100,11 @@ public class XmlBackendApplication {
 			System.out.println("\nGET BY ID");
 			XMLResource res = repo.getById(documentName);
 			System.out.println(res);
+
+			InputStream in = new FileInputStream(new File("./../documents/xml_documents/zahtev.xml")); 
+			OutputStream out = new FileOutputStream(new File("./../documents/gen/zahtev.rdf"));
+			MetadataExtractor extractor = new MetadataExtractor();
+			extractor.extractMetadata(in, out);
 
 		} catch (Exception e) {
 			e.printStackTrace();
