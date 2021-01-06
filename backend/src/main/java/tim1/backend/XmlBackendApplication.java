@@ -1,5 +1,11 @@
 package tim1.backend;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
@@ -11,6 +17,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.model.obavestenje.Obavestenje;
 import tim1.backend.repository.ObavestenjeRepository;
 import tim1.backend.utils.DBManager;
+import tim1.backend.utils.MetadataExtractor;
 import tim1.backend.utils.AuthenticationUtilities.ConnectionProperties;
 
 @SpringBootApplication
@@ -40,6 +47,11 @@ public class XmlBackendApplication {
 			System.out.println("\nGET BY ID");
 			XMLResource res = repo.getById(documentName);
 			System.out.println(res);
+
+			InputStream in = new FileInputStream(new File("./../documents/xml_documents/zahtev.xml")); 
+			OutputStream out = new FileOutputStream(new File("./../documents/gen/zahtev.rdf"));
+			MetadataExtractor extractor = new MetadataExtractor();
+			extractor.extractMetadata(in, out);
 
 		} catch (Exception e) {
 			e.printStackTrace();
