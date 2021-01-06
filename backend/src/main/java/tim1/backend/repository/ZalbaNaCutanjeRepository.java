@@ -5,7 +5,7 @@ import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.utils.DBManager;
 
-public class ZahtevRepository implements RepositoryInterface {
+public class ZalbaNaCutanjeRepository implements RepositoryInterface {
   @Autowired
   private DBManager dbManager;
 
@@ -30,6 +30,4 @@ public class ZahtevRepository implements RepositoryInterface {
     }
 
   }
-
-  
 }
