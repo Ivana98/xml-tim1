@@ -8,7 +8,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.utils.DBManager;
 
 @Repository
-public class ObavestenjeRepository {
+public class ObavestenjeRepository implements RepositoryInterface {
 
   @Autowired
   private DBManager dbManager;
@@ -26,6 +26,7 @@ public class ObavestenjeRepository {
   }
 
   public void save(String id) throws Exception {
+
 	  try {
 		dbManager.saveFileToDB(id);
 	  }
