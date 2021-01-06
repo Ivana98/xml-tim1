@@ -18,12 +18,15 @@ public class XmlBackendApplication {
 
 	// run tomcat on port: 8080
 	// run spring boot as usual
-	// TODO: prebaciti metode u klasu DBManager
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
 
+
+	}
+
+	public static void xmlDatabase(){
 		try {
 			String documentName = "resenje.xml";
 			DBManager.saveFileToDB(documentName);
