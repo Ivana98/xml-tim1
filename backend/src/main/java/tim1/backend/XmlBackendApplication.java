@@ -1,17 +1,11 @@
 package tim1.backend;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.model.obavestenje.Obavestenje;
 import tim1.backend.repository.ObavestenjeRepository;
 import tim1.backend.utils.DBManager;
-import tim1.backend.utils.AuthenticationUtilities.ConnectionProperties;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -22,7 +16,7 @@ public class XmlBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
-
+		xmlDatabase();
 
 	}
 
