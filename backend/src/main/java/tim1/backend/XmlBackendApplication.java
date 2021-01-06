@@ -15,6 +15,8 @@ import tim1.backend.utils.DBManager;
 import tim1.backend.utils.FusekiManager;
 import tim1.backend.utils.MetadataExtractor;
 
+import static tim1.backend.utils.PathConstants.*;
+
 @SpringBootApplication
 public class XmlBackendApplication {
 
@@ -26,6 +28,7 @@ public class XmlBackendApplication {
 
 		try {
 			FusekiManager.writeFuseki();
+			FusekiManager.readFile(EXAMPLE_PATH_URI);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,8 +52,8 @@ public class XmlBackendApplication {
 			XMLResource res = repo.getById(documentName);
 			System.out.println(res);
 
-			InputStream in = new FileInputStream(new File("./../documents/xml_documents/zahtev.xml")); 
-			OutputStream out = new FileOutputStream(new File("./../documents/gen/zahtev.rdf"));
+			InputStream in = new FileInputStream(new File(ZAHTEV_XML));
+			OutputStream out = new FileOutputStream(new File(ZAHTEV_RDF));
 			MetadataExtractor extractor = new MetadataExtractor();
 			extractor.extractMetadata(in, out);
 

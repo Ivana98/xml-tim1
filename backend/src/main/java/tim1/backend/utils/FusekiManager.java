@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
@@ -17,14 +16,15 @@ import org.apache.jena.query.ResultSetFormatter;
 import org.springframework.stereotype.Component;
 
 import tim1.backend.utils.FueskiAuthenticationUtilities.ConnectionProperties;
+import static tim1.backend.utils.PathConstants.*;
 
 @Component
 public class FusekiManager {
 
     public static void writeFuseki() throws IOException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
-		String rdfFilePath = "./../documents/rdf/example.rdf";
-		String NAMED_GRAPH = "/example/person/metadata";
+		String rdfFilePath = EXAMPLE_RDF;
+		String NAMED_GRAPH = EXAMPLE_PATH_URI;
 
 		// Creates a default model
 		Model model = ModelFactory.createDefaultModel();
@@ -58,13 +58,13 @@ public class FusekiManager {
 
     }
     
-    public static ResultSet readFile() throws IOException {
+    public static ResultSet readFile(String graph_uri) throws IOException {
         ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
-		String NAMED_GRAPH_URI = "/example/person/metadata";
+		//String NAMED_GRAPH_URI = "/example/person/metadata";
 
         // Querying the first named graph with a simple SPARQL query
-		System.out.println("[INFO] Selecting the triples from the named graph \"" + NAMED_GRAPH_URI + "\".");
-		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + NAMED_GRAPH_URI, "?s ?p ?o");
+		System.out.println("[INFO] Selecting the triples from the named graph \"" + graph_uri + "\".");
+		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + graph_uri, "?s ?p ?o");
 
 		// Create a QueryExecution that will access a SPARQL service over HTTP
 		QueryExecution query = QueryExecutionFactory.sparqlService(fusekiConn.queryEndpoint, sparqlQuery);

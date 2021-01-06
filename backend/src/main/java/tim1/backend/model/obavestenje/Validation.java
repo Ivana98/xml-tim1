@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import static tim1.backend.utils.PathConstants.*;
 
 public class Validation {
 
@@ -24,14 +25,14 @@ public class Validation {
 			
 			// XML schema validacija
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/obavestenjecir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(OBAVESTENJE_XSD));
             
 			// Podešavanje unmarshaller-a za XML schema validaciju
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
             // Test: proširiti XML fajl nepostojećim elementom (npr. <test></test>)
-            Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File("./../documents/xml_documents/obavestenjecir.xml"));
+            Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File(OBAVESTENJE_XML));
 
             // Ispis sadržaja objektnog modela, nakon uspešne validacije
             printObavestenjecir(obavestenje);

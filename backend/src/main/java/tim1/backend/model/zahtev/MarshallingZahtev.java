@@ -13,6 +13,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import tim1.backend.model.zahtev.OpisZahteva.DodatneInformacije;
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.backend.model.zahtev.TipZahteva.NaciniSlanja;
+import static tim1.backend.utils.PathConstants.*;
 
 public class MarshallingZahtev {
 
@@ -21,7 +22,7 @@ public class MarshallingZahtev {
 
             Zahtev zahtev = generateZahtev();
 
-            File file = new File("./../documents/xml_documents/new_zahtev.xml");
+            File file = new File(ZAHTEV_XML);
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
