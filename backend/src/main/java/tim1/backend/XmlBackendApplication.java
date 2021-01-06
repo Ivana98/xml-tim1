@@ -1,11 +1,23 @@
 package tim1.backend;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.update.UpdateExecutionFactory;
+import org.apache.jena.update.UpdateFactory;
+import org.apache.jena.update.UpdateProcessor;
+import org.apache.jena.update.UpdateRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.repository.ObavestenjeRepository;
 import tim1.backend.utils.DBManager;
+import tim1.backend.utils.FueskiAuthenticationUtilities;
+import tim1.backend.utils.SparqlUtil;
+import tim1.backend.utils.FueskiAuthenticationUtilities.ConnectionProperties;
 
 @SpringBootApplication
 public class XmlBackendApplication {
@@ -13,14 +25,54 @@ public class XmlBackendApplication {
 	// run tomcat on port: 8080
 	// run spring boot as usual
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
-		xmlDatabase();
+		try {
+			writeFuseki();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void writeFuseki() throws IOException {
+		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
+		String rdfFilePath = "./../documents/rdf/example.rdf";
+		String NAMED_GRAPH = "/example/person/metadata";
+
+		// Creates a default model
+		Model model = ModelFactory.createDefaultModel();
+		model.read(rdfFilePath);
+
+		// out stream nam treba da bismo videli ispis na konzoli
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		model.write(out, SparqlUtil.NTRIPLES);
+		System.out.println("[INFO] Rendering model as RDF/XML...");
+		model.write(System.out, SparqlUtil.RDF_XML);
+
+		/*
+		 * Create UpdateProcessor, an instance of execution of an UpdateRequest.
+		 * UpdateProcessor sends update request to a remote SPARQL update service.
+		*/
+		UpdateRequest request = UpdateFactory.create() ;
+
+		UpdateProcessor processor = UpdateExecutionFactory.createRemote(request, fusekiConn.updateEndpoint);
+		processor.execute();
+
+
+		// Creating the first named graph and updating it with RDF data
+		System.out.println("[INFO] Writing the triples to a named graph \"" + NAMED_GRAPH + "\".");
+		String sparqlUpdate = SparqlUtil.insertData(fusekiConn.dataEndpoint + NAMED_GRAPH, new String(out.toByteArray()));
+		System.out.println(sparqlUpdate);
+
+		// UpdateRequest represents a unit of execution
+		UpdateRequest update = UpdateFactory.create(sparqlUpdate);
+		processor = UpdateExecutionFactory.createRemote(update, fusekiConn.updateEndpoint);
+		processor.execute();
+
 
 	}
 
-	public static void xmlDatabase(){
+	public static void xmlDatabase() {
 		try {
 			String documentName = "resenje.xml";
 			DBManager.saveFileToDB(documentName);
@@ -42,7 +94,5 @@ public class XmlBackendApplication {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }

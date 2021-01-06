@@ -16,9 +16,7 @@ import tim1.backend.model.zahtev.Validation;
 import java.io.File;
 import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.transform.OutputKeys;
 
@@ -29,7 +27,6 @@ import tim1.backend.model.zalbaodluka.UnmarshallingZalbaNaOdluku;
 import tim1.backend.utils.DBManager;
 import tim1.backend.utils.AuthenticationUtilities.ConnectionProperties;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
-import tim1.backend.model.obavestenje.Obavestenje;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
 
 import tim1.backend.model.resenje.MarshalingResenje;
