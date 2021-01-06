@@ -41,7 +41,7 @@ public class FueskiAuthenticationUtilities {
      * @throws IOException
      */
     public static ConnectionProperties loadProperties() throws IOException {
-		String propsName = "application.properties";
+		String propsName = "fuseki.properties";
 
 		InputStream propsStream = openStream(propsName);
 		if (propsStream == null)
