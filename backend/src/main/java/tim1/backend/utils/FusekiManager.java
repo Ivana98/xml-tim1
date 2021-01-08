@@ -24,10 +24,13 @@ import static tim1.backend.utils.PathConstants.*;
 @Component
 public class FusekiManager {
 
-    public static void writeFuseki() throws IOException {
+    public static void writeFuseki(String rdfFilePath, String NAMED_GRAPH) throws IOException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
-		String rdfFilePath = EXAMPLE_RDF;
-		String NAMED_GRAPH = EXAMPLE_PATH_URI;
+		// String rdfFilePath = EXAMPLE_RDF;
+		// String NAMED_GRAPH = EXAMPLE_PATH_URI;
+
+		// String rdfFilePath = ZAHTEV_RDF;
+		// String NAMED_GRAPH = ZAHTEV_PATH_URI;
 
 		// Creates a default model
 		Model model = ModelFactory.createDefaultModel();
@@ -88,8 +91,8 @@ public class FusekiManager {
         ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
 
         // Querying the first named graph with a simple SPARQL query
-		System.out.println("[INFO] Selecting the triples from the named graph \"" + EXAMPLE_PATH_URI + "\".");
-		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + EXAMPLE_PATH_URI, "?s ?p ?o");
+		System.out.println("[INFO] Selecting the triples from the named graph \"" + ZAHTEV_PATH_URI + "\".");
+		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + ZAHTEV_PATH_URI, "?s ?p ?o");
 
 		// Create a QueryExecution that will access a SPARQL service over HTTP
 		QueryExecution query = QueryExecutionFactory.sparqlService(fusekiConn.queryEndpoint, sparqlQuery);

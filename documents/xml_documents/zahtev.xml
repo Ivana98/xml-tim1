@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev">
+<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
+        xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <info_organa>
         <naziv>organ1</naziv>
         <sediste>Novi Sad</sediste>
@@ -20,7 +21,7 @@
         </dodatne_informacije>
     </opis_zahteva>
     <mesto>Novi Sad</mesto>
-    <datum>2021-01-06+01:00</datum>
+    <datum property="pred:datum" datatype="xs:date">2021-01-06+01:00</datum>
     <trazilac>
         <ime_i_prezime>Nikola Jokic</ime_i_prezime>
         <adresa>Sombor, somborska 5</adresa>

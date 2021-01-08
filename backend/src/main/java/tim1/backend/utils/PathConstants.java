@@ -16,9 +16,12 @@ public class PathConstants {
     public static final String ZALBA_CUTANJE_XSD = BASE + "/xsd_documents/zalbacutanjecir.xsd";
     public static final String ZALBA_ODLUKA_XSD = BASE + "/xsd_documents/zalbanaodlukucir.xsd";
 
-    public static final String ZAHTEV_RDF = BASE + "/gen/zahtev.rdf";
+    public static final String ZAHTEV_RDF = BASE + "/rdf/zahtev.rdf";
+    public static final String ZALBA_CUTANJE_RDF = BASE + "/rdf/zalbacutanje.rdf";
     public static final String EXAMPLE_RDF = BASE + "/rdf/example.rdf";
 
     public static final String EXAMPLE_PATH_URI = "/example/person/metadata";
+    public static final String ZAHTEV_PATH_URI = "/zahtev/metadata";
+    public static final String ZALBA_CUTANJE_PATH_URI = "/zalba_cutanje/metadata";
 
 }

@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.zahtev.UnmarshallingZahtev;
+import tim1.backend.model.zahtev.Validation;
 import tim1.backend.repository.ObavestenjeRepository;
 import tim1.backend.utils.DBManager;
 import tim1.backend.utils.FusekiManager;
@@ -27,10 +29,14 @@ public class XmlBackendApplication {
 		SpringApplication.run(XmlBackendApplication.class, args);
 
 		try {
-			FusekiManager.writeFuseki();
-			// FusekiManager.readFile(EXAMPLE_PATH_URI);
-			FusekiManager.readFile();
 			xmlDatabase();
+			// UnmarshallingZahtev.testXmlToObject();
+			// Validation.test();
+			FusekiManager.writeFuseki(ZALBA_CUTANJE_RDF, ZALBA_CUTANJE_PATH_URI);
+			//FusekiManager.writeFuseki();
+			FusekiManager.readFile(ZALBA_CUTANJE_PATH_URI);
+			//FusekiManager.readFile();
+			//xmlDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,8 +60,8 @@ public class XmlBackendApplication {
 			// XMLResource res = repo.getById(documentName);
 			// System.out.println(res);
 
-			InputStream in = new FileInputStream(new File(ZAHTEV_XML));
-			OutputStream out = new FileOutputStream(new File(ZAHTEV_RDF));
+			InputStream in = new FileInputStream(new File(ZALBA_CUTANJE_XML));
+			OutputStream out = new FileOutputStream(new File(ZALBA_CUTANJE_RDF));
 			MetadataExtractor extractor = new MetadataExtractor();
 			extractor.extractMetadata(in, out);
 			System.out.println("KRAJ");
