@@ -28,7 +28,8 @@ public class XmlBackendApplication {
 
 		try {
 			FusekiManager.writeFuseki();
-			FusekiManager.readFile(EXAMPLE_PATH_URI);
+			// FusekiManager.readFile(EXAMPLE_PATH_URI);
+			FusekiManager.readFile();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -2,15 +2,18 @@ package tim1.backend.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 import org.springframework.stereotype.Component;
@@ -79,6 +82,49 @@ public class FusekiManager {
         System.out.println("[INFO] End.");
 
         return results;
+	}
+	
+	public static ResultSet readFile() throws IOException {
+        ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
+
+        // Querying the first named graph with a simple SPARQL query
+		System.out.println("[INFO] Selecting the triples from the named graph \"" + EXAMPLE_PATH_URI + "\".");
+		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + EXAMPLE_PATH_URI, "?s ?p ?o");
+
+		// Create a QueryExecution that will access a SPARQL service over HTTP
+		QueryExecution query = QueryExecutionFactory.sparqlService(fusekiConn.queryEndpoint, sparqlQuery);
+
+		// Query the SPARQL endpoint
+        ResultSet results = query.execSelect();
+
+		// String varName;
+		// RDFNode varValue;
+		
+		// while(results.hasNext()) {
+		    
+		// 	// A single answer from a SELECT query
+		// 	QuerySolution querySolution = results.next() ;
+		// 	Iterator<String> variableBindings = querySolution.varNames();
+			
+		// 	// Retrieve variable bindings
+		//     while (variableBindings.hasNext()) {
+		   
+		//     	varName = variableBindings.next();
+		//     	varValue = querySolution.get(varName);
+		    	
+		//     	System.out.println(varName + ": " + varValue);
+		//     }
+		//     System.out.println();
+		// }
+		
+		// ResultSetFormatter.outputAsXML(System.out, results);
+		ResultSetFormatter.outputAsJSON(System.out, results);
+		
+		query.close() ;
+		
+		System.out.println("[INFO] End.");
+
+		return results;
     }
 
 }
