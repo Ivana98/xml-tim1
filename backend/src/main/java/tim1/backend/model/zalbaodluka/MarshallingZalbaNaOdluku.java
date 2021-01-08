@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
-
+import static tim1.backend.utils.PathConstants.*;
 
 public class MarshallingZalbaNaOdluku {
     
@@ -20,7 +20,7 @@ public class MarshallingZalbaNaOdluku {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File(ZALBA_ODLUKA_XML));
 			
 
 			

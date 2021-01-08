@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 
 import tim1.backend.model.zalbacutanje.MyValidationEventHandler;
 import tim1.backend.model.zalbaodluka.Napomene.Napomena;
+import static tim1.backend.utils.PathConstants.*;
 
 public class UnmarshallingZalbaNaOdluku {
 	
@@ -29,12 +30,12 @@ public class UnmarshallingZalbaNaOdluku {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbanaodlukucir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(ZALBA_ODLUKA_XSD));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbanaodlukucir.xml"));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File(ZALBA_ODLUKA_XML));
 
 			
 			

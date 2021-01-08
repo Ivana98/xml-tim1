@@ -11,6 +11,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import static tim1.backend.utils.PathConstants.*;
 
 public class MarshalZalbaNaCutanje {
 	
@@ -22,7 +23,7 @@ public class MarshalZalbaNaCutanje {
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbacutanjecir.xml"));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File(ZALBA_CUTANJE_XML));
 			
 			Date date = new Date();
 

@@ -18,13 +18,14 @@ import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl;
+import static tim1.backend.utils.PathConstants.*;
 
 
 public class MetadataExtractor {
 	
 	private TransformerFactory transformerFactory;
-
-	private static final String XSLT_FILE = "./../documents/xsl_documents/RDFa2RDFXML.xsl";
+	// ako ne rade putanje dodati ./../
+	private static final String XSLT_FILE = BASE + "/xsl_documents/RDFa2RDFXML.xsl";
 	
 	public MetadataExtractor() throws SAXException, IOException {
 		
@@ -60,9 +61,9 @@ public class MetadataExtractor {
 
 		System.out.println("[INFO] " + MetadataExtractor.class.getSimpleName());
 		
-        String filePath = "./../documents/gen/grddl_metadata.rdf";
+        String filePath = BASE + "/gen/grddl_metadata.rdf";
         
-        String xml_document = "./../documents/xml_documents/" + name;
+        String xml_document = BASE + "/xml_documents/" + name;
 		
 		InputStream in = new FileInputStream(new File(xml_document)); 
 
