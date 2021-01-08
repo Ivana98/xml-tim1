@@ -30,6 +30,7 @@ public class XmlBackendApplication {
 			FusekiManager.writeFuseki();
 			// FusekiManager.readFile(EXAMPLE_PATH_URI);
 			FusekiManager.readFile();
+			xmlDatabase();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,21 +38,21 @@ public class XmlBackendApplication {
 
 	public static void xmlDatabase() {
 		try {
-			String documentName = "resenje.xml";
-			DBManager.saveFileToDB(documentName);
-			DBManager.readFileFromDB(documentName);
+			// String documentName = "resenje.xml";
+			// DBManager.saveFileToDB(documentName);
+			// DBManager.readFileFromDB(documentName);
 
-			documentName = "zalbanaodlukucir.xml";
-			DBManager.saveFileToDB(documentName);
-			DBManager.readFileFromDB(documentName);
+			// documentName = "zalbanaodlukucir.xml";
+			// DBManager.saveFileToDB(documentName);
+			// DBManager.readFileFromDB(documentName);
 
-			documentName = "obavestenjecir.xml";
-			ObavestenjeRepository repo = new ObavestenjeRepository();
-			System.out.println("\nSAVE");
-			repo.save(documentName);
-			System.out.println("\nGET BY ID");
-			XMLResource res = repo.getById(documentName);
-			System.out.println(res);
+			// documentName = "obavestenjecir.xml";
+			// ObavestenjeRepository repo = new ObavestenjeRepository();
+			// System.out.println("\nSAVE");
+			// repo.save(documentName);
+			// System.out.println("\nGET BY ID");
+			// XMLResource res = repo.getById(documentName);
+			// System.out.println(res);
 
 			InputStream in = new FileInputStream(new File(ZAHTEV_XML));
 			OutputStream out = new FileOutputStream(new File(ZAHTEV_RDF));

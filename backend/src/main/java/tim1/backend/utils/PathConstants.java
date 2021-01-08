@@ -1,7 +1,7 @@
 package tim1.backend.utils;
 
 public class PathConstants {
-    public static final String BASE = "src/main/resources/documents";
+    public static final String BASE = "./../documents";
 
     public static final String XML_DOCUMENTS =  BASE + "/xml_documents/";
     public static final String ZAHTEV_XML = BASE + "/xml_documents/zahtev.xml";
