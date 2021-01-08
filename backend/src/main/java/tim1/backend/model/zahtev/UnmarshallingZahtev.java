@@ -8,6 +8,7 @@ import javax.xml.bind.Unmarshaller;
 
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.backend.model.zahtev.TipZahteva.NaciniSlanja;
+import static tim1.backend.utils.PathConstants.*;
 
 public class UnmarshallingZahtev {
     
@@ -15,7 +16,7 @@ public class UnmarshallingZahtev {
     
     public static void testXmlToObject(){
         try {
-            File file = new File("./../documents/xml_documents/zahtev.xml");
+            File file = new File(ZAHTEV_XML);
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

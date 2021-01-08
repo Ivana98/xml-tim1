@@ -13,8 +13,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-
 import org.xml.sax.SAXException;
+import static tim1.backend.utils.PathConstants.*;
 
 
 public class UnmarshalZalbaNaCutanje {
@@ -29,12 +29,12 @@ public class UnmarshalZalbaNaCutanje {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/zalbacutanjecir.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(ZALBA_CUTANJE_XSD));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./../documents/xml_documents/zalbacutanjecir.xml"));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File(ZALBA_CUTANJE_XML));
 
 			zalba.getVremeIMesto().setMesto("Новом Саду");
 			

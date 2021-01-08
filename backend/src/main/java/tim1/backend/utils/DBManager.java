@@ -31,6 +31,7 @@ import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
 
 import tim1.backend.model.resenje.MarshalingResenje;
 import tim1.backend.model.resenje.UnmarshallingResenje;
+import static tim1.backend.utils.PathConstants.*;
 
 @Component
 public class DBManager {
@@ -103,7 +104,7 @@ public class DBManager {
 		conn = AuthenticationUtilities.loadProperties();
 
 		String documentId = name;
-		String filePath = "./../documents/xml_documents/" + name; //
+		String filePath = XML_DOCUMENTS + name;
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -222,7 +223,7 @@ public class DBManager {
 		}
 	}
 
-	static void printZahtevi() throws DatatypeConfigurationException {
+	public static void printZahtevi() throws DatatypeConfigurationException {
 		System.out.println(System.getProperty("user.dir"));
 		// zahtev
 		UnmarshallingZahtev.testXmlToObject();
