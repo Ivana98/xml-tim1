@@ -60,8 +60,8 @@ public class XmlBackendApplication {
 			// XMLResource res = repo.getById(documentName);
 			// System.out.println(res);
 
-			InputStream in = new FileInputStream(new File(ZALBA_CUTANJE_XML));
-			OutputStream out = new FileOutputStream(new File(ZALBA_CUTANJE_RDF));
+			InputStream in = new FileInputStream(new File(ZALBA_ODLUKA_XML));
+			OutputStream out = new FileOutputStream(new File(ZALBA_ODLUKA_RDF));
 			MetadataExtractor extractor = new MetadataExtractor();
 			extractor.extractMetadata(in, out);
 			System.out.println("KRAJ");

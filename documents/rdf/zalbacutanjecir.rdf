@@ -1,0 +1,23 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="">
+    <pred:grad xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string"> Београд </pred:grad>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:ulica xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string"> Булевар краља Александрa </pred:ulica>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:imePodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Imenko</pred:imePodnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:prezimePodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Prezimenic</pred:prezimePodnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:gradPodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:mestoPodnosenja xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:datumPodnosenja xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2020-12-01</pred:datumPodnosenja>
+  </rdf:Description>
+</rdf:RDF>
