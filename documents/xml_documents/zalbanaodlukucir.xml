@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zalba_na_odluku
     xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
-    schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">>
     <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>
     

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Resenje_obrazac xmlns="http://www.ftn.uns.ac.rs/resenje"
-    schemaLocation="http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd"
     naslov="Решење када је жалба основана – налаже се:"
     broj="071-01-1114/2020-03"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">>

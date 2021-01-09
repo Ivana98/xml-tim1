@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir"
-    schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <Osnovni_podaci>
         <Organ>

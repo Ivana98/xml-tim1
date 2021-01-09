@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd"
         xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <info_organa>
         <naziv>organ1</naziv>

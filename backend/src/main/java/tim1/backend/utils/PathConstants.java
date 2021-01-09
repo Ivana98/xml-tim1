@@ -22,7 +22,7 @@ public class PathConstants {
     public static final String CONTACTS_RDF = BASE + "/rdf/contacts.rdf";
     public static final String OBAVESTENJE_RDF = BASE + "/rdf/obavestenjecir.rdf";
     public static final String RESENJE_RDF = BASE + "/rdf/resenje.rdf";
-    public static final String ZALBA_ODLUKA_RDF = BASE + "/rdf/zalbacutanjecir.rdf";
+    public static final String ZALBA_ODLUKA_RDF = BASE + "/rdf/zalbaodluka.rdf";
 
 
     public static final String EXAMPLE_RDF = BASE + "/rdf/example.rdf";
@@ -30,5 +30,8 @@ public class PathConstants {
     public static final String EXAMPLE_PATH_URI = "/example/person/metadata";
     public static final String ZAHTEV_PATH_URI = "/zahtev/metadata";
     public static final String ZALBA_CUTANJE_PATH_URI = "/zalba_cutanje/metadata";
+    public static final String ZALBA_ODLUKA_PATH_URI = "/zalba_odluka/metadata";
+    public static final String RESENJE_PATH_URI = "/resenje/metadata";
+    public static final String OBAVESTENJE_PATH_URI = "/obavestenje/metadata";
 
 }
