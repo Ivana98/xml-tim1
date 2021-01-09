@@ -1,48 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd">
-	<info_organa>
-		<naziv></naziv>
-		<sediste></sediste>
-	</info_organa>
-	<naslov> З А Х Т Е В </naslov>
-	<svrha_zahteva> за приступ информацији од јавног значаја </svrha_zahteva>
-	
-	<opis_zahteva>
-		<tekst_zahteva>На основу члана 15. ст. 1. Закона о слободном приступу информацијама од јавног значаја („Службени гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), од горе наведеног органа захтевам:*</tekst_zahteva>
-		
-		<tipovi_zahteva>
-			<tip_zahteva rb="1" tekst="обавештење да ли поседује тражену информацију;" selektovan="false"></tip_zahteva>
-			<tip_zahteva rb="2" tekst="увид у документ који садржи тражену информацију;" selektovan="false"></tip_zahteva>
-			<tip_zahteva rb="3" tekst="копију документа који садржи тражену информацију;" selektovan="false"></tip_zahteva>
-			<tip_zahteva rb="4" tekst="достављање копије документа који садржи тражену информацију:**" selektovan="false"> 
-				<nacini_slanja>
-					<nacin_slanja rb="1" tekst="поштом" selektovan="false"></nacin_slanja>
-					<nacin_slanja rb="2" tekst="електронском поштом" selektovan="false"></nacin_slanja>
-					<nacin_slanja rb="3" tekst="факсом" selektovan="false"></nacin_slanja>
-					<nacin_slanja rb="4" tekst="на други начин:***" selektovan="false">
-						<detaljan_opis></detaljan_opis>
-					</nacin_slanja>
-				</nacini_slanja>
-			</tip_zahteva>
-		</tipovi_zahteva>
-
-		<dodatne_informacije>Овај захтев се односи на следеће информације:<opis_dodatne_informacije></opis_dodatne_informacije>(навести што прецизнији опис информације која се тражи као и друге податке који олакшавају проналажење тражене информације)</dodatne_informacije>
-	</opis_zahteva>
-
-	<mesto></mesto>
-	<datum>2020-12-07</datum>
-
-	<trazilac>
-		<ime_i_prezime></ime_i_prezime>
-		<adresa></adresa>
-		<kontakt></kontakt>
-		<potpis></potpis>
-	</trazilac>
-
-	<footer>
-		* У кућици означити која законска права на приступ информацијама желите да остварите.
-		** У кућици означити начин достављања копије докумената.
-		*** Када захтевате други начин достављања обавезно уписати који начин достављања захтевате.
-	</footer>
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd"
+        xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <info_organa>
+        <naziv>organ1</naziv>
+        <sediste>Novi Sad</sediste>
+    </info_organa>
+    <naslov>Zakon</naslov>
+    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>
+    <opis_zahteva>
+        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>
+        <tipovi_zahteva>
+            <tip_zahteva selektovan="true" rb="1" tekst="zelim uvid u dokument ..."/>
+            <tip_zahteva selektovan="false" rb="2" tekst="zelim da mi posaljete dokument ...">
+                <nacini_slanja>
+                    <nacin_slanja rb="1" selektovan="false" tekst="elektronski"/>
+                </nacini_slanja>
+            </tip_zahteva>
+        </tipovi_zahteva>
+        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>
+        </dodatne_informacije>
+    </opis_zahteva>
+    <mesto>Novi Sad</mesto>
+    <datum property="pred:datum" datatype="xs:date">2021-01-06+01:00</datum>
+    <trazilac>
+        <ime_i_prezime>Nikola Jokic</ime_i_prezime>
+        <adresa>Sombor, somborska 5</adresa>
+        <kontakt>063 645658</kontakt>
+        <potpis>Sombor Shuffle</potpis>
+    </trazilac>
+    <footer>ovo je tekst footer-a</footer>
 </zahtev>

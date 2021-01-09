@@ -16,9 +16,7 @@ import tim1.backend.model.zahtev.Validation;
 import java.io.File;
 import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.transform.OutputKeys;
 
@@ -29,11 +27,11 @@ import tim1.backend.model.zalbaodluka.UnmarshallingZalbaNaOdluku;
 import tim1.backend.utils.DBManager;
 import tim1.backend.utils.AuthenticationUtilities.ConnectionProperties;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
-import tim1.backend.model.obavestenje.Obavestenje;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
 
 import tim1.backend.model.resenje.MarshalingResenje;
 import tim1.backend.model.resenje.UnmarshallingResenje;
+import static tim1.backend.utils.PathConstants.*;
 
 @Component
 public class DBManager {
@@ -106,7 +104,7 @@ public class DBManager {
 		conn = AuthenticationUtilities.loadProperties();
 
 		String documentId = name;
-		String filePath = "./../documents/xml_documents/" + name; //
+		String filePath = XML_DOCUMENTS + name;
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -225,7 +223,7 @@ public class DBManager {
 		}
 	}
 
-	static void printZahtevi() throws DatatypeConfigurationException {
+	public static void printZahtevi() throws DatatypeConfigurationException {
 		System.out.println(System.getProperty("user.dir"));
 		// zahtev
 		UnmarshallingZahtev.testXmlToObject();

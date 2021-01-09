@@ -6,12 +6,11 @@ import java.io.Serializable;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.namespace.QName;
 
 import tim1.backend.model.resenje.Obrazlozenje.SadrzajObrazlozenja;
+import static tim1.backend.utils.PathConstants.*;
 
 public class UnmarshallingResenje {
 	
@@ -24,7 +23,7 @@ public class UnmarshallingResenje {
 	
 	        Unmarshaller unmarshaller = context.createUnmarshaller();
 	
-	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./../documents/xml_documents/resenje.xml"));
+	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
 	
 	        printResenjeObrazac(resenjeObrazac);
 

@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import static tim1.backend.utils.PathConstants.*;
 
 public class ValidationResenje {
     
@@ -22,14 +23,14 @@ public class ValidationResenje {
 			
 			// XML schema validacija
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("./../documents/xsd_documents/resenje.xsd"));
+			Schema schema = schemaFactory.newSchema(new File(RESENJE_XSD));
             
 			// Podešavanje unmarshaller-a za XML schema validaciju
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandlerResenje());
 			
             // Test: proširiti XML fajl nepostojećim elementom (npr. <test></test>)
-            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./../documents/xml_documents/resenje.xml"));
+            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
 
             // Ispis sadržaja objektnog modela, nakon uspešne validacije
             // printResenje(resenjeObrazac);

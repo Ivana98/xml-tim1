@@ -56,12 +56,28 @@
 				<version>2.3.2</version>
 		</dependency>
 
-	<!-- xml db -->
-	<dependency>
-    <groupId>org.exist-db</groupId>
-    <artifactId>exist-core</artifactId>
-    <version>5.0.0</version>
-	</dependency>
+		<!-- xml db -->
+		<dependency>
+			<groupId>org.exist-db</groupId>
+			<artifactId>exist-core</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+		<!-- rdf db -->	
+		<dependency>
+				<groupId>org.apache.jena</groupId>
+				<artifactId>jena-fuseki-main</artifactId>
+				<version>3.17.0</version>
+		</dependency>
+
+		<dependency>
+				<groupId>org.apache.jena</groupId>
+				<artifactId>apache-jena-libs</artifactId>
+				<version>3.17.0</version>
+				<type>pom</type>
+		</dependency>
+
+
 
 	</dependencies>
 

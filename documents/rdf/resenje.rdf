@@ -1,0 +1,11 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="">
+    <pred:datumResenja xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2020-06-09</pred:datumResenja>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:imePoverenika xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Милан</pred:imePoverenika>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:prezimePoverenika xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Мариновић</pred:prezimePoverenika>
+  </rdf:Description>
+</rdf:RDF>

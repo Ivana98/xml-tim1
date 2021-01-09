@@ -12,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+import static tim1.backend.utils.PathConstants.*;
 
 public class MarshalingResenje {
 
@@ -24,7 +25,7 @@ public class MarshalingResenje {
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./../documents/xml_documents/resenje.xml"));
+            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
 
             resenjeObrazac.setDatum(getDatum());
             resenjeObrazac.setPoverenik(getPoverenik());
