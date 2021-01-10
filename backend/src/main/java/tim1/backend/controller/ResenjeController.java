@@ -13,7 +13,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ResenjeService;
 
 @RestController
-@RequestMapping(value = "/resenja")
+@RequestMapping(value = "/resenja", consumes = "application/xml", produces = "application/xml")
 public class ResenjeController {
 
     @Autowired

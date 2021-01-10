@@ -14,7 +14,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ZahtevService;
 
 @RestController
-@RequestMapping(value = "/zahtevi")
+@RequestMapping(value = "/zahtevi", consumes = "application/xml", produces = "application/xml")
 public class ZahtevController {
 
     @Autowired

@@ -13,7 +13,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ZalbaNaOdlukuService;
 
 @RestController
-@RequestMapping(value = "/zalbe-na-odluku")
+@RequestMapping(value = "/zalbe-na-odluku", consumes = "application/xml", produces = "application/xml")
 public class ZalbaNaOdlukuController {
 
     @Autowired

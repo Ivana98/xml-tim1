@@ -13,7 +13,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ObavestenjeService;
 
 @RestController
-@RequestMapping(value = "/obavestenja")
+@RequestMapping(value = "/obavestenja", consumes = "application/xml", produces = "application/xml")
 public class ObavestenjeController {
 
     @Autowired
