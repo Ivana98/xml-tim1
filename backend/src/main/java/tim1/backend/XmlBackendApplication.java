@@ -100,9 +100,9 @@ public class XmlBackendApplication {
 			documentName = "obavestenjecir.xml";
 			ObavestenjeRepository repo = new ObavestenjeRepository();
 			System.out.println("\nSAVE");
-			repo.save(documentName);
+			repo.saveXML(documentName);
 			System.out.println("\nGET BY ID");
-			XMLResource res = repo.getById(documentName);
+			XMLResource res = repo.readXML(documentName);
 			System.out.println(res);
 
 
