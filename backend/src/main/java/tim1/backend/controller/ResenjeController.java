@@ -13,31 +13,31 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ResenjeService;
 
 @RestController
-@RequestMapping(value = "/resenje")
+@RequestMapping(value = "/resenja")
 public class ResenjeController {
 
     @Autowired
     private ResenjeService resenjeService;
 
-    @GetMapping("/XML/{id}")
+    @GetMapping("/xml/{id}")
     public ResponseEntity<XMLResource> readResenjeXML(@PathVariable("id") String id) {
         XMLResource xml = resenjeService.readXML(id);
         return new ResponseEntity<>(xml, HttpStatus.OK);
     }
 
-    @PostMapping("/XML/{id}")
-    public ResponseEntity<String> saveResenjeXML(@PathVariable("id") String id) {
+    @PostMapping("/xml/{id}")
+    public ResponseEntity<?> saveResenjeXML(@PathVariable("id") String id) {
         resenjeService.saveXML(id);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/RDF/{uri}")
+    @GetMapping("/rdf/{uri}")
     public ResponseEntity<String> readResenjeRDF(@PathVariable("uri") String uri) {
         resenjeService.readRDF(uri);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
     }
 
-    @PostMapping("/RDF/{id}/{uri}")
+    @PostMapping("/rdf/{id}/{uri}")
     public ResponseEntity<String> saveResenjeRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
         resenjeService.saveRDF(id, uri);
         return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);

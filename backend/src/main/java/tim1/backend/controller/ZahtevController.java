@@ -14,33 +14,33 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ZahtevService;
 
 @RestController
-@RequestMapping(value = "/zahtev")
+@RequestMapping(value = "/zahtevi")
 public class ZahtevController {
-    
+
     @Autowired
     private ZahtevService zahtevService;
 
-    @GetMapping("/XML/{zahtevId}")
-    public ResponseEntity<XMLResource> readZahtevXML(@PathVariable("zahtevId") String zahtevId){
-        XMLResource zahtev = zahtevService.readXML(zahtevId);
+    @GetMapping("/xml/{id}")
+    public ResponseEntity<XMLResource> readZahtevXML(@PathVariable("id") String id) {
+        XMLResource zahtev = zahtevService.readXML(id);
         return new ResponseEntity<>(zahtev, HttpStatus.OK);
     }
 
-    @PostMapping("/XML/{zahtevId}")
-    public ResponseEntity<String> saveZahtevXML(@PathVariable("zahtevId") String zahtevId){
-        zahtevService.saveXML(zahtevId);
-        return new ResponseEntity<>("Successfully saved!" ,HttpStatus.OK);
+    @PostMapping("/xml/{id}")
+    public ResponseEntity<?> saveZahtevXML(@PathVariable("id") String id) {
+        zahtevService.saveXML(id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/RDF/{zahtevURI}")
-    public ResponseEntity<String> readZahtevRDF(@PathVariable("zahtevURI") String zahtevURI){
-        zahtevService.readRDF(zahtevURI);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/rdf/{uri}")
+    public ResponseEntity<String> readZahtevRDF(@PathVariable("uri") String uri) {
+        zahtevService.readRDF(uri);
+        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
     }
 
-    @PostMapping("/RDF/{zahtevId}/{zahtevURI}")
-    public ResponseEntity<String> saveZahtevRDF(@PathVariable("zahtevId") String zahtevId, @PathVariable("zahtevURI") String zahtevURI){
-        zahtevService.saveRDF(zahtevId, zahtevURI);
-        return new ResponseEntity<>("Successfully saved!" ,HttpStatus.OK);
+    @PostMapping("/rdf/{id}/{uri}")
+    public ResponseEntity<String> saveZahtevRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+        zahtevService.saveRDF(id, uri);
+        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
     }
 }

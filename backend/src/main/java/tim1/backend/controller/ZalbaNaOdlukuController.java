@@ -13,31 +13,31 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ZalbaNaOdlukuService;
 
 @RestController
-@RequestMapping(value = "/zalba-na-odluku")
+@RequestMapping(value = "/zalbe-na-odluku")
 public class ZalbaNaOdlukuController {
 
     @Autowired
     private ZalbaNaOdlukuService zalbaService;
 
-    @GetMapping("/XML/{id}")
+    @GetMapping("/xml/{id}")
     public ResponseEntity<XMLResource> readZalbaXML(@PathVariable("id") String id) {
         XMLResource xml = zalbaService.readXML(id);
         return new ResponseEntity<>(xml, HttpStatus.OK);
     }
 
-    @PostMapping("/XML/{id}")
-    public ResponseEntity<String> saveZalbaXML(@PathVariable("id") String id) {
+    @PostMapping("/xml/{id}")
+    public ResponseEntity<?> saveZalbaXML(@PathVariable("id") String id) {
         zalbaService.saveXML(id);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/RDF/{uri}")
+    @GetMapping("/rdf/{uri}")
     public ResponseEntity<String> readZalbaRDF(@PathVariable("uri") String uri) {
         zalbaService.readRDF(uri);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
     }
 
-    @PostMapping("/RDF/{id}/{uri}")
+    @PostMapping("/rdf/{id}/{uri}")
     public ResponseEntity<String> saveZalbaRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
         zalbaService.saveRDF(id, uri);
         return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
