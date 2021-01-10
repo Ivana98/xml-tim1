@@ -35,27 +35,30 @@ public class ObavestenjeRepository implements RepositoryInterface {
 	  }
   }
 
-  /*
-  public void save(XMLResource res, String id) throws Exception {
-		Marshaller marshaller = marshallerFactory.createMarshaller(contextPath, schemaPath);
+	@Override
+	public XMLResource readXML(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-		Collection col = null;
-		XMLResource res = null;
-		OutputStream os = new ByteArrayOutputStream();
+	@Override
+	public void saveXML(String id) throws Exception {
+		// TODO Auto-generated method stub
 
-		try {
-			res = dbManager.saveFileToDB(id);
-			marshaller.marshal(obavestenje, os);
+	}
 
-			res.setContent(os);
+	@Override
+	public void readRDF(String uri) throws Exception {
+		// TODO Auto-generated method stub
 
-			col.storeResource(res);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			databaseConnector.closeConnections(res, col);
-		}
-	}*/
+	}
+
+	@Override
+	public void saveRDF(String name, String uri) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
 
   
 }

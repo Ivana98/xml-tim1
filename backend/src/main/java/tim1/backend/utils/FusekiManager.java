@@ -79,6 +79,7 @@ public class FusekiManager {
         ResultSet results = query.execSelect();
 
 		ResultSetFormatter.outputAsXML(System.out, results);
+		ResultSetFormatter.outputAsJSON(System.out, results);
 
 		query.close();
 
