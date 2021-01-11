@@ -12,6 +12,8 @@ public class ZalbaNaCutanjeService implements ServiceInterface {
     @Autowired
     private ZalbaNaCutanjeRepository repository;
 
+    private String collectionId = "/db/poverenik/zalbanacutanje/";
+
     @Override
     public void saveRDF(String name, String uri) {
         repository.saveRDF(name, uri);
@@ -23,19 +25,23 @@ public class ZalbaNaCutanjeService implements ServiceInterface {
     }
 
     @Override
-    public void saveXML(String id, String content) throws Exception {
+    public void saveXML(String documentId, String content) throws Exception {
+        
+        repository.saveXML(documentId, collectionId, content );
 
-        repository.saveXML(id, content);
     }
 
     @Override
-    public XMLResource readXML(String name) {
+    public XMLResource readXML(String documentId) {
+
         XMLResource document = null;
+        
         try {
-            document = repository.readXML(name);
+            document = repository.readXML(documentId, collectionId);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return document;
     }
 }

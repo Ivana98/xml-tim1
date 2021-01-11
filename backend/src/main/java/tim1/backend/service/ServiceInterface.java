@@ -4,9 +4,9 @@ import org.xmldb.api.modules.XMLResource;
 
 public interface ServiceInterface {
 
-    void saveXML(String id, String content) throws Exception;
+    void saveXML(String documentId, String content) throws Exception;
 
-    XMLResource readXML(String name) throws Exception;
+    XMLResource readXML(String documentId) throws Exception;
     
     void saveRDF(String name, String uri);
 
