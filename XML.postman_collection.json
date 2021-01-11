@@ -9,7 +9,60 @@
 			"name": "ZAHTEV",
 			"item": [
 				{
-					"name": "GET",
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE XML 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<zahtev xmlns=\"http://www.ftn.uns.ac.rs/zahtev\"\r\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd\"\r\n        xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <info_organa>\r\n        <naziv>organ1</naziv>\r\n        <sediste>Novi Sad</sediste>\r\n    </info_organa>\r\n    <naslov>Zakon</naslov>\r\n    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>\r\n    <opis_zahteva>\r\n        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>\r\n        <tipovi_zahteva>\r\n            <tip_zahteva selektovan=\"true\" rb=\"1\" tekst=\"zelim uvid u dokument ...\"/>\r\n            <tip_zahteva selektovan=\"false\" rb=\"2\" tekst=\"zelim da mi posaljete dokument ...\">\r\n                <nacini_slanja>\r\n                    <nacin_slanja rb=\"1\" selektovan=\"false\" tekst=\"elektronski\"/>\r\n                </nacini_slanja>\r\n            </tip_zahteva>\r\n        </tipovi_zahteva>\r\n        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>\r\n        </dodatne_informacije>\r\n    </opis_zahteva>\r\n    <mesto>Novi Sad</mesto>\r\n    <datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-06+01:00</datum>\r\n    <trazilac>\r\n        <ime_i_prezime>Nikola Jokic</ime_i_prezime>\r\n        <adresa>Sombor, somborska 5</adresa>\r\n        <kontakt>063 645658</kontakt>\r\n        <potpis>Sombor Shuffle</potpis>\r\n    </trazilac>\r\n    <footer>ovo je tekst footer-a</footer>\r\n</zahtev>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 1",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -31,13 +84,13 @@
 					"response": []
 				},
 				{
-					"name": "SAVE",
+					"name": "SAVE XML 2",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<zahtev xmlns=\"http://www.ftn.uns.ac.rs/zahtev\"\r\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd\"\r\n        xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <info_organa>\r\n        <naziv>organ1</naziv>\r\n        <sediste>Novi Sad</sediste>\r\n    </info_organa>\r\n    <naslov>Zakon</naslov>\r\n    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>\r\n    <opis_zahteva>\r\n        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>\r\n        <tipovi_zahteva>\r\n            <tip_zahteva selektovan=\"true\" rb=\"1\" tekst=\"zelim uvid u dokument ...\"/>\r\n            <tip_zahteva selektovan=\"false\" rb=\"2\" tekst=\"zelim da mi posaljete dokument ...\">\r\n                <nacini_slanja>\r\n                    <nacin_slanja rb=\"1\" selektovan=\"false\" tekst=\"elektronski\"/>\r\n                </nacini_slanja>\r\n            </tip_zahteva>\r\n        </tipovi_zahteva>\r\n        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>\r\n        </dodatne_informacije>\r\n    </opis_zahteva>\r\n    <mesto>Novi Sad</mesto>\r\n    <datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-06+01:00</datum>\r\n    <trazilac>\r\n        <ime_i_prezime>Nikola Jokic</ime_i_prezime>\r\n        <adresa>Sombor, somborska 5</adresa>\r\n        <kontakt>063 645658</kontakt>\r\n        <potpis>Sombor Shuffle</potpis>\r\n    </trazilac>\r\n    <footer>ovo je tekst footer-a</footer>\r\n</zahtev>",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<zahtev xmlns=\"http://www.ftn.uns.ac.rs/zahtev\"\r\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd\"\r\n        xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <info_organa>\r\n        <naziv>organ2</naziv>\r\n        <sediste>Beograd</sediste>\r\n    </info_organa>\r\n    <naslov>Zahtev 2</naslov>\r\n    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>\r\n    <opis_zahteva>\r\n        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>\r\n        <tipovi_zahteva>\r\n            <tip_zahteva selektovan=\"false\" rb=\"1\" tekst=\"zelim uvid u dokument ...\"/>\r\n            <tip_zahteva selektovan=\"true\" rb=\"2\" tekst=\"zelim da mi posaljete dokument ...\">\r\n                <nacini_slanja>\r\n                    <nacin_slanja rb=\"1\" selektovan=\"false\" tekst=\"elektronski\"/>\r\n                </nacini_slanja>\r\n            </tip_zahteva>\r\n        </tipovi_zahteva>\r\n        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>\r\n        </dodatne_informacije>\r\n    </opis_zahteva>\r\n    <mesto>Beograd</mesto>\r\n    <datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-17+21:00</datum>\r\n    <trazilac>\r\n        <ime_i_prezime>Nikola Jokic</ime_i_prezime>\r\n        <adresa>Sombor, somborska 5</adresa>\r\n        <kontakt>063 645658</kontakt>\r\n        <potpis>Sombor Shuffle</potpis>\r\n    </trazilac>\r\n    <footer>ovo je tekst footer-a</footer>\r\n</zahtev>\r\n",
 							"options": {
 								"raw": {
 									"language": "xml"
