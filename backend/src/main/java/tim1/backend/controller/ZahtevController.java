@@ -1,5 +1,7 @@
 package tim1.backend.controller;
 
+import java.util.UUID;
+
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,11 @@ public class ZahtevController {
         }
     }
 
-    @PostMapping(path = "/xml/{id}", consumes = "application/xml")
-    public ResponseEntity<?> saveXML(@PathVariable("id") String id, @RequestBody String content) {
+    @PostMapping(path = "/xml", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         try {
-            zahtevService.saveXML(id, content);
+            zahtevService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -47,7 +49,7 @@ public class ZahtevController {
     }
 
     @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> readZahtevRDF(@PathVariable("uri") String uri) {
+    public ResponseEntity<String> getRDF(@PathVariable("uri") String uri) {
 
         try {
             zahtevService.readRDF(uri);
@@ -58,7 +60,7 @@ public class ZahtevController {
     }
 
     @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveZahtevRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+    public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
 
         try {
             zahtevService.saveRDF(id, uri);
