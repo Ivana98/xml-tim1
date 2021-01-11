@@ -14,9 +14,11 @@ public class ObavestenjeService implements ServiceInterface {
 
     private String collectionId = "/db/poverenik/obavestenje/";
 
+    private String fusekiCollectionId = "/obavestenje/";
+
     @Override
-    public void saveRDF(String name, String uri) throws Exception {
-        repository.saveRDF(name, uri);
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
     }
 
     @Override
@@ -28,6 +30,7 @@ public class ObavestenjeService implements ServiceInterface {
     public void saveXML(String documentId, String content) throws Exception {
         
         repository.saveXML(documentId, collectionId, content );
+        
 
     }
 

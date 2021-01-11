@@ -50,15 +50,15 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+    // @PostMapping("/rdf/{id}/{uri}")
+    // public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
 
-        try {
-            zalbaService.saveRDF(id, uri);
-            return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    //     try {
+    //         zalbaService.saveRDF(id, uri);
+    //         return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //     }
+    // }
 
 }

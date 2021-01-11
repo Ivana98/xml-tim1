@@ -30,11 +30,16 @@ public class ObavestenjeController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-
+        String xmlName = UUID.randomUUID().toString();
+        String rdfName = "RDF" + xmlName;
         try {
-            obavestenjeService.saveXML(UUID.randomUUID().toString(), content);
+            System.out.println("save obavestenje");
+            obavestenjeService.saveXML(xmlName, content);
+            obavestenjeService.saveRDF(content, rdfName, xmlName);
+            System.out.println("ovde");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -50,15 +55,15 @@ public class ObavestenjeController {
         }
     }
 
-    @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+    // @PostMapping("/rdf/{id}/{uri}")
+    // public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
 
-        try {
-            obavestenjeService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    //     try {
+    //         obavestenjeService.saveRDF(id, uri);
+    //     return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    //     }
+    // }
 
 }
