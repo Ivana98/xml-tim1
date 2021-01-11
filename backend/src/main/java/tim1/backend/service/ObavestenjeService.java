@@ -12,6 +12,8 @@ public class ObavestenjeService implements ServiceInterface {
     @Autowired
     private ObavestenjeRepository repository;
 
+    private String collectionId = "/db/poverenik/obavestenje/";
+
     @Override
     public void saveRDF(String name, String uri) {
         repository.saveRDF(name, uri);
@@ -23,19 +25,19 @@ public class ObavestenjeService implements ServiceInterface {
     }
 
     @Override
-    public void saveXML(String id, String content) throws Exception {
-
-        repository.saveXML(id, content);
+    public void saveXML(String documentId, String content) throws Exception {
+        
+        repository.saveXML(documentId, collectionId, content );
 
     }
 
     @Override
-    public XMLResource readXML(String name) {
+    public XMLResource readXML(String documentId) {
 
         XMLResource document = null;
         
         try {
-            document = repository.readXML(name);
+            document = repository.readXML(documentId, collectionId);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -38,6 +38,9 @@ public class DBManager {
 
 	private static ConnectionProperties conn;
 
+	// db/poverenik/resenje/1
+	// db/poverenik/korisnici/1
+
 
 	public static XMLResource readFileFromDB(String documentId, String collectionId) throws XMLDBException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException, JAXBException {
