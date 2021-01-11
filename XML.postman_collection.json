@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1c00e201-8f8c-43f8-911e-d863b2f4139a",
+		"_postman_id": "93717ca2-8a2a-458e-9591-cbef0c844931",
 		"name": "XML",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,12 +9,12 @@
 			"name": "ZAHTEV",
 			"item": [
 				{
-					"name": "GET",
+					"name": "GET XML 1",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/1",
+							"raw": "http://localhost:8090/api/zahtevi/xml/2ed91000-b066-41ce-b8ff-9f71a5f0c9fc",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,14 +24,14 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"1"
+								"2ed91000-b066-41ce-b8ff-9f71a5f0c9fc"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "SAVE",
+					"name": "SAVE XML 1",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -45,7 +45,28 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/1",
+							"raw": "http://localhost:8090/api/zahtevi/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/2b3636d9-ed69-4c50-b838-32c9b39f7e0f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -55,7 +76,37 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"1"
+								"2b3636d9-ed69-4c50-b838-32c9b39f7e0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE XML 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<zahtev xmlns=\"http://www.ftn.uns.ac.rs/zahtev\"\r\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd\"\r\n        xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <info_organa>\r\n        <naziv>organ2</naziv>\r\n        <sediste>Beograd</sediste>\r\n    </info_organa>\r\n    <naslov>Zahtev 2</naslov>\r\n    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>\r\n    <opis_zahteva>\r\n        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>\r\n        <tipovi_zahteva>\r\n            <tip_zahteva selektovan=\"false\" rb=\"1\" tekst=\"zelim uvid u dokument ...\"/>\r\n            <tip_zahteva selektovan=\"true\" rb=\"2\" tekst=\"zelim da mi posaljete dokument ...\">\r\n                <nacini_slanja>\r\n                    <nacin_slanja rb=\"1\" selektovan=\"false\" tekst=\"elektronski\"/>\r\n                </nacini_slanja>\r\n            </tip_zahteva>\r\n        </tipovi_zahteva>\r\n        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>\r\n        </dodatne_informacije>\r\n    </opis_zahteva>\r\n    <mesto>Beograd</mesto>\r\n    <datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-17+21:00</datum>\r\n    <trazilac>\r\n        <ime_i_prezime>Nikola Jokic</ime_i_prezime>\r\n        <adresa>Sombor, somborska 5</adresa>\r\n        <kontakt>063 645658</kontakt>\r\n        <potpis>Sombor Shuffle</potpis>\r\n    </trazilac>\r\n    <footer>ovo je tekst footer-a</footer>\r\n</zahtev>\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml"
 							]
 						}
 					},
@@ -67,12 +118,12 @@
 			"name": "RESENJE",
 			"item": [
 				{
-					"name": "GET",
+					"name": "GET XML 1",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/zahtev1.xml",
+							"raw": "http://localhost:8090/api/resenja/xml/ce906937-82d7-4d43-bd9f-66cdc1b19d38",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -80,16 +131,16 @@
 							"port": "8090",
 							"path": [
 								"api",
-								"zahtevi",
+								"resenja",
 								"xml",
-								"zahtev1.xml"
+								"ce906937-82d7-4d43-bd9f-66cdc1b19d38"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "SAVE",
+					"name": "SAVE XML 1",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -103,7 +154,28 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8090/api/resenja/xml/resenje1.xml",
+							"raw": "http://localhost:8090/api/resenja/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"resenja",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/resenja/xml/2dc03691-0025-4c19-83f1-93853dcf9889",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -113,7 +185,364 @@
 								"api",
 								"resenja",
 								"xml",
-								"resenje1.xml"
+								"2dc03691-0025-4c19-83f1-93853dcf9889"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE XML 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Resenje_obrazac xmlns=\"http://www.ftn.uns.ac.rs/resenje\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd\"\r\n    naslov=\"Решење 2\"\r\n    broj=\"071-01-1245/2021-01\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">>\r\n    <Datum property=\"pred:datumResenja\" datatype=\"xs:date\">2020-12-30</Datum>\r\n    <Uvod>\r\n        Повереник за информације од јавног значаја и заштиту података о личности, у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета у Призрену са привременим седиштем у Лепосавићу, ул. Немањина бб, по његовом захтеву од 16.04.2020. године за приступ информацијама од јавног значаја, на основу члана 35. став 1. тачка 5. Закона о слободном приступу информацијама од јавног значаја („Сл. гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), а у вези са чланом 4. тачка 22. Закона о заштити података о личности („Сл. гласник РС“, број 87/18), као и члана 23. и члана 24. став 4. Закона о слободном приступу информацијама од јавног значаја и члана 173. став 2. Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), доноси\r\n    </Uvod>\r\n    <Sadrzaj>\r\n        <Resenje>\r\n            Р Е Ш Е Њ Е\r\n            <Pasus>\r\n                Pasus 1\r\n            </Pasus>\r\n            <Pasus>\r\n                Pasus 2\r\n            </Pasus>\r\n        </Resenje>\r\n        <Obrazlozenje>\r\n            О б р а з л о ж е њ е\r\n            <Sadrzaj_obrazlozenja>\r\n                Sadrzaj obrazlozenja 2\r\n            </Sadrzaj_obrazlozenja>\r\n        </Obrazlozenje>\r\n    </Sadrzaj>\r\n    <Poverenik>\r\n        <Ime property=\"pred:imePoverenika\" datatype=\"xs:string\">Marija</Ime>\r\n        <Prezime property=\"pred:prezimePoverenika\" datatype=\"xs:string\">Curcic</Prezime>\r\n    </Poverenik>\r\n</Resenje_obrazac>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/resenja/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"resenja",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OBAVESTENJE",
+			"item": [
+				{
+					"name": "GET XML 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/obavestenja/xml/2ecb6d33-ec7d-4fac-aafd-6267ead1b387",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"obavestenja",
+								"xml",
+								"2ecb6d33-ec7d-4fac-aafd-6267ead1b387"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<Obavestenje xmlns=\"http://www.ftn.uns.ac.rs/obavestenjecir\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <Osnovni_podaci>\r\n        <Organ>\r\n            <Naziv property=\"pred:nazivOrgana\" datatype=\"xs:string\">Naziv organa</Naziv>\r\n            <Sediste property=\"pred:sedisteOrgana\" datatype=\"xs:string\">Novi Sad</Sediste>\r\n        </Organ>\r\n        <Broj_predmeta>5</Broj_predmeta>\r\n        <Datum property=\"pred:datum\" datatype=\"xs:date\">2020-05-22</Datum>\r\n        <Podnosioc_zahteva>\r\n            <Ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Veljko</Ime>\r\n            <Prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Plecas</Prezime>\r\n            <Naziv>Naziv 1</Naziv>\r\n            <Adresa property=\"pred:adresaPodnosioca\" datatype=\"xs:string\">Teodora Drajzera</Adresa>\r\n        </Podnosioc_zahteva>\r\n    </Osnovni_podaci>\r\n    \r\n    <Sadrzaj>\r\n        <Naslov>O B A V E S T E N J E</Naslov>\r\n        <Podnaslov>о стављању на увид документа који садржи\r\n            тражену информацију и о изради копије\r\n        </Podnaslov>\r\n\r\n        <Paragraf>\r\n            На основу члана 16. ст. 1. Закона о слободном приступу информацијама од јавног\r\n            значаја, поступајући по вашем захтеву за слободан приступ информацијама од \r\n            <Godina>2020</Godina> год., којим сте тражили увид у документ/е са информацијама о / у вези са: \r\n            <Opis_informacije>...opis...</Opis_informacije>\r\n            обавештавамо вас да дана <Datum_uvida>2020-05-22</Datum_uvida>, u <Vreme_uvida>09:00:00</Vreme_uvida> часова, односно у времену од <Pocetak_cas>08:00:00</Pocetak_cas> do \r\n            <Kraj_cas>10:00:00</Kraj_cas> часова, у просторијама органа у <Grad_organa>Novi Sad</Grad_organa> ул. <Ulica_organa>Misiceva</Ulica_organa> бр. \r\n            <Broj_organa>3</Broj_organa>, канцеларија бр. <Broj_kancelarije>12a</Broj_kancelarije> можете извршити увид у документ/е у коме је садржана \r\n            тражена информација.\r\n\r\n            Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.\r\n\r\n            Трошкови су утврђени Уредбом Владе Републике Србије („Сл. гласник РС“, бр. 8/06), и то: \r\n            копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, дискете 20 \r\n            динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање \r\n            једне стране документа из физичког у електронски облик – 30 динара.\r\n\r\n            Износ укупних трошкова израде копије документа по вашем захтеву износи <Iznos_troskova>500</Iznos_troskova>\r\n            динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, с \r\n            позивом на број 97 – ознака шифре општине/града где се налази орган власти (из \r\n            Правилника о условима и начину вођења рачуна – „Сл. гласник РС“, 20/07... 40/10).\r\n        </Paragraf>\r\n        \r\n        \r\n        <Dostavljeno Selected=\"2\">\r\n            <Primer ID=\"1\">1. Именованом </Primer>\r\n            <Primer ID=\"2\">2. Архиви</Primer>\r\n        </Dostavljeno>\r\n    </Sadrzaj>\r\n</Obavestenje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/obavestenja/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"obavestenja",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/obavestenja/xml/7fe38468-1766-4fcc-8493-4d1336108a7f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"obavestenja",
+								"xml",
+								"7fe38468-1766-4fcc-8493-4d1336108a7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<Obavestenje xmlns=\"http://www.ftn.uns.ac.rs/obavestenjecir\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <Osnovni_podaci>\r\n        <Organ>\r\n            <Naziv property=\"pred:nazivOrgana\" datatype=\"xs:string\">Naziv organa</Naziv>\r\n            <Sediste property=\"pred:sedisteOrgana\" datatype=\"xs:string\">Kikinda</Sediste>\r\n        </Organ>\r\n        <Broj_predmeta>5</Broj_predmeta>\r\n        <Datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-02</Datum>\r\n        <Podnosioc_zahteva>\r\n            <Ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Marija</Ime>\r\n            <Prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Curcic</Prezime>\r\n            <Naziv>Naziv 2</Naziv>\r\n            <Adresa property=\"pred:adresaPodnosioca\" datatype=\"xs:string\">Teodora Drajzera</Adresa>\r\n        </Podnosioc_zahteva>\r\n    </Osnovni_podaci>\r\n    \r\n    <Sadrzaj>\r\n        <Naslov>O B A V E S T E N J E 2</Naslov>\r\n        <Podnaslov>о стављању на увид документа који садржи\r\n            тражену информацију и о изради копије\r\n        </Podnaslov>\r\n\r\n        <Paragraf>\r\n            Paragraf za Obavestenje 2\r\n            <Godina>2021</Godina> год., којим сте тражили увид у документ/е са информацијама о / у вези са: \r\n            <Opis_informacije>...opis...</Opis_informacije>\r\n            обавештавамо вас да дана <Datum_uvida>2020-01-03</Datum_uvida>, u <Vreme_uvida>13:00:00</Vreme_uvida> часова, односно у времену од <Pocetak_cas>15:00:00</Pocetak_cas> do \r\n            <Kraj_cas>16:20:00</Kraj_cas> часова, у просторијама органа у <Grad_organa>Novi Sad</Grad_organa> ул. <Ulica_organa>Misiceva</Ulica_organa> бр. \r\n            <Broj_organa>3</Broj_organa>, канцеларија бр. <Broj_kancelarije>12a</Broj_kancelarije> можете извршити увид у документ/е у коме је садржана \r\n            тражена информација.\r\n\r\n            Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.\r\n\r\n            Трошкови су утврђени Уредбом Владе Републике Србије („Сл. гласник РС“, бр. 8/06), и то: \r\n            копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, дискете 20 \r\n            динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање \r\n            једне стране документа из физичког у електронски облик – 30 динара.\r\n\r\n            Износ укупних трошкова израде копије документа по вашем захтеву износи <Iznos_troskova>500</Iznos_troskova>\r\n            динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, с \r\n            позивом на број 97 – ознака шифре општине/града где се налази орган власти (из \r\n            Правилника о условима и начину вођења рачуна – „Сл. гласник РС“, 20/07... 40/10).\r\n        </Paragraf>\r\n        \r\n        \r\n        <Dostavljeno Selected=\"2\">\r\n            <Primer ID=\"1\">1. Именованом </Primer>\r\n            <Primer ID=\"2\">2. Архиви</Primer>\r\n        </Dostavljeno>\r\n    </Sadrzaj>\r\n</Obavestenje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/obavestenja/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"obavestenja",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ZALBA NA CUTANJE",
+			"item": [
+				{
+					"name": "GET XML 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml/82c6b5bd-313d-4dc1-96c7-78ef0dd2e13a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"xml",
+								"82c6b5bd-313d-4dc1-96c7-78ef0dd2e13a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Zalba_na_cutanje \r\n    naslov=\"ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)\"\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-cutanje\"\r\n    xmlns:jxb=\"http://java.sun.com/xml/ns/jaxb\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd\">\r\n    <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>\r\n    <Adresa_za_postu\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Adresa\">\r\n        <Mesto property=\"pred:mesto\" datatype=\"xs:string\">Београд</Mesto>\r\n        <Ulica property=\"pred:ulica\" datatype=\"xs:string\">Булевар краља Александрa</Ulica>\r\n        <Broj property=\"pred:broj_ulice\" datatype=\"xs:string\">15</Broj>\r\n    </Adresa_za_postu>\r\n    <Sadrzaj\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Zalba\">\r\n        У складу са чланом 22. Закона о слободном приступу информацијама од јавног значаја подносим:\r\n        Ж А Л Б У\r\n        против\r\n        <Naziv_organa>(назив органа)</Naziv_organa>\r\n        због тога што орган власти: \r\n        <Razlozi_zalbe selected=\"1\">\r\n            <Option id=\"1\">није поступио</Option>\r\n            <Option id=\"2\">није поступио у целости </Option>\r\n            <Option id=\"3\">није поступио у законском року</Option>\r\n        </Razlozi_zalbe>\r\n        по мом захтеву  за слободан приступ информацијама од јавног значаја који сам поднео  том органу  дана\r\n        <Datum_podnosenja_zahteva property=\"pred:datum_podnosenja_zahteva\" datatype=\"xs:date\">2020-12-05</Datum_podnosenja_zahteva>\r\n        године, а којим сам тражио/ла да ми се у складу са Законом о слободном приступу информацијама од јавног значаја омогући увид- копија документа који садржи информације  о /у вези са :\r\n        <Podaci_o_zahtevu>(подаци о захтеву и информацијама)</Podaci_o_zahtevu>\r\n        <Pasus>На основу изнетог, предлажем да Повереник уважи моју жалбу и омогући ми приступ траженој/им  информацији/ма.</Pasus>\r\n        <Pasus>Као доказ , уз жалбу достављам копију захтева са доказом о предаји органу власти.</Pasus>\r\n        <Napomena>Код жалбе  због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.</Napomena>\r\n    </Sadrzaj>\r\n    <Podnosilac_zalbe\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Podnosilac\">\r\n        <Ime property=\"pred:ime\" datatype=\"xs:string\"></Ime>\r\n        <Prezime property=\"pred:prezime\" datatype=\"xs:string\"></Prezime>\r\n        <Adresa property=\"pred:adresa\" datatype=\"xs:string\"></Adresa>\r\n        <Kontakt_podaci property=\"pred:kontakt\" datatype=\"xs:string\"></Kontakt_podaci>\r\n    </Podnosilac_zalbe>\r\n    <Vreme_i_mesto>\r\n        <Mesto></Mesto>\r\n        <Datum>2020-12-05</Datum>\r\n    </Vreme_i_mesto>\r\n</Zalba_na_cutanje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml/a0629f07-a387-4132-9d2f-2a61fa20f94f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"xml",
+								"a0629f07-a387-4132-9d2f-2a61fa20f94f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Zalba_na_cutanje \r\n    naslov=\"ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)\"\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-cutanje\"\r\n    xmlns:jxb=\"http://java.sun.com/xml/ns/jaxb\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd\">\r\n    <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>\r\n    <Adresa_za_postu\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Adresa\">\r\n        <Mesto property=\"pred:mesto\" datatype=\"xs:string\">Novi Sad</Mesto>\r\n        <Ulica property=\"pred:ulica\" datatype=\"xs:string\">Bulevar cara Lazara</Ulica>\r\n        <Broj property=\"pred:broj_ulice\" datatype=\"xs:string\">15</Broj>\r\n    </Adresa_za_postu>\r\n    <Sadrzaj\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Zalba\">\r\n        У складу са чланом 22. Закона о слободном приступу информацијама од јавног значаја подносим:\r\n        Ж А Л Б У\r\n        против\r\n        <Naziv_organa>(назив органа)</Naziv_organa>\r\n        због тога што орган власти: \r\n        <Razlozi_zalbe selected=\"2\">\r\n            <Option id=\"1\">није поступио</Option>\r\n            <Option id=\"2\">није поступио у целости </Option>\r\n            <Option id=\"3\">није поступио у законском року</Option>\r\n        </Razlozi_zalbe>\r\n        по мом захтеву  за слободан приступ информацијама од јавног значаја који сам поднео  том органу  дана\r\n        <Datum_podnosenja_zahteva property=\"pred:datum_podnosenja_zahteva\" datatype=\"xs:date\">2020-12-05</Datum_podnosenja_zahteva>\r\n        године, а којим сам тражио/ла да ми се у складу са Законом о слободном приступу информацијама од јавног значаја омогући увид- копија документа који садржи информације  о /у вези са :\r\n        <Podaci_o_zahtevu>(подаци о захтеву и информацијама)</Podaci_o_zahtevu>\r\n        <Pasus>На основу изнетог, предлажем да Повереник уважи моју жалбу и омогући ми приступ траженој/им  информацији/ма.</Pasus>\r\n        <Pasus>Као доказ , уз жалбу достављам копију захтева са доказом о предаји органу власти.</Pasus>\r\n        <Napomena>Код жалбе  због непоступању по захтеву у целости, треба приложити и добијени одговор органа власти.</Napomena>\r\n    </Sadrzaj>\r\n    <Podnosilac_zalbe\r\n        about=\"http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Podnosilac\">\r\n        <Ime property=\"pred:ime\" datatype=\"xs:string\"></Ime>\r\n        <Prezime property=\"pred:prezime\" datatype=\"xs:string\"></Prezime>\r\n        <Adresa property=\"pred:adresa\" datatype=\"xs:string\"></Adresa>\r\n        <Kontakt_podaci property=\"pred:kontakt\" datatype=\"xs:string\"></Kontakt_podaci>\r\n    </Podnosilac_zalbe>\r\n    <Vreme_i_mesto>\r\n        <Mesto></Mesto>\r\n        <Datum>2021-01-05</Datum>\r\n    </Vreme_i_mesto>\r\n</Zalba_na_cutanje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ZALBA NA ODLUKU",
+			"item": [
+				{
+					"name": "GET XML 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-odluku/xml/33b3d640-70f7-4204-9f13-1fba9015f2b3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-odluku",
+								"xml",
+								"33b3d640-70f7-4204-9f13-1fba9015f2b3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zalba_na_odluku\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-odluku\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">>\r\n    <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>\r\n    \r\n    <podaci_o_povereniku>\r\n        <namena> \r\n            Поверенику за информације од јавног значаја и заштиту података о личности \r\n        </namena>\r\n        <adresa>\r\n            <grad property=\"pred:grad\" datatype=\"xs:string\"> Београд </grad>\r\n            <ulica property=\"pred:ulica\" datatype=\"xs:string\"> Булевар краља Александрa </ulica>\r\n            <broj>15</broj>\r\n        </adresa>\r\n    </podaci_o_povereniku>\r\n    \r\n    <zalba>\r\n        Ж А Л Б А  \r\n        <zalilac type = \"TFizickoLice\">\r\n            <adresa>\r\n                <grad></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <sediste></sediste>\r\n            <ime></ime>\r\n            <prezime></prezime>\r\n        </zalilac>\r\n        против решења-закључка \r\n        \r\n        <naziv_organa></naziv_organa>\r\n        Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.\r\n        \r\n        <sadrzaj>\r\n            Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми \r\n            са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-\r\n            упутио/ла дана <datum>2020-12-10</datum> године и тако ми ускраћено-онемогућено остваривање уставног и\r\n            законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у\r\n            целости, односно у делу којим <deo_odluke> </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.\r\n            На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи\r\n            одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.\r\n            Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   \r\n        </sadrzaj>\r\n        \r\n        <podnosilac>\r\n            <ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Imenko</ime>\r\n            <prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Prezimenic</prezime>\r\n            <adresa>\r\n                <grad property=\"pred:gradPodnosioca\" datatype=\"xs:string\"></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <kontakt_podaci>0651122123</kontakt_podaci>\r\n        </podnosilac>\r\n        \r\n        <vreme_i_mesto>\r\n            <grad property=\"pred:mestoPodnosenja\" datatype=\"xs:string\"></grad>\r\n            <datum property=\"pred:datumPodnosenja\" datatype=\"xs:date\">2020-12-01</datum>\r\n        </vreme_i_mesto>\r\n        \r\n    </zalba>\r\n    \r\n    <napomene>\r\n        Напомена: \r\n        <napomena id=\"1\">\r\n            У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив\r\n            органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у\r\n            жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити.\r\n            Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити. \r\n        </napomena>\r\n        <napomena id=\"2\">\r\n            Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу\r\n            као и копију одлуке органа која се оспорава жалбом.\r\n        </napomena>\r\n    </napomene>\r\n    \r\n</zalba_na_odluku>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-odluku/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-odluku",
+								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET XML 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-odluku/xml/54d16d77-64a1-4e65-9930-15e20c944812",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-odluku",
+								"xml",
+								"54d16d77-64a1-4e65-9930-15e20c944812"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST XML 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zalba_na_odluku\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-odluku\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">>\r\n    <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ 2 </naslov>\r\n    \r\n    <podaci_o_povereniku>\r\n        <namena> \r\n            Поверенику за информације од јавног значаја и заштиту података о личности \r\n        </namena>\r\n        <adresa>\r\n            <grad property=\"pred:grad\" datatype=\"xs:string\"> Београд </grad>\r\n            <ulica property=\"pred:ulica\" datatype=\"xs:string\"> Булевар краља Александрa </ulica>\r\n            <broj>15</broj>\r\n        </adresa>\r\n    </podaci_o_povereniku>\r\n    \r\n    <zalba>\r\n        Ж А Л Б А  \r\n        <zalilac type = \"TFizickoLice\">\r\n            <adresa>\r\n                <grad></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <sediste></sediste>\r\n            <ime></ime>\r\n            <prezime></prezime>\r\n        </zalilac>\r\n        против решења-закључка \r\n        \r\n        <naziv_organa></naziv_organa>\r\n        Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.\r\n        \r\n        <sadrzaj>\r\n            Sadrzaj zalbe na odluku <datum>2020-12-30</datum> Oдлуку побијам у\r\n            целости, односно у делу којим <deo_odluke> deo </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.\r\n            На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи\r\n            одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.\r\n            Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   \r\n        </sadrzaj>\r\n        \r\n        <podnosilac>\r\n            <ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Ime</ime>\r\n            <prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Prezime</prezime>\r\n            <adresa>\r\n                <grad property=\"pred:gradPodnosioca\" datatype=\"xs:string\"></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <kontakt_podaci>0651224720</kontakt_podaci>\r\n        </podnosilac>\r\n        \r\n        <vreme_i_mesto>\r\n            <grad property=\"pred:mestoPodnosenja\" datatype=\"xs:string\"></grad>\r\n            <datum property=\"pred:datumPodnosenja\" datatype=\"xs:date\">2020-12-21</datum>\r\n        </vreme_i_mesto>\r\n        \r\n    </zalba>\r\n    \r\n    <napomene>\r\n        Напомена: \r\n        <napomena id=\"1\">\r\n            Napomena 1\r\n        </napomena>\r\n        <napomena id=\"2\">\r\n            Napomena 2\r\n        </napomena>\r\n    </napomene>\r\n    \r\n</zalba_na_odluku>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-odluku/xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-odluku",
+								"xml"
 							]
 						}
 					},

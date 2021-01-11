@@ -23,12 +23,18 @@ public class ZalbaNaOdlukuController {
     private ZalbaNaOdlukuService zalbaService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
-    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
-        XMLResource xml = zalbaService.readXML(id);
-        return new ResponseEntity<>(xml, HttpStatus.OK);
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
+
+        try {
+            XMLResource xml = zalbaService.readXML(id);
+            return new ResponseEntity<>(xml.getContent().toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
-    @PostMapping(path = "/xml/{id}", consumes = "application/xml")
+    @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         try {
@@ -39,12 +45,23 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> getRDF(@PathVariable("uri") String uri) {
+    @GetMapping("/rdf-xml/{uri}")
+    public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
         try {
-            zalbaService.readRDF(uri);
-            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+            String rdf = zalbaService.readFileAsXML(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/rdf-json/{uri}")
+    public ResponseEntity<String> getRdfAsJSON(@PathVariable("uri") String uri) {
+
+        try {
+            String rdf = zalbaService.readFileAsJSON(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
