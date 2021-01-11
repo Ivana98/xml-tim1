@@ -23,9 +23,15 @@ public class ObavestenjeController {
     private ObavestenjeService obavestenjeService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
-    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
-        XMLResource obavestenje = obavestenjeService.readXML(id);
-        return new ResponseEntity<>(obavestenje, HttpStatus.OK);
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
+
+        try {
+            XMLResource obavestenje = obavestenjeService.readXML(id);
+            return new ResponseEntity<>(obavestenje.getContent().toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PostMapping(path = "/xml", consumes = "application/xml")
@@ -55,7 +61,7 @@ public class ObavestenjeController {
 
         try {
             obavestenjeService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+            return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

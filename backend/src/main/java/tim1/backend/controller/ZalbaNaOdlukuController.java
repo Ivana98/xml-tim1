@@ -23,12 +23,18 @@ public class ZalbaNaOdlukuController {
     private ZalbaNaOdlukuService zalbaService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
-    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
-        XMLResource xml = zalbaService.readXML(id);
-        return new ResponseEntity<>(xml, HttpStatus.OK);
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
+
+        try {
+            XMLResource xml = zalbaService.readXML(id);
+            return new ResponseEntity<>(xml.getContent().toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
-    @PostMapping(path = "/xml/{id}", consumes = "application/xml")
+    @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         try {
