@@ -34,11 +34,7 @@ public class XmlBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(XmlBackendApplication.class, args);
 
-		try {
-			createRDFs();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	public static void createRDFs() throws SAXException, IOException, TransformerException {
@@ -51,13 +47,13 @@ public class XmlBackendApplication {
 		System.out.println("\nZalba na odluku");
 		FusekiManager.readFile(ZALBA_ODLUKA_PATH_URI);
 		
-		// in = new FileInputStream(new File(ZALBA_CUTANJE_XML));
-		// out = new FileOutputStream(new File(ZALBA_CUTANJE_RDF));
-		// extractor.extractMetadata(in, out);
+		in = new FileInputStream(new File(ZALBA_CUTANJE_XML));
+		out = new FileOutputStream(new File(ZALBA_CUTANJE_RDF));
+		extractor.extractMetadata(in, out);
 
-		// FusekiManager.writeFuseki(ZALBA_CUTANJE_RDF, ZALBA_CUTANJE_PATH_URI);
-		// System.out.println("\nZalba na cutanje");
-		// FusekiManager.readFile(ZALBA_CUTANJE_PATH_URI);
+		FusekiManager.writeFuseki(ZALBA_CUTANJE_RDF, ZALBA_CUTANJE_PATH_URI);
+		System.out.println("\nZalba na cutanje");
+		FusekiManager.readFile(ZALBA_CUTANJE_PATH_URI);
 
 		in = new FileInputStream(new File(ZAHTEV_XML));
 		out = new FileOutputStream(new File(ZAHTEV_RDF));
@@ -67,21 +63,21 @@ public class XmlBackendApplication {
 		System.out.println("\nZahtev");
 		FusekiManager.readFile(ZAHTEV_PATH_URI);
 
-		// in = new FileInputStream(new File(OBAVESTENJE_XML));
-		// out = new FileOutputStream(new File(OBAVESTENJE_RDF));
-		// extractor.extractMetadata(in, out);
+		in = new FileInputStream(new File(OBAVESTENJE_XML));
+		out = new FileOutputStream(new File(OBAVESTENJE_RDF));
+		extractor.extractMetadata(in, out);
 
-		// FusekiManager.writeFuseki(OBAVESTENJE_RDF, OBAVESTENJE_PATH_URI);
-		// System.out.println("\nObavestenje");
-		// FusekiManager.readFile(OBAVESTENJE_PATH_URI);
+		FusekiManager.writeFuseki(OBAVESTENJE_RDF, OBAVESTENJE_PATH_URI);
+		System.out.println("\nObavestenje");
+		FusekiManager.readFile(OBAVESTENJE_PATH_URI);
 
-		// in = new FileInputStream(new File(RESENJE_XML));
-		// out = new FileOutputStream(new File(RESENJE_RDF));
-		// extractor.extractMetadata(in, out);
+		in = new FileInputStream(new File(RESENJE_XML));
+		out = new FileOutputStream(new File(RESENJE_RDF));
+		extractor.extractMetadata(in, out);
 		
-		// FusekiManager.writeFuseki(RESENJE_RDF, RESENJE_PATH_URI);
-		// System.out.println("\nResenje");
-		// FusekiManager.readFile(RESENJE_PATH_URI);
+		FusekiManager.writeFuseki(RESENJE_RDF, RESENJE_PATH_URI);
+		System.out.println("\nResenje");
+		FusekiManager.readFile(RESENJE_PATH_URI);
 		
 
 
@@ -110,5 +106,4 @@ public class XmlBackendApplication {
 			e.printStackTrace();
 		}
 	}
-
 }
