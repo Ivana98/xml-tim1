@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba_na_odluku
+    xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">>
+    <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ 2 </naslov>
+    
+    <podaci_o_povereniku>
+        <namena> 
+            Поверенику за информације од јавног значаја и заштиту података о личности 
+        </namena>
+        <adresa>
+            <grad property="pred:grad" datatype="xs:string"> Београд </grad>
+            <ulica property="pred:ulica" datatype="xs:string"> Булевар краља Александрa </ulica>
+            <broj>15</broj>
+        </adresa>
+    </podaci_o_povereniku>
+    
+    <zalba>
+        Ж А Л Б А  
+        <zalilac type = "TFizickoLice">
+            <adresa>
+                <grad></grad>
+                <ulica></ulica>
+                <broj></broj>
+            </adresa>
+            <sediste></sediste>
+            <ime></ime>
+            <prezime></prezime>
+        </zalilac>
+        против решења-закључка 
+        
+        <naziv_organa></naziv_organa>
+        Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.
+        
+        <sadrzaj>
+            Sadrzaj zalbe na odluku <datum>2020-12-30</datum> Oдлуку побијам у
+            целости, односно у делу којим <deo_odluke> deo </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
+            На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи
+            одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
+            Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   
+        </sadrzaj>
+        
+        <podnosilac>
+            <ime property="pred:imePodnosioca" datatype="xs:string">Ime</ime>
+            <prezime property="pred:prezimePodnosioca" datatype="xs:string">Prezime</prezime>
+            <adresa>
+                <grad property="pred:gradPodnosioca" datatype="xs:string"></grad>
+                <ulica></ulica>
+                <broj></broj>
+            </adresa>
+            <kontakt_podaci>0651224720</kontakt_podaci>
+        </podnosilac>
+        
+        <vreme_i_mesto>
+            <grad property="pred:mestoPodnosenja" datatype="xs:string"></grad>
+            <datum property="pred:datumPodnosenja" datatype="xs:date">2020-12-21</datum>
+        </vreme_i_mesto>
+        
+    </zalba>
+    
+    <napomene>
+        Напомена: 
+        <napomena id="1">
+            Napomena 1
+        </napomena>
+        <napomena id="2">
+            Napomena 2
+        </napomena>
+    </napomene>
+    
+</zalba_na_odluku>

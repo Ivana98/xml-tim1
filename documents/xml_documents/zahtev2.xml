@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd"
+        xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <info_organa>
+        <naziv>organ2</naziv>
+        <sediste>Beograd</sediste>
+    </info_organa>
+    <naslov>Zahtev 2</naslov>
+    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>
+    <opis_zahteva>
+        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>
+        <tipovi_zahteva>
+            <tip_zahteva selektovan="false" rb="1" tekst="zelim uvid u dokument ..."/>
+            <tip_zahteva selektovan="true" rb="2" tekst="zelim da mi posaljete dokument ...">
+                <nacini_slanja>
+                    <nacin_slanja rb="1" selektovan="false" tekst="elektronski"/>
+                </nacini_slanja>
+            </tip_zahteva>
+        </tipovi_zahteva>
+        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>
+        </dodatne_informacije>
+    </opis_zahteva>
+    <mesto>Beograd</mesto>
+    <datum property="pred:datum" datatype="xs:date">2021-01-17+21:00</datum>
+    <trazilac>
+        <ime_i_prezime>Nikola Jokic</ime_i_prezime>
+        <adresa>Sombor, somborska 5</adresa>
+        <kontakt>063 645658</kontakt>
+        <potpis>Sombor Shuffle</potpis>
+    </trazilac>
+    <footer>ovo je tekst footer-a</footer>
+</zahtev>
