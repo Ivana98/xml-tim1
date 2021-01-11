@@ -19,10 +19,6 @@ public class ZahtevService implements ServiceInterface {
         repository.saveRDF(name, uri);
     }
 
-    @Override
-    public void readRDF(String uri) throws Exception {
-        repository.readRDF(uri);
-    }
 
     @Override
     public void saveXML(String documentId, String content) throws Exception {
@@ -43,6 +39,16 @@ public class ZahtevService implements ServiceInterface {
         }
 
         return document;
+    }
+
+    @Override
+    public String readFileAsXML(String uri) throws Exception {
+        return repository.readFileAsXML(uri);
+    }
+
+    @Override
+    public String readFileAsJSON(String uri) throws Exception {
+        return repository.readFileAsJSON(uri);
     }
 
 }

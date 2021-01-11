@@ -10,5 +10,7 @@ public interface ServiceInterface {
     
     void saveRDF(String name, String uri)  throws Exception;
 
-    void readRDF(String uri)  throws Exception;
+    String readFileAsXML(String uri)  throws Exception;
+    
+    String readFileAsJSON(String uri)  throws Exception;
 }

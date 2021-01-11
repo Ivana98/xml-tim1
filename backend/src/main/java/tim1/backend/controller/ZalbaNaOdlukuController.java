@@ -39,12 +39,23 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> getRDF(@PathVariable("uri") String uri) {
+    @GetMapping("/rdf-xml/{uri}")
+    public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
         try {
-            zalbaService.readRDF(uri);
-            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+            String rdf = zalbaService.readFileAsXML(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/rdf-json/{uri}")
+    public ResponseEntity<String> getRdfAsJSON(@PathVariable("uri") String uri) {
+
+        try {
+            String rdf = zalbaService.readFileAsJSON(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

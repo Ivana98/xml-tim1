@@ -26,8 +26,11 @@ public abstract class RepositoryInterface {
         dbManager.saveFileToDB(documentId, collectionId, content);
     }
 
-    public void readRDF(String uri) throws Exception {
-        fusekiManager.readFile(uri);
+    public String readFileAsXML(String uri) throws Exception {
+       return fusekiManager.readFileAsXML(uri);
+    }
+    public String readFileAsJSON(String uri) throws Exception {
+        return fusekiManager.readFileAsJSON(uri);
     }
 
     public void saveRDF(String name, String uri)  throws Exception {
