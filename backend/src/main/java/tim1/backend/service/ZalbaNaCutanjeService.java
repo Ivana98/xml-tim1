@@ -14,9 +14,11 @@ public class ZalbaNaCutanjeService implements ServiceInterface {
 
     private String collectionId = "/db/poverenik/zalbanacutanje/";
 
+    private String fusekiCollectionId = "/zalbanacutanje/";
+    
     @Override
-    public void saveRDF(String xmlName, String rdfName, String uri) throws Exception {
-        repository.saveRDF(xmlName, rdfName, uri);
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
     }
 
     @Override

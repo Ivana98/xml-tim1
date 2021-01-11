@@ -14,9 +14,11 @@ public class ZahtevService implements ServiceInterface {
 
     private String collectionId = "/db/poverenik/zahtev/";
 
+    private String fusekiCollectionId = "/zahtev/";
+
     @Override
-    public void saveRDF(String xmlName, String rdfName, String uri) throws Exception {
-        repository.saveRDF(xmlName, rdfName, uri);
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
     }
 
 

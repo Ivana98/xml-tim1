@@ -36,11 +36,14 @@ public class ResenjeController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-
+        String xmlName = UUID.randomUUID().toString();
+        String rdfName = "RDF" + xmlName;
         try {
-            resenjeService.saveXML(UUID.randomUUID().toString(), content);
+            resenjeService.saveXML(xmlName, content);
+            resenjeService.saveRDF(content, rdfName, xmlName);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

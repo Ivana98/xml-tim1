@@ -39,10 +39,8 @@ public class ObavestenjeController {
         String xmlName = UUID.randomUUID().toString();
         String rdfName = "RDF" + xmlName;
         try {
-            System.out.println("save obavestenje");
             obavestenjeService.saveXML(xmlName, content);
             obavestenjeService.saveRDF(content, rdfName, xmlName);
-            System.out.println("ovde");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
