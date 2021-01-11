@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e5a9ba3f-8496-4ec3-862b-bf556f10f9b4",
+		"_postman_id": "1c00e201-8f8c-43f8-911e-d863b2f4139a",
 		"name": "XML",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/resenje.xml",
+							"raw": "http://localhost:8090/api/zahtevi/xml/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +24,7 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"resenje.xml"
+								"1"
 							]
 						}
 					},
@@ -45,7 +45,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/zahtev1.xml",
+							"raw": "http://localhost:8090/api/zahtevi/xml/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -55,7 +55,7 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"zahtev1.xml"
+								"1"
 							]
 						}
 					},
