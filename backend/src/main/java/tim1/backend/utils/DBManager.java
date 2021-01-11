@@ -37,16 +37,15 @@ import static tim1.backend.utils.PathConstants.*;
 public class DBManager {
 
 	private static ConnectionProperties conn;
-	private static String collectionId = "/db/sample/library";
 
-	public static XMLResource readFileFromDB(String name) throws XMLDBException, ClassNotFoundException,
+
+	public static XMLResource readFileFromDB(String documentId, String collectionId) throws XMLDBException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException, JAXBException {
 
 		conn = AuthenticationUtilities.loadProperties();
 
 		System.out.println("[INFO] " + "READ FILE FROM DB");
 
-		String documentId = name;
 
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
 		Class<?> cl = Class.forName(conn.driver);
@@ -98,12 +97,11 @@ public class DBManager {
 		return res;
 	}
 
-	public static XMLResource saveFileToDB(String id, String content)
+	public static XMLResource saveFileToDB(String documentId, String collectionId, String content)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
 		conn = AuthenticationUtilities.loadProperties();
 
-		String documentId = id;
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -214,30 +212,31 @@ public class DBManager {
 		}
 	}
 
-	public static void printZahtevi() throws DatatypeConfigurationException {
-		System.out.println(System.getProperty("user.dir"));
-		// zahtev
-		UnmarshallingZahtev.testXmlToObject();
-		MarshallingZahtev.testObjectToXml();
-		Validation.test();
-		// zalba na cutanje
-		MarshalZalbaNaCutanje.test();
-		System.out.println("\n\n");
-		UnmarshalZalbaNaCutanje.test();
+	// nepotrebno
+	// public static void printZahtevi() throws DatatypeConfigurationException {
+	// 	System.out.println(System.getProperty("user.dir"));
+	// 	// zahtev
+	// 	UnmarshallingZahtev.testXmlToObject();
+	// 	MarshallingZahtev.testObjectToXml();
+	// 	Validation.test();
+	// 	// zalba na cutanje
+	// 	MarshalZalbaNaCutanje.test();
+	// 	System.out.println("\n\n");
+	// 	UnmarshalZalbaNaCutanje.test();
 
-		try {
-			UnmarshalingObavestenjecir.test();
-			MarshalingObavestenjecir.test();
-			tim1.backend.model.obavestenje.Validation.test();
+	// 	try {
+	// 		UnmarshalingObavestenjecir.test();
+	// 		MarshalingObavestenjecir.test();
+	// 		tim1.backend.model.obavestenje.Validation.test();
 
-			MarshalingResenje.test();
-			UnmarshallingResenje.test();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	// 		MarshalingResenje.test();
+	// 		UnmarshallingResenje.test();
+	// 	} catch (Exception e) {
+	// 		e.printStackTrace();
+	// 	}
 
-		UnmarshallingZalbaNaOdluku.test();
-		MarshallingZalbaNaOdluku.test();
-	}
+	// 	UnmarshallingZalbaNaOdluku.test();
+	// 	MarshallingZalbaNaOdluku.test();
+	// }
 
 }
