@@ -1,5 +1,7 @@
 package tim1.backend.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +16,23 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ZalbaNaCutanjeService;
 
 @RestController
-@RequestMapping(value = "/zalbe-na-cutenje", consumes = "application/xml", produces = "application/xml")
+@RequestMapping(value = "/zalbe-na-cutenje")
 public class ZalbaNaCutanjeController {
 
     @Autowired
     private ZalbaNaCutanjeService zalbaService;
 
-    @GetMapping("/xml/{id}")
-    public ResponseEntity<XMLResource> readZalbaXML(@PathVariable("id") String id) {
+    @GetMapping(path = "/xml/{id}", produces = "application/xml")
+    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
         XMLResource xml = zalbaService.readXML(id);
         return new ResponseEntity<>(xml, HttpStatus.OK);
     }
 
-    @PostMapping("/xml/{id}")
-    public ResponseEntity<?> saveZalbaXML(@PathVariable("id") String id, @RequestBody String content) {
+    @PostMapping(path = "/xml/{id}", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         try {
-            zalbaService.saveXML(id, content);
+            zalbaService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -38,7 +40,7 @@ public class ZalbaNaCutanjeController {
     }
 
     @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> readZalbaRDF(@PathVariable("uri") String uri) {
+    public ResponseEntity<String> getRDF(@PathVariable("uri") String uri) {
 
         try {
             zalbaService.readRDF(uri);
@@ -49,7 +51,7 @@ public class ZalbaNaCutanjeController {
     }
 
     @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveZalbaRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+    public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
 
         try {
             zalbaService.saveRDF(id, uri);
