@@ -1,5 +1,7 @@
 package tim1.backend.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +16,23 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.service.ObavestenjeService;
 
 @RestController
-@RequestMapping(value = "/obavestenja", consumes = "application/xml", produces = "application/xml")
+@RequestMapping(value = "/obavestenja")
 public class ObavestenjeController {
 
     @Autowired
     private ObavestenjeService obavestenjeService;
 
-    @GetMapping("/xml/{id}")
-    public ResponseEntity<XMLResource> readObavestenjeXML(@PathVariable("id") String id) {
+    @GetMapping(path = "/xml/{id}", produces = "application/xml")
+    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
         XMLResource obavestenje = obavestenjeService.readXML(id);
         return new ResponseEntity<>(obavestenje, HttpStatus.OK);
     }
 
-    @PostMapping("/xml/{id}")
-    public ResponseEntity<?> saveObavestenjeXML(@PathVariable("id") String id, @RequestBody String content) {
+    @PostMapping(path = "/xml", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         try {
-            obavestenjeService.saveXML(id, content);
+            obavestenjeService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -38,7 +40,7 @@ public class ObavestenjeController {
     }
 
     @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> readObavestenjeRDF(@PathVariable("uri") String uri) {
+    public ResponseEntity<String> getRDF(@PathVariable("uri") String uri) {
 
         try {
             obavestenjeService.readRDF(uri);
@@ -49,7 +51,7 @@ public class ObavestenjeController {
     }
 
     @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveObavestenjeRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+    public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
 
         try {
             obavestenjeService.saveRDF(id, uri);
