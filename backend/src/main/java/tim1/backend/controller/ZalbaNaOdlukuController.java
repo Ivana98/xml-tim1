@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
@@ -26,9 +27,14 @@ public class ZalbaNaOdlukuController {
     }
 
     @PostMapping("/xml/{id}")
-    public ResponseEntity<?> saveZalbaXML(@PathVariable("id") String id) {
-        zalbaService.saveXML(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> saveZalbaXML(@PathVariable("id") String id, @RequestBody String content) {
+        
+        try {
+            zalbaService.saveXML(id, content);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/rdf/{uri}")

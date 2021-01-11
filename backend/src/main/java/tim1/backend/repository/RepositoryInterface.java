@@ -6,7 +6,7 @@ public interface RepositoryInterface {
     
     public XMLResource readXML(String id) throws Exception;
 
-    public void saveXML(String id) throws Exception;
+    public void saveXML(String id, String content) throws Exception;
 
     public void readRDF(String uri)  throws Exception;
 

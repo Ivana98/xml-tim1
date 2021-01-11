@@ -23,24 +23,24 @@ public class ObavestenjeService implements ServiceInterface {
     }
 
     @Override
-    public void saveXML(String name) {
-        try {
-            repository.saveXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void saveXML(String id, String content) throws Exception {
+
+        repository.saveXML(id, content);
 
     }
 
     @Override
     public XMLResource readXML(String name) {
+
         XMLResource document = null;
+        
         try {
             document = repository.readXML(name);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return document;
     }
-    
+
 }

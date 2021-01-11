@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
@@ -20,15 +21,20 @@ public class ObavestenjeController {
     private ObavestenjeService obavestenjeService;
 
     @GetMapping("/xml/{id}")
-    public ResponseEntity<XMLResource> readObavestenjeXML(@PathVariable("id") String id){
+    public ResponseEntity<XMLResource> readObavestenjeXML(@PathVariable("id") String id) {
         XMLResource obavestenje = obavestenjeService.readXML(id);
         return new ResponseEntity<>(obavestenje, HttpStatus.OK);
     }
 
     @PostMapping("/xml/{id}")
-    public ResponseEntity<?> saveObavestenjeXML(@PathVariable("id") String id){
-        obavestenjeService.saveXML(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> saveObavestenjeXML(@PathVariable("id") String id, @RequestBody String content) {
+        
+        try {
+            obavestenjeService.saveXML(id, content);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/rdf/{uri}")

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.utils.DBManager;
@@ -19,23 +20,14 @@ public class ZahtevRepository implements RepositoryInterface {
 
   @Override
   public XMLResource readXML(String id) throws Exception {
-    XMLResource res = null;
-    try {
-      res = dbManager.readFileFromDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
-    return res;
+
+    return dbManager.readFileFromDB(id);
   }
 
   @Override
-  public void saveXML(String id) throws Exception {
-    try {
-      dbManager.saveFileToDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
+  public void saveXML(String id, String content) throws Exception {
 
+    dbManager.saveFileToDB(id, content);
   }
 
   @Override

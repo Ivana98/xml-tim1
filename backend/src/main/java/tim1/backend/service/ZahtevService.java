@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.utils.PathConstants.*;
-
 import tim1.backend.repository.ZahtevRepository;
 
 @Service
@@ -14,28 +12,18 @@ public class ZahtevService implements ServiceInterface {
     @Autowired
     private ZahtevRepository repository;
 
-
     @Override
-    public void saveXML(String name) {
-        try {
-            repository.saveXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void saveXML(String id, String content) throws Exception {
+
+        repository.saveXML(id, content);
 
     }
 
     @Override
-    public XMLResource readXML(String name) {
-        XMLResource document = null;
-        try {
-            document = repository.readXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return document;
-    }
+    public XMLResource readXML(String name) throws Exception {
 
+        return repository.readXML(name);
+    }
 
     @Override
     public void saveRDF(String name, String uri) {
@@ -47,5 +35,5 @@ public class ZahtevService implements ServiceInterface {
         repository.readRDF(uri);
 
     }
-    
+
 }

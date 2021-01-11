@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "e5a9ba3f-8496-4ec3-862b-bf556f10f9b4",
+		"name": "XML",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ZAHTEV",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/resenje.xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml",
+								"resenje.xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n<zahtev xmlns=\"http://www.ftn.uns.ac.rs/zahtev\"\r\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n        xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd\"\r\n        xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <info_organa>\r\n        <naziv>organ1</naziv>\r\n        <sediste>Novi Sad</sediste>\r\n    </info_organa>\r\n    <naslov>Zakon</naslov>\r\n    <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>\r\n    <opis_zahteva>\r\n        <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>\r\n        <tipovi_zahteva>\r\n            <tip_zahteva selektovan=\"true\" rb=\"1\" tekst=\"zelim uvid u dokument ...\"/>\r\n            <tip_zahteva selektovan=\"false\" rb=\"2\" tekst=\"zelim da mi posaljete dokument ...\">\r\n                <nacini_slanja>\r\n                    <nacin_slanja rb=\"1\" selektovan=\"false\" tekst=\"elektronski\"/>\r\n                </nacini_slanja>\r\n            </tip_zahteva>\r\n        </tipovi_zahteva>\r\n        <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>\r\n        </dodatne_informacije>\r\n    </opis_zahteva>\r\n    <mesto>Novi Sad</mesto>\r\n    <datum property=\"pred:datum\" datatype=\"xs:date\">2021-01-06+01:00</datum>\r\n    <trazilac>\r\n        <ime_i_prezime>Nikola Jokic</ime_i_prezime>\r\n        <adresa>Sombor, somborska 5</adresa>\r\n        <kontakt>063 645658</kontakt>\r\n        <potpis>Sombor Shuffle</potpis>\r\n    </trazilac>\r\n    <footer>ovo je tekst footer-a</footer>\r\n</zahtev>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/zahtev1.xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml",
+								"zahtev1.xml"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RESENJE",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/xml/zahtev1.xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"xml",
+								"zahtev1.xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Resenje_obrazac xmlns=\"http://www.ftn.uns.ac.rs/resenje\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd\"\r\n    naslov=\"Решење када је жалба основана – налаже се:\"\r\n    broj=\"071-01-1114/2020-03\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">>\r\n    <Datum property=\"pred:datumResenja\" datatype=\"xs:date\">2020-06-09</Datum>\r\n    <Uvod>\r\n        Повереник за информације од јавног знног значаја и члана 173. став 2. Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), доноси\r\n    </Uvod>\r\n    <Sadrzaj>\r\n        <Resenje>\r\n            Р Е Ш Е Њ Е\r\n            <Pasus>\r\n                I Налаже се Учитељском факултет\r\n            </Pasus>\r\n            <Pasus>\r\n                II О извршењу решења Учитељски факултет у Призрену са привременим седиштем у Лепосавићу, ће обавестити Повереника у року од седам дана од пријема овог решења.\r\n            </Pasus>\r\n        </Resenje>\r\n        <Obrazlozenje>\r\n            О б р а з л о ж е њ е\r\n            <Sadrzaj_obrazlozenja>\r\n                АА, као тражилац информација, изјавио је дана 07.05.2020. дана од дана пријема решења. Такса на тужбу износи <Cena>390.00</Cena> динара.\r\n            </Sadrzaj_obrazlozenja>\r\n        </Obrazlozenje>\r\n    </Sadrzaj>\r\n    <Poverenik>\r\n        <Ime property=\"pred:imePoverenika\" datatype=\"xs:string\">Милан</Ime>\r\n        <Prezime property=\"pred:prezimePoverenika\" datatype=\"xs:string\">Мариновић</Prezime>\r\n    </Poverenik>\r\n</Resenje_obrazac>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/resenja/xml/resenje1.xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"resenja",
+								"xml",
+								"resenje1.xml"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

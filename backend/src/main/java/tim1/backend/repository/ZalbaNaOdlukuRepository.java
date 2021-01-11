@@ -11,6 +11,7 @@ import tim1.backend.utils.FusekiManager;
 
 @Repository
 public class ZalbaNaOdlukuRepository implements RepositoryInterface {
+
   @Autowired
   private DBManager dbManager;
 
@@ -19,23 +20,14 @@ public class ZalbaNaOdlukuRepository implements RepositoryInterface {
 
   @Override
   public XMLResource readXML(String id) throws Exception {
-    XMLResource res = null;
-    try {
-      res = dbManager.readFileFromDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
-    return res;
+    
+    return dbManager.readFileFromDB(id);
   }
 
   @Override
-  public void saveXML(String id) throws Exception {
-    try {
-      dbManager.saveFileToDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
+  public void saveXML(String id, String content) throws Exception {
 
+    dbManager.saveFileToDB(id, content);
   }
 
   @Override

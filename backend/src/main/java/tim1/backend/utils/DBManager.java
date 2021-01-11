@@ -98,13 +98,12 @@ public class DBManager {
 		return res;
 	}
 
-	public static void saveFileToDB(String name)
+	public static XMLResource saveFileToDB(String id, String content)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
 		conn = AuthenticationUtilities.loadProperties();
 
-		String documentId = name;
-		String filePath = XML_DOCUMENTS + name;
+		String documentId = id;
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -133,21 +132,11 @@ public class DBManager {
 			System.out.println("[INFO] Inserting the document: " + documentId);
 			res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
-			File f = new File(filePath);
-
-			if (!f.canRead()) {
-				System.out.println("[ERROR] Cannot read the file: " + filePath);
-				return;
-			}
-
-			res.setContent(f);
+			res.setContent(content);
 			System.out.println("[INFO] Storing the document: " + res.getId());
 
 			col.storeResource(res);
 			System.out.println("[INFO] Done. File is save to DB.");
-
-			// print u konzolu dokumenta koji je sacuvan u bazu
-			// System.out.println(res.getContent());
 
 		} finally {
 
@@ -168,6 +157,8 @@ public class DBManager {
 				}
 			}
 		}
+
+		return res;
 	}
 
 	private static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
@@ -248,6 +239,5 @@ public class DBManager {
 		UnmarshallingZalbaNaOdluku.test();
 		MarshallingZalbaNaOdluku.test();
 	}
-
 
 }
