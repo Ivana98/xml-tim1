@@ -23,11 +23,11 @@ public class ResenjeController {
     private ResenjeService resenjeService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
-    public ResponseEntity<XMLResource> getXML(@PathVariable("id") String id) {
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
 
         try {
             XMLResource xml = resenjeService.readXML(id);
-            return new ResponseEntity<>(xml, HttpStatus.OK);
+            return new ResponseEntity<>(xml.getContent().toString(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

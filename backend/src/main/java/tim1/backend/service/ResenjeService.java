@@ -28,17 +28,9 @@ public class ResenjeService implements ServiceInterface {
     }
 
     @Override
-    public XMLResource readXML(String documentId) {
+    public XMLResource readXML(String documentId) throws Exception {
 
-        XMLResource document = null;
-        
-        try {
-            document = repository.readXML(documentId, collectionId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return document;
+        return repository.readXML(documentId, collectionId);
     }
 
     @Override
