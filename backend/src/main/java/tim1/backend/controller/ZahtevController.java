@@ -48,13 +48,23 @@ public class ZahtevController {
 
     @GetMapping("/rdf/{uri}")
     public ResponseEntity<String> readZahtevRDF(@PathVariable("uri") String uri) {
-        zahtevService.readRDF(uri);
-        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+
+        try {
+            zahtevService.readRDF(uri);
+            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/rdf/{id}/{uri}")
     public ResponseEntity<String> saveZahtevRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
-        zahtevService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+
+        try {
+            zahtevService.saveRDF(id, uri);
+            return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

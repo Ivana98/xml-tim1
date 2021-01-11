@@ -28,7 +28,7 @@ public class ObavestenjeController {
 
     @PostMapping("/xml/{id}")
     public ResponseEntity<?> saveObavestenjeXML(@PathVariable("id") String id, @RequestBody String content) {
-        
+
         try {
             obavestenjeService.saveXML(id, content);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -38,15 +38,25 @@ public class ObavestenjeController {
     }
 
     @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> readObavestenjeRDF(@PathVariable("uri") String uri){
-        obavestenjeService.readRDF(uri);
-        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+    public ResponseEntity<String> readObavestenjeRDF(@PathVariable("uri") String uri) {
+
+        try {
+            obavestenjeService.readRDF(uri);
+            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveObavestenjeRDF(@PathVariable("id") String id, @PathVariable("uri") String uri){
-        obavestenjeService.saveRDF(id, uri);
+    public ResponseEntity<String> saveObavestenjeRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
+
+        try {
+            obavestenjeService.saveRDF(id, uri);
         return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-    
+
 }

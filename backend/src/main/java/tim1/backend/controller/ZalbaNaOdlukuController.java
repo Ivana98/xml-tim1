@@ -28,7 +28,7 @@ public class ZalbaNaOdlukuController {
 
     @PostMapping("/xml/{id}")
     public ResponseEntity<?> saveZalbaXML(@PathVariable("id") String id, @RequestBody String content) {
-        
+
         try {
             zalbaService.saveXML(id, content);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -39,14 +39,24 @@ public class ZalbaNaOdlukuController {
 
     @GetMapping("/rdf/{uri}")
     public ResponseEntity<String> readZalbaRDF(@PathVariable("uri") String uri) {
-        zalbaService.readRDF(uri);
-        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+
+        try {
+            zalbaService.readRDF(uri);
+            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/rdf/{id}/{uri}")
     public ResponseEntity<String> saveZalbaRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
-        zalbaService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+
+        try {
+            zalbaService.saveRDF(id, uri);
+            return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-    
+
 }

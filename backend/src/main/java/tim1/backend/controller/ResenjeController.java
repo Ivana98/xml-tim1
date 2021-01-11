@@ -45,14 +45,24 @@ public class ResenjeController {
 
     @GetMapping("/rdf/{uri}")
     public ResponseEntity<String> readResenjeRDF(@PathVariable("uri") String uri) {
-        resenjeService.readRDF(uri);
-        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+
+        try {
+            resenjeService.readRDF(uri);
+            return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/rdf/{id}/{uri}")
     public ResponseEntity<String> saveResenjeRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
-        resenjeService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+
+        try {
+            resenjeService.saveRDF(id, uri);
+            return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
