@@ -18,12 +18,12 @@ public abstract class RepositoryInterface {
     @Autowired
     private FusekiManager fusekiManager;
     
-    public XMLResource readXML(String id, String collectionId) throws Exception {
-        return dbManager.readFileFromDB(id, collectionId);
+    public XMLResource readXML(String documentId, String collectionId) throws Exception {
+        return dbManager.readFileFromDB(documentId, collectionId);
     }
 
-    public void saveXML(String id, String content, String collectionId) throws Exception {
-        dbManager.saveFileToDB(id, collectionId, content);
+    public void saveXML(String documentId, String collectionId, String content) throws Exception {
+        dbManager.saveFileToDB(documentId, collectionId, content);
     }
 
     public void readRDF(String uri) throws Exception {

@@ -42,7 +42,7 @@ public class DBManager {
 	// db/poverenik/korisnici/1
 
 
-	public static XMLResource readFileFromDB(String documentId, String collectionId) throws XMLDBException, ClassNotFoundException,
+	public XMLResource readFileFromDB(String documentId, String collectionId) throws XMLDBException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException, JAXBException {
 
 		conn = AuthenticationUtilities.loadProperties();
@@ -100,7 +100,7 @@ public class DBManager {
 		return res;
 	}
 
-	public static XMLResource saveFileToDB(String documentId, String collectionId, String content)
+	public XMLResource saveFileToDB(String documentId, String collectionId, String content)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
 		conn = AuthenticationUtilities.loadProperties();
