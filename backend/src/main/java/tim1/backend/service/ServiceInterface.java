@@ -8,7 +8,7 @@ public interface ServiceInterface {
 
     XMLResource readXML(String documentId) throws Exception;
     
-    void saveRDF(String xmlName, String rdfName, String uri)  throws Exception;
+    void saveRDF(String xmlName, String uri)  throws Exception;
 
     String readFileAsXML(String uri)  throws Exception;
     
