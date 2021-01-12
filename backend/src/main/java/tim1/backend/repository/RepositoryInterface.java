@@ -47,7 +47,7 @@ public abstract class RepositoryInterface {
      * @param uri
      * @throws Exception
      */
-    public void saveRDF(String content, String rdfName, String uri)  throws Exception {
+    public void saveRDF(String content, String uri)  throws Exception {
         InputStream in = new ByteArrayInputStream(content.getBytes());
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		MetadataExtractor extractor = new MetadataExtractor();

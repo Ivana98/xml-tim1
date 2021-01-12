@@ -38,11 +38,10 @@ public class ZahtevController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        String xmlName = UUID.randomUUID().toString();
-        String rdfName = "RDF" + xmlName;
+        String documentId = UUID.randomUUID().toString();
         try {
-            zahtevService.saveXML(xmlName, content);
-            zahtevService.saveRDF(content, rdfName, xmlName);
+            zahtevService.saveXML(documentId, content);
+            zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +50,7 @@ public class ZahtevController {
 
     }
 
-    @GetMapping(path= "/rdf-xml/{uri}", produces = "application/xml")
+    @GetMapping(path = "/rdf-xml/{uri}", produces = "application/xml")
     public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
         try {
