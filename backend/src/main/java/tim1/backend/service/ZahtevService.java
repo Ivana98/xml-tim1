@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.utils.PathConstants.*;
-
 import tim1.backend.repository.ZahtevRepository;
 
 @Service
@@ -14,38 +12,47 @@ public class ZahtevService implements ServiceInterface {
     @Autowired
     private ZahtevRepository repository;
 
+    private String collectionId = "/db/poverenik/zahtev/";
+
+    private String fusekiCollectionId = "/zahtev/";
 
     @Override
-    public void saveXML(String name) {
-        try {
-            repository.saveXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
+    }
+
+
+    @Override
+    public void saveXML(String documentId, String content) throws Exception {
+
+        repository.saveXML(documentId, collectionId, content);
 
     }
 
     @Override
-    public XMLResource readXML(String name) {
+    public XMLResource readXML(String documentId) {
+
         XMLResource document = null;
+
         try {
-            document = repository.readXML(name);
+            document = repository.readXML(documentId, collectionId);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return document;
     }
 
-
     @Override
-    public void saveRDF(String name, String uri) {
-        repository.saveRDF(name, uri);
+    public String readFileAsXML(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsXML(uri);
     }
 
     @Override
-    public void readRDF(String uri) {
-        repository.readRDF(uri);
-
+    public String readFileAsJSON(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsJSON(uri);
     }
-    
+
 }

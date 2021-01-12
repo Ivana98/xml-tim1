@@ -12,35 +12,38 @@ public class ResenjeService implements ServiceInterface {
     @Autowired
     private ResenjeRepository repository;
 
+    private String collectionId = "/db/poverenik/resenje/";
+
+    private String fusekiCollectionId = "/resenje/";
+
     @Override
-    public void saveRDF(String name, String uri) {
-        repository.saveRDF(name, uri);
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
+    }
+
+
+    @Override
+    public void saveXML(String documentId, String content) throws Exception {
+        
+        repository.saveXML(documentId, collectionId, content );
+
     }
 
     @Override
-    public void readRDF(String uri) {
-        repository.readRDF(uri);
+    public XMLResource readXML(String documentId) throws Exception {
+
+        return repository.readXML(documentId, collectionId);
     }
 
     @Override
-    public void saveXML(String name) {
-        try {
-            repository.saveXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public String readFileAsXML(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsXML(uri);
     }
 
     @Override
-    public XMLResource readXML(String name) {
-        XMLResource document = null;
-        try {
-            document = repository.readXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return document;
+    public String readFileAsJSON(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsJSON(uri);
     }
-
 }

@@ -12,34 +12,46 @@ public class ZalbaNaOdlukuService implements ServiceInterface {
     @Autowired
     private ZalbaNaOdlukuRepository repository;
 
+    private String collectionId = "/db/poverenik/zalbanaodluku/";
+
+    private String fusekiCollectionId = "/zalbanaodluku/";
+
     @Override
-    public void saveRDF(String name, String uri) {
-        repository.saveRDF(name, uri);
+    public void saveRDF(String content, String rdfName, String uri) throws Exception {
+        repository.saveRDF(content, rdfName, fusekiCollectionId + uri);
+    }
+
+
+    @Override
+    public void saveXML(String documentId, String content) throws Exception {
+        
+        repository.saveXML(documentId, collectionId, content );
+
     }
 
     @Override
-    public void readRDF(String uri) {
-        repository.readRDF(uri);
-    }
+    public XMLResource readXML(String documentId) {
 
-    @Override
-    public void saveXML(String name) {
-        try {
-            repository.saveXML(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public XMLResource readXML(String name) {
         XMLResource document = null;
+        
         try {
-            document = repository.readXML(name);
+            document = repository.readXML(documentId, collectionId);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return document;
+    }
+
+    @Override
+    public String readFileAsXML(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsXML(uri);
+    }
+
+    @Override
+    public String readFileAsJSON(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
+        return repository.readFileAsJSON(uri);
     }
 }

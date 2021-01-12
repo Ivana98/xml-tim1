@@ -10,51 +10,6 @@ import tim1.backend.utils.DBManager;
 import tim1.backend.utils.FusekiManager;
 
 @Repository
-public class ZalbaNaCutanjeRepository implements RepositoryInterface {
-  @Autowired
-  private DBManager dbManager;
+public class ZalbaNaCutanjeRepository extends RepositoryInterface {
 
-  @Autowired
-  private FusekiManager fusekiManager;
-
-  @Override
-  public XMLResource readXML(String id) throws Exception {
-    XMLResource res = null;
-    try {
-      res = dbManager.readFileFromDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
-    return res;
-  }
-
-  @Override
-  public void saveXML(String id) throws Exception {
-    try {
-      dbManager.saveFileToDB(id);
-    } catch (Exception e) {
-      throw e;
-    }
-
-  }
-
-  @Override
-  public void readRDF(String uri) {
-    try {
-      fusekiManager.readFile(uri);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-  }
-
-  @Override
-  public void saveRDF(String name, String uri) {
-    try {
-      fusekiManager.writeFuseki(name, uri);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-  }
 }

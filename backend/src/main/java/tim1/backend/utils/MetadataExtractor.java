@@ -25,7 +25,7 @@ public class MetadataExtractor {
 	
 	private TransformerFactory transformerFactory;
 	// ako ne rade putanje dodati ./../
-	private static final String XSLT_FILE = BASE + "/xsl_documents/RDFa2RDFXML.xsl";
+	private static final String XSLT_FILE = "./../documents/xsl_documents/RDFa2RDFXML.xsl";
 	
 	public MetadataExtractor() throws SAXException, IOException {
 		

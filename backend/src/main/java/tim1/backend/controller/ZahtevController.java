@@ -1,5 +1,9 @@
 package tim1.backend.controller;
 
+import java.util.UUID;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,38 +13,63 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.service.ZahtevService;
 
 @RestController
-@RequestMapping(value = "/zahtevi", consumes = "application/xml", produces = "application/xml")
+@RequestMapping(value = "/zahtevi")
 public class ZahtevController {
 
     @Autowired
     private ZahtevService zahtevService;
 
-    @GetMapping("/xml/{id}")
-    public ResponseEntity<XMLResource> readZahtevXML(@PathVariable("id") String id) {
-        XMLResource zahtev = zahtevService.readXML(id);
-        return new ResponseEntity<>(zahtev, HttpStatus.OK);
+    @GetMapping(path = "/xml/{id}", produces = "application/xml")
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) throws XMLDBException {
+
+        try {
+            XMLResource zahtev = zahtevService.readXML(id);
+            return new ResponseEntity<>(zahtev.getContent().toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/xml/{id}")
-    public ResponseEntity<?> saveZahtevXML(@PathVariable("id") String id) {
-        zahtevService.saveXML(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping(path = "/xml", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
+        String xmlName = UUID.randomUUID().toString();
+        String rdfName = "RDF" + xmlName;
+        try {
+            zahtevService.saveXML(xmlName, content);
+            zahtevService.saveRDF(content, rdfName, xmlName);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
-    @GetMapping("/rdf/{uri}")
-    public ResponseEntity<String> readZahtevRDF(@PathVariable("uri") String uri) {
-        zahtevService.readRDF(uri);
-        return new ResponseEntity<>("Successfully read!", HttpStatus.OK);
+    @GetMapping(path= "/rdf-xml/{uri}", produces = "application/xml")
+    public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
+
+        try {
+            String rdf = zahtevService.readFileAsXML(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/rdf/{id}/{uri}")
-    public ResponseEntity<String> saveZahtevRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
-        zahtevService.saveRDF(id, uri);
-        return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
+    @GetMapping(path = "/rdf-json/{uri}", produces = "application/json")
+    public ResponseEntity<String> getRdfAsJSON(@PathVariable("uri") String uri) {
+
+        try {
+            String rdf = zahtevService.readFileAsJSON(uri);
+            return new ResponseEntity<>(rdf, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

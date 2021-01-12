@@ -37,16 +37,16 @@ import static tim1.backend.utils.PathConstants.*;
 public class DBManager {
 
 	private static ConnectionProperties conn;
-	private static String collectionId = "/db/sample/library";
 
-	public static XMLResource readFileFromDB(String name) throws XMLDBException, ClassNotFoundException,
-			InstantiationException, IllegalAccessException, IOException, JAXBException {
+	// db/poverenik/resenje/1
+	// db/poverenik/korisnici/1
+
+	public XMLResource readFileFromDB(String documentId, String collectionId) throws XMLDBException,
+			ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, JAXBException {
 
 		conn = AuthenticationUtilities.loadProperties();
 
 		System.out.println("[INFO] " + "READ FILE FROM DB");
-
-		String documentId = name;
 
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
 		Class<?> cl = Class.forName(conn.driver);
@@ -95,16 +95,14 @@ public class DBManager {
 			}
 
 		}
+
 		return res;
 	}
 
-	public static void saveFileToDB(String name)
+	public XMLResource saveFileToDB(String documentId, String collectionId, String content)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
 		conn = AuthenticationUtilities.loadProperties();
-
-		String documentId = name;
-		String filePath = XML_DOCUMENTS + name;
 
 		// initialize database driver
 		System.out.println("[INFO] Loading driver class: " + conn.driver);
@@ -133,21 +131,11 @@ public class DBManager {
 			System.out.println("[INFO] Inserting the document: " + documentId);
 			res = (XMLResource) col.createResource(documentId, XMLResource.RESOURCE_TYPE);
 
-			File f = new File(filePath);
-
-			if (!f.canRead()) {
-				System.out.println("[ERROR] Cannot read the file: " + filePath);
-				return;
-			}
-
-			res.setContent(f);
+			res.setContent(content);
 			System.out.println("[INFO] Storing the document: " + res.getId());
 
 			col.storeResource(res);
 			System.out.println("[INFO] Done. File is save to DB.");
-
-			// print u konzolu dokumenta koji je sacuvan u bazu
-			// System.out.println(res.getContent());
 
 		} finally {
 
@@ -168,6 +156,8 @@ public class DBManager {
 				}
 			}
 		}
+
+		return res;
 	}
 
 	private static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
@@ -223,31 +213,31 @@ public class DBManager {
 		}
 	}
 
-	public static void printZahtevi() throws DatatypeConfigurationException {
-		System.out.println(System.getProperty("user.dir"));
-		// zahtev
-		UnmarshallingZahtev.testXmlToObject();
-		MarshallingZahtev.testObjectToXml();
-		Validation.test();
-		// zalba na cutanje
-		MarshalZalbaNaCutanje.test();
-		System.out.println("\n\n");
-		UnmarshalZalbaNaCutanje.test();
+	// nepotrebno
+	// public static void printZahtevi() throws DatatypeConfigurationException {
+	// System.out.println(System.getProperty("user.dir"));
+	// // zahtev
+	// UnmarshallingZahtev.testXmlToObject();
+	// MarshallingZahtev.testObjectToXml();
+	// Validation.test();
+	// // zalba na cutanje
+	// MarshalZalbaNaCutanje.test();
+	// System.out.println("\n\n");
+	// UnmarshalZalbaNaCutanje.test();
 
-		try {
-			UnmarshalingObavestenjecir.test();
-			MarshalingObavestenjecir.test();
-			tim1.backend.model.obavestenje.Validation.test();
+	// try {
+	// UnmarshalingObavestenjecir.test();
+	// MarshalingObavestenjecir.test();
+	// tim1.backend.model.obavestenje.Validation.test();
 
-			MarshalingResenje.test();
-			UnmarshallingResenje.test();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	// MarshalingResenje.test();
+	// UnmarshallingResenje.test();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
 
-		UnmarshallingZalbaNaOdluku.test();
-		MarshallingZalbaNaOdluku.test();
-	}
-
+	// UnmarshallingZalbaNaOdluku.test();
+	// MarshallingZalbaNaOdluku.test();
+	// }
 
 }
