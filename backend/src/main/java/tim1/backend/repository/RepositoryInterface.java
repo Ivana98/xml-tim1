@@ -40,16 +40,22 @@ public abstract class RepositoryInterface {
     public String readFileAsJSON(String uri) throws Exception {
         return fusekiManager.readFileAsJSON(uri);
     }
-
+    /**
+     * 
+     * @param content ovo je sam xml koji dobijemo sa fronta u xml formatu
+     * @param rdfName
+     * @param uri
+     * @throws Exception
+     */
     public void saveRDF(String content, String rdfName, String uri)  throws Exception {
         InputStream in = new ByteArrayInputStream(content.getBytes());
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		MetadataExtractor extractor = new MetadataExtractor();
         extractor.extractMetadata(in, out);
 
-        String s = new String(out.toByteArray());
-        InputStream i = new ByteArrayInputStream(s.getBytes());
-        fusekiManager.writeFuseki(i, uri);
+        String rdfAsString = new String(out.toByteArray());
+        InputStream rdfInputStream = new ByteArrayInputStream(rdfAsString.getBytes());
+        fusekiManager.writeFuseki(rdfInputStream, uri);
     }
 
 }
