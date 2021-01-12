@@ -36,11 +36,10 @@ public class ZalbaNaOdlukuController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        String xmlName = UUID.randomUUID().toString();
-        String rdfName = "RDF" + xmlName;
+        String documentId = UUID.randomUUID().toString();
         try {
-            zalbaService.saveXML(xmlName, content);
-            zalbaService.saveRDF(content, rdfName, xmlName);
+            zalbaService.saveXML(documentId, content);
+            zalbaService.saveRDF(content,documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();

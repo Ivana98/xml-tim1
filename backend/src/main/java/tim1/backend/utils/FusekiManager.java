@@ -2,6 +2,7 @@ package tim1.backend.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 
@@ -25,24 +26,26 @@ import static tim1.backend.utils.PathConstants.*;
 
 @Component
 public class FusekiManager {
-
-	public static void writeFuseki(String rdfFilePath, String NAMED_GRAPH) throws IOException {
+	/**
+	 * 
+	 * @param rdfInputStream string rdf pretvoren u niz bajtova
+	 * @param NAMED_GRAPH    je oblika: zalbanacutanje/idDokumentaIzXmlBaze, npr:
+	 *                       zalbanacutanje/c115f225-592c-4478-8ede-c77a5bce74fb
+	 * @throws IOException
+	 */
+	public void writeFuseki(InputStream rdfInputStream, String NAMED_GRAPH) throws IOException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
-		// String rdfFilePath = EXAMPLE_RDF;
-		// String NAMED_GRAPH = EXAMPLE_PATH_URI;
-
-		// String rdfFilePath = ZAHTEV_RDF;
-		// String NAMED_GRAPH = ZAHTEV_PATH_URI;
-
 		// Creates a default model
 		Model model = ModelFactory.createDefaultModel();
-		model.read(rdfFilePath);
+		model.read(rdfInputStream, null);
 
 		// out stream nam treba da bismo videli ispis na konzoli
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		model.write(out, SparqlUtil.NTRIPLES);
 		System.out.println("[INFO] Rendering model as RDF/XML...");
 		model.write(System.out, SparqlUtil.RDF_XML);
+
+		String s = new String(out.toByteArray());
 
 		/*
 		 * Create UpdateProcessor, an instance of execution of an UpdateRequest.
@@ -67,17 +70,17 @@ public class FusekiManager {
 
 	/**
 	 * 
-	 * @param graph_uri
-	 * @param type     
+	 * @param uri je string i ima oblik
+	 *            zalbanacutanje/c115f225-592c-4478-8ede-c77a5bce74fb
 	 * @return
 	 * @throws IOException
 	 * @throws BadRequestException
 	 */
-	public static String readFileAsXML(String graph_uri) throws IOException, BadRequestException {
+	public String readFileAsXML(String uri) throws IOException, BadRequestException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
 		// Querying the first named graph with a simple SPARQL query
-		System.out.println("[INFO] Selecting the triples from the named graph \"" + graph_uri + "\".");
-		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + graph_uri, "?s ?p ?o");
+		System.out.println("[INFO] Selecting the triples from the named graph \"" + uri + "\".");
+		String sparqlQuery = SparqlUtil.selectData(fusekiConn.dataEndpoint + uri, "?s ?p ?o");
 
 		// Create a QueryExecution that will access a SPARQL service over HTTP
 		QueryExecution query = QueryExecutionFactory.sparqlService(fusekiConn.queryEndpoint, sparqlQuery);
@@ -97,7 +100,7 @@ public class FusekiManager {
 
 	}
 
-	public static String readFileAsJSON(String uri) throws IOException, BadRequestException {
+	public String readFileAsJSON(String uri) throws IOException, BadRequestException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
 
 		// Querying the first named graph with a simple SPARQL query

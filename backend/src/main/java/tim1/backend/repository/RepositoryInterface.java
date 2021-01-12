@@ -1,6 +1,7 @@
 package tim1.backend.repository;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,13 +40,22 @@ public abstract class RepositoryInterface {
     public String readFileAsJSON(String uri) throws Exception {
         return fusekiManager.readFileAsJSON(uri);
     }
-
-    public void saveRDF(String content, String rdfName, String uri)  throws Exception {
+    /**
+     * 
+     * @param content ovo je sam xml koji dobijemo sa fronta u xml formatu
+     * @param rdfName
+     * @param uri
+     * @throws Exception
+     */
+    public void saveRDF(String content, String uri)  throws Exception {
         InputStream in = new ByteArrayInputStream(content.getBytes());
-		OutputStream out = new FileOutputStream(new File(rdfName));
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		MetadataExtractor extractor = new MetadataExtractor();
-		extractor.extractMetadata(in, out);
-        fusekiManager.writeFuseki(rdfName, uri);
+        extractor.extractMetadata(in, out);
+
+        String rdfAsString = new String(out.toByteArray());
+        InputStream rdfInputStream = new ByteArrayInputStream(rdfAsString.getBytes());
+        fusekiManager.writeFuseki(rdfInputStream, uri);
     }
 
 }

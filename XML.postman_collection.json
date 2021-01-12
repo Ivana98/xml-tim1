@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "93717ca2-8a2a-458e-9591-cbef0c844931",
+		"_postman_id": "bde272a1-97e0-4ad3-a915-ba8472867765",
 		"name": "XML",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/2ed91000-b066-41ce-b8ff-9f71a5f0c9fc",
+							"raw": "http://localhost:8090/api/zahtevi/xml/bb8b6678-3b71-4621-8156-fdf59110bbd6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +24,7 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"2ed91000-b066-41ce-b8ff-9f71a5f0c9fc"
+								"bb8b6678-3b71-4621-8156-fdf59110bbd6"
 							]
 						}
 					},
@@ -66,7 +66,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zahtevi/xml/2b3636d9-ed69-4c50-b838-32c9b39f7e0f",
+							"raw": "http://localhost:8090/api/zahtevi/xml/e02bab2d-814e-46c6-8145-e430e6b3b66c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -76,7 +76,7 @@
 								"api",
 								"zahtevi",
 								"xml",
-								"2b3636d9-ed69-4c50-b838-32c9b39f7e0f"
+								"e02bab2d-814e-46c6-8145-e430e6b3b66c"
 							]
 						}
 					},
@@ -107,6 +107,28 @@
 								"api",
 								"zahtevi",
 								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RDF 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zahtevi/rdf-json/0bf33075-d723-4ebd-92d7-b0fa222ad7d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zahtevi",
+								"rdf-json",
+								"0bf33075-d723-4ebd-92d7-b0fa222ad7d5"
 							]
 						}
 					},
@@ -341,7 +363,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml/82c6b5bd-313d-4dc1-96c7-78ef0dd2e13a",
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml/be682b9f-f557-455f-8684-acb53196e348",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -351,7 +373,7 @@
 								"api",
 								"zalbe-na-cutenje",
 								"xml",
-								"82c6b5bd-313d-4dc1-96c7-78ef0dd2e13a"
+								"be682b9f-f557-455f-8684-acb53196e348"
 							]
 						}
 					},
@@ -434,6 +456,50 @@
 								"api",
 								"zalbe-na-cutenje",
 								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RDF AS XML 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/rdf-xml/be682b9f-f557-455f-8684-acb53196e348",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"rdf-xml",
+								"be682b9f-f557-455f-8684-acb53196e348"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RDF AS JSON 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/rdf-json/be682b9f-f557-455f-8684-acb53196e348",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"rdf-json",
+								"be682b9f-f557-455f-8684-acb53196e348"
 							]
 						}
 					},
