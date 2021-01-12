@@ -48,7 +48,7 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @GetMapping("/rdf-xml/{uri}")
+    @GetMapping(path= "/rdf-xml/{uri}", produces = "application/xml")
     public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
         try {
@@ -59,7 +59,7 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    @GetMapping("/rdf-json/{uri}")
+    @GetMapping(path = "/rdf-json/{uri}", produces = "application/json")
     public ResponseEntity<String> getRdfAsJSON(@PathVariable("uri") String uri) {
 
         try {
@@ -69,16 +69,4 @@ public class ZalbaNaOdlukuController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-    // @PostMapping("/rdf/{id}/{uri}")
-    // public ResponseEntity<String> saveRDF(@PathVariable("id") String id, @PathVariable("uri") String uri) {
-
-    //     try {
-    //         zalbaService.saveRDF(id, uri);
-    //         return new ResponseEntity<>("Successfully saved!", HttpStatus.OK);
-    //     } catch (Exception e) {
-    //         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    //     }
-    // }
-
 }

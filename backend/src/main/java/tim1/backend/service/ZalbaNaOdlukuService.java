@@ -45,11 +45,13 @@ public class ZalbaNaOdlukuService implements ServiceInterface {
 
     @Override
     public String readFileAsXML(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
         return repository.readFileAsXML(uri);
     }
 
     @Override
     public String readFileAsJSON(String uri) throws Exception {
+        uri = fusekiCollectionId + uri;
         return repository.readFileAsJSON(uri);
     }
 }
