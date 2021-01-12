@@ -68,7 +68,7 @@ public class FusekiManager {
 	/**
 	 * 
 	 * @param graph_uri
-	 * @param type      moze biti JSON ili XML
+	 * @param type     
 	 * @return
 	 * @throws IOException
 	 * @throws BadRequestException
