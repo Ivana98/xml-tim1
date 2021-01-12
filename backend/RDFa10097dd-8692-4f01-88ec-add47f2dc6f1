@@ -1,0 +1,20 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="">
+    <pred:nazivOrgana xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Naziv organa</pred:nazivOrgana>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:sedisteOrgana xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Novi Sad</pred:sedisteOrgana>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:datum xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="date">2020-05-22</pred:datum>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:imePodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Veljko</pred:imePodnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:prezimePodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Plecas</pred:prezimePodnosioca>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:adresaPodnosioca xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" rdf:datatype="string">Teodora Drajzera</pred:adresaPodnosioca>
+  </rdf:Description>
+</rdf:RDF>
