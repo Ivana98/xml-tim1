@@ -2,6 +2,7 @@ package tim1.backend.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 
@@ -26,7 +27,7 @@ import static tim1.backend.utils.PathConstants.*;
 @Component
 public class FusekiManager {
 
-	public static void writeFuseki(String rdfFilePath, String NAMED_GRAPH) throws IOException {
+	public static void writeFuseki(InputStream i, String NAMED_GRAPH) throws IOException {
 		ConnectionProperties fusekiConn = FueskiAuthenticationUtilities.loadProperties();
 		// String rdfFilePath = EXAMPLE_RDF;
 		// String NAMED_GRAPH = EXAMPLE_PATH_URI;
@@ -36,13 +37,15 @@ public class FusekiManager {
 
 		// Creates a default model
 		Model model = ModelFactory.createDefaultModel();
-		model.read(rdfFilePath);
+		model.read(i, null);
 
 		// out stream nam treba da bismo videli ispis na konzoli
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		model.write(out, SparqlUtil.NTRIPLES);
 		System.out.println("[INFO] Rendering model as RDF/XML...");
 		model.write(System.out, SparqlUtil.RDF_XML);
+
+		String s =  new String(out.toByteArray());
 
 		/*
 		 * Create UpdateProcessor, an instance of execution of an UpdateRequest.

@@ -1,6 +1,7 @@
 package tim1.backend.repository;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -42,10 +43,13 @@ public abstract class RepositoryInterface {
 
     public void saveRDF(String content, String rdfName, String uri)  throws Exception {
         InputStream in = new ByteArrayInputStream(content.getBytes());
-		OutputStream out = new FileOutputStream(new File(rdfName));
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		MetadataExtractor extractor = new MetadataExtractor();
-		extractor.extractMetadata(in, out);
-        fusekiManager.writeFuseki(rdfName, uri);
+        extractor.extractMetadata(in, out);
+
+        String s = new String(out.toByteArray());
+        InputStream i = new ByteArrayInputStream(s.getBytes());
+        fusekiManager.writeFuseki(i, uri);
     }
 
 }
