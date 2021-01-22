@@ -15,6 +15,8 @@ import tim1.backend.model.zahtev.Validation;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -72,7 +74,7 @@ public class DBManager {
 				System.out.println("[WARNING] Document '" + documentId + "' can not be found!");
 			} else {
 				System.out.println("[INFO] Showing the document as XML resource: ");
-				System.out.println(res.getContent());
+				// System.out.println(res.getContent());
 
 			}
 		} finally {
@@ -160,6 +162,72 @@ public class DBManager {
 		return res;
 	}
 
+
+
+
+
+
+
+
+	public List<XMLResource> findAllFromCollection(String collectionId) throws Exception {
+		List<XMLResource> lista = new ArrayList<>();
+
+		conn = AuthenticationUtilities.loadProperties();
+
+
+		System.out.println("[INFO] Loading driver class: " + conn.driver);
+		Class<?> cl = Class.forName(conn.driver);
+
+		Database database = (Database) cl.newInstance();
+		database.setProperty("create-database", "true");
+
+		DatabaseManager.registerDatabase(database);
+
+		Collection col = null;
+		XMLResource res = null;
+
+		try {
+			// get the collection
+			System.out.println("[INFO] Retrieving the collection: " + collectionId);
+			col = DatabaseManager.getCollection(conn.uri + collectionId);
+			col.setProperty(OutputKeys.INDENT, "yes");
+
+			//get all ids from a collection. Put them in array.
+			String[] ids = col.listResources();
+			for (String documentId : ids) {
+				lista.add( readFileFromDB(documentId, collectionId));
+			}
+
+			
+		} finally {
+			// don't forget to clean up!
+
+			if (res != null) {
+				try {
+					((EXistResource) res).freeResources();
+				} catch (XMLDBException xe) {
+					xe.printStackTrace();
+				}
+			}
+
+			if (col != null) {
+				try {
+					col.close();
+				} catch (XMLDBException xe) {
+					xe.printStackTrace();
+				}
+			}
+
+		}
+
+		return lista;
+	}
+
+
+
+
+
+
 	private static Collection getOrCreateCollection(String collectionUri) throws XMLDBException {
 		return getOrCreateCollection(collectionUri, 0);
 	}
@@ -213,31 +281,6 @@ public class DBManager {
 		}
 	}
 
-	// nepotrebno
-	// public static void printZahtevi() throws DatatypeConfigurationException {
-	// System.out.println(System.getProperty("user.dir"));
-	// // zahtev
-	// UnmarshallingZahtev.testXmlToObject();
-	// MarshallingZahtev.testObjectToXml();
-	// Validation.test();
-	// // zalba na cutanje
-	// MarshalZalbaNaCutanje.test();
-	// System.out.println("\n\n");
-	// UnmarshalZalbaNaCutanje.test();
 
-	// try {
-	// UnmarshalingObavestenjecir.test();
-	// MarshalingObavestenjecir.test();
-	// tim1.backend.model.obavestenje.Validation.test();
-
-	// MarshalingResenje.test();
-	// UnmarshallingResenje.test();
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-
-	// UnmarshallingZalbaNaOdluku.test();
-	// MarshallingZalbaNaOdluku.test();
-	// }
 
 }

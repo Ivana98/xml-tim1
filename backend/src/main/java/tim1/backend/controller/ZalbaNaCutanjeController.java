@@ -1,5 +1,6 @@
 package tim1.backend.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.liste.ZalbaNaCutanjeLista;
 import tim1.backend.service.ZalbaNaCutanjeService;
 
 @RestController
@@ -65,6 +67,18 @@ public class ZalbaNaCutanjeController {
             String rdf = zalbaService.readFileAsJSON(uri);
             return new ResponseEntity<>(rdf, HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(path = "/xml", produces = "application/xml")
+    public ResponseEntity<ZalbaNaCutanjeLista> findAllFromCollection() throws Exception{
+
+        try {
+            ZalbaNaCutanjeLista lista = zalbaService.findAllFromCollection();
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
