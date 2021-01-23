@@ -32,9 +32,10 @@ public class XmlBackendApplication {
 	// run tomcat on port: 8080
 	// run spring boot as usual
 
-	public static void main(String[] args) throws BadRequestException {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(XmlBackendApplication.class, args);
-
+		// DBManager dbManager = new DBManager();
+		// dbManager.findAllFromCollection("/db/poverenik/zalbanacutanje/");
 	}
 
 	public static void createRDFs() throws SAXException, IOException, TransformerException {

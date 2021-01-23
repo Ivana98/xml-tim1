@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -58,4 +59,7 @@ public abstract class RepositoryInterface {
         fusekiManager.writeFuseki(rdfInputStream, uri);
     }
 
+    public List<XMLResource> findAllFromCollection(String collectionId) throws Exception{
+        return dbManager.findAllFromCollection(collectionId);
+    }
 }
