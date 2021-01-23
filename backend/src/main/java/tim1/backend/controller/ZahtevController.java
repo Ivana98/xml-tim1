@@ -38,16 +38,16 @@ public class ZahtevController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
+
         String documentId = UUID.randomUUID().toString();
+
         try {
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping(path = "/rdf-xml/{uri}", produces = "application/xml")
