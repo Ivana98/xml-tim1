@@ -13,59 +13,19 @@ import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.ZalbaNaCutanjeLista;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
+import tim1.backend.repository.RepositoryInterface;
 import tim1.backend.repository.ZalbaNaCutanjeRepository;
 
 @Service
-public class ZalbaNaCutanjeService implements ServiceInterface {
+public class ZalbaNaCutanjeService extends AbstractService {
 
-    @Autowired
-    private ZalbaNaCutanjeRepository repository;
-
-    private String collectionId = "/db/poverenik/zalbanacutanje/";
-
-    private String fusekiCollectionId = "/zalbanacutanje/";
-    
-    @Override
-    public void saveRDF(String content, String uri) throws Exception {
-        repository.saveRDF(content, fusekiCollectionId + uri);
-    }
-
-    @Override
-    public void saveXML(String documentId, String content) throws Exception {
-        
-        repository.saveXML(documentId, collectionId, content );
-
-    }
-
-    @Override
-    public XMLResource readXML(String documentId) {
-
-        XMLResource document = null;
-        
-        try {
-            document = repository.readXML(documentId, collectionId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return document;
-    }
-
-    @Override
-    public String readFileAsXML(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsXML(uri);
-    }
-
-    @Override
-    public String readFileAsJSON(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsJSON(uri);
+    public ZalbaNaCutanjeService(ZalbaNaCutanjeRepository repository) {
+        super(repository, "/db/poverenik/zalbanacutanje/", "/zalbanacutanje/");
     }
 
     public ZalbaNaCutanjeLista findAllFromCollection() throws Exception{
         List<ZalbaNaCutanje> temp = new ArrayList<>();
-        List<XMLResource> retval =  repository.findAllFromCollection(collectionId);
+        List<XMLResource> retval =  this.repository.findAllFromCollection(collectionId);
 
         JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
