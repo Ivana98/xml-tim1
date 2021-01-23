@@ -2,6 +2,8 @@ package tim1.backend.service;
 
 // import tim1.backend.model.Authority;
 import tim1.backend.model.korisnici.*;
+import tim1.backend.repository.UserRepository;
+
 // import tim1.backend.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,8 +15,8 @@ import java.util.List;
 @Service
 public class KorisnikService implements ServiceInterface {
 
-    // @Autowired
-    // private UserRepository userRepository;
+    @Autowired
+    private UserRepository repository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -22,9 +24,13 @@ public class KorisnikService implements ServiceInterface {
     @Autowired
     private AuthorityService authService;
 
+
+    private String collectionId = "/db/poverenik/korisnik/";
+
+
     @Override
     public void saveXML(String documentId, String content) throws Exception {
-        // TODO Auto-generated method stub
+        repository.saveXML(documentId, collectionId, content );
 
     }
 

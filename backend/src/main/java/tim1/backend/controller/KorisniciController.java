@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,11 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/korisnici", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/korisnici")
 public class KorisniciController {
 
     @Autowired
-    private KorisnikService userService;
+    private KorisnikService korisnikService;
 
     private UserMapper userMapper;
 
@@ -94,6 +96,45 @@ public class KorisniciController {
         // return new ResponseEntity<>(HttpStatus.OK);
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    @PostMapping(consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
+        System.out.println("radi");
+        String documentId = "korisnik@gmail.com";
+        try {
+            korisnikService.saveXML(documentId, content);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public KorisniciController() {
         userMapper = new UserMapper();
