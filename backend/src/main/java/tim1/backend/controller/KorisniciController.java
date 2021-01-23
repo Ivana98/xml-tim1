@@ -40,9 +40,11 @@ public class KorisniciController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> getAllUsers() {
 
-        List<Korisnik> users = userService.findAll();
+        // List<Korisnik> users = userService.findAll();
 
-        return new ResponseEntity<>(toUserDTOList(users), HttpStatus.OK);
+        // return new ResponseEntity<>(toUserDTOList(users), HttpStatus.OK);
+
+        return null;
     }
 
     // Parametar je u kontroler moguce poslati kao parametar koji je promenljiva u
@@ -51,41 +53,46 @@ public class KorisniciController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
 
-        Korisnik user = userService.findOne(id);
+        // Korisnik user = userService.findOne(id);
 
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        // if (user == null) {
+        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // }
 
-        return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+
+        return null;
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable Long id) {
 
-        Korisnik user;
+        // Korisnik user;
 
-        try {
-            user = userService.update(userMapper.toEntity(userDTO), id);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        // try {
+        //     user = userService.update(userMapper.toEntity(userDTO), id);
+        // } catch (Exception e) {
+        //     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        // }
 
-        return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+
+        return null;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
 
-        try {
-            userService.delete(id);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        // try {
+        //     userService.delete(id);
+        // } catch (Exception e) {
+        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        // return new ResponseEntity<>(HttpStatus.OK);
+        return null;
     }
 
     public KorisniciController() {
