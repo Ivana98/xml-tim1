@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.model.liste.ZalbaNaCutanjeLista;
+import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.backend.repository.ZalbaNaCutanjeRepository;
 
@@ -24,10 +24,10 @@ public class ZalbaNaCutanjeService extends AbstractService {
         super(repository, "/db/poverenik/zalbanacutanje/", "/zalbanacutanje/");
     }
 
-    public ZalbaNaCutanjeLista findAllFromCollection() throws Exception{
+    public JaxbLista<ZalbaNaCutanje> findAllFromCollection() throws Exception{
         
         List<ZalbaNaCutanje> listaZalbi = this.findAllFromCollection( ZalbaNaCutanje.class);
-        ZalbaNaCutanjeLista listaObj = new ZalbaNaCutanjeLista(listaZalbi);
+        JaxbLista<ZalbaNaCutanje> listaObj = new JaxbLista<ZalbaNaCutanje>(listaZalbi);
         return listaObj;
     }
 
