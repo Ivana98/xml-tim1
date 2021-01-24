@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tim1.backend.dto.UserDTO;
 import tim1.backend.helper.UserMapper;
 import tim1.backend.model.korisnici.Korisnik;
+import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.service.KorisnikService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +123,17 @@ public class KorisniciController {
     }
 
 
+    @GetMapping(path = "/xml", produces = "application/xml")
+    public ResponseEntity<JaxbLista<Korisnik>> findAllFromCollection() throws Exception{
 
+        try {
+            JaxbLista<Korisnik> lista = korisnikService.findAllFromCollection();
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 
