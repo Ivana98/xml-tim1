@@ -13,12 +13,13 @@ import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.ZalbaNaCutanjeLista;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
-import tim1.backend.repository.RepositoryInterface;
 import tim1.backend.repository.ZalbaNaCutanjeRepository;
 
 @Service
 public class ZalbaNaCutanjeService extends AbstractService {
 
+    
+    @Autowired
     public ZalbaNaCutanjeService(ZalbaNaCutanjeRepository repository) {
         super(repository, "/db/poverenik/zalbanacutanje/", "/zalbanacutanje/");
     }
