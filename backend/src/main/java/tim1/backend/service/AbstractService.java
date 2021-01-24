@@ -1,6 +1,11 @@
 package tim1.backend.service;
 
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.xmldb.api.modules.XMLResource;
 
@@ -54,4 +59,47 @@ public abstract class AbstractService {
       return repository.readFileAsJSON(uri);
   }
 
+
+  /**
+   * 
+   * @param <T> ovo je tip objekta. Moze biti ZalbaNaCutanje, ZalbaNaOdluku, Resenje,...
+   * @param classType ovo je class object. Moze biti ZalbaNaCutanje.class, ZalbaNaOdluku.class, Resenje.class,...
+   * @return List<T> ovo je lista pronadjenih dokumenata. Npr vraca List<ZalbaNaCutanje> 
+   * @throws Exception bilo koji exception
+   * 
+   * evo primera konkretne implementacije metode bez Generics-a:
+   * public List<ZalbaNaCutanje> findAllFromCollection(){
+       List<ZalbaNaCutanje> temp = new ArrayList<>();
+        List<XMLResource> retval =  this.repository.findAllFromCollection(collectionId);
+
+        JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        for (XMLResource dokument : retval) {
+            String s = dokument.getContent().toString();
+            StringReader reader = new StringReader(s);
+            ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(reader);
+            temp.add(zalba);
+        }
+        return temp;
+     }
+   *
+   */
+  public <T> List<T> findAllFromCollection( Class<T> classType) throws Exception{
+    System.out.println(classType);
+    List<T> temp = new ArrayList<>();
+    List<XMLResource> retval =  this.repository.findAllFromCollection(collectionId);
+
+    JAXBContext context = JAXBContext.newInstance(classType);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+
+    for (XMLResource dokument : retval) {
+        String s = dokument.getContent().toString();
+        StringReader reader = new StringReader(s);
+        T dokumentObject = (T) unmarshaller.unmarshal(reader);
+        temp.add(dokumentObject);
+    }
+    return temp;
+    
+  }
 }

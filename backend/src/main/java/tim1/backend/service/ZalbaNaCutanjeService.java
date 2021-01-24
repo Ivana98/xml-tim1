@@ -25,21 +25,11 @@ public class ZalbaNaCutanjeService extends AbstractService {
     }
 
     public ZalbaNaCutanjeLista findAllFromCollection() throws Exception{
-        List<ZalbaNaCutanje> temp = new ArrayList<>();
-        List<XMLResource> retval =  this.repository.findAllFromCollection(collectionId);
-
-        JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        for (XMLResource dokument : retval) {
-            String s = dokument.getContent().toString();
-            StringReader reader = new StringReader(s);
-            ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(reader);
-            temp.add(zalba);
-        }
-
-        ZalbaNaCutanjeLista lista = new ZalbaNaCutanjeLista(temp);
         
-        return lista;
+        List<ZalbaNaCutanje> listaZalbi = this.findAllFromCollection( ZalbaNaCutanje.class);
+        ZalbaNaCutanjeLista listaObj = new ZalbaNaCutanjeLista(listaZalbi);
+        return listaObj;
     }
+
+    
 }
