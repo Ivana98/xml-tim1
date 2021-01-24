@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.liste.JaxbLista;
+import tim1.backend.model.zahtev.Zahtev;
 import tim1.backend.service.ZahtevService;
 
 @RestController
@@ -38,16 +40,16 @@ public class ZahtevController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
+
         String documentId = UUID.randomUUID().toString();
+
         try {
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping(path = "/rdf-xml/{uri}", produces = "application/xml")
@@ -68,6 +70,18 @@ public class ZahtevController {
             String rdf = zahtevService.readFileAsJSON(uri);
             return new ResponseEntity<>(rdf, HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @GetMapping(path = "/xml", produces = "application/xml")
+    public ResponseEntity<JaxbLista<Zahtev>> findAllFromCollection() throws Exception{
+
+        try {
+            JaxbLista<Zahtev> lista = zahtevService.findAllFromCollection();
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

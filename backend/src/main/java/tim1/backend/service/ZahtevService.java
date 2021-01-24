@@ -1,58 +1,27 @@
 package tim1.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.liste.JaxbLista;
+import tim1.backend.model.zahtev.Zahtev;
 import tim1.backend.repository.ZahtevRepository;
 
 @Service
-public class ZahtevService implements ServiceInterface {
+public class ZahtevService extends AbstractService {
 
     @Autowired
-    private ZahtevRepository repository;
-
-    private String collectionId = "/db/poverenik/zahtev/";
-
-    private String fusekiCollectionId = "/zahtev/";
-
-    @Override
-    public void saveRDF(String content, String uri) throws Exception {
-        repository.saveRDF(content, fusekiCollectionId + uri);
+    public ZahtevService(ZahtevRepository repository) {
+        super(repository, "/db/poverenik/zahtev/", "/zahtev/");
     }
 
-
-    @Override
-    public void saveXML(String documentId, String content) throws Exception {
-
-        repository.saveXML(documentId, collectionId, content);
-
-    }
-
-    @Override
-    public XMLResource readXML(String documentId) {
-
-        XMLResource document = null;
-
-        try {
-            document = repository.readXML(documentId, collectionId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return document;
-    }
-
-    @Override
-    public String readFileAsXML(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsXML(uri);
-    }
-
-    @Override
-    public String readFileAsJSON(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsJSON(uri);
+    public JaxbLista<Zahtev> findAllFromCollection() throws Exception{
+        
+        List<Zahtev> listaZahteva = this.findAllFromCollection( Zahtev.class);
+        JaxbLista<Zahtev> listaObj = new JaxbLista<Zahtev>(listaZahteva);
+        return listaObj;
     }
 
 }

@@ -1,49 +1,27 @@
 package tim1.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.liste.JaxbLista;
+import tim1.backend.model.resenje.Resenje;
 import tim1.backend.repository.ResenjeRepository;
 
 @Service
-public class ResenjeService implements ServiceInterface {
+public class ResenjeService extends AbstractService {
 
     @Autowired
-    private ResenjeRepository repository;
-
-    private String collectionId = "/db/poverenik/resenje/";
-
-    private String fusekiCollectionId = "/resenje/";
-
-    @Override
-    public void saveRDF(String content, String uri) throws Exception {
-        repository.saveRDF(content, fusekiCollectionId + uri);
+    public ResenjeService(ResenjeRepository repository) {
+        super(repository, "/db/poverenik/resenje/", "/resenje/");
     }
 
-
-    @Override
-    public void saveXML(String documentId, String content) throws Exception {
+    public JaxbLista<Resenje> findAllFromCollection() throws Exception{
         
-        repository.saveXML(documentId, collectionId, content );
-
+        List<Resenje> listaZalbi = this.findAllFromCollection( Resenje.class);
+        JaxbLista<Resenje> listaObj = new JaxbLista<Resenje>(listaZalbi);
+        return listaObj;
     }
 
-    @Override
-    public XMLResource readXML(String documentId) throws Exception {
-
-        return repository.readXML(documentId, collectionId);
-    }
-
-    @Override
-    public String readFileAsXML(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsXML(uri);
-    }
-
-    @Override
-    public String readFileAsJSON(String uri) throws Exception {
-        uri = fusekiCollectionId + uri;
-        return repository.readFileAsJSON(uri);
-    }
 }

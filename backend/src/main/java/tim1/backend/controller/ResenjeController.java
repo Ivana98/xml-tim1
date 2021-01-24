@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.liste.JaxbLista;
+import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
 
 @RestController
@@ -65,6 +67,18 @@ public class ResenjeController {
             String rdf = resenjeService.readFileAsJSON(uri);
             return new ResponseEntity<>(rdf, HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @GetMapping(path = "/xml", produces = "application/xml")
+    public ResponseEntity<JaxbLista<Resenje>> findAllFromCollection() throws Exception{
+
+        try {
+            JaxbLista<Resenje> lista = resenjeService.findAllFromCollection();
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

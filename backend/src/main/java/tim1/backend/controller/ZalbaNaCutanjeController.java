@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.model.liste.ZalbaNaCutanjeLista;
+import tim1.backend.model.liste.JaxbLista;
+import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.backend.service.ZalbaNaCutanjeService;
 
 @RestController
@@ -72,10 +73,10 @@ public class ZalbaNaCutanjeController {
     }
 
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<ZalbaNaCutanjeLista> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception{
 
         try {
-            ZalbaNaCutanjeLista lista = zalbaService.findAllFromCollection();
+            JaxbLista<ZalbaNaCutanje> lista = zalbaService.findAllFromCollection();
             return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

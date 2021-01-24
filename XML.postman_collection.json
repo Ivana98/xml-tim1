@@ -504,6 +504,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-cutenje/xml/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-cutenje",
+								"xml",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -609,6 +631,84 @@
 								"api",
 								"zalbe-na-odluku",
 								"xml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/zalbe-na-odluku/xml/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"zalbe-na-odluku",
+								"xml",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "KORISNIK",
+			"item": [
+				{
+					"name": "POST KORISNIK",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<korisnik>\r\n\t<korisnicko_ime>kor1</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime>kor</ime>\r\n\t<prezime>kor</prezime>\r\n\t<uloga>korisnik</uloga>\r\n</korisnik>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/korisnici",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"korisnici"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/korisnici/xml/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"korisnici",
+								"xml",
+								""
 							]
 						}
 					},
