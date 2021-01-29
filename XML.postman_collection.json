@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "bde272a1-97e0-4ad3-a915-ba8472867765",
-		"name": "XML",
+		"_postman_id": "29b62ae7-f360-4c43-a9a8-c9da63c25560",
+		"name": "XML Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -670,7 +670,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<korisnik>\r\n\t<korisnicko_ime>kor1</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime>kor</ime>\r\n\t<prezime>kor</prezime>\r\n\t<uloga>korisnik</uloga>\r\n</korisnik>",
+							"raw": "<korisnik\r\nxmlns=\"http://www.ftn.uns.ac.rs/korisnik\"\r\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\nxsi:schemaLocation=\"http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd\"\r\nxmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n\t<korisnicko_ime>kor4@gmail</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime>vejko</ime>\r\n\t<prezime>plecas</prezime>\r\n\t<uloga>korisnik</uloga>\r\n</korisnik>",
 							"options": {
 								"raw": {
 									"language": "xml"
