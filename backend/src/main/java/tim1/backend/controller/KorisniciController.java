@@ -2,6 +2,7 @@ package tim1.backend.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.dto.UserDTO;
 import tim1.backend.helper.UserMapper;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -35,90 +37,25 @@ public class KorisniciController {
     @Autowired
     private KorisnikService korisnikService;
 
-    private UserMapper userMapper;
+    @GetMapping(path = "/xml/{id}", produces = "application/xml")
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
 
-    // Metode klase kontrolera su anotirane sa @RequestMapping anotacijom koja
-    // opisuje zahtev koji treba biti obrađen u toj metodi (URL i tip HTTP metode)
-    /*
-     * ResponseEntity objekat može da sadrži: telo (podatke) – metode anotirane
-     * sa @RequestBody anotacijom sadrže samo telo zaglavlje (metapodatke) HTTP
-     * status kod
-     */
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
-    // @GetMapping(value = "/xml", produces = "application/xml")
-    // public ResponseEntity<JaxbLista<Korisnik>> getAllUsers() {
-
-    // // try {
-    // // JaxbLista<Korisnik> users = korisnikService.findAllFromCollection();
-    // // return new ResponseEntity<>(users, HttpStatus.OK);
-    // // } catch (Exception e) {
-
-    // // }
-
-    // // return new ResponseEntity<>(toUserDTOList(users), HttpStatus.OK);
-
-    // return null;
-    // }
-
-    // Parametar je u kontroler moguce poslati kao parametar koji je promenljiva u
-    // URL-u zahteva - Path Variable
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
-
-        // Korisnik user = userService.findOne(id);
-
-        // if (user == null) {
-        // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        // }
-
-        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
-
-        return null;
-    }
-
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable Long id) {
-
-        // Korisnik user;
-
-        // try {
-        // user = userService.update(userMapper.toEntity(userDTO), id);
-        // } catch (Exception e) {
-        // return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        // }
-
-        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
-
-        return null;
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-
-        // try {
-        // userService.delete(id);
-        // } catch (Exception e) {
-        // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        // }
-
-        // return new ResponseEntity<>(HttpStatus.OK);
-        return null;
+        try {
+            XMLResource korisnik = korisnikService.readXML(id);
+            return new ResponseEntity<>(korisnik.getContent().toString(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping(consumes = "application/xml")
-    public ResponseEntity<?> saveXML(@RequestBody String content) throws JAXBException {
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
-        StringReader reader = new StringReader(content);
-        Korisnik person = (Korisnik) unmarshaller.unmarshal(reader);
+        String documentId = UUID.randomUUID().toString();
 
         try {
-            korisnikService.saveXML(person.getKorisnickoIme(), content);
+            korisnikService.saveXML(documentId, content);
+
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -138,20 +75,4 @@ public class KorisniciController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-    public KorisniciController() {
-        userMapper = new UserMapper();
-    }
-
-    private List<UserDTO> toUserDTOList(List<Korisnik> users) {
-
-        List<UserDTO> userDTOS = new ArrayList<>();
-
-        for (Korisnik user : users) {
-            userDTOS.add(userMapper.toDto(user));
-        }
-
-        return userDTOS;
-    }
-
 }
