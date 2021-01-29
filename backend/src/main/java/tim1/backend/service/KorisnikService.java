@@ -34,6 +34,21 @@ public class KorisnikService extends AbstractService {
         return listaObj;
     }
 
+    @Override
+    public void saveXML(String documentId, String content) throws Exception {
+
+        JaxbLista<Korisnik> lista = this.findAllFromCollection();
+
+        for (Korisnik k : lista.getLista()) {
+            if (k.getKorisnickoIme().equals(documentId)) {
+                throw new IllegalArgumentException();
+            }
+        }
+      
+        repository.saveXML(documentId, collectionId, content );
+  
+    }
+
 
 
 }
