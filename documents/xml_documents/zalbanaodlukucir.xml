@@ -3,14 +3,14 @@
     xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
-    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">>
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>
     
     <podaci_o_povereniku>
         <namena> 
             Поверенику за информације од јавног значаја и заштиту података о личности 
         </namena>
-        <adresa>
+        <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaPoverenika">
             <grad property="pred:grad" datatype="xs:string"> Београд </grad>
             <ulica property="pred:ulica" datatype="xs:string"> Булевар краља Александрa </ulica>
             <broj>15</broj>
@@ -19,15 +19,15 @@
     
     <zalba>
         Ж А Л Б А  
-        <zalilac type = "TFizickoLice">
-            <adresa>
-                <grad></grad>
-                <ulica></ulica>
+        <zalilac xsi:type="TFizickoLice" about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Zalilac">
+            <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaZalioca">
+                <grad property="pred:grad" datatype="xs:string"></grad>
+                <ulica property="pred:grad" datatype="xs:string"></ulica>
                 <broj></broj>
             </adresa>
-            <sediste></sediste>
-            <ime></ime>
-            <prezime></prezime>
+            <sediste property="pred:sediste" datatype="xs:string"></sediste>
+            <ime property="pred:ime" datatype="xs:string"></ime>
+            <prezime property="pred:prezime" datatype="xs:string"></prezime>
         </zalilac>
         против решења-закључка 
         
@@ -45,7 +45,7 @@
             Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   
         </sadrzaj>
         
-        <podnosilac>
+        <podnosilac about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosilac">
             <ime property="pred:imePodnosioca" datatype="xs:string">Imenko</ime>
             <prezime property="pred:prezimePodnosioca" datatype="xs:string">Prezimenic</prezime>
             <adresa>
@@ -56,9 +56,9 @@
             <kontakt_podaci>0651122123</kontakt_podaci>
         </podnosilac>
         
-        <vreme_i_mesto>
-            <grad property="pred:mestoPodnosenja" datatype="xs:string"></grad>
-            <datum property="pred:datumPodnosenja" datatype="xs:date">2020-12-01</datum>
+        <vreme_i_mesto about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosenje">
+            <grad property="pred:mesto" datatype="xs:string"></grad>
+            <datum property="pred:datum" datatype="xs:date">2020-12-01</datum>
         </vreme_i_mesto>
         
     </zalba>

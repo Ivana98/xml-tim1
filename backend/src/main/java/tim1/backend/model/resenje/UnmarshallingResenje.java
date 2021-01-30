@@ -10,6 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import tim1.backend.model.resenje.Obrazlozenje.SadrzajObrazlozenja;
+
 import static tim1.backend.utils.PathConstants.*;
 
 public class UnmarshallingResenje {
@@ -23,7 +24,7 @@ public class UnmarshallingResenje {
 	
 	        Unmarshaller unmarshaller = context.createUnmarshaller();
 	
-	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
+	        ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./documents/xml_documents/resenje.xml"));
 	
 	        printResenjeObrazac(resenjeObrazac);
 
@@ -38,7 +39,7 @@ public class UnmarshallingResenje {
     	System.out.println(resenje.getNaslov());
     	System.out.println("Бр. " + resenje.getBroj());
     	
-		XMLGregorianCalendar datum = resenje.getDatum();
+		XMLGregorianCalendar datum = resenje.getDatum().getValue();
 		String datumString = datum.getDay() + "." + datum.getMonth() + "." + datum.getYear() + ".";
     	System.out.println("Датум: " + datumString + " године");
     	System.out.println(resenje.getUvod());

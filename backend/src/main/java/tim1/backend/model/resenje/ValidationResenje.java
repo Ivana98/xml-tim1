@@ -23,14 +23,14 @@ public class ValidationResenje {
 			
 			// XML schema validacija
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File(RESENJE_XSD));
+			Schema schema = schemaFactory.newSchema(new File("./documents/xsd_documents/resenje.xsd"));
             
 			// Podešavanje unmarshaller-a za XML schema validaciju
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandlerResenje());
 			
             // Test: proširiti XML fajl nepostojećim elementom (npr. <test></test>)
-            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
+            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./documents/xml_documents/resenje.xml"));
 
             // Ispis sadržaja objektnog modela, nakon uspešne validacije
             // printResenje(resenjeObrazac);

@@ -25,17 +25,17 @@ public class UnmarshallingZalbaNaOdluku {
 			
 			System.out.println("[INFO] Zalba na odluku: JAXB unmarshalling.\n");
 			
-			JAXBContext context = JAXBContext.newInstance("tim1.backend.model.zalbaodluka");
+			JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File(ZALBA_ODLUKA_XSD));
+			Schema schema = schemaFactory.newSchema(new File("./documents/xsd_documents/zalbanaodlukucir.xsd"));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File(ZALBA_ODLUKA_XML));
+			ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(new File("./documents/xml_documents/zalbanaodlukucir.xml"));
 
 			
 			
@@ -127,7 +127,7 @@ public class UnmarshallingZalbaNaOdluku {
 	}
 	
 	private static void printVremeIMesto(VremeIMesto vremeIMesto) {
-		XMLGregorianCalendar datum = vremeIMesto.getDatum();
+		XMLGregorianCalendar datum = vremeIMesto.getDatum().getValue();
 		String datumString = datum.getDay() + "." + datum.getMonth() + "." + datum.getYear() + ".";
 		System.out.println("У " + vremeIMesto.getGrad() + ", дана " + datumString + " године.");
 	}

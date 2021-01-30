@@ -11,7 +11,7 @@
         about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Adresa">
         <Mesto property="pred:mesto" datatype="xs:string">Београд</Mesto>
         <Ulica property="pred:ulica" datatype="xs:string">Булевар краља Александрa</Ulica>
-        <Broj property="pred:broj_ulice" datatype="xs:string">15</Broj>
+        <Broj>15</Broj>
     </Adresa_za_postu>
     <Sadrzaj
         about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Zalba">
@@ -20,7 +20,7 @@
         против
         <Naziv_organa>(назив органа)</Naziv_organa>
         због тога што орган власти: 
-        <Razlozi_zalbe selected="1">
+        <Razlozi_zalbe property="pred:razlog_zalbe" datatype="xs:string" selected="1">
             <Option id="1">није поступио</Option>
             <Option id="2">није поступио у целости </Option>
             <Option id="3">није поступио у законском року</Option>

@@ -14,7 +14,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
 import tim1.backend.model.obavestenje.Obavestenje.Sadrzaj;
+import tim1.backend.model.obavestenje.Obavestenje.OsnovniPodaci.Datum;
+import tim1.backend.model.obavestenje.Organ.Naziv;
+import tim1.backend.model.obavestenje.Organ.Sediste;
+import tim1.backend.model.obavestenje.PodnosiocZahteva.Adresa;
+import tim1.backend.model.obavestenje.PodnosiocZahteva.Ime;
+import tim1.backend.model.obavestenje.PodnosiocZahteva.Prezime;
 import tim1.backend.model.obavestenje.Select.Primer;
+
 import static tim1.backend.utils.PathConstants.*;
 
 public class MarshalingObavestenjecir {
@@ -29,7 +36,7 @@ public class MarshalingObavestenjecir {
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             Obavestenje obavestenje = (Obavestenje) unmarshaller
-                    .unmarshal(new File(OBAVESTENJE_XML));
+                    .unmarshal(new File("./documents/xml_documents/obavestenjecir.xml"));
 
             obavestenje.setOsnovniPodaci(getOsnovniPodatak());
             obavestenje.getSadrzaj().getParagraf().getContent().set(0, "Prva recenica promenjena..");
@@ -67,7 +74,9 @@ public class MarshalingObavestenjecir {
             e.printStackTrace();
         }
 
-        op.setDatum(xmlDate);
+        Datum datum = new Datum();
+        datum.setValue(xmlDate);
+        op.setDatum(datum);
         op.setPodnosiocZahteva(getPodnosiocZahteva());
 
         return op;
@@ -76,10 +85,18 @@ public class MarshalingObavestenjecir {
     private static PodnosiocZahteva getPodnosiocZahteva() {
         PodnosiocZahteva pz = new PodnosiocZahteva();
 
-        pz.setIme("Nikola");
-        pz.setPrezime("Rokvic");
+        Ime ime = new Ime();
+        ime.setValue("Nikola");
+        pz.setIme(ime);
+        Prezime prezime = new Prezime();
+        prezime.setValue("Rokvic");
+        pz.setPrezime(prezime);
+        // Naziv naziv = new Naziv();
+        // naziv.setValue("value");
         pz.setNaziv("Neki naziv");
-        pz.setAdresa("Adresa 34");
+        Adresa adresa = new Adresa();
+        adresa.setValue("Adresa 34");
+        pz.setAdresa(adresa);
 
         return pz;
     }
@@ -87,8 +104,12 @@ public class MarshalingObavestenjecir {
     private static Organ getOrgan() {
         Organ organ = new Organ();
 
-        organ.setNaziv("Neki naziv");
-        organ.setSediste("Beograd");
+        Naziv naziv = new Naziv();
+        naziv.setValue("Neki naziv");
+        organ.setNaziv(naziv);
+        Sediste sediste = new Sediste();
+        sediste.setValue("Beograd");
+        organ.setSediste(sediste);
 
         return organ;
     }

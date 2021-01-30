@@ -19,11 +19,11 @@ public class MarshalZalbaNaCutanje {
 		try {
 			System.out.println("[INFO] Zalba na cutanje: JAXB marshalling.\n");
 			
-			JAXBContext context = JAXBContext.newInstance("tim1.backend.model.zalbacutanje");
+			JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File(ZALBA_CUTANJE_XML));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./documents/xml_documents/zalbacutanjecir.xml"));
 			
 			Date date = new Date();
 
