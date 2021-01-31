@@ -9,13 +9,21 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
+import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
+import { KreiranjeZalbeComponent } from './components/kreiranje-zalbe/kreiranje-zalbe.component';
+import { KreiranjeResenjaComponent } from './components/kreiranje-resenja/kreiranje-resenja.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    PrikazZalbeComponent,
+    PrikazResenjaComponent,
+    KreiranjeZalbeComponent,
+    KreiranjeResenjaComponent
   ],
   imports: [
     MaterialModuleModule,

@@ -1,0 +1,23 @@
+<mat-card class="card-position">
+    <mat-card-title>
+        Podnosenje resenja
+    </mat-card-title>
+
+    <mat-card-content>
+        <p>
+            Sadrzaj...
+            <!--{{sadrzaj resenja}}-->
+            <!-- ovde ide i xonomy -->
+        </p>
+
+        <button mat-raised-button color="primary" aria-label="Obustavi" (click)="cancel()" id="cancelBtn"
+            class="btn-spacing">
+            Obustavi
+        </button>
+        <button mat-raised-button color="primary" aria-label="Posalji resenje" (click)="send()" id="sendBtn">
+            Posalji
+        </button>
+
+    </mat-card-content>
+
+</mat-card>

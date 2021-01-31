@@ -1,0 +1,32 @@
+<mat-card class="card-position">
+    <mat-card-title>
+        Prikaz zalbe
+    </mat-card-title>
+    <mat-card-subtitle>
+        Naziv: <!--{{ime zalbe}}-->
+    </mat-card-subtitle>
+    <mat-card-content>
+        <p>
+            Sadrzaj...
+            <!--{{sadrzaj zalbe}}-->
+        </p>
+
+
+        <!--gradjanin moze da odustane od zalbe-->
+        <div *ngIf="role=='GRADJANIN'">
+            <button mat-raised-button color="primary" aria-label="Cancel" (click)="cancel()" id="cancelBtn">
+                Odustani
+            </button>
+        </div>
+        <div *ngIf="role=='POVERENIK'">
+            <button mat-raised-button color="primary" aria-label="Posalji obavestenje" (click)="send()" id="sendBtn"
+            class="btn-spacing">
+                Posalji obavestenje
+            </button>
+            <button mat-raised-button color="primary" aria-label="Kreiraj resenje" (click)="create()" id="createBtn">               Kreiraj resenje
+            </button>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>
