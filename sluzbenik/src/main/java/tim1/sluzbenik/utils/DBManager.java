@@ -9,20 +9,17 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.transform.OutputKeys;
 
 import tim1.sluzbenik.utils.DBManager;
 import tim1.sluzbenik.utils.AuthenticationUtilities.ConnectionProperties;
 
 
-import static tim1.sluzbenik.utils.PathConstants.*;
 
 @Component
 public class DBManager {
