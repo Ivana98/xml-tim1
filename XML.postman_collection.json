@@ -670,7 +670,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<korisnik\r\nxmlns=\"http://www.ftn.uns.ac.rs/korisnik\"\r\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\nxsi:schemaLocation=\"http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd\"\r\nxmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n\t<korisnicko_ime>kor4@gmail</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime>vejko</ime>\r\n\t<prezime>plecas</prezime>\r\n\t<uloga>korisnik</uloga>\r\n</korisnik>",
+							"raw": "<korisnik\r\nxmlns=\"http://www.ftn.uns.ac.rs/korisnik\"\r\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\nxsi:schemaLocation=\"http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd\"\r\nxmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n\t<korisnicko_ime>kor5@gmail</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime>vejko</ime>\r\n\t<prezime>plecas</prezime>\r\n\t<uloga>korisnik</uloga>\r\n</korisnik>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -710,6 +710,50 @@
 								"xml",
 								""
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<korisnik\r\nxmlns=\"http://www.ftn.uns.ac.rs/korisnik\"\r\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\nxsi:schemaLocation=\"http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd\"\r\nxmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n\t<korisnicko_ime>kor5@gmail</korisnicko_ime>\r\n\t<sifra>123</sifra>\r\n\t<ime></ime>\r\n\t<prezime></prezime>\r\n\t<uloga></uloga>\r\n</korisnik>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []
