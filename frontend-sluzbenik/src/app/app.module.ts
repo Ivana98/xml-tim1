@@ -13,6 +13,9 @@ import { ObavestenjaComponent } from './components/obavestenja/obavestenja.compo
 import { MatCell, MatHeaderCell, MatTableModule } from '@angular/material/table';
 import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResenjaComponent } from './components/resenja/resenja.component';
+import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ZahteviComponent,
     ObavestenjaComponent,
     PodnosenjeZahtevaComponent,
+    ResenjaComponent,
+    IzvestajiComponent
   ],
   imports: [
     MaterialModuleModule,
