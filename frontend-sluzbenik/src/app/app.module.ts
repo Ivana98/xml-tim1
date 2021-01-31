@@ -15,6 +15,10 @@ import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podn
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
+import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
+import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
+import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
+import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obavestenja/podnosenje-obavestenja.component';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
     ObavestenjaComponent,
     PodnosenjeZahtevaComponent,
     ResenjaComponent,
-    IzvestajiComponent
+    IzvestajiComponent,
+    PrikazZahtevaComponent,
+    PrikazObavestenjaComponent,
+    PrikazResenjaComponent,
+    PodnosenjeObavestenjaComponent
   ],
   imports: [
     MaterialModuleModule,

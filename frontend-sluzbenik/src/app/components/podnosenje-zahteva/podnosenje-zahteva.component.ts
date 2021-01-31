@@ -13,4 +13,8 @@ export class PodnosenjeZahtevaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  send(): void {
+
+  }
+
 }
