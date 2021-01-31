@@ -7,15 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
-
-
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { ObavestenjaComponent } from './components/obavestenja/obavestenja.component';
 import { MatCell, MatHeaderCell, MatTableModule } from '@angular/material/table';
 import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +29,8 @@ import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podn
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
