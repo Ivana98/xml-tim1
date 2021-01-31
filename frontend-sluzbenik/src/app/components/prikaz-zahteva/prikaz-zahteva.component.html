@@ -1,0 +1,26 @@
+<mat-card class="card-position">
+    <mat-card-title>
+        Prikaz zahteva
+    </mat-card-title>
+    <mat-card-subtitle>
+        Naziv: <!--{{ime zahteva}}-->
+    </mat-card-subtitle>
+    <mat-card-content>
+        <p>
+            Sadrzaj...
+            <!--{{sadrzaj zahteva}}-->
+        </p>
+
+        <div *ngIf="role=='SLUZBENIK'">
+            <button mat-raised-button color="primary" aria-label="Prihvati" (click)="accept()" id="acceptBtn"
+            class="btn-spacing">
+                Prihvati
+            </button>
+            <button mat-raised-button color="primary" aria-label="Odbij" (click)="refuse()" id="refuseBtn">
+                Odbij
+            </button>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>
