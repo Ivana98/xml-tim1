@@ -180,4 +180,15 @@ public class Korisnik {
         this.uloga = value;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " korisnickoIme='" + getKorisnickoIme() + "'" +
+            ", sifra='" + getSifra() + "'" +
+            ", ime='" + getIme() + "'" +
+            ", prezime='" + getPrezime() + "'" +
+            ", uloga='" + getUloga() + "'" +
+            "}";
+    }
+
 }
