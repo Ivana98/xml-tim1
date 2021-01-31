@@ -48,6 +48,14 @@ public class KorisniciController {
         }
     }
 
+    /**
+     * Dodavanje novog korisnika - registracija
+     * Registracija nece biti na frontu. Ovo je samo u svrhu
+     * popunjavanja baze sa korisnicima.
+     * 
+     * @param content Korisnik u XML formatu
+     * @return http status
+     */
     @PostMapping(consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 

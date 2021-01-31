@@ -8,17 +8,27 @@
 
 package tim1.backend.model.korisnici;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected         content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -39,15 +49,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "korisnickoIme",
-    "sifra",
-    "ime",
-    "prezime",
-    "uloga"
-})
+@XmlType(name = "", propOrder = { "korisnickoIme", "sifra", "ime", "prezime", "uloga" })
 @XmlRootElement(name = "korisnik")
-public class Korisnik {
+public class Korisnik implements UserDetails {
 
     @XmlElement(name = "korisnicko_ime", required = true)
     protected String korisnickoIme;
@@ -63,10 +67,8 @@ public class Korisnik {
     /**
      * Gets the value of the korisnickoIme property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getKorisnickoIme() {
         return korisnickoIme;
@@ -75,10 +77,8 @@ public class Korisnik {
     /**
      * Sets the value of the korisnickoIme property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setKorisnickoIme(String value) {
         this.korisnickoIme = value;
@@ -87,10 +87,8 @@ public class Korisnik {
     /**
      * Gets the value of the sifra property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getSifra() {
         return sifra;
@@ -99,10 +97,8 @@ public class Korisnik {
     /**
      * Sets the value of the sifra property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setSifra(String value) {
         this.sifra = value;
@@ -111,10 +107,8 @@ public class Korisnik {
     /**
      * Gets the value of the ime property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getIme() {
         return ime;
@@ -123,10 +117,8 @@ public class Korisnik {
     /**
      * Sets the value of the ime property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setIme(String value) {
         this.ime = value;
@@ -135,10 +127,8 @@ public class Korisnik {
     /**
      * Gets the value of the prezime property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getPrezime() {
         return prezime;
@@ -147,10 +137,8 @@ public class Korisnik {
     /**
      * Sets the value of the prezime property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setPrezime(String value) {
         this.prezime = value;
@@ -159,10 +147,8 @@ public class Korisnik {
     /**
      * Gets the value of the uloga property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getUloga() {
         return uloga;
@@ -171,10 +157,8 @@ public class Korisnik {
     /**
      * Sets the value of the uloga property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setUloga(String value) {
         this.uloga = value;
@@ -182,13 +166,57 @@ public class Korisnik {
 
     @Override
     public String toString() {
-        return "{" +
-            " korisnickoIme='" + getKorisnickoIme() + "'" +
-            ", sifra='" + getSifra() + "'" +
-            ", ime='" + getIme() + "'" +
-            ", prezime='" + getPrezime() + "'" +
-            ", uloga='" + getUloga() + "'" +
-            "}";
+        return "{" + " korisnickoIme='" + getKorisnickoIme() + "'" + ", sifra='" + getSifra() + "'" + ", ime='"
+                + getIme() + "'" + ", prezime='" + getPrezime() + "'" + ", uloga='" + getUloga() + "'" + "}";
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        List<Authority> auths = new ArrayList();
+
+        Authority auth = new Authority();
+        auth.setId(UUID.randomUUID().toString());
+        auth.setName(this.uloga);
+        
+        auths.add(auth);
+        return auths;
+    }
+
+    @Override
+    public String getPassword() {
+        // TODO Auto-generated method stub
+        return this.sifra;
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return this.korisnickoIme;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
 }

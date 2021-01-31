@@ -6,9 +6,12 @@ import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.repository.UserRepository;
 
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 // import tim1.backend.repository.KorisnikRepository;
@@ -46,15 +49,30 @@ public class KorisnikService extends AbstractService {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
         StringReader reader = new StringReader(content);
-        Korisnik person = (Korisnik) unmarshaller.unmarshal(reader);
+        Korisnik korisnik = (Korisnik) unmarshaller.unmarshal(reader);
+
+        korisnik.setUloga(korisnik.getUloga().toUpperCase()); // uloga korisnika ide velikim slovima
+
+        System.out.println(korisnik.getSifra());
+        korisnik.setSifra(passwordEncoder.encode(korisnik.getSifra()));
+        System.out.println(korisnik.getSifra());
 
         for (Korisnik k : lista.getLista()) {
-            if (k.getKorisnickoIme().equals(person.getKorisnickoIme())) {
+            if (k.getKorisnickoIme().equals(korisnik.getKorisnickoIme())) {
                 throw new IllegalArgumentException();
             }
         }
 
-        repository.saveXML(documentId, collectionId, content);
+        JAXBContext context = JAXBContext.newInstance(Korisnik.class);
+        Marshaller m = context.createMarshaller();
+
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+
+        StringWriter sw = new StringWriter();
+        m.marshal(korisnik, sw);
+        content = sw.toString();
+
+        repository.saveXML(korisnik.getKorisnickoIme(), collectionId, content);
     }
 
 }
