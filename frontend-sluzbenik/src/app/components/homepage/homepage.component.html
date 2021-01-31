@@ -8,25 +8,25 @@
         <span>Portal organa vlasti</span>
 
         <span *ngIf="role=='GRADJANIN'">
-            <button mat-button class="example-icon btn_spacing" aria-label="Podnosenje zahteva">
+            <button mat-button class="example-icon btn_spacing" aria-label="Podnosenje zahteva" [routerLink]="'/homepage/podnosenje-zahteva'">
                 Podnosenje zahteva
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Zahtevi">
+            <button mat-button class="example-icon btn_spacing" aria-label="Zahtevi" [routerLink]="'/homepage/zahtevi'">
                 Zahtevi
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Obavestenja">
+            <button mat-button class="example-icon btn_spacing" aria-label="Obavestenja" [routerLink]="'/homepage/obavestenja'">
                 Obavestenja
             </button>
         </span>
 
         <span *ngIf="role=='SLUZBENIK'">
-            <button mat-button class="example-icon btn_spacing" aria-label="Zahtevi">
+            <button mat-button class="example-icon btn_spacing" aria-label="Zahtevi" [routerLink]="'/homepage/zahtevi'">
                 Zahtevi
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Resenja">
+            <button mat-button class="example-icon btn_spacing" aria-label="Resenja" [routerLink]="'/homepage/resenja'">
                 Resenja
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Izvestaji">
+            <button mat-button class="example-icon btn_spacing" aria-label="Izvestaji" [routerLink]="'/homepage/izvestaji'">
                 Izvestaji
             </button>
         </span>

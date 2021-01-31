@@ -8,14 +8,26 @@ import { LoginComponent } from './components/login/login.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { MaterialModuleModule } from './material-module/material-module.module';
+import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { ObavestenjaComponent } from './components/obavestenja/obavestenja.component';
+import { MatCell, MatHeaderCell, MatTableModule } from '@angular/material/table';
+import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResenjaComponent } from './components/resenja/resenja.component';
+import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomepageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ZahteviComponent,
+    ObavestenjaComponent,
+    PodnosenjeZahtevaComponent,
+    ResenjaComponent,
+    IzvestajiComponent
   ],
   imports: [
     MaterialModuleModule,
