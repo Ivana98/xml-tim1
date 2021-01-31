@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  role = 'GRADJANIN';
+  //role = 'GRADJANIN';
+  role = 'POVERENIK';
 
   constructor(private router: Router) { }
 

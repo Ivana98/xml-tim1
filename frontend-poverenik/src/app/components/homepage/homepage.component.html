@@ -12,22 +12,22 @@
             [routerLink]="'/homepage/podnosenje-zalbe'">
                 Podnosenje zalbe
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe">
+            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe" [routerLink]="'/homepage/zalbe'">
                 Zalbe
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Resenja">
+            <button mat-button class="example-icon btn_spacing" aria-label="Resenja" [routerLink]="'/homepage/resenja'">
                 Resenja
             </button>
         </span>
 
         <span *ngIf="role=='POVERENIK'">
-            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe">
+            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe" [routerLink]="'/homepage/zalbe'">
                 Zalbe
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Resenja">
+            <button mat-button class="example-icon btn_spacing" aria-label="Resenja" [routerLink]="'/homepage/resenja'">
                 Resenja
             </button>
-            <button mat-button class="example-icon btn_spacing" aria-label="Izvestaji">
+            <button mat-button class="example-icon btn_spacing" aria-label="Izvestaji" [routerLink]="'/homepage/izvestaji'">
                 Izvestaji
             </button>
         </span>
