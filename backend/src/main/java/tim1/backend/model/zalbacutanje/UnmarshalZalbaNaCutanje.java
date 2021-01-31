@@ -24,17 +24,17 @@ public class UnmarshalZalbaNaCutanje {
 			
 			System.out.println("[INFO] Zalba na cutanje: JAXB unmarshalling.\n");
 			
-			JAXBContext context = JAXBContext.newInstance("tim1.backend.model.zalbacutanje");
+			JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
 			
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File(ZALBA_CUTANJE_XSD));
+			Schema schema = schemaFactory.newSchema(new File("./documents/xsd_documents/zalbacutanjecir.xsd"));
 			
 			unmarshaller.setSchema(schema);
             unmarshaller.setEventHandler(new MyValidationEventHandler());
 			
-			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File(ZALBA_CUTANJE_XML));
+			ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(new File("./documents/xml_documents/zalbacutanjecir.xml"));
 
 			zalba.getVremeIMesto().setMesto("Новом Саду");
 			

@@ -5,17 +5,17 @@
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <Osnovni_podaci>
-        <Organ>
-            <Naziv property="pred:nazivOrgana" datatype="xs:string">Naziv organa</Naziv>
-            <Sediste property="pred:sedisteOrgana" datatype="xs:string">Novi Sad</Sediste>
+        <Organ about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Organ">
+            <Naziv property="pred:naziv" datatype="xs:string">Naziv organa</Naziv>
+            <Sediste property="pred:sediste" datatype="xs:string">Novi Sad</Sediste>
         </Organ>
         <Broj_predmeta>5</Broj_predmeta>
         <Datum property="pred:datum" datatype="xs:date">2020-05-22</Datum>
-        <Podnosioc_zahteva>
-            <Ime property="pred:imePodnosioca" datatype="xs:string">Veljko</Ime>
-            <Prezime property="pred:prezimePodnosioca" datatype="xs:string">Plecas</Prezime>
+        <Podnosioc_zahteva about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Podnosioc">
+            <Ime property="pred:ime" datatype="xs:string">Veljko</Ime>
+            <Prezime property="pred:prezime" datatype="xs:string">Plecas</Prezime>
             <Naziv>Naziv 1</Naziv>
-            <Adresa property="pred:adresaPodnosioca" datatype="xs:string">Teodora Drajzera</Adresa>
+            <Adresa property="pred:adresa" datatype="xs:string">Teodora Drajzera</Adresa>
         </Podnosioc_zahteva>
     </Osnovni_podaci>
     

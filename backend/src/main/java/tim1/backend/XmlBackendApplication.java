@@ -17,8 +17,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.xml.sax.SAXException;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
+import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
+import tim1.backend.model.resenje.MarshalingResenje;
+import tim1.backend.model.resenje.ValidationResenje;
+import tim1.backend.model.zahtev.MarshallingZahtev;
 import tim1.backend.model.zahtev.UnmarshallingZahtev;
 import tim1.backend.model.zahtev.Validation;
+import tim1.backend.model.resenje.UnmarshallingResenje;
+import tim1.backend.model.zalbacutanje.MarshalZalbaNaCutanje;
+import tim1.backend.model.zalbacutanje.UnmarshalZalbaNaCutanje;
+import tim1.backend.model.zalbaodluka.MarshallingZalbaNaOdluku;
+import tim1.backend.model.zalbaodluka.UnmarshallingZalbaNaOdluku;
 import tim1.backend.repository.ObavestenjeRepository;
 import tim1.backend.utils.DBManager;
 import tim1.backend.utils.FusekiManager;
@@ -34,6 +44,26 @@ public class XmlBackendApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(XmlBackendApplication.class, args);
+
+		// UnmarshalZalbaNaCutanje.test();
+		// MarshalZalbaNaCutanje.test();
+
+		// UnmarshallingResenje.test();
+		// MarshalingResenje.test();
+		// ValidationResenje.test();
+
+		// UnmarshallingZalbaNaOdluku.test();
+		// MarshallingZalbaNaOdluku.test();
+
+		// UnmarshalingObavestenjecir.test();
+		// MarshalingObavestenjecir.test();
+		// tim1.backend.model.obavestenje.Validation.test();
+
+		// UnmarshallingZahtev.testXmlToObject();
+		// MarshallingZahtev.testObjectToXml();
+		// Validation.test();
+
+
 		// DBManager dbManager = new DBManager();
 		// dbManager.findAllFromCollection("/db/poverenik/zalbanacutanje/");
 	}

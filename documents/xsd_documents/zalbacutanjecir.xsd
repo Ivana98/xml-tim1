@@ -9,10 +9,29 @@
                 <xs:element name="Adresa_za_postu">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="Mesto" type="xs:string"/>
-                            <xs:element name="Ulica" type="xs:string"/>
+                            <xs:element name="Mesto">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="property" type="xs:string"/>
+                                            <xs:attribute name="datatype" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Ulica">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="property" type="xs:string"/>
+                                            <xs:attribute name="datatype" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="Broj" type="xs:int"/>
                         </xs:sequence>
+                        <xs:attribute name="about" type="xs:string"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="Sadrzaj">
@@ -25,12 +44,31 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="Razlozi_zalbe" type="ftn:Select"/>
-                            <xs:element name="Datum_podnosenja_zahteva" type="xs:date"/>
+                            <xs:element name="Razlozi_zalbe">
+                                <xs:complexType>
+                                    <xs:complexContent>
+                                        <xs:extension base="ftn:Select">
+                                            <xs:attribute name="property" type="xs:string"/>
+                                            <xs:attribute name="datatype" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:complexContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Datum_podnosenja_zahteva">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:date">
+                                            <xs:attribute name="property" type="xs:string"/>
+                                            <xs:attribute name="datatype" type="xs:string"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
                             <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
                             <xs:element maxOccurs="unbounded" name="Pasus" type="xs:string"/>
                             <xs:element minOccurs="0" name="Napomena" type="xs:string"/>
                         </xs:sequence>
+                        <xs:attribute name="about" type="xs:string"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element ref="ftn:Podnosilac_zalbe"/>
@@ -50,34 +88,47 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Ime">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="20"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
                 <xs:element name="Prezime">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="20"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
                 <xs:element name="Adresa">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="30"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
                 <xs:element name="Kontakt_podaci">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="20"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="Select">

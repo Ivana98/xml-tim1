@@ -54,11 +54,30 @@
     <xs:element name="podnosilac">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="ime" type="xs:string"/>
-                <xs:element name="prezime" type="xs:string"/>
+                <xs:element name="ime">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="prezime">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element ref="ftn:adresa"/>
                 <xs:element name="kontakt_podaci" type="xs:string"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="napomene">
@@ -79,45 +98,97 @@
     <xs:element name="vreme_i_mesto">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="grad" type="xs:string"/>
-                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="grad">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="adresa">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="grad" type="xs:string"/>
-                <xs:element name="ulica" type="xs:string"/>
+                <xs:element name="grad">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ulica">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="broj" type="xs:string"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType abstract="true" name="TLice">
         <xs:sequence>
             <xs:element ref="ftn:adresa"/>
-            <xs:element name="sediste" type="xs:string"/>
+            <xs:element name="sediste">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute name="datatype" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
+        <xs:attribute name="about" type="xs:string"/>
     </xs:complexType>
     <xs:complexType name="TFizickoLice">
         <xs:complexContent>
             <xs:extension base="ftn:TLice">
                 <xs:sequence>
                     <xs:element name="ime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="0"/>
-                                <xs:maxLength value="30"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="prezime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="0"/>
-                                <xs:maxLength value="30"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                 </xs:sequence>
             </xs:extension>
@@ -128,12 +199,14 @@
             <xs:extension base="ftn:TLice">
                 <xs:sequence>
                     <xs:element name="naziv">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="0"/>
-                                <xs:maxLength value="100"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                 </xs:sequence>
             </xs:extension>

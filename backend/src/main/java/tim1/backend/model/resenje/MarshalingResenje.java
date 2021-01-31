@@ -12,6 +12,10 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+
+import tim1.backend.model.resenje.Poverenik.Ime;
+import tim1.backend.model.resenje.Poverenik.Prezime;
+
 import static tim1.backend.utils.PathConstants.*;
 
 public class MarshalingResenje {
@@ -19,15 +23,15 @@ public class MarshalingResenje {
     public static void test() throws Exception {
 
         try {
-            System.out.println("\n[INFO] Obavestenje JAXB Marshalling.\n");
+            System.out.println("\n[INFO] Resenje JAXB Marshalling.\n");
 
             JAXBContext context = JAXBContext.newInstance(ResenjeObrazac.class);
 
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File(RESENJE_XML));
+            ResenjeObrazac resenjeObrazac = (ResenjeObrazac) unmarshaller.unmarshal(new File("./documents/xml_documents/resenje.xml"));
 
-            resenjeObrazac.setDatum(getDatum());
+            resenjeObrazac.getDatum().setValue(getDatum());
             resenjeObrazac.setPoverenik(getPoverenik());
 
             JAXBElement<Double> jaxbCena = new JAXBElement(new QName("cena"), Double.class, 666.00);
@@ -49,8 +53,13 @@ public class MarshalingResenje {
 
         Poverenik p = new Poverenik();
 
-        p.setIme("Dusan");
-        p.setPrezime("Dusanic");
+        Ime ime = new Ime();
+        ime.setValue("Dusan");
+        p.setIme(ime);
+
+        Prezime prezime = new Prezime();
+        prezime.setValue("Dusanic");
+        p.setPrezime(prezime);
 
         return p;
     }

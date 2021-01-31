@@ -9,10 +9,6 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 
-import tim1.backend.model.zahtev.MarshallingZahtev;
-import tim1.backend.model.zahtev.UnmarshallingZahtev;
-import tim1.backend.model.zahtev.Validation;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,9 +26,12 @@ import tim1.backend.utils.DBManager;
 import tim1.backend.utils.AuthenticationUtilities.ConnectionProperties;
 import tim1.backend.model.obavestenje.MarshalingObavestenjecir;
 import tim1.backend.model.obavestenje.UnmarshalingObavestenjecir;
-
 import tim1.backend.model.resenje.MarshalingResenje;
 import tim1.backend.model.resenje.UnmarshallingResenje;
+import tim1.backend.model.zahtev.MarshallingZahtev;
+import tim1.backend.model.zahtev.UnmarshallingZahtev;
+import tim1.backend.model.zahtev.Validation;
+
 import static tim1.backend.utils.PathConstants.*;
 
 @Component

@@ -13,6 +13,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import tim1.backend.model.zahtev.OpisZahteva.DodatneInformacije;
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.backend.model.zahtev.TipZahteva.NaciniSlanja;
+import tim1.backend.model.zahtev.Trazilac.ImeIPrezime;
+import tim1.backend.model.zahtev.Zahtev.Datum;
+import tim1.backend.model.zahtev.Trazilac.Adresa;
+
 import static tim1.backend.utils.PathConstants.*;
 
 public class MarshallingZahtev {
@@ -22,7 +26,7 @@ public class MarshallingZahtev {
 
             Zahtev zahtev = generateZahtev();
 
-            File file = new File(ZAHTEV_XML);
+            File file = new File("./documents/xml_documents/zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -46,7 +50,10 @@ public class MarshallingZahtev {
         zahtev.setInfoOrgana(generateInfoOrgana(factory));
         zahtev.setOpisZahteva(generateOpisZahteva(factory));
         zahtev.setMesto("Novi Sad");
-        zahtev.setDatum(generateDate());
+
+        Datum datum = new Datum();
+        datum.setValue(generateDate());
+        zahtev.setDatum(datum);
         zahtev.setTrazilac(generateTrazilac(factory));
         zahtev.setFooter("ovo je tekst footer-a");
         return zahtev;
@@ -106,10 +113,15 @@ public class MarshallingZahtev {
 
     private static Trazilac generateTrazilac(ObjectFactory factory){
         Trazilac trazilac =  factory.createTrazilac();
-        trazilac.setImeIPrezime("Nikola Jokic");
-        trazilac.setAdresa("Sombor, somborska 5");
+
+        ImeIPrezime ip = new ImeIPrezime();
+        ip.setValue("Nikola Jokic");
+        trazilac.setImeIPrezime(ip);
+
+        Adresa adresa = new Adresa();
+        adresa.setValue("Sombor, somborska 5");
+        trazilac.setAdresa(adresa);
         trazilac.setKontakt("063 645658");
-        trazilac.setPotpis("Sombor Shuffle");
 
         return trazilac;
     }

@@ -8,6 +8,7 @@ import javax.xml.bind.Unmarshaller;
 
 import tim1.backend.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.backend.model.zahtev.TipZahteva.NaciniSlanja;
+
 import static tim1.backend.utils.PathConstants.*;
 
 public class UnmarshallingZahtev {
@@ -16,7 +17,7 @@ public class UnmarshallingZahtev {
     
     public static void testXmlToObject(){
         try {
-            File file = new File(ZAHTEV_XML);
+            File file = new File("./documents/xml_documents/zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -45,10 +46,9 @@ public class UnmarshallingZahtev {
         addToOutput("mesto", zahtev.getMesto(), "\n");
         addToOutput("datum", String.valueOf(zahtev.getDatum()), "\n");
         
-        addToOutput("trazilac", zahtev.getTrazilac().getImeIPrezime(), "\n");
-        addToOutput("adresa", zahtev.getTrazilac().getAdresa(), "\n");
+        addToOutput("trazilac", zahtev.getTrazilac().getImeIPrezime().getValue(), "\n");
+        addToOutput("adresa", zahtev.getTrazilac().getAdresa().getValue(), "\n");
         addToOutput("kontakt", zahtev.getTrazilac().getKontakt(), "\n");
-        addToOutput("potpis", zahtev.getTrazilac().getPotpis(), "\n");
         
         addToOutput("footer", zahtev.getFooter(), "\n");
     }
