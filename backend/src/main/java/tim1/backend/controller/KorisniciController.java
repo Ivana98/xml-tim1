@@ -60,6 +60,7 @@ public class KorisniciController {
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         String documentId = UUID.randomUUID().toString();
+        System.out.println(content);
 
         try {
             korisnikService.saveXML(documentId, content);

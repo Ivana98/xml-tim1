@@ -2,6 +2,7 @@ package tim1.sluzbenik.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xmldb.api.modules.XMLResource;
 
 import tim1.sluzbenik.dto.UserDTO;
 import tim1.sluzbenik.helper.UserMapper;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/korisnici")
@@ -30,101 +32,43 @@ public class KorisniciController {
     @Autowired
     private KorisnikService korisnikService;
 
-    private UserMapper userMapper;
+    @GetMapping(path = "/xml/{id}", produces = "application/xml")
+    public ResponseEntity<String> getXML(@PathVariable("id") String id) {
 
-    // Metode klase kontrolera su anotirane sa @RequestMapping anotacijom koja
-    // opisuje zahtev koji treba biti obrađen u toj metodi (URL i tip HTTP metode)
-    /*
-     * ResponseEntity objekat može da sadrži: telo (podatke) – metode anotirane
-     * sa @RequestBody anotacijom sadrže samo telo zaglavlje (metapodatke) HTTP
-     * status kod
-     */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-
-        // List<Korisnik> users = userService.findAll();
-
-        // return new ResponseEntity<>(toUserDTOList(users), HttpStatus.OK);
-
-        return null;
-    }
-
-    // Parametar je u kontroler moguce poslati kao parametar koji je promenljiva u
-    // URL-u zahteva - Path Variable
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
-
-        // Korisnik user = userService.findOne(id);
-
-        // if (user == null) {
-        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        // }
-
-        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
-
-        return null;
-    }
-
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable Long id) {
-
-        // Korisnik user;
-
-        // try {
-        //     user = userService.update(userMapper.toEntity(userDTO), id);
-        // } catch (Exception e) {
-        //     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        // }
-
-        // return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
-
-        return null;
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-
-        // try {
-        //     userService.delete(id);
-        // } catch (Exception e) {
-        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        // }
-
-        // return new ResponseEntity<>(HttpStatus.OK);
-        return null;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    @PostMapping(consumes = "application/xml")
-    public ResponseEntity<?> saveXML(@RequestBody String content) {
-        System.out.println("radi");
-        String documentId = "korisnik@gmail.com";
         try {
-            korisnikService.saveXML(documentId, content);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            XMLResource korisnik = korisnikService.readXML(id);
+            return new ResponseEntity<>(korisnik.getContent().toString(), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
+    /**
+     * Dodavanje novog korisnika - registracija
+     * Registracija nece biti na frontu. Ovo je samo u svrhu
+     * popunjavanja baze sa korisnicima.
+     * 
+     * @param content Korisnik u XML formatu
+     * @return http status
+     */
+    @PostMapping(consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content) {
+
+        String documentId = UUID.randomUUID().toString();
+
+        try {
+            korisnikService.saveXML(documentId, content);
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<Korisnik>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<Korisnik>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<Korisnik> lista = korisnikService.findAllFromCollection();
@@ -134,32 +78,4 @@ public class KorisniciController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public KorisniciController() {
-        userMapper = new UserMapper();
-    }
-
-    private List<UserDTO> toUserDTOList(List<Korisnik> users) {
-
-        List<UserDTO> userDTOS = new ArrayList<>();
-        
-        for (Korisnik user : users) {
-            userDTOS.add(userMapper.toDto(user));
-        }
-        
-        return userDTOS;
-    }
-
 }
