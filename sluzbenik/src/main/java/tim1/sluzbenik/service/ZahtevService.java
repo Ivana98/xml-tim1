@@ -14,7 +14,7 @@ public class ZahtevService extends AbstractService {
 
     @Autowired
     public ZahtevService(ZahtevRepository repository) {
-        super(repository, "/db/poverenik/zahtev/", "/zahtev/");
+        super(repository, "/db/sluzbenik/zahtev/", "/zahtev/");
     }
 
     public JaxbLista<Zahtev> findAllFromCollection() throws Exception{

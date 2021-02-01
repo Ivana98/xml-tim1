@@ -14,7 +14,7 @@ public class ObavestenjeService extends AbstractService {
 
     @Autowired
     public ObavestenjeService(ObavestenjeRepository repository) {
-        super(repository, "/db/poverenik/obavestenje/", "/obavestenje/");
+        super(repository, "/db/sluzbenik/obavestenje/", "/obavestenje/");
     }
 
     public JaxbLista<Obavestenje> findAllFromCollection() throws Exception{

@@ -12,7 +12,7 @@ export class AuthService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/xml',
+      'Content-Type': 'application/xml',
     })
   };
 
