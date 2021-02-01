@@ -60,14 +60,17 @@ public class KorisniciController {
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         String documentId = UUID.randomUUID().toString();
+        System.out.println(content);
 
         try {
             korisnikService.saveXML(documentId, content);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
+            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
