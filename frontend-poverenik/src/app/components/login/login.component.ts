@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import {parse,} from 'js2xmlparser'
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   error: string;
+
+  parser: DOMParser = new DOMParser();
 
   constructor(
     public formBuilder: FormBuilder,
@@ -32,13 +35,18 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value.usernameField)
     console.log(this.loginForm.value.passField)
 
-    this.router.navigate(['/homepage']);
 
     this.error = '';
 
-    this.authService.login(this.loginForm.value.usernameField, this.loginForm.value.passField)
+    let korisnik = {korisnickoIme: this.loginForm.value.usernameField, sifra:this.loginForm.value.passField };
+    let data = parse("korisnik", korisnik, {declaration: {encoding: 'UTF-8'}} )
+    console.log(data);
+  
+    this.authService.login(data)
       .subscribe(
         data => {
+          console.log("---------------------------------------")
+          console.log(data)
           const payload = JSON.parse(window.atob(data.accessToken.split('.')[1]));
           localStorage.setItem('user', JSON.stringify({
             username: this.loginForm.value.email,
@@ -47,9 +55,10 @@ export class LoginComponent implements OnInit {
             role: payload.role
           }));
           
-          this.router.navigate(['/homepage']);
+          // this.router.navigate(['/homepage']);
         },
         error => {
+          console.log(error);
           this.error = error.error ? error.error.message : 'Your account is not verified';
         });
   }

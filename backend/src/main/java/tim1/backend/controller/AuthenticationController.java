@@ -21,6 +21,7 @@ public class AuthenticationController {
 
     @GetMapping(path = "/login", consumes = "application/xml")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody String content) {
+        System.out.println(content);
 
         try {
             AuthUserLoginResponseDTO response = authenticationService.createAuthenticationToken(content);
