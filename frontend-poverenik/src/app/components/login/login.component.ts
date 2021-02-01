@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   error: string;
 
-  parser: DOMParser = new DOMParser();
 
   constructor(
     public formBuilder: FormBuilder,
@@ -36,8 +35,6 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value.passField)
 
 
-    this.error = '';
-
     let korisnik = {
       "@": {
         "xmlns" :"http://www.ftn.uns.ac.rs/korisnik",
@@ -54,7 +51,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(korisnikXML)
       .subscribe(
         data => {
-          console.log(window.atob(data.accessToken.split('.')[1]));
           const payload = JSON.parse(window.atob(data.accessToken.split('.')[1]));
           localStorage.setItem('user', JSON.stringify({
             username: payload.sub,
@@ -62,8 +58,7 @@ export class LoginComponent implements OnInit {
             role: payload.uloga
           }));
 
-          
-          // this.router.navigate(['/homepage']);
+          this.router.navigate(['/homepage']);
         },
         error => {
           console.log(error);
