@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:zahtev xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/" xmlns:ns2="http://www.ftn.uns.ac.rs/zahtev" about="http://www.ftn.uns.ac.rs/rdf/zahtev/Zahtev" property="pred:status" datatype="xs:string" content="na cekanju">
+    <ns2:info_organa about="http://www.ftn.uns.ac.rs/rdf/zahtev/Organ">
+        <ns2:naziv property="pred:naziv" datatype="xs:string">organ1</ns2:naziv>
+        <ns2:sediste property="pred:sediste" datatype="xs:string">Novi Sad</ns2:sediste>
+    </ns2:info_organa>
+    <ns2:naslov>Zahtev</ns2:naslov>
+    <ns2:svrha_zahteva>Pristup informaciji od javnog znacaja</ns2:svrha_zahteva>
+    <ns2:opis_zahteva>
+        <ns2:tekst_zahteva>na osnovu clana X zahtevam sledece:</ns2:tekst_zahteva>
+        <ns2:tipovi_zahteva>
+            <ns2:tip_zahteva selektovan="true" rb="1" tekst="zelim uvid u dokument ..."/>
+            <ns2:tip_zahteva selektovan="false" rb="2" tekst="zelim da mi posaljete dokument ...">
+                <ns2:nacini_slanja>
+                    <ns2:nacin_slanja rb="1" selektovan="false" tekst="elektronski"/>
+                </ns2:nacini_slanja>
+            </ns2:tip_zahteva>
+        </ns2:tipovi_zahteva>
+        <ns2:dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <ns2:opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</ns2:opis_dodatne_informacije>
+        </ns2:dodatne_informacije>
+    </ns2:opis_zahteva>
+    <ns2:mesto property="pred:mesto" datatype="xs:string">Novi Sad</ns2:mesto>
+    <ns2:datum property="pred:datum" datatype="xs:date">2021-01-30+01:00</ns2:datum>
+    <ns2:trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac">
+        <ns2:ime_i_prezime property="pred:ime-prezime" datatype="xs:string">Nikola Jokic</ns2:ime_i_prezime>
+        <ns2:adresa property="pred:mesto" datatype="xs:string">Sombor, somborska 5</ns2:adresa>
+        <ns2:kontakt>063 645658</ns2:kontakt>
+    </ns2:trazilac>
+    <ns2:footer>ovo je tekst footer-a</ns2:footer>
+</ns2:zahtev>

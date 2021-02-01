@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev">
-    <info_organa>
-        <naziv>organ1</naziv>
-        <sediste>Novi Sad</sediste>
+<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    about="http://www.ftn.uns.ac.rs/rdf/zahtev/Zahtev"
+    property="pred:status" datatype="xs:string" content="na cekanju">
+    <info_organa about="http://www.ftn.uns.ac.rs/rdf/zahtev/Organ">
+        <naziv property="pred:naziv" datatype="xs:string">organ1</naziv>
+        <sediste property="pred:sediste" datatype="xs:string">Novi Sad</sediste>
     </info_organa>
-    <naslov>Zakon</naslov>
+    <naslov>Zahtev</naslov>
     <svrha_zahteva>Pristup informaciji od javnog znacaja</svrha_zahteva>
     <opis_zahteva>
         <tekst_zahteva>na osnovu clana X zahtevam sledece:</tekst_zahteva>
@@ -19,11 +24,11 @@
         <dodatne_informacije>Ovaj zahtev se odnosi na sledece info: <opis_dodatne_informacije>Trazim informaciju tu i tu pod rednim brojem tim.</opis_dodatne_informacije>
         </dodatne_informacije>
     </opis_zahteva>
-    <mesto>Novi Sad</mesto>
-    <datum>2021-01-30+01:00</datum>
-    <trazilac>
-        <ime_i_prezime>Nikola Jokic</ime_i_prezime>
-        <adresa>Sombor, somborska 5</adresa>
+    <mesto property="pred:mesto" datatype="xs:string">Novi Sad</mesto>
+    <datum property="pred:datum" datatype="xs:date">2021-01-30+01:00</datum>
+    <trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac">
+        <ime_i_prezime property="pred:ime-prezime" datatype="xs:string">Nikola Jokic</ime_i_prezime>
+        <adresa property="pred:mesto" datatype="xs:string">Sombor, somborska 5</adresa>
         <kontakt>063 645658</kontakt>
     </trazilac>
     <footer>ovo je tekst footer-a</footer>

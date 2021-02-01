@@ -5,5 +5,12 @@
 //         Generated on: 2021.01.22 at 08:27:50 PM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/korisnik", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(
+    namespace = "http://www.ftn.uns.ac.rs/korisnik", 
+    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+    xmlns = {
+        @XmlNs(prefix = "pred", namespaceURI = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/")
+    })
 package tim1.backend.model.korisnici;
+
+import javax.xml.bind.annotation.XmlNs;
