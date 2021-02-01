@@ -5,5 +5,12 @@
 // Generated on: 2021.01.30 at 12:34:07 AM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/zalba-na-cutanje", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(
+    namespace = "http://www.ftn.uns.ac.rs/zalba-na-cutanje", 
+    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+    xmlns = {
+        @XmlNs(prefix = "pred", namespaceURI = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/")
+    })
 package tim1.backend.model.zalbacutanje;
+
+import javax.xml.bind.annotation.XmlNs;

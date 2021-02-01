@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns:ftn="http://www.ftn.uns.ac.rs/zahtev">
+    targetNamespace="http://www.ftn.uns.ac.rs/zahtev" xmlns:ftn="http://www.ftn.uns.ac.rs/zahtev"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
@@ -8,7 +9,16 @@
                 <xs:element name="naslov" type="xs:string"/>
                 <xs:element name="svrha_zahteva" type="xs:string"/>
                 <xs:element ref="ftn:opis_zahteva"/>
-                <xs:element name="mesto" type="xs:string"/>
+                <xs:element name="mesto">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="datum">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -22,13 +32,35 @@
                 <xs:element ref="ftn:trazilac"/>
                 <xs:element name="footer" type="xs:string"/>
             </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="property" type="xs:string"/>
+            <xs:attribute name="datatype" type="xs:string"/>
+            <xs:attribute name="content" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="info_organa">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="naziv" type="xs:string"/>
-                <xs:element name="sediste" type="xs:string"/>
+                <xs:element name="naziv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sediste">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
