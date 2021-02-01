@@ -53,9 +53,9 @@ public class AuthenticationService {
 
                 System.out.println(user);
 
-                String jwt = tokenUtils.generateToken(user.getKorisnickoIme()); // prijavljujemo se na sistem sa kor
-                                                                                // imenom
-                                                                                // (email)
+                String jwt = tokenUtils.generateToken(user); // prijavljujemo se na sistem sa kor
+                                                             // imenom
+                                                             // (email)
                 int expiresIn = tokenUtils.getExpiredIn();
 
                 return new AuthUserLoginResponseDTO(jwt, expiresIn);
