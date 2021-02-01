@@ -59,11 +59,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify({
             username: this.loginForm.value.email,
             token: data.accessToken,
-            id: payload.id,
             role: payload.uloga
           }));
 
-          // console.log(payload)
+          console.log(payload)
           
           // this.router.navigate(['/homepage']);
         },
