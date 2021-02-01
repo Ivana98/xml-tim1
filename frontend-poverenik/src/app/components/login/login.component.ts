@@ -38,22 +38,32 @@ export class LoginComponent implements OnInit {
 
     this.error = '';
 
-    let korisnik = {korisnickoIme: this.loginForm.value.usernameField, sifra:this.loginForm.value.passField };
-    let data = parse("korisnik", korisnik, {declaration: {encoding: 'UTF-8'}} )
-    console.log(data);
+    let korisnik = {
+      "@": {
+        "xmlns" :"http://www.ftn.uns.ac.rs/korisnik",
+        "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation" : "http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd",
+        "xmlns:pred" : "http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+      },
+      korisnicko_ime: this.loginForm.value.usernameField ,
+      sifra:this.loginForm.value.passField 
+    };
+    let korisnikXML = parse("korisnik", korisnik, {declaration: {encoding: 'UTF-8'}} )
+    console.log(korisnikXML);
   
-    this.authService.login(data)
+    this.authService.login(korisnikXML)
       .subscribe(
         data => {
-          console.log("---------------------------------------")
-          console.log(data)
+          console.log(window.atob(data.accessToken.split('.')[1]));
           const payload = JSON.parse(window.atob(data.accessToken.split('.')[1]));
           localStorage.setItem('user', JSON.stringify({
             username: this.loginForm.value.email,
             token: data.accessToken,
             id: payload.id,
-            role: payload.role
+            role: payload.uloga
           }));
+
+          // console.log(payload)
           
           // this.router.navigate(['/homepage']);
         },

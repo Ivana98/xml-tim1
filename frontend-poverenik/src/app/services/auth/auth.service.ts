@@ -8,7 +8,7 @@ import { JWT } from 'src/app/model/JWT';
 })
 export class AuthService {
 
-  apiUrl: 'http://localhost:8090/api';
+  apiUrl = 'http://localhost:8090/api';
 
   httpOptions = {
     headers: new HttpHeaders({
