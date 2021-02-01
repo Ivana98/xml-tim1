@@ -1,0 +1,46 @@
+<!-- navbar -->
+
+<p>
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Homepage" [routerLink]="'/homepage'">
+            <mat-icon>home</mat-icon>
+        </button>
+        <span>Portal poverenika</span>
+
+        <span *ngIf="role=='GRADJANIN'">
+            <button mat-button class="example-icon btn_spacing" aria-label="Podnosenje zalbe"
+            [routerLink]="'/homepage/podnosenje-zalbe'">
+                Podnosenje zalbe
+            </button>
+            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe" [routerLink]="'/homepage/zalbe'">
+                Zalbe
+            </button>
+            <button mat-button class="example-icon btn_spacing" aria-label="Resenja" [routerLink]="'/homepage/resenja'">
+                Resenja
+            </button>
+        </span>
+
+        <span *ngIf="role=='POVERENIK'">
+            <button mat-button class="example-icon btn_spacing" aria-label="Zalbe" [routerLink]="'/homepage/zalbe'">
+                Zalbe
+            </button>
+            <button mat-button class="example-icon btn_spacing" aria-label="Resenja" [routerLink]="'/homepage/resenja'">
+                Resenja
+            </button>
+            <button mat-button class="example-icon btn_spacing" aria-label="Izvestaji" [routerLink]="'/homepage/izvestaji'">
+                Izvestaji
+            </button>
+        </span>
+
+        <!-- menu buttons -->
+
+        <span class="example-spacer"></span>
+
+        <!-- right side buttons -->
+        <button mat-icon-button class="example-icon" aria-label="Odjava" (click)="logout()">
+            <mat-icon>keyboard_tab</mat-icon>
+        </button>
+    </mat-toolbar>
+</p>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,30 @@
+<div class="dashboard-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSortDirection="asc">
+  
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}}  </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="naziv">
+        <th mat-header-cell *matHeaderCellDef> Naziv dokumenta </th>
+        <td mat-cell *matCellDef="let element"> <a [routerLink]="[':id']" > {{element.naziv}} </a> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="izvoz">
+        <th mat-header-cell *matHeaderCellDef> Izvoz </th>
+        <td mat-cell *matCellDef="let element" class="action-cell">
+          <button class="table-button" mat-icon-button color="primary" aria-label="export action">XHTML</button>
+          <button class="table-button" mat-icon-button color="primary" aria-label="export action">PDF</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageIndex]="pageIndex" [length]="length" [pageSize]="pageSize" (page)="getPage($event)" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
