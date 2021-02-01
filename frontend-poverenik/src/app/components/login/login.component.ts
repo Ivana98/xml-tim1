@@ -57,12 +57,11 @@ export class LoginComponent implements OnInit {
           console.log(window.atob(data.accessToken.split('.')[1]));
           const payload = JSON.parse(window.atob(data.accessToken.split('.')[1]));
           localStorage.setItem('user', JSON.stringify({
-            username: this.loginForm.value.email,
+            username: payload.sub,
             token: data.accessToken,
             role: payload.uloga
           }));
 
-          console.log(payload)
           
           // this.router.navigate(['/homepage']);
         },
