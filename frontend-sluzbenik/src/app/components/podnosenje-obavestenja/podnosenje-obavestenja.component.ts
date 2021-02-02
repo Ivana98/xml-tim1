@@ -24,7 +24,12 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
   }
 
   send(): void {
-    let text = Xonomy.harvest();
+    let text : string = Xonomy.harvest();
+
+    text = text.replace(this.obavestenjaService.searchArhivi, this.obavestenjaService.replaceArhivi);
+    text = text.replace(this.obavestenjaService.searchImenovanom, this.obavestenjaService.replaceImenovanom);
+
+    console.log(text);
   }
 
 }

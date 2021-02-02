@@ -9,19 +9,27 @@ export class ObavestenjaService {
 
   constructor() { }
 
+  public searchArhivi = `<Dostavljeno xml:space='preserve'>Arhivi</Dostavljeno>`;
+  public searchImenovanom = `<Dostavljeno xml:space='preserve'>Imenovanom</Dostavljeno>`;
+  public replaceArhivi = `<Dostavljeno Selected="2"><Primer ID="1">1. Именованом </Primer><Primer ID="2">2. Архиви</Primer></Dostavljeno>`;
+  public replaceImenovanom = `<Dostavljeno Selected="1"><Primer ID="1">1. Именованом </Primer><Primer ID="2">2. Архиви</Primer></Dostavljeno>`;
+
   public xmlString =
-  `<Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir">
+  `<Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
+  xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
       <Osnovni_podaci>
-        <Organ>
-          <Naziv> </Naziv>
-          <Sediste> </Sediste>
+        <Organ about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Organ">
+          <Naziv property="pred:naziv" datatype="xs:string"> </Naziv>
+          <Sediste property="pred:sediste" datatype="xs:string"> </Sediste>
         </Organ>
         <Broj_predmeta> </Broj_predmeta>
-        <Podnosioc_zahteva>
-            <Ime> </Ime>
-            <Prezime> </Prezime>
+        <Datum property="pred:datum" datatype="xs:date"> </Datum>
+        <Podnosioc_zahteva about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Podnosioc">
+            <Ime property="pred:ime" datatype="xs:string"> </Ime>
+            <Prezime property="pred:prezime" datatype="xs:string"> </Prezime>
             <Naziv> </Naziv>
-            <Adresa> </Adresa>
+            <Adresa property="pred:adresa" datatype="xs:string"> </Adresa>
         </Podnosioc_zahteva>
       </Osnovni_podaci>
       <Sadrzaj>
@@ -196,17 +204,3 @@ export class ObavestenjaService {
   }
 
 }
-
-/*menu: [
-          {
-            caption: 'Dodaj <Osnovni_podaci>',
-            action: Xonomy.newElementChild,
-            actionParameter: '<Osnovni_podaci> </Osnovni_podaci>',
-            hasText: true,
-            isReadOnly: true,
-            hideIf: function(jsElement){
-              return jsElement.hasChildElement('Osnovni_podaci')
-            }
-          }
-        ],
-        attributes: {}*/
