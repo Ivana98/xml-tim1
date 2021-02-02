@@ -10,7 +10,9 @@ declare const Xonomy: any;
 })
 export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
 
-  constructor(private obavestenjaService: ObavestenjaService) { }
+  constructor(
+    private obavestenjaService: ObavestenjaService,
+  ) { }
 
   ngAfterViewInit(): void {
     //prikaz xonomy editora
@@ -24,12 +26,19 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
   }
 
   send(): void {
-    let text : string = Xonomy.harvest();
+    let text: string = Xonomy.harvest();
 
     text = text.replace(this.obavestenjaService.searchArhivi, this.obavestenjaService.replaceArhivi);
     text = text.replace(this.obavestenjaService.searchImenovanom, this.obavestenjaService.replaceImenovanom);
 
     console.log(text);
+
+    this.obavestenjaService.addNew(text)
+    .subscribe(
+      data => {
+        console.log("dodato valjda")
+      }
+    );
   }
 
 }

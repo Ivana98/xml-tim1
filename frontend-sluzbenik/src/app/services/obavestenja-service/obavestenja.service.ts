@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 declare const Xonomy: any;
@@ -7,7 +8,21 @@ declare const Xonomy: any;
 })
 export class ObavestenjaService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  apiUrl = 'http://localhost:8091/api';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/xml',
+    })
+  };
+
+  addNew(obavestenje): any {
+    return this.http.post<any>(this.apiUrl + '/obavestenja/xml', obavestenje, this.httpOptions);
+  }
 
   public searchArhivi = `<Dostavljeno xml:space='preserve'>Arhivi</Dostavljeno>`;
   public searchImenovanom = `<Dostavljeno xml:space='preserve'>Imenovanom</Dostavljeno>`;
