@@ -28,10 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.loginForm.value.usernameField)
-    console.log(this.loginForm.value.passField)
-
-
     let korisnik = {
       "@": {
         "xmlns": "http://www.ftn.uns.ac.rs/korisnik",
@@ -42,8 +38,8 @@ export class LoginComponent implements OnInit {
       korisnicko_ime: this.loginForm.value.usernameField,
       sifra: this.loginForm.value.passField
     };
+
     let korisnikXML = parse("korisnik", korisnik, { declaration: { encoding: 'UTF-8' } })
-    console.log(korisnikXML);
 
     this.authService.login(korisnikXML)
       .subscribe(
@@ -54,8 +50,6 @@ export class LoginComponent implements OnInit {
             token: data.accessToken,
             role: payload.role
           }));
-
-          console.log(payload)
 
           this.router.navigate(['/homepage']);
         }

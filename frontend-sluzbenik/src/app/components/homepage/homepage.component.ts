@@ -18,8 +18,6 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
-    console.log(this.role)
-    console.log(localStorage.getItem('user'))
   }
 
   logout(): void {
