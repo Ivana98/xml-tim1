@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 declare const Xonomy: any;
 
@@ -24,6 +25,18 @@ export class ZahtevService {
     return this.http.post<any>(this.apiUrl + '/zahtevi/xml', zahtev, this.httpOptions);
   }
 
+  getAll(): Observable<any> {
+    // let queryParams = {};
+
+  // queryParams = {
+  // 	headers: this.headers,
+  // 	observe: 'response'
+    // };
+
+    return this.http.get(this.apiUrl + 'zahtevi/xml', this.httpOptions);
+  }
+  
+  
   public xmlString =
   `<zahtev xmlns="http://www.ftn.uns.ac.rs/zahtev"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
