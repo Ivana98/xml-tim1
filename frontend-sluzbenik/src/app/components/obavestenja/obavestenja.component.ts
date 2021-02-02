@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Obavestenje } from 'src/app/model/obavestenje';
+import { ObavestenjaService } from 'src/app/services/obavestenja-service/obavestenja.service';
 
 @Component({
   selector: 'app-obavestenja',
@@ -10,11 +12,14 @@ import { Obavestenje } from 'src/app/model/obavestenje';
   styleUrls: ['./obavestenja.component.scss']
 })
 export class ObavestenjaComponent implements OnInit {
+
   displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
   dataSource: MatTableDataSource<Obavestenje>;
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
+
+  
 
   obavestenja: Obavestenje[] = [
     {
@@ -27,19 +32,27 @@ export class ObavestenjaComponent implements OnInit {
     },
   ]
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private obavestenjaService: ObavestenjaService
+  ) {
     this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-
   }
 
   ngOnInit(): void {
+    this.obavestenjaService.getAll()
+    .subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 
   requestPage(): void {
     let event = new PageEvent();
     event.pageIndex = this.pageIndex;
     event.pageSize = this.pageSize;
-    
+
     this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;

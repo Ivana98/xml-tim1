@@ -19,10 +19,7 @@ public class ObavestenjeService extends AbstractService {
 
     public JaxbLista<Obavestenje> findAllFromCollection() throws Exception {
 
-        
         List<Obavestenje> listaObavestenja = this.findAllFromCollection(Obavestenje.class);
-        System.out.println(listaObavestenja.get(0).getOsnovniPodaci().getBrojPredmeta());
-        System.out.println("1111111111111111111111111111111");
         JaxbLista<Obavestenje> listaObj = new JaxbLista<Obavestenje>(listaObavestenja);
         return listaObj;
     }

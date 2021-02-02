@@ -70,9 +70,9 @@ public class ObavestenjeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<Obavestenje>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<Obavestenje>> findAllFromCollection() {
 
         try {
             JaxbLista<Obavestenje> lista = obavestenjeService.findAllFromCollection();
