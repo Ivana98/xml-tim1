@@ -1,6 +1,18 @@
 package tim1.sluzbenik.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
+import java.io.StringReader;
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import org.apache.tools.ant.util.ReaderInputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.InputSource;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.sluzbenik.model.liste.JaxbLista;
@@ -39,9 +52,32 @@ public class ObavestenjeController {
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
         String documentId = UUID.randomUUID().toString();
+        System.out.println("------------------------------------------");
+        System.out.println(content);
+        System.out.println("----------------------------------------------");
+        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+        System.out.println("Ovde");
+        try {
+            JAXBContext context = JAXBContext.newInstance(Obavestenje.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(inputStream);
+            obavestenje.setId(documentId);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            marshaller.marshal(obavestenje, stream);
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+            content = finalString;
+        } catch (JAXBException e1) {
+            // TODO Auto-generated catch block
+            System.out.println("unmarshaller error");
+            e1.printStackTrace();
+        }
         try {
             obavestenjeService.saveXML(documentId, content);
             obavestenjeService.saveRDF(content, documentId);
+            System.out.println("1111111111111111111111111");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();

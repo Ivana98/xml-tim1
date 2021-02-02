@@ -44,6 +44,10 @@ export class ObavestenjaComponent implements OnInit {
     .subscribe(
       data => {
         console.log(data);
+        // data.forEach((value, key) => {
+        //   console.log("Value for", key, ":", value);
+        // });
+        console.log(data["jaxbLista"]["ns3:Obavestenje"][0]);
       }
     );
   }
