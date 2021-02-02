@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "29b62ae7-f360-4c43-a9a8-c9da63c25560",
+		"_postman_id": "d4e6876f-139a-4165-8f8a-b2b97c5eb6d3",
 		"name": "XML Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1107,6 +1107,53 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "MAIL",
+			"item": [
+				{
+					"name": "odobri zahtev",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "TVOJ MEJL",
+									"contentType": "text/plain",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<c> asdf </c>",
+									"contentType": "application/xml",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8092/emails/odobriZahtev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"emails",
+								"odobriZahtev"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

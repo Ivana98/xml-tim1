@@ -28,19 +28,6 @@ public class EmailService {
   @Autowired
   private Environment env;
 
-  // @Async
-  // public void posaljiMejl(String email, String subject, String content) throws
-  // MailException {
-
-  // SimpleMailMessage mail = new SimpleMailMessage();
-  // mail.setTo(email);
-  // mail.setFrom(env.getProperty("spring.mail.username"));
-  // mail.setSubject(subject);
-  // String text = "Dokumenti se nalaze u prilogu." + content;
-  // mail.setText(text);
-  // javaMailSender.send(mail);
-  // }
-
   @Async
   public void posaljiMejl(String email, String subject, String content) throws Exception {
     
