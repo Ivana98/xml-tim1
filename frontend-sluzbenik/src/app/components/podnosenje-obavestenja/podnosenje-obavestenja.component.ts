@@ -15,7 +15,7 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     //prikaz xonomy editora
     let element = document.getElementById("editor");
-    let xmlStr = '<Obavestenje> </Obavestenje>';
+    let xmlStr = this.obavestenjaService.xmlString;
     let specification = this.obavestenjaService.obavestenjeSpecifikacija;
     Xonomy.render(xmlStr, element, specification);
   }
@@ -24,7 +24,7 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
   }
 
   send(): void {
-
+    let text = Xonomy.harvest();
   }
 
 }
