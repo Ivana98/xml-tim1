@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the tim1.backend.model.zahtev2 package. 
+ * generated in the tim1.sluzbenik.model.zahtev2 package. 
  * &lt;p&gt;An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -34,7 +34,7 @@ public class ObjectFactory {
     private final static QName _OpisZahtevaDodatneInformacijeOpisDodatneInformacije_QNAME = new QName("http://www.ftn.uns.ac.rs/zahtev", "opis_dodatne_informacije");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: tim1.backend.model.zahtev2
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: tim1.sluzbenik.model.zahtev2
      * 
      */
     public ObjectFactory() {

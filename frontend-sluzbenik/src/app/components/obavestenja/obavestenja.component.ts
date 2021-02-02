@@ -15,41 +15,29 @@ export class ObavestenjaComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
   dataSource: MatTableDataSource<Obavestenje>;
+  // dataSource2: MatTableDataSource<any>;
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
 
-  
-
-  obavestenja: Obavestenje[] = [
-    {
-      id: 1,
-      naziv: 'Obavestenje 1',
-    },
-    {
-      id: 2,
-      naziv: 'Obavestenje 2',
-    },
-  ]
+  obavestenja: Obavestenje[] = []
 
   constructor(
     private router: Router,
     private obavestenjaService: ObavestenjaService
-  ) {
-    this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.obavestenjaService.getAll()
-    .subscribe(
-      data => {
-        console.log(data);
-        // data.forEach((value, key) => {
-        //   console.log("Value for", key, ":", value);
-        // });
-        console.log(data["jaxbLista"]["ns3:Obavestenje"][0]);
-      }
-    );
+      .subscribe(
+        data => {
+          data["jaxbLista"]["ns3:Obavestenje"].forEach(element => {
+            this.obavestenja.push(new Obavestenje(1, element["ns3:Sadrzaj"]["ns3:Naslov"]));  //element["ns3:Sadrzaj"]["ns3:Naslov"]
+          });
+
+          this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
+        }
+      );
   }
 
   requestPage(): void {

@@ -12,7 +12,7 @@
         </Organ>
         <Broj_predmeta>5</Broj_predmeta>
         <Datum property="pred:datum" datatype="xs:date">2020-05-22</Datum>
-        <Podnosioc_zahteva about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Podnosioc">
+        <Podnosioc_zahteva about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Podnosioc" idZahteva="">
             <Ime property="pred:ime" datatype="xs:string">Veljko</Ime>
             <Prezime property="pred:prezime" datatype="xs:string">Plecas</Prezime>
             <Naziv>Naziv 1</Naziv>

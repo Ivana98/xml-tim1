@@ -1,10 +1,10 @@
 
 export class Obavestenje {
     id?: number;
-    naziv: string;
+    naslov: string;
 
-    constructor(id?: number, naziv?: string){
-        this.naziv = naziv ? naziv : '';
+    constructor(id?: number, naslov?: string){
+        this.naslov = naslov ? naslov : '';
         this.id = id ? id : -1;
     }
 

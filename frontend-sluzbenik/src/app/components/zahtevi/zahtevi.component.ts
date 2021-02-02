@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Zahtev } from 'src/app/model/zahtev';
+import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -32,6 +33,7 @@ export class ZahteviComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private zahtevService: ZahtevService,
     private authService: AuthService
     ) { 
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
@@ -39,7 +41,19 @@ export class ZahteviComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("On init");
     this.role == this.authService.getRole();
+    console.log("ROLE");
+    console.log(this.role);
+    //this.getAll();
+  }
+
+  getAll(){
+    this.zahtevService.getAll().subscribe(result => {
+      console.log(result);
+      //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
+    })
+    //this.role == this.authService.getRole();
   }
 
   requestPage(): void {
