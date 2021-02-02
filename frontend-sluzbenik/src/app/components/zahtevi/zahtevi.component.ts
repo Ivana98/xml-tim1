@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Zahtev } from 'src/app/model/zahtev';
+import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
 
 @Component({
   selector: 'app-zahtevi',
@@ -29,12 +30,23 @@ export class ZahteviComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private zahtevService: ZahtevService
+  ) { 
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
     
   }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll(){
+    this.zahtevService.getAll().subscribe(result => {
+      console.log(result);
+      //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
+    })
   }
 
   requestPage(): void {
