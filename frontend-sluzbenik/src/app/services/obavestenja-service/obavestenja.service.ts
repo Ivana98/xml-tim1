@@ -29,7 +29,7 @@ export class ObavestenjaService {
     return this.http.post<any>(this.apiUrl + '/obavestenja/xml', obavestenje, this.httpOptions);
   }
 
-  getAll(): Observable<Array<any>> {
+  getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
     return this.http
     .get(this.apiUrl + '/obavestenja/xml', { responseType: "text" })
     .pipe(
