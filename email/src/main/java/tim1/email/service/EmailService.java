@@ -58,10 +58,17 @@ public class EmailService {
     helper.setSubject(simpleMailMessage.getSubject());
     helper.setText("Dokumenti se nalaze u prilogu ");
 
-    FileSystemResource file = new FileSystemResource("asdf.pdf");
-    System.out.println(file.exists());
-    helper.addAttachment(file.getFilename(), file);
-    
+    //pdf
+    FileSystemResource pdf = new FileSystemResource("asdf.pdf");
+    System.out.println(pdf.exists());
+    helper.addAttachment(pdf.getFilename(), pdf);
+
+    //html
+    FileSystemResource xhtml = new FileSystemResource("asdf.html");
+    System.out.println(xhtml.exists());
+    helper.addAttachment(xhtml.getFilename(), xhtml);
+
+
     mailSender.send(message);
   }
 }
