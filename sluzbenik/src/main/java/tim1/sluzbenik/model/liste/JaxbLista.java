@@ -9,10 +9,11 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 
 import tim1.sluzbenik.model.korisnici.Korisnik;
 import tim1.sluzbenik.model.obavestenje.Obavestenje;
+import tim1.sluzbenik.model.zahtev.Zahtev;
 
 //When doing so you have to specify which classes could possibly be in the list using @XmlSeeAlso
 @XmlRootElement
-@XmlSeeAlso({Korisnik.class, Obavestenje.class})
+@XmlSeeAlso({Korisnik.class, Zahtev.class, Obavestenje.class})
 public class JaxbLista<T> {
   private List<T> lista = new ArrayList<>();
 

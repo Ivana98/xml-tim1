@@ -77,13 +77,21 @@ public class Zahtev {
     @XmlElement(name = "opis_zahteva", required = true)
     protected OpisZahteva opisZahteva;
     @XmlElement(required = true)
-    protected String mesto;
+    protected Zahtev.Mesto mesto;
     @XmlElement(required = true)
     protected Zahtev.Datum datum;
     @XmlElement(required = true)
     protected Trazilac trazilac;
     @XmlElement(required = true)
     protected String footer;
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "property")
+    protected String property;
+    @XmlAttribute(name = "datatype")
+    protected String datatype;
+    @XmlAttribute(name = "content")
+    protected String content;
 
     /**
      * Gets the value of the infoOrgana property.
@@ -189,7 +197,7 @@ public class Zahtev {
      *     {@link String }
      *     
      */
-    public String getMesto() {
+    public Zahtev.Mesto getMesto() {
         return mesto;
     }
 
@@ -201,7 +209,7 @@ public class Zahtev {
      *     {@link String }
      *     
      */
-    public void setMesto(String value) {
+    public void setMesto(Zahtev.Mesto value) {
         this.mesto = value;
     }
 
@@ -265,6 +273,7 @@ public class Zahtev {
         return footer;
     }
 
+
     /**
      * Sets the value of the footer property.
      * 
@@ -275,6 +284,30 @@ public class Zahtev {
      */
     public void setFooter(String value) {
         this.footer = value;
+    }
+
+    /**
+     * Gets the value of the about property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAbout() {
+        return about;
+    }
+
+    /**
+     * Sets the value of the about property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAbout(String value) {
+        this.about = value;
     }
 
 
@@ -383,5 +416,190 @@ public class Zahtev {
         }
 
     }
+
+
+    /**
+     * &lt;p&gt;Java class for anonymous complex type.
+     * 
+     * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;complexType&amp;gt;
+     *   &amp;lt;simpleContent&amp;gt;
+     *     &amp;lt;extension base="&amp;lt;http://www.w3.org/2001/XMLSchema&amp;gt;string"&amp;gt;
+     *       &amp;lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *       &amp;lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *     &amp;lt;/extension&amp;gt;
+     *   &amp;lt;/simpleContent&amp;gt;
+     * &amp;lt;/complexType&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
+    public static class Mesto {
+
+        @XmlValue
+        protected String value;
+        @XmlAttribute(name = "property")
+        protected String property;
+        @XmlAttribute(name = "datatype")
+        protected String datatype;
+
+        /**
+         * Gets the value of the value property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the value property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Gets the value of the property property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getProperty() {
+            return property;
+        }
+
+        /**
+         * Sets the value of the property property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setProperty(String value) {
+            this.property = value;
+        }
+
+        /**
+         * Gets the value of the datatype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatatype() {
+            return datatype;
+        }
+
+        /**
+         * Sets the value of the datatype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatatype(String value) {
+            this.datatype = value;
+        }
+
+    }
+
+
+
+
+
+
+    /**
+     * Gets the value of the property property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProperty() {
+        return property;
+    }
+
+    /**
+     * Sets the value of the property property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProperty(String value) {
+        this.property = value;
+    }
+
+    /**
+     * Gets the value of the datatype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDatatype() {
+        return datatype;
+    }
+
+    /**
+     * Sets the value of the datatype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDatatype(String value) {
+        this.datatype = value;
+    }
+
+
+    /**
+     * Gets the value of the datatype property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * Sets the value of the datatype property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 
 }

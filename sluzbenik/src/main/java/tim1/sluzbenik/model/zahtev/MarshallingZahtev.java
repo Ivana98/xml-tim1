@@ -10,11 +10,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import tim1.sluzbenik.model.zahtev.InfoOrgana.Naziv;
+import tim1.sluzbenik.model.zahtev.InfoOrgana.Sediste;
 import tim1.sluzbenik.model.zahtev.OpisZahteva.DodatneInformacije;
 import tim1.sluzbenik.model.zahtev.OpisZahteva.TipoviZahteva;
 import tim1.sluzbenik.model.zahtev.TipZahteva.NaciniSlanja;
 import tim1.sluzbenik.model.zahtev.Trazilac.ImeIPrezime;
 import tim1.sluzbenik.model.zahtev.Zahtev.Datum;
+import tim1.sluzbenik.model.zahtev.Zahtev.Mesto;
 import tim1.sluzbenik.model.zahtev.Trazilac.Adresa;
 
 import static tim1.sluzbenik.utils.PathConstants.*;
@@ -26,7 +29,7 @@ public class MarshallingZahtev {
 
             Zahtev zahtev = generateZahtev();
 
-            File file = new File("./documents/xml_documents/zahtev.xml");
+            File file = new File("./../documents/xml_documents/zahtev1.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -44,14 +47,26 @@ public class MarshallingZahtev {
     private static Zahtev generateZahtev() {
 
         ObjectFactory factory = new ObjectFactory();
+        
         Zahtev zahtev = factory.createZahtev();
-        zahtev.setNaslov("Zakon");
-        zahtev.setSvrhaZahteva("Pristup informaciji od javnog znacaja");
+        zahtev.setProperty("pred:status");
+        zahtev.setDatatype("xs:string");
+        zahtev.setContent("na cekanju");
+
+        zahtev.setNaslov("Zahtev");
+        zahtev.setSvrhaZahteva("za pristup informaciji od javnog znacaja");
         zahtev.setInfoOrgana(generateInfoOrgana(factory));
         zahtev.setOpisZahteva(generateOpisZahteva(factory));
-        zahtev.setMesto("Novi Sad");
+        zahtev.setAbout("http://www.ftn.uns.ac.rs/rdf/zahtev/Zahtev");
+        Mesto mesto = new Mesto();
+        mesto.setValue("Novi Sad");
+        mesto.setProperty("pred:mesto");
+        mesto.setDatatype("xs:string");
+        zahtev.setMesto(mesto);
 
         Datum datum = new Datum();
+        datum.setProperty("pred:datum");
+        datum.setDatatype("xs:date");
         datum.setValue(generateDate());
         zahtev.setDatum(datum);
         zahtev.setTrazilac(generateTrazilac(factory));
@@ -61,8 +76,19 @@ public class MarshallingZahtev {
 
     private static InfoOrgana generateInfoOrgana(ObjectFactory factory){
         InfoOrgana infoOrgana = factory.createInfoOrgana();
-        infoOrgana.setNaziv("organ1");
-        infoOrgana.setSediste("Novi Sad");
+        infoOrgana.setAbout("http://www.ftn.uns.ac.rs/rdf/zahtev/Organ");
+
+        Naziv naziv = new Naziv();
+        naziv.setDatatype("xs:string");
+        naziv.setProperty("pred:naziv");
+        naziv.setValue("organ1");
+        infoOrgana.setNaziv(naziv);
+
+        Sediste sediste = new Sediste();
+        sediste.setDatatype("xs:string");
+        sediste.setProperty("pred:sediste");
+        sediste.setValue("Novi Sad");
+        infoOrgana.setSediste(sediste);
         return infoOrgana;
     }
 
@@ -114,12 +140,18 @@ public class MarshallingZahtev {
     private static Trazilac generateTrazilac(ObjectFactory factory){
         Trazilac trazilac =  factory.createTrazilac();
 
+        trazilac.setAbout("http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac");
+
         ImeIPrezime ip = new ImeIPrezime();
         ip.setValue("Nikola Jokic");
+        ip.setDatatype("xs:string");
+        ip.setProperty("pred:ime-prezime");
         trazilac.setImeIPrezime(ip);
 
         Adresa adresa = new Adresa();
         adresa.setValue("Sombor, somborska 5");
+        adresa.setProperty("pred:adresa");
+        adresa.setValue("xs:string");
         trazilac.setAdresa(adresa);
         trazilac.setKontakt("063 645658");
 
