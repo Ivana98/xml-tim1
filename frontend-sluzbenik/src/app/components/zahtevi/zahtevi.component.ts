@@ -41,15 +41,19 @@ export class ZahteviComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAll();
+    console.log("On init");
+    this.role == this.authService.getRole();
+    console.log("ROLE");
+    console.log(this.role);
+    //this.getAll();
   }
 
   getAll(){
     this.zahtevService.getAll().subscribe(result => {
       console.log(result);
       //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
-    });
-    this.role == this.authService.getRole();
+    })
+    //this.role == this.authService.getRole();
   }
 
   requestPage(): void {
