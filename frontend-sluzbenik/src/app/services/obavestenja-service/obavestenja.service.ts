@@ -1,7 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 declare const Xonomy: any;
+
+declare const require;
+const xml2js = require("xml2js");
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +29,29 @@ export class ObavestenjaService {
     return this.http.post<any>(this.apiUrl + '/obavestenja/xml', obavestenje, this.httpOptions);
   }
 
+  getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
+    return this.http
+    .get(this.apiUrl + '/obavestenja/xml', { responseType: "text" })
+    .pipe(
+      switchMap(async xml => await this.parseXmlToJson(xml))
+    );
+  }
+
+  async parseXmlToJson(xml) {
+    return await xml2js
+      .parseStringPromise(xml, { explicitArray: false })
+      .then(response => {
+        return response;
+      });
+  }
+
   public searchArhivi = `<Dostavljeno xml:space='preserve'>Arhivi</Dostavljeno>`;
   public searchImenovanom = `<Dostavljeno xml:space='preserve'>Imenovanom</Dostavljeno>`;
   public replaceArhivi = `<Dostavljeno Selected="2"><Primer ID="1">1. Именованом </Primer><Primer ID="2">2. Архиви</Primer></Dostavljeno>`;
   public replaceImenovanom = `<Dostavljeno Selected="1"><Primer ID="1">1. Именованом </Primer><Primer ID="2">2. Архиви</Primer></Dostavljeno>`;
 
   public xmlString =
-  `<Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    `<Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
   xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
       <Osnovni_podaci>
@@ -131,8 +152,8 @@ export class ObavestenjaService {
         hasText: true,
         asker: Xonomy.askPicklist,
         askerParameter: [
-          {value: "Imenovanom"},
-          {value: "Arhivi"}
+          { value: "Imenovanom" },
+          { value: "Arhivi" }
         ]
       },
       Naziv: {

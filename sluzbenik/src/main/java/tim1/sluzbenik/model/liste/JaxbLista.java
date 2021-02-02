@@ -17,7 +17,6 @@ import tim1.sluzbenik.model.zahtev.Zahtev;
 public class JaxbLista<T> {
   private List<T> lista = new ArrayList<>();
 
-
   public JaxbLista() {
   }
 
