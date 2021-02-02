@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify({
             username: payload.sub,
             token: data.accessToken,
-            role: payload.uloga
+            role: payload.role
           }));
 
           console.log(payload)

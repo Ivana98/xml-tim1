@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-prikaz-zahteva',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrikazZahtevaComponent implements OnInit {
 
-  role = 'SLUZBENIK';
+  role = '';
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
   accept(): void {
