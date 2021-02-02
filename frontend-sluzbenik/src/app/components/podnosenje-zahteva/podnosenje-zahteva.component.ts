@@ -19,8 +19,6 @@ export class PodnosenjeZahtevaComponent implements OnInit {
   }
 
   send(): void {
-    console.log("*** Slanje zahteva ***");
-
     let zahtev = {
       "@": {
         "xmlns": "http://www.ftn.uns.ac.rs/zahtev",
@@ -86,16 +84,14 @@ export class PodnosenjeZahtevaComponent implements OnInit {
       footer: "footer tekst"
     };
 
-    let zahtevXML = parse("zahtev", zahtev, { declaration: { encoding: 'UTF-8' } })
-
-    console.log(zahtevXML);
+    let zahtevXML = parse("zahtev", zahtev, { declaration: { encoding: 'UTF-8' } });
 
     this.zahtevService.addNew(zahtevXML)
-    .subscribe(
-      response => {
-        // sa beka se ne vraca nista za sada
-      }
-    )
+      .subscribe(
+        response => {
+          // sa beka se ne vraca nista za sada
+        }
+      );
 
   }
 
