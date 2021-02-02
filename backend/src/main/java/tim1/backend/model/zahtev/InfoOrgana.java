@@ -5,7 +5,6 @@
 // Generated on: 2021.01.30 at 06:47:34 PM CET 
 //
 
-
 package tim1.backend.model.zahtev;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,6 +13,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -46,9 +46,9 @@ import javax.xml.bind.annotation.XmlType;
 public class InfoOrgana {
 
     @XmlElement(required = true)
-    protected String naziv;
+    protected InfoOrgana.Naziv naziv;
     @XmlElement(required = true)
-    protected String sediste;
+    protected InfoOrgana.Sediste sediste;
     @XmlAttribute(name = "about")
     protected String about;
 
@@ -60,7 +60,7 @@ public class InfoOrgana {
      *     {@link String }
      *     
      */
-    public String getNaziv() {
+    public InfoOrgana.Naziv getNaziv() {
         return naziv;
     }
 
@@ -72,7 +72,7 @@ public class InfoOrgana {
      *     {@link String }
      *     
      */
-    public void setNaziv(String value) {
+    public void setNaziv(InfoOrgana.Naziv value) {
         this.naziv = value;
     }
 
@@ -84,7 +84,7 @@ public class InfoOrgana {
      *     {@link String }
      *     
      */
-    public String getSediste() {
+    public InfoOrgana.Sediste getSediste() {
         return sediste;
     }
 
@@ -96,7 +96,7 @@ public class InfoOrgana {
      *     {@link String }
      *     
      */
-    public void setSediste(String value) {
+    public void setSediste(InfoOrgana.Sediste value) {
         this.sediste = value;
     }
 
@@ -122,6 +122,218 @@ public class InfoOrgana {
      */
     public void setAbout(String value) {
         this.about = value;
+    }
+
+
+    /**
+     * &lt;p&gt;Java class for anonymous complex type.
+     * 
+     * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;complexType&amp;gt;
+     *   &amp;lt;simpleContent&amp;gt;
+     *     &amp;lt;extension base="&amp;lt;http://www.w3.org/2001/XMLSchema&amp;gt;string"&amp;gt;
+     *       &amp;lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *       &amp;lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *     &amp;lt;/extension&amp;gt;
+     *   &amp;lt;/simpleContent&amp;gt;
+     * &amp;lt;/complexType&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
+    public static class Naziv {
+
+        @XmlValue
+        protected String value;
+        @XmlAttribute(name = "property")
+        protected String property;
+        @XmlAttribute(name = "datatype")
+        protected String datatype;
+
+        /**
+         * Gets the value of the value property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the value property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Gets the value of the property property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getProperty() {
+            return property;
+        }
+
+        /**
+         * Sets the value of the property property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setProperty(String value) {
+            this.property = value;
+        }
+
+        /**
+         * Gets the value of the datatype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatatype() {
+            return datatype;
+        }
+
+        /**
+         * Sets the value of the datatype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatatype(String value) {
+            this.datatype = value;
+        }
+
+    }
+
+
+    /**
+     * &lt;p&gt;Java class for anonymous complex type.
+     * 
+     * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
+     * 
+     * &lt;pre&gt;
+     * &amp;lt;complexType&amp;gt;
+     *   &amp;lt;simpleContent&amp;gt;
+     *     &amp;lt;extension base="&amp;lt;http://www.w3.org/2001/XMLSchema&amp;gt;string"&amp;gt;
+     *       &amp;lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *       &amp;lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}string" /&amp;gt;
+     *     &amp;lt;/extension&amp;gt;
+     *   &amp;lt;/simpleContent&amp;gt;
+     * &amp;lt;/complexType&amp;gt;
+     * &lt;/pre&gt;
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "value"
+    })
+    public static class Sediste {
+
+        @XmlValue
+        protected String value;
+        @XmlAttribute(name = "property")
+        protected String property;
+        @XmlAttribute(name = "datatype")
+        protected String datatype;
+
+        /**
+         * Gets the value of the value property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the value property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setValue(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Gets the value of the property property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getProperty() {
+            return property;
+        }
+
+        /**
+         * Sets the value of the property property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setProperty(String value) {
+            this.property = value;
+        }
+
+        /**
+         * Gets the value of the datatype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatatype() {
+            return datatype;
+        }
+
+        /**
+         * Sets the value of the datatype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatatype(String value) {
+            this.datatype = value;
+        }
+
     }
 
 }

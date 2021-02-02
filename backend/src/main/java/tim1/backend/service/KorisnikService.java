@@ -7,6 +7,7 @@ import tim1.backend.repository.UserRepository;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -43,7 +44,13 @@ public class KorisnikService extends AbstractService {
     @Override
     public void saveXML(String documentId, String content) throws Exception {
 
-        JaxbLista<Korisnik> lista = this.findAllFromCollection();
+        JaxbLista<Korisnik> lista;
+        try {
+            lista = this.findAllFromCollection();
+        } catch (Exception e) {
+            List<Korisnik> l = new ArrayList<>();
+            lista = new JaxbLista<>(l);
+        }
 
         JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
