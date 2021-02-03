@@ -17,12 +17,14 @@
                     display: table;
                     margin-left: 10%;
                     margin-right: 10%;
-                    
+                    margin-top: 8%;
+                    margin-bottom: 8%;
                     }
                     
                     body {
                     display: table-cell;
                     vertical-align: middle;
+                    align-content: center;
                     }
                     
                     .indented {
@@ -32,15 +34,21 @@
                     .add-space-after {
                     margin-bottom: 30px;
                     }
+                    
+                    .half{
+                    width: 40%;
+                    }
                 </style>
             </head>
             
             <body>
                 <p> 
-                    <xsl:value-of select="/zahtev/info_organa/naziv"></xsl:value-of>, 
-                    <xsl:value-of select="/zahtev/info_organa/sediste"></xsl:value-of>
+                    <u>
+                        <xsl:value-of select="/zahtev/info_organa/naziv"></xsl:value-of>, 
+                        <xsl:value-of select="/zahtev/info_organa/sediste"></xsl:value-of>
+                    </u>
                 </p>
-                <p class="add-space-after"> назив и седиште органа коме се захтев упућује </p>
+                <small class="add-space-after"> (назив и седиште органа коме се захтев упућује) </small>
                 
                 <h1> З А Х Т Е В </h1>
                 <h2 class="add-space-after"> за приступ информацији од јавног значаја </h2>
@@ -199,7 +207,7 @@
                                                 <b> 
                                                     на други начин:*** 
                                                     <u> 
-                                                        <xsl:value-of select="/zahtev/opis_zahteva/tipovi_zahteva/tip_zahteva/nacini_slanja/nacin_slanja"></xsl:value-of> 
+                                                        <xsl:value-of select="/zahtev/opis_zahteva/tipovi_zahteva/tip_zahteva/nacini_slanja/nacin_slanja[@rb = '4']"></xsl:value-of> 
                                                     </u>
                                                 </b>
                                             </strong>  
@@ -222,7 +230,9 @@
                     Овај захтев се односи на следеће информације:
                 </p>
                 <p class="indented">
-                    <xsl:value-of select="/zahtev/opis_zahteva/dodatne_informacije/opis_dodatne_informacije"></xsl:value-of>
+                    <u>
+                        <xsl:value-of select="/zahtev/opis_zahteva/dodatne_informacije/opis_dodatne_informacije"></xsl:value-of>
+                    </u>
                 </p>
                 <small class="add-space-after">
                     (навести што прецизнији опис информације која се тражи као и друге податке
@@ -230,16 +240,17 @@
                 </small>
                 
                 <div class="add-space-after">
-                    <span>
-                        <p> У <xsl:value-of select="/zahtev/mesto"></xsl:value-of> </p>
-                        <p> Datum: <xsl:value-of select="/zahtev/datum"></xsl:value-of> </p>
+                    <span class="half">
+                        <p> У <u> <xsl:value-of select="/zahtev/mesto"></xsl:value-of> </u> </p>
+                        <p> Datum: <u> <xsl:value-of select="/zahtev/datum"></xsl:value-of> </u> </p>
                     </span>
-                    <span>
-                        <p> <xsl:value-of select="/zahtev/trazilac/ime_i_prezime"></xsl:value-of> </p>
+                    
+                    <span class="half">
+                        <p> <u> <xsl:value-of select="/zahtev/trazilac/ime_i_prezime"></xsl:value-of> </u> </p>
                         <small> (Тражилац информације/Име и презиме) </small>
-                        <p> <xsl:value-of select="/zahtev/trazilac/adresa"></xsl:value-of> </p>
+                        <p> <u> <xsl:value-of select="/zahtev/trazilac/adresa"></xsl:value-of> </u> </p>
                         <small> (Aдреса) </small>
-                        <p> <xsl:value-of select="/zahtev/trazilac/kontakt"></xsl:value-of> </p>
+                        <p> <u> <xsl:value-of select="/zahtev/trazilac/kontakt"></xsl:value-of> </u> </p>
                         <small> (други подаци за контакт) </small>
                     </span>
                 </div>
