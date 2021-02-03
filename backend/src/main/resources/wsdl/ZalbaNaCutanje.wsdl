@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
+                  xmlns:tns="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
+                  name="ZalbaNaOdlukuService">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.ftn.uns.ac.rs/zalba-na-cutanje" schemaLocation="../documents/xsd_documents/zalbacutanjecir.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getZalbaNaCutanjeRequest">
+        <wsdl:part name="id" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="getZalbaNaCutanjeResponse">
+        <wsdl:part name="zalba_cutanje" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:message name="getAllRequest"/>
+    <wsdl:message name="getAllResponse">
+        <wsdl:part name="response" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:portType name="ZalbaNaCutanjeServicePortType">
+        <wsdl:operation name="getZalbaNaCutanjeById">
+            <wsdl:input message="tns:getZalbaNaCutanjeRequest" />
+            <wsdl:output message="tns:getZalbaNaCutanjeResponse" />
+        </wsdl:operation>
+
+        <wsdl:operation name="getAll">
+            <wsdl:input message="tns:getAllRequest" />
+            <wsdl:output message="tns:getAllResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ZalbaNaCutanjeServiceSoapBinding" type="tns:ZalbaNaCutanjeServicePortType">
+        <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getZalbaNaCutanjeById">
+            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getZalbaNaCutanjeById" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAll">
+            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getAll" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+    <wsdl:service name="ZalbaNaOdlukuCutanje">
+        <wsdl:port name="ZalbaNaCutanjeServiceSoapBinding" binding="tns:ZalbaNaCutanjeServiceSoapBinding">
+            <soap:address location="http://localhost:8080/ZalbaNaCutanjeServicePortType" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
