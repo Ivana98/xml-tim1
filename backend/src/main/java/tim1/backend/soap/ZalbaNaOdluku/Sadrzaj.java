@@ -44,9 +44,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Sadrzaj {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "zakon", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
         @XmlElementRef(name = "datum", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
-        @XmlElementRef(name = "deo_odluke", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class)
+        @XmlElementRef(name = "deo_odluke", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
+        @XmlElementRef(name = "zakon", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class)
     })
     @XmlMixed
     protected List<Serializable> content;
@@ -69,9 +69,9 @@ public class Sadrzaj {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
      * {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}
      * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link String }
      * {@link JAXBElement }{@code <}{@link String }{@code >}
      * 
      * 
