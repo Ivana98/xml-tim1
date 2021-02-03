@@ -31,8 +31,8 @@ export class ObavestenjaComponent implements OnInit {
     this.obavestenjaService.getAll()
       .subscribe(
         data => {
-          data["jaxbLista"]["ns3:Obavestenje"].forEach(element => {
-            this.obavestenja.push(new Obavestenje(1, element["ns3:Sadrzaj"]["ns3:Naslov"]));  //element["ns3:Sadrzaj"]["ns3:Naslov"]
+          data["jaxbLista"]["ns5:Obavestenje"].forEach(element => {
+            this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));  //element["ns3:Sadrzaj"]["ns3:Naslov"]
           });
 
           this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
