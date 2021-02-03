@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import org.apache.tools.ant.util.ReaderInputStream;
 
-
 import javax.websocket.server.PathParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,6 +75,18 @@ public class ZahtevController {
             
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping(path = "/xml/{idZahteva}", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZahteva) {
+        try {
+            
+            zahtevService.saveXML(idZahteva, content);
+            zahtevService.saveRDF(content, idZahteva);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

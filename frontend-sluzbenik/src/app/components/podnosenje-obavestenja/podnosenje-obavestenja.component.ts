@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ObavestenjaService } from 'src/app/services/obavestenja-service/obavestenja.service';
+import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
 
 declare const Xonomy: any;
 
@@ -14,6 +15,7 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
 
   constructor(
     private obavestenjaService: ObavestenjaService,
+    private zahtevService: ZahtevService,
     private _Activatedroute: ActivatedRoute,
   ) { 
     this.zahtevId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
