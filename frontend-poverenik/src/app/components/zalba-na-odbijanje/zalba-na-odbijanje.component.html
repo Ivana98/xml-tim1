@@ -1,1 +1,119 @@
-<p>zalba-na-odbijanje works!</p>
+<div class="dashboard-container">
+    <form class="example-form">
+        <table>
+            <tr>
+                <h3>Adresa:</h3>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Grad</mat-label>
+                        <input matInput type="text" [(ngModel)]="grad" name="grad">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Ulica</mat-label>
+                        <input matInput [(ngModel)]="ulica" name="ulica">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Broj</mat-label>
+                        <input matInput [(ngModel)]="broj" name="broj">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Sediste</mat-label>
+                        <input matInput [(ngModel)]="sediste" name="sediste">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                Podaci o zaliocu:
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Ime</mat-label>
+                        <input matInput [(ngModel)]="ime" name="ime">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Prezime</mat-label>
+                        <input matInput [(ngModel)]="prezime" name="prezime">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>kontakt</mat-label>
+                        <input matInput [(ngModel)]="kontakt" name="kontakt">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>Organ:</tr>
+            <tr>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Naziv organa</mat-label>
+                    <input matInput [(ngModel)]="nazivOrgana" name="nazivOrgana">
+                </mat-form-field>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Broj zahteba</mat-label>
+                        <input matInput [(ngModel)]="brojZahteva" name="brojZahteva">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Godina</mat-label>
+                        <input matInput [(ngModel)]="godina" name="godina">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Datum podnosenja zahteva</mat-label>
+                        <input matInput [(ngModel)]="datumPodnosenjaZahteva" name="datumPodnosenjaZahteva">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Deo odluke</mat-label>
+                        <input matInput [(ngModel)]="deoOdluke" name="deoOdluke">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                Vremen i mesto podnosenja zalbe
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Mesto podnosenja</mat-label>
+                        <input matInput [(ngModel)]="mestoPodnosenjaZalbe" name="mestoPodnosenjaZalbe">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Datum podnosenja</mat-label>
+                        <input matInput [(ngModel)]="datumPodnosenjaZalbe" name="datumPodnosenjaZalbe">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button mat-raised-button color="primary" (click)="send()">Podnesi</button>
+                </td>
+            </tr>
+        </table>
+
+
+    </form>
+</div>

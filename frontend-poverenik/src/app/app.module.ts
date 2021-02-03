@@ -18,6 +18,7 @@ import { ResenjaComponent } from './components/resenja/resenja.component';
 import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba-na-odbijanje.component';
+import { ZalbaNaCutanjeComponent } from './components/zalba-na-cutanje/zalba-na-cutanje.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba
     ResenjaComponent,
     IzvestajiComponent,
     ZahteviComponent,
-    ZalbaNaOdbijanjeComponent
+    ZalbaNaOdbijanjeComponent,
+    ZalbaNaCutanjeComponent
   ],
   imports: [
     MaterialModuleModule,
@@ -41,7 +43,8 @@ import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

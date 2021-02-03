@@ -55,7 +55,10 @@
                     [disabled]="!element.odbijen">
                         Zalba 1
                     </button>
-                    <button mat-raised-button color="primary">Zalba 2</button>
+                    <button mat-raised-button color="primary"
+                    [routerLink]="['/homepage/zalba-cutanje/', element.id]">
+                        Zalba 2
+                </button>
                 </td>
             </ng-container>
 
