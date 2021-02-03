@@ -160,25 +160,23 @@
 							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
 
 							<wsdlOptions>
-								<wsdlOption>
+								<!-- <wsdlOption>
 									<wsdl>${basedir}/src/main/resources/wsdl/ZalbaNaOdluku.wsdl</wsdl>
 									<extraargs>
-										<extraarg>-impl</extraarg> <!-- Ima i drugih dodatniha<extraarg>-client</extraarg> -->
+										<extraarg>-impl</extraarg> 
 										<extraarg>-verbose</extraarg>
 									</extraargs>
 									<wsdlLocation>classpath:wsdl/ZalbaNaOdluku.wsdl</wsdlLocation>
-								</wsdlOption>
-
-								<!-- <wsdlOption>
-									<wsdl>${basedir}/src/main/resources/wsdl/AddressBook.wsdl</wsdl>
-									<extraargs>
-										<extraarg>-impl</extraarg>
-										<extraarg>-verbose</extraarg>
-									</extraargs>
-									<wsdlLocation>classpath:wsdl/AddressBook.wsdl</wsdlLocation>
 								</wsdlOption> -->
 
-
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/ZalbaNaCutanje.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg> 
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/ZalbaNaCutanje.wsdl</wsdlLocation>
+								</wsdlOption>
 
 
 							</wsdlOptions>
