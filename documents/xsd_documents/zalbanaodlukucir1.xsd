@@ -8,10 +8,11 @@
             <xs:sequence>
                 <xs:element name="Zalba" type="ftn:TZalbaNaOdluku"/>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
             <xs:anyAttribute namespace="##any" processContents="lax"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="zalba">
+    <xs:element name="zalba_podaci">
         <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element name="zalilac" type="ftn:TLice"/>
@@ -214,7 +215,7 @@
         <xs:sequence>
             <xs:element name="naslov" type="xs:string"/>
             <xs:element ref="ftn:podaci_o_povereniku"/>
-            <xs:element ref="ftn:zalba"/>
+            <xs:element ref="ftn:zalba_podaci"/>
             <xs:element ref="ftn:napomene"/>
         </xs:sequence>
         <xs:anyAttribute namespace="##any" processContents="lax"/>

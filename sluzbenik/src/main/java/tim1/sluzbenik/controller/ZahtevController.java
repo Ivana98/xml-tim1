@@ -1,8 +1,17 @@
 package tim1.sluzbenik.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.tools.ant.util.ReaderInputStream;
@@ -72,7 +81,7 @@ public class ZahtevController {
         }
 
         try {
-            
+
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -84,7 +93,7 @@ public class ZahtevController {
     @PutMapping(path = "/xml/{idZahteva}", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZahteva) {
         try {
-            
+
             zahtevService.saveXML(idZahteva, content);
             zahtevService.saveRDF(content, idZahteva);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -114,9 +123,9 @@ public class ZahtevController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<Zahtev>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<Zahtev>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<Zahtev> lista = zahtevService.findAllFromCollection();
@@ -126,4 +135,57 @@ public class ZahtevController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping(path = "/odbijanje/{idZahteva}", consumes = "application/xml")
+    public ResponseEntity<?> odbijanjeZahteva(@RequestBody String content, @PathVariable String idZahteva) {
+        URL url;
+        try {
+            url = new URL("http://localhost:8092/emails/odbijZahtev");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            //con.setRequestProperty("Content-Type", "multipart/form-data");
+
+            Map<String, String> parameters = new HashMap<>();
+            parameters.put("email", "konstrukcijaitestiranje@gmail.com");
+            parameters.put("id", idZahteva);
+            con.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+            out.writeBytes(getParamsString(parameters));
+            out.flush();
+            out.close();
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
+
+    }
+
+
+    public static String getParamsString(Map<String, String> params) 
+      throws UnsupportedEncodingException{
+        StringBuilder result = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+          result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+          result.append("=");
+          result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+          result.append("&");
+        }
+
+        String resultString = result.toString();
+        return resultString.length() > 0
+          ? resultString.substring(0, resultString.length() - 1)
+          : resultString;
+    }
+
 }
+

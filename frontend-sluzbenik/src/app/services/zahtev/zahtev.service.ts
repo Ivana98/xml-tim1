@@ -11,6 +11,7 @@ const xml2js = require("xml2js");
   providedIn: 'root'
 })
 export class ZahtevService {
+  email: string = 'konstrukcijaitestiranje@gmail.com';
 
   apiUrl = 'http://localhost:8091/api';
 
@@ -20,12 +21,29 @@ export class ZahtevService {
     })
   };
 
+  
+  httpOptions2 = {
+    headers: new HttpHeaders({
+      'Content-Type': 'multipart/form-data',
+    })
+  };
+  
+
   constructor(
     private http: HttpClient
   ) { }
 
   addNew(zahtev): any {
     return this.http.post<any>(this.apiUrl + '/zahtevi/xml', zahtev, this.httpOptions);
+  }
+
+  odbijZahtev(idZahteva: string): any {
+    // console.log(idZahteva);
+    // const formData = new FormData();
+    // formData.append('email', this.email);
+    // formData.append('id', idZahteva);
+    // return this.http.post<any>('http://localhost:8092/emails/odbijZahtev', formData);
+    return this.http.post<any>(this.apiUrl + '/zahtevi/odbijanje/' + idZahteva, "", this.httpOptions);
   }
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>

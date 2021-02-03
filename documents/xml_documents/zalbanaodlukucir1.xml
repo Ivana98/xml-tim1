@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba_na_odluku xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir1.xsd"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    id="">
+    <Zalba>
+        <naslov>ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ</naslov>
+        <podaci_o_povereniku>
+            <namena>Поверенику за информације од јавног значаја и заштиту података о личности</namena>
+            <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaPoverenika">
+                <grad property="pred:grad" datatype="xs:string"> Београд </grad>
+                <ulica property="pred:ulica" datatype="xs:string"> Булевар краља Александрa </ulica>
+                <broj>15</broj>
+            </adresa>
+        </podaci_o_povereniku>
+        <zalba_podaci>
+            Ж А Л Б А  
+            <zalilac xsi:type="TFizickoLice" about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Zalilac">
+                <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaZalioca">
+                    <grad property="pred:grad" datatype="xs:string"></grad>
+                    <ulica property="pred:grad" datatype="xs:string"></ulica>
+                    <broj></broj>
+                </adresa>
+                <sediste property="pred:sediste" datatype="xs:string"></sediste>
+                <ime property="pred:ime" datatype="xs:string"></ime>
+                <prezime property="pred:prezime" datatype="xs:string"></prezime>
+            </zalilac>
+            против решења-закључка 
+            <naziv_organa></naziv_organa>
+            Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.
+            
+            <sadrzaj>
+                Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми 
+                са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-
+                упутио/ла дана <datum>2020-12-10</datum> године и тако ми ускраћено-онемогућено остваривање уставног и
+                законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у
+                целости, односно у делу којим <deo_odluke> </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
+                На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи
+                одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
+                Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   
+            </sadrzaj>
+            
+            <podnosilac about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosilac">
+                <ime property="pred:imePodnosioca" datatype="xs:string">Imenko</ime>
+                <prezime property="pred:prezimePodnosioca" datatype="xs:string">Prezimenic</prezime>
+                <adresa>
+                    <grad property="pred:gradPodnosioca" datatype="xs:string"></grad>
+                    <ulica></ulica>
+                    <broj></broj>
+                </adresa>
+                <kontakt_podaci>0651122123</kontakt_podaci>
+            </podnosilac>
+            
+            <vreme_i_mesto about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosenje">
+                <grad property="pred:mesto" datatype="xs:string"></grad>
+                <datum property="pred:datum" datatype="xs:date">2020-12-01</datum>
+            </vreme_i_mesto>
+        </zalba_podaci>
+        <napomene>
+            Напомена: 
+            <napomena id="1">
+                У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив
+                органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у
+                жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити.
+                Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити. 
+            </napomena>
+            <napomena id="2">
+                Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу
+                као и копију одлуке органа која се оспорава жалбом.
+            </napomena>
+        </napomene>
+    </Zalba>
+</zalba_na_odluku>
