@@ -12,7 +12,7 @@
         </p>
 
         <div *ngIf="role=='SLUZBENIK'">
-            <button mat-raised-button color="primary" aria-label="Prihvati" (click)="accept()" id="acceptBtn"
+            <button mat-raised-button color="primary" aria-label="Prihvati" [routerLink]="['podnosenje-obavestenja']" id="acceptBtn"
             class="btn-spacing">
                 Prihvati
             </button>
