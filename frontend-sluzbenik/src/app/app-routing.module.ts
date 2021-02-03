@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'resenja/:id', component: PrikazResenjaComponent },
       { path: 'izvestaji', component: IzvestajiComponent },
       { path: 'podnosenje-zahteva', component: PodnosenjeZahtevaComponent },
-      { path: 'podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent }
+      { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent }
     ]  
   },
   

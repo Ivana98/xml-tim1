@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ObavestenjaService } from 'src/app/services/obavestenja-service/obavestenja.service';
 
 declare const Xonomy: any;
@@ -9,15 +10,21 @@ declare const Xonomy: any;
   styleUrls: ['./podnosenje-obavestenja.component.scss']
 })
 export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
+  zahtevId: string;
 
   constructor(
     private obavestenjaService: ObavestenjaService,
-  ) { }
+    private _Activatedroute: ActivatedRoute,
+  ) { 
+    this.zahtevId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
+
+  }
 
   ngAfterViewInit(): void {
     //prikaz xonomy editora
+    console.log(this.zahtevId);
     let element = document.getElementById("editor");
-    let xmlStr = this.obavestenjaService.xmlString;
+    let xmlStr = this.obavestenjaService.getXmlString(this.zahtevId);
     let specification = this.obavestenjaService.obavestenjeSpecifikacija;
     Xonomy.render(xmlStr, element, specification);
   }
