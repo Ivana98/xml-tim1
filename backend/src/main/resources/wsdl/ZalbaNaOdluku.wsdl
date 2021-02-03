@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+                  xmlns:tns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+                  name="ZalbaNaOdlukuService">
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.ftn.uns.ac.rs/zalba-na-odluku" schemaLocation="../documents/xsd_documents/zalbanaodlukucir1.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getZalbaNaOdlukuRequest">
+        <wsdl:part name="id" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="getZalbaNaOdlukuResponse">
+        <wsdl:part name="zalba_odluka" type="tns:TZalbaNaOdluku" />
+    </wsdl:message>
+
+
+
+    <wsdl:portType name="ZalbaNaOdlukuServicePortType">
+        <wsdl:operation name="getZalbaNaOdlukuById">
+            <wsdl:input message="tns:getZalbaNaOdlukuRequest" />
+            <wsdl:output message="tns:getZalbaNaOdlukuResponse" />
+        </wsdl:operation>
+
+
+    </wsdl:portType>
+
+    <wsdl:binding name="ZalbaNaOdlukuServiceSoapBinding" type="tns:ZalbaNaOdlukuServicePortType">
+        <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getZalbaNaOdlukuById">
+            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getZalbaNaOdlukuById" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+   
+
+    </wsdl:binding>
+    <wsdl:service name="ZalbaNaOdlukuService">
+        <wsdl:port name="ZalbaNaOdlukuServiceSoapBinding" binding="tns:ZalbaNaOdlukuServiceSoapBinding">
+            <soap:address location="http://localhost:8080/ZalbaNaOdlukuPort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

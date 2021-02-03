@@ -161,12 +161,12 @@
 
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/wsdl/HelloDocument.wsdl</wsdl>
+									<wsdl>${basedir}/src/main/resources/wsdl/ZalbaNaOdluku.wsdl</wsdl>
 									<extraargs>
 										<extraarg>-impl</extraarg> <!-- Ima i drugih dodatniha<extraarg>-client</extraarg> -->
 										<extraarg>-verbose</extraarg>
 									</extraargs>
-									<wsdlLocation>classpath:wsdl/HelloDocument.wsdl</wsdlLocation>
+									<wsdlLocation>classpath:wsdl/ZalbaNaOdluku.wsdl</wsdlLocation>
 								</wsdlOption>
 
 								<!-- <wsdlOption>
