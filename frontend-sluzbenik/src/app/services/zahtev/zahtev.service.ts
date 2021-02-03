@@ -1,8 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 declare const Xonomy: any;
+declare const require;
+const xml2js = require("xml2js");
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +28,20 @@ export class ZahtevService {
     return this.http.post<any>(this.apiUrl + '/zahtevi/xml', zahtev, this.httpOptions);
   }
 
-  getAll(): Observable<any> {
-    // let queryParams = {};
+  getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
+    return this.http
+    .get(this.apiUrl + '/zahtevi/xml', { responseType: "text" })
+    .pipe(
+      switchMap(async xml => await this.parseXmlToJson(xml))
+    );
+  }
 
-  // queryParams = {
-  // 	headers: this.headers,
-  // 	observe: 'response'
-    // };
-
-    return this.http.get(this.apiUrl + 'zahtevi/xml', this.httpOptions);
+  async parseXmlToJson(xml) {
+    return await xml2js
+      .parseStringPromise(xml, { explicitArray: false })
+      .then(response => {
+        return response;
+      });
   }
   
   

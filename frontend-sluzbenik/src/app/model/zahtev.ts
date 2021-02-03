@@ -1,11 +1,13 @@
 
 export class Zahtev {
-    id?: number;
+    id?: string;
     naziv: string;
+    status: string;
 
-    constructor(id?: number, naziv?: string){
+    constructor(id?: string, naziv?: string, status?: string){
         this.naziv = naziv ? naziv : '';
-        this.id = id ? id : -1;
+        this.id = id ? id : "";
+        this.status = status ? status : "na cekanju";
     }
 
 }

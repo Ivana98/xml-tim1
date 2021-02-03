@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./zahtevi.component.scss']
 })
 export class ZahteviComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'status', 'izvoz'];
   dataSource: MatTableDataSource<Zahtev>;
   pageIndex: number = 0;
   pageSize: number = 5;
@@ -20,16 +20,7 @@ export class ZahteviComponent implements OnInit {
 
   role = '';
 
-  zahtevi: Zahtev[] = [
-    {
-      id: 1,
-      naziv: 'Zahtev 1',
-    },
-    {
-      id: 2,
-      naziv: 'Zahtev 2',
-    }
-  ];
+  zahtevi: Zahtev[] = [];
 
   constructor(
     private router: Router,
@@ -45,7 +36,7 @@ export class ZahteviComponent implements OnInit {
     this.role == this.authService.getRole();
     console.log("ROLE");
     console.log(this.role);
-    //this.getAll();
+    this.getAll();
   }
 
   getAll(){
@@ -54,6 +45,16 @@ export class ZahteviComponent implements OnInit {
       //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
     })
     //this.role == this.authService.getRole();
+    this.zahtevService.getAll()
+    .subscribe(
+      data => {
+        data["jaxbLista"]["ns4:zahtev"].forEach(element => {
+          this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"])); 
+        });
+
+        this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
+      }
+    );
   }
 
   requestPage(): void {
