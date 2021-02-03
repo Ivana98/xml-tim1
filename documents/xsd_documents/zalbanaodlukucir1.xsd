@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zalba-na-odluku"
+    xmlns:ftn="http://www.ftn.uns.ac.rs/zalba-na-odluku">
+
+    <xs:element name="zalba_na_odluku">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Zalba" type="ftn:TZalbaNaOdluku"/>
+            </xs:sequence>
+            <xs:anyAttribute namespace="##any" processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="zalba">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="zalilac" type="ftn:TLice"/>
+                <xs:element name="naziv_organa" type="xs:string"/>
+                <xs:element name="broj_zahteva" type="xs:int"/>
+                <xs:element name="godina" type="xs:gYear"/>
+                <xs:element ref="ftn:sadrzaj"/>
+                <xs:element ref="ftn:podnosilac"/>
+                <xs:element ref="ftn:vreme_i_mesto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sadrzaj">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="deo_odluke" type="xs:string"/>
+                <xs:element name="zakon" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="zahtev">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="broj_zahteva" type="xs:int"/>
+                <xs:element name="godina" type="xs:gYear"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podaci_o_povereniku">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="namena" type="xs:string"/>
+                <xs:element ref="ftn:adresa"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podnosilac">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ime">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="prezime">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="ftn:adresa"/>
+                <xs:element name="kontakt_podaci" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="napomene">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="napomena" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="id" type="xs:long"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vreme_i_mesto">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="grad">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="adresa">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="grad">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ulica">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="broj" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="about" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType abstract="true" name="TLice">
+        <xs:sequence>
+            <xs:element ref="ftn:adresa"/>
+            <xs:element name="sediste">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute name="datatype" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="about" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="TFizickoLice">
+        <xs:complexContent>
+            <xs:extension base="ftn:TLice">
+                <xs:sequence>
+                    <xs:element name="ime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="prezime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TPravnoLice">
+        <xs:complexContent>
+            <xs:extension base="ftn:TLice">
+                <xs:sequence>
+                    <xs:element name="naziv">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute name="datatype" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TZalbaNaOdluku">
+        <xs:sequence>
+            <xs:element name="naslov" type="xs:string"/>
+            <xs:element ref="ftn:podaci_o_povereniku"/>
+            <xs:element ref="ftn:zalba"/>
+            <xs:element ref="ftn:napomene"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##any" processContents="lax"/>
+    </xs:complexType>
+</xs:schema>
