@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import tim1.backend.soap.ZalbaNaCutanje.ZalbaNaCutanjeServiceSoapBindingImpl;
 import tim1.backend.soap.ZalbaNaOdluku.ZalbaNaOdlukuServiceSoapBindingImpl;
 import tim1.backend.soap.hello.HelloDocumentImpl;
 
@@ -28,9 +29,14 @@ public class EndpointConfig {
 
 	@Bean
 	public Endpoint zalbaNaCutanje(){
+		EndpointImpl endpoint = new EndpointImpl(bus, new ZalbaNaCutanjeServiceSoapBindingImpl());
+		endpoint.publish("/zalba-na-cutanje");
+		return endpoint;
+	}
+	@Bean
+	public Endpoint zalbaNaOdluku(){
 		EndpointImpl endpoint = new EndpointImpl(bus, new ZalbaNaOdlukuServiceSoapBindingImpl());
 		endpoint.publish("/zalba-na-odluku");
 		return endpoint;
 	}
-
 }
