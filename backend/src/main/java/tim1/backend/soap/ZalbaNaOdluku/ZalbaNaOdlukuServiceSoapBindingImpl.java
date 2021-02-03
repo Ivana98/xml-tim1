@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.modules.XMLResource;
 
@@ -38,7 +39,7 @@ import tim1.backend.service.ZalbaNaOdlukuService;
 @Service
 public class ZalbaNaOdlukuServiceSoapBindingImpl implements ZalbaNaOdlukuServicePortType {
 
-    @Resource
+    @Autowired
     private ZalbaNaOdlukuService zalbaNaOdlukuService;
 
     private static final Logger LOG = Logger.getLogger(ZalbaNaOdlukuServiceSoapBindingImpl.class.getName());

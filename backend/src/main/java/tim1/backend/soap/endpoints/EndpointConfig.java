@@ -20,6 +20,13 @@ public class EndpointConfig {
 
 	@Autowired
 	private Bus bus;
+
+	@Autowired
+	private ZalbaNaCutanjeServiceSoapBindingImpl zalbaNaCutanjeServiceSoapBindingImpl;
+
+	@Autowired
+	private ZalbaNaOdlukuServiceSoapBindingImpl zalbaNaOdlukuServiceSoapBindingImpl;
+
 	@Bean
 	public Endpoint helloEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, new HelloDocumentImpl());
@@ -29,13 +36,13 @@ public class EndpointConfig {
 
 	@Bean
 	public Endpoint zalbaNaCutanje(){
-		EndpointImpl endpoint = new EndpointImpl(bus, new ZalbaNaCutanjeServiceSoapBindingImpl());
+		EndpointImpl endpoint = new EndpointImpl(bus, zalbaNaCutanjeServiceSoapBindingImpl);
 		endpoint.publish("/zalba-na-cutanje");
 		return endpoint;
 	}
 	@Bean
 	public Endpoint zalbaNaOdluku(){
-		EndpointImpl endpoint = new EndpointImpl(bus, new ZalbaNaOdlukuServiceSoapBindingImpl());
+		EndpointImpl endpoint = new EndpointImpl(bus, zalbaNaOdlukuServiceSoapBindingImpl);
 		endpoint.publish("/zalba-na-odluku");
 		return endpoint;
 	}
