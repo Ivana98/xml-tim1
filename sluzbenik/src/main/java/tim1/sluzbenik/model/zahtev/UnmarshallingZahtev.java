@@ -17,14 +17,17 @@ public class UnmarshallingZahtev {
     
     public static void testXmlToObject(){
         try {
-            File file = new File("./documents/xml_documents/zahtev.xml");
+            File file = new File("./../documents/xml_documents/zahtev.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Zahtev.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Zahtev zahtev = (Zahtev) jaxbUnmarshaller.unmarshal(file);
 
             //formatiranje printa
+            System.out.println("\nzahtev");
             printZahtev(zahtev);
+
+            System.out.println("\noutput");
             System.out.println(output);
 
         } catch (Exception e) {
@@ -34,8 +37,8 @@ public class UnmarshallingZahtev {
 
     private static void printZahtev(Zahtev zahtev){
 
-        addToOutput("naziv organa", zahtev.getInfoOrgana().getNaziv(), "\n");
-        addToOutput("sediste organa", zahtev.getInfoOrgana().getSediste(), "\n");
+        addToOutput("naziv organa", zahtev.getInfoOrgana().getNaziv().getValue(), "\n");
+        addToOutput("sediste organa", zahtev.getInfoOrgana().getSediste().getValue(), "\n");
         addToOutput("naslov", zahtev.getNaslov(), "\n");
         addToOutput("svrha zahteva", zahtev.getSvrhaZahteva(), "\n");
 
@@ -43,7 +46,7 @@ public class UnmarshallingZahtev {
         printTipoviZahteva(zahtev);
         printDodatneInformacije(zahtev);
 
-        addToOutput("mesto", zahtev.getMesto(), "\n");
+        addToOutput("mesto", zahtev.getMesto().getValue(), "\n");
         addToOutput("datum", String.valueOf(zahtev.getDatum()), "\n");
         
         addToOutput("trazilac", zahtev.getTrazilac().getImeIPrezime().getValue(), "\n");

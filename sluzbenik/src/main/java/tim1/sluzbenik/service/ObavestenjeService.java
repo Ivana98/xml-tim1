@@ -17,10 +17,10 @@ public class ObavestenjeService extends AbstractService {
         super(repository, "/db/sluzbenik/obavestenje/", "/obavestenje/");
     }
 
-    public JaxbLista<Obavestenje> findAllFromCollection() throws Exception{
-        
-        List<Obavestenje> listaZalbi = this.findAllFromCollection( Obavestenje.class);
-        JaxbLista<Obavestenje> listaObj = new JaxbLista<Obavestenje>(listaZalbi);
+    public JaxbLista<Obavestenje> findAllFromCollection() throws Exception {
+
+        List<Obavestenje> listaObavestenja = this.findAllFromCollection(Obavestenje.class);
+        JaxbLista<Obavestenje> listaObj = new JaxbLista<Obavestenje>(listaObavestenja);
         return listaObj;
     }
 }

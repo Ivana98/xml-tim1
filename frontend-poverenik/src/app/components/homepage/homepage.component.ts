@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,12 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  //role = 'GRADJANIN';
-  role = 'POVERENIK';
+  role = '';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
   logout(): void {

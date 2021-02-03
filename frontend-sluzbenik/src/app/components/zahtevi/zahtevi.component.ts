@@ -3,6 +3,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Zahtev } from 'src/app/model/zahtev';
+import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-zahtevi',
@@ -10,31 +12,49 @@ import { Zahtev } from 'src/app/model/zahtev';
   styleUrls: ['./zahtevi.component.scss']
 })
 export class ZahteviComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'status', 'izvoz'];
   dataSource: MatTableDataSource<Zahtev>;
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
 
-  role = 'SLUZBENIK';
+  role = '';
 
-  zahtevi: Zahtev[] = [
-    {
-      id: 1,
-      naziv: 'Zahtev 1',
-    },
-    {
-      id: 2,
-      naziv: 'Zahtev 2',
-    }
-  ];
+  zahtevi: Zahtev[] = [];
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private zahtevService: ZahtevService,
+    private authService: AuthService
+    ) { 
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
     
   }
 
   ngOnInit(): void {
+    console.log("On init");
+    this.role == this.authService.getRole();
+    console.log("ROLE");
+    console.log(this.role);
+    this.getAll();
+  }
+
+  getAll(){
+    this.zahtevService.getAll().subscribe(result => {
+      console.log(result);
+      //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
+    })
+    //this.role == this.authService.getRole();
+    this.zahtevService.getAll()
+    .subscribe(
+      data => {
+        data["jaxbLista"]["ns4:zahtev"].forEach(element => {
+          this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"])); 
+        });
+
+        this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
+      }
+    );
   }
 
   requestPage(): void {

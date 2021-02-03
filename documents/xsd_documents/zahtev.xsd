@@ -36,6 +36,7 @@
             <xs:attribute name="property" type="xs:string"/>
             <xs:attribute name="datatype" type="xs:string"/>
             <xs:attribute name="content" type="xs:string"/>
+            <xs:attribute name="id" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="info_organa">

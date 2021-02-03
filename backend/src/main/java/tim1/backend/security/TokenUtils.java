@@ -50,7 +50,7 @@ public class TokenUtils {
                 .setIssuedAt(new Date())
                 .setExpiration(generateExpirationDate())
                 // .claim("key", value) //moguce je postavljanje proizvoljnih podataka u telo JWT tokena
-                .claim("uloga", korisnik.getUloga())
+                .claim("role", korisnik.getUloga())
                 .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
     }
 

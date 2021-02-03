@@ -5,5 +5,12 @@
 // Generated on: 2021.01.30 at 06:47:34 PM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.ftn.uns.ac.rs/zahtev", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(
+    namespace = "http://www.ftn.uns.ac.rs/zahtev", 
+    elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,
+    xmlns = {
+        @XmlNs(prefix = "pred", namespaceURI = "http://www.ftn.uns.ac.rs/rdf/examples/predicate/")
+    })
 package tim1.sluzbenik.model.zahtev;
+
+import javax.xml.bind.annotation.XmlNs;

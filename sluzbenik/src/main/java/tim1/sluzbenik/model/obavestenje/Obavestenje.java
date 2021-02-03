@@ -92,6 +92,10 @@ public class Obavestenje {
     protected Obavestenje.OsnovniPodaci osnovniPodaci;
     @XmlElement(name = "Sadrzaj", required = true)
     protected Obavestenje.Sadrzaj sadrzaj;
+    @XmlAttribute(name = "id")
+    protected String id;
+    @XmlAttribute(name = "idZahteva")
+    protected String idZahteva;
 
     /**
      * Gets the value of the osnovniPodaci property.
@@ -139,6 +143,54 @@ public class Obavestenje {
      */
     public void setSadrzaj(Obavestenje.Sadrzaj value) {
         this.sadrzaj = value;
+    }
+
+            /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
+            /**
+     * Gets the value of the idZahteva property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdZahteva() {
+        return idZahteva;
+    }
+
+    /**
+     * Sets the value of the idZahteva property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdZahteva(String value) {
+        this.idZahteva = value;
     }
 
 
