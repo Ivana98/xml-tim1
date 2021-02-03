@@ -1,8 +1,18 @@
 package tim1.sluzbenik.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.UUID;
 
+import org.apache.tools.ant.util.ReaderInputStream;
+
+
 import javax.websocket.server.PathParam;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,8 +52,27 @@ public class ZahtevController {
     public ResponseEntity<?> saveXML(@RequestBody String content) {
 
         String documentId = UUID.randomUUID().toString();
+        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+        try {
+            JAXBContext context = JAXBContext.newInstance(Zahtev.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Zahtev obavestenje = (Zahtev) unmarshaller.unmarshal(inputStream);
+            obavestenje.setId(documentId);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            marshaller.marshal(obavestenje, stream);
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+            content = finalString;
+        } catch (JAXBException e1) {
+            // TODO Auto-generated catch block
+            System.out.println("unmarshaller error");
+            e1.printStackTrace();
+        }
 
         try {
+            
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);

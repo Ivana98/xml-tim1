@@ -3,7 +3,8 @@
 <Obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenjecir"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenjecir ../xsd_documents/obavestenjecir.xsd"
-    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+    id="" idZahteva="">
     <Osnovni_podaci>
         <Organ about="http://www.ftn.uns.ac.rs/rdf/obavestenje/Organ">
             <Naziv property="pred:naziv" datatype="xs:string">Naziv organa</Naziv>
