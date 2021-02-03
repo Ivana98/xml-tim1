@@ -42,19 +42,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Podnosilac }
-     * 
-     */
-    public Podnosilac createPodnosilac() {
-        return new Podnosilac();
-    }
-
-    /**
      * Create an instance of {@link Adresa }
      * 
      */
     public Adresa createAdresa() {
         return new Adresa();
+    }
+
+    /**
+     * Create an instance of {@link Podnosilac }
+     * 
+     */
+    public Podnosilac createPodnosilac() {
+        return new Podnosilac();
     }
 
     /**
@@ -98,11 +98,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TZalbaNaOdluku }
+     * Create an instance of {@link PodaciOPovereniku }
      * 
      */
-    public TZalbaNaOdluku createTZalbaNaOdluku() {
-        return new TZalbaNaOdluku();
+    public PodaciOPovereniku createPodaciOPovereniku() {
+        return new PodaciOPovereniku();
+    }
+
+    /**
+     * Create an instance of {@link Adresa.Grad }
+     * 
+     */
+    public Adresa.Grad createAdresaGrad() {
+        return new Adresa.Grad();
+    }
+
+    /**
+     * Create an instance of {@link Adresa.Ulica }
+     * 
+     */
+    public Adresa.Ulica createAdresaUlica() {
+        return new Adresa.Ulica();
     }
 
     /**
@@ -138,22 +154,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Adresa.Grad }
-     * 
-     */
-    public Adresa.Grad createAdresaGrad() {
-        return new Adresa.Grad();
-    }
-
-    /**
-     * Create an instance of {@link Adresa.Ulica }
-     * 
-     */
-    public Adresa.Ulica createAdresaUlica() {
-        return new Adresa.Ulica();
-    }
-
-    /**
      * Create an instance of {@link VremeIMesto.Grad }
      * 
      */
@@ -170,27 +170,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Zahtev }
-     * 
-     */
-    public Zahtev createZahtev() {
-        return new Zahtev();
-    }
-
-    /**
-     * Create an instance of {@link PodaciOPovereniku }
-     * 
-     */
-    public PodaciOPovereniku createPodaciOPovereniku() {
-        return new PodaciOPovereniku();
-    }
-
-    /**
      * Create an instance of {@link Napomene.Napomena }
      * 
      */
     public Napomene.Napomena createNapomeneNapomena() {
         return new Napomene.Napomena();
+    }
+
+    /**
+     * Create an instance of {@link Zahtev }
+     * 
+     */
+    public Zahtev createZahtev() {
+        return new Zahtev();
     }
 
     /**

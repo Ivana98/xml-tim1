@@ -47,13 +47,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Zalba {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "podnosilac", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = Podnosilac.class),
+        @XmlElementRef(name = "zalilac", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
         @XmlElementRef(name = "godina", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
         @XmlElementRef(name = "naziv_organa", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
-        @XmlElementRef(name = "podnosilac", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = Podnosilac.class),
-        @XmlElementRef(name = "vreme_i_mesto", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = VremeIMesto.class),
         @XmlElementRef(name = "broj_zahteva", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class),
         @XmlElementRef(name = "sadrzaj", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = Sadrzaj.class),
-        @XmlElementRef(name = "zalilac", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = JAXBElement.class)
+        @XmlElementRef(name = "vreme_i_mesto", namespace = "http://www.ftn.uns.ac.rs/zalba-na-odluku", type = VremeIMesto.class)
     })
     @XmlMixed
     protected List<Object> content;
@@ -76,14 +76,14 @@ public class Zalba {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
      * {@link Podnosilac }
-     * {@link VremeIMesto }
-     * {@link JAXBElement }{@code <}{@link Integer }{@code >}
-     * {@link Sadrzaj }
      * {@link JAXBElement }{@code <}{@link TLice }{@code >}
      * {@link String }
+     * {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link Integer }{@code >}
+     * {@link Sadrzaj }
+     * {@link VremeIMesto }
      * 
      * 
      */

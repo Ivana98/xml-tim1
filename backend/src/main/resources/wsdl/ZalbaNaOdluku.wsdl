@@ -7,7 +7,7 @@
                   name="ZalbaNaOdlukuService">
     <wsdl:types>
         <xsd:schema>
-            <xsd:import namespace="http://www.ftn.uns.ac.rs/zalba-na-odluku" schemaLocation="../documents/xsd_documents/zalbanaodlukucir1.xsd"/>
+            <xsd:import namespace="http://www.ftn.uns.ac.rs/zalba-na-odluku" schemaLocation="../documents/xsd_documents/zalbanaodlukucir.xsd"/>
         </xsd:schema>
     </wsdl:types>
 
@@ -15,10 +15,14 @@
         <wsdl:part name="id" type="xsd:string" />
     </wsdl:message>
     <wsdl:message name="getZalbaNaOdlukuResponse">
-        <wsdl:part name="zalba_odluka" type="tns:TZalbaNaOdluku" />
+    <!-- TODO: PROBATI DA VRATIM SAMO STRING MOZDA CE TO MOCI -->
+        <wsdl:part name="zalba_odluka" type="xsd:string" />
     </wsdl:message>
 
-
+    <!-- <wsdl:message name="getAllRequest"/>
+    <wsdl:message name="getAllResponse">
+        <wsdl:part name="response" type="tns:DecisionAppealList" />
+    </wsdl:message> -->
 
     <wsdl:portType name="ZalbaNaOdlukuServicePortType">
         <wsdl:operation name="getZalbaNaOdlukuById">
@@ -26,7 +30,10 @@
             <wsdl:output message="tns:getZalbaNaOdlukuResponse" />
         </wsdl:operation>
 
-
+        <!-- <wsdl:operation name="getAll">
+            <wsdl:input message="tns:getAllRequest" />
+            <wsdl:output message="tns:getAllResponse" />
+        </wsdl:operation> -->
     </wsdl:portType>
 
     <wsdl:binding name="ZalbaNaOdlukuServiceSoapBinding" type="tns:ZalbaNaOdlukuServicePortType">
@@ -41,7 +48,15 @@
             </wsdl:output>
         </wsdl:operation>
 
-   
+        <!-- <wsdl:operation name="getAll">
+            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getAll" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation> -->
 
     </wsdl:binding>
     <wsdl:service name="ZalbaNaOdlukuService">
