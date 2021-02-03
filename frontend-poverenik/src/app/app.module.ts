@@ -16,6 +16,8 @@ import { KreiranjeResenjaComponent } from './components/kreiranje-resenja/kreira
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
+import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba-na-odbijanje.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
     KreiranjeResenjaComponent,
     ZalbeComponent,
     ResenjaComponent,
-    IzvestajiComponent
+    IzvestajiComponent,
+    ZahteviComponent,
+    ZalbaNaOdbijanjeComponent
   ],
   imports: [
     MaterialModuleModule,

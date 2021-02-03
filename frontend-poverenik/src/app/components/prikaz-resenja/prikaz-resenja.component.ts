@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-prikaz-resenja',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrikazResenjaComponent implements OnInit {
 
-  constructor() { }
+  zahtevId;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.zahtevId = +params.get('id');
+    });
   }
 
 }

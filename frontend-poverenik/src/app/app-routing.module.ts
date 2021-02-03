@@ -9,6 +9,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
+import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba-na-odbijanje.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 
 const routes: Routes = [
@@ -18,10 +20,12 @@ const routes: Routes = [
     path: 'homepage', component: HomepageComponent,
     children: [
       { path: 'zalbe', component: ZalbeComponent },
+      { path: 'zahtevi', component: ZahteviComponent },
       { path: 'resenja', component: ResenjaComponent },
       { path: 'izvestaji', component: IzvestajiComponent },
       { path: 'zalbe/:id', component: PrikazZalbeComponent },
       { path: 'resenja/:id', component: PrikazResenjaComponent },
+      { path: 'zalba-odbijanje/:id', component: ZalbaNaOdbijanjeComponent },
       { path: 'podnosenje-zalbe', component: KreiranjeZalbeComponent },
       { path: 'zalbe/:id/podnosenje-resenja', component: KreiranjeResenjaComponent },
     ]
