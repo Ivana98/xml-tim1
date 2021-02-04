@@ -62,7 +62,7 @@ public class EmailService {
     helper.setFrom(simpleMailMessage.getFrom());
     helper.setTo(simpleMailMessage.getTo());
     helper.setSubject(simpleMailMessage.getSubject());
-    helper.setText("Dokumenti se nalaze u prilogu ");
+    helper.setText( content + "\nDokumenti se nalaze u prilogu ");
 
     // pdf
     FileSystemResource pdf = new FileSystemResource(pdfPath);
