@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResenjaService } from 'src/app/services/resenja/resenja.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kreiranje-resenja',
@@ -10,6 +12,8 @@ export class KreiranjeResenjaComponent implements OnInit {
 
   constructor(
     private service: ResenjaService,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -65,11 +69,21 @@ export class KreiranjeResenjaComponent implements OnInit {
     `;
     this.service.addResenje(dummyResenje).subscribe(
       response => {
-        console.log(response);
+        this.openSnackBar("resenje je uspesno kreirano.");
+        this.router.navigate(['/homepage/zalbe']);
       },
-      error => console.log(error)
+      error => {
+        this.openSnackBar("resenje je nije uspesno kreirano.")
+      }
     )
 
+  }
+
+  
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }
