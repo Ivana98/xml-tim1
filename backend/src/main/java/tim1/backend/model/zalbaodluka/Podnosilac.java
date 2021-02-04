@@ -78,6 +78,8 @@ public class Podnosilac {
     protected String kontaktPodaci;
     @XmlAttribute(name = "about")
     protected String about;
+    @XmlAttribute(name = "email")
+    protected String email;
 
     /**
      * Gets the value of the ime property.
@@ -197,6 +199,31 @@ public class Podnosilac {
      */
     public void setAbout(String value) {
         this.about = value;
+    }
+
+
+    /**
+     * Gets the value of the email property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the value of the about property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEmail(String value) {
+        this.email = value;
     }
 
 
