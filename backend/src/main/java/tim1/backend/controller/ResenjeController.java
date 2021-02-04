@@ -24,6 +24,10 @@ public class ResenjeController {
     @Autowired
     private ResenjeService resenjeService;
 
+    // @Autowired
+    // private EmailClient emailClient;
+    
+
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
 
@@ -44,6 +48,7 @@ public class ResenjeController {
             resenjeService.saveRDF(content, documentId);
 
             //TODO: POSLATI MEJL DA JE RESENJE NAPRAVLJENO
+
             
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
