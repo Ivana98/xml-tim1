@@ -25,6 +25,6 @@ export class ZalbaService {
   }
 
   addNewCutanje(zalba): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/zalbe-na-cutanje/xml', zalba, this.httpOptions);
+    return this.http.post<any>(this.apiUrl + '/zalbe-na-cutenje/xml', zalba, this.httpOptions);
   }
 }

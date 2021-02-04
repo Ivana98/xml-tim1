@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZalbaService } from 'src/app/services/zalba/zalba.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
 })
 export class ZalbaNaOdbijanjeComponent implements OnInit {
 
-  zahtevId;
+  zahtevId = "";
   grad = "";
   ulica = "";
   broj = "";
@@ -25,16 +26,21 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
   mestoPodnosenjaZalbe = "";
   datumPodnosenjaZalbe = "";
 
+  email = "";
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private zalbaService: ZalbaService
+    private zalbaService: ZalbaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.zahtevId = +params.get('id');
+      this.zahtevId = params.get('id');
     });
+    
+    this.email = this.authService.getEmail();
   }
 
   send() {
@@ -43,7 +49,8 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
         xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
-        xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+        xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+        id="" idZahteva="${this.zahtevId}">
         <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ 2 </naslov>
         
         <podaci_o_povereniku>
@@ -60,7 +67,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
         <zalba>
             Ж А Л Б А  
             <zalilac type = "TFizickoLice">
-                <adresa>
+                <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaZalioca">
                     <grad>${this.grad}</grad>
                     <ulica>${this.ulica}</ulica>
                     <broj>${this.broj}</broj>
@@ -82,7 +89,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
                 Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   
             </sadrzaj>
             
-            <podnosilac>
+            <podnosilac about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosilac" email="${this.email}">
                 <ime property="pred:imePodnosioca" datatype="xs:string">${this.ime}</ime>
                 <prezime property="pred:prezimePodnosioca" datatype="xs:string">${this.prezime}</prezime>
                 <adresa>
@@ -93,7 +100,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
                 <kontakt_podaci>${this.kontakt}</kontakt_podaci>
             </podnosilac>
             
-            <vreme_i_mesto>
+            <vreme_i_mesto about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosenje">
                 <grad property="pred:mestoPodnosenja" datatype="xs:string">${this.mestoPodnosenjaZalbe}</grad>
                 <datum property="pred:datumPodnosenja" datatype="xs:date">${this.datumPodnosenjaZalbe}</datum>
             </vreme_i_mesto>
