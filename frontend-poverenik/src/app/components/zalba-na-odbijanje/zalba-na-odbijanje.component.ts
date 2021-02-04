@@ -35,11 +35,10 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.zahtevId = +params.get('id');
     });
-
-    this.send();
   }
 
   send() {
+    //${this.}
     //TODO: ovde ubaciti realne vrednosti - promenljive
     var zalba = `<?xml version="1.0" encoding="UTF-8"?>
     <zalba_na_odluku
@@ -55,8 +54,8 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
             </namena>
             <adresa>
                 <grad property="pred:grad" datatype="xs:string">${this.grad}</grad>
-                <ulica property="pred:ulica" datatype="xs:string"> Булевар краља Александрa </ulica>
-                <broj>15</broj>
+                <ulica property="pred:ulica" datatype="xs:string">${this.ulica}</ulica>
+                <broj>${this.broj}</broj>
             </adresa>
         </podaci_o_povereniku>
         
@@ -64,41 +63,41 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
             Ж А Л Б А  
             <zalilac type = "TFizickoLice">
                 <adresa>
-                    <grad></grad>
-                    <ulica></ulica>
-                    <broj></broj>
+                    <grad>${this.grad}</grad>
+                    <ulica>${this.ulica}</ulica>
+                    <broj>${this.broj}</broj>
                 </adresa>
-                <sediste></sediste>
-                <ime></ime>
-                <prezime></prezime>
+                <sediste>${this.sediste}</sediste>
+                <ime>${this.ime}</ime>
+                <prezime>${this.prezime}</prezime>
             </zalilac>
             против решења-закључка 
             
             <naziv_organa></naziv_organa>
-            Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.
+            Број <broj_zahteva>${this.brojZahteva}</broj_zahteva> од <godina>${this.godina}</godina> године.
             
             <sadrzaj>
-                Sadrzaj zalbe na odluku <datum>2020-12-30</datum> Oдлуку побијам у
-                целости, односно у делу којим <deo_odluke> deo </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
+                Sadrzaj zalbe na odluku <datum>${this.datumPodnosenjaZahteva}</datum> Oдлуку побијам у
+                целости, односно у делу којим <deo_odluke>${this.deoOdluke}</deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.
                 На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи
                 одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.
                 Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   
             </sadrzaj>
             
             <podnosilac>
-                <ime property="pred:imePodnosioca" datatype="xs:string">Ime</ime>
-                <prezime property="pred:prezimePodnosioca" datatype="xs:string">Prezime</prezime>
+                <ime property="pred:imePodnosioca" datatype="xs:string">${this.ime}</ime>
+                <prezime property="pred:prezimePodnosioca" datatype="xs:string">${this.prezime}</prezime>
                 <adresa>
-                    <grad property="pred:gradPodnosioca" datatype="xs:string"></grad>
-                    <ulica></ulica>
-                    <broj></broj>
+                    <grad property="pred:gradPodnosioca" datatype="xs:string">${this.grad}</grad>
+                    <ulica>${this.ulica}</ulica>
+                    <broj>${this.broj}</broj>
                 </adresa>
-                <kontakt_podaci>0651224720</kontakt_podaci>
+                <kontakt_podaci>${this.kontakt}</kontakt_podaci>
             </podnosilac>
             
             <vreme_i_mesto>
-                <grad property="pred:mestoPodnosenja" datatype="xs:string"></grad>
-                <datum property="pred:datumPodnosenja" datatype="xs:date">2020-12-21</datum>
+                <grad property="pred:mestoPodnosenja" datatype="xs:string">${this.mestoPodnosenjaZalbe}</grad>
+                <datum property="pred:datumPodnosenja" datatype="xs:date">${this.datumPodnosenjaZalbe}</datum>
             </vreme_i_mesto>
             
         </zalba>
@@ -118,7 +117,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     this.zalbaService.addNewOdbijanje(zalba)
     .subscribe(
       data => {
-        
+        console.log("Uspesno upisano valjda")
       }
     )
   }
