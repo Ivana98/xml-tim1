@@ -19,7 +19,6 @@ import java.util.UUID;
 import org.apache.commons.io.IOUtils;
 import org.apache.tools.ant.util.ReaderInputStream;
 
-import javax.websocket.server.PathParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
