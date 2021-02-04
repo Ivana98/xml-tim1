@@ -21,8 +21,14 @@ public class EmailClient {
 
     EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
 
-    String response = ePortType.sendEmail("pera", "zika", "subject", "content");
+    String response = ePortType.sendEmail("konstrukcijaitestiranje@gmail.com", "zika", "subject", "content");
     System.out.println(response);
+    if(response.equals("POSLATO")){
+      System.out.println("mejl poslat");
+    }
+    else{
+      System.out.println("mejl nije poslat");
+    }
     return null;
   }
   public static void main(String[] args) throws Exception {
