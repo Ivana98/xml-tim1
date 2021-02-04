@@ -38,7 +38,7 @@
     <wsdl:binding name="ZalbaNaCutanjeServiceSoapBinding" type="tns:ZalbaNaCutanjeServicePortType">
         <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="getZalbaNaCutanjeById">
-            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getZalbaNaCutanjeById" />
+            <soap:operation soapAction="http://www.zalbanacutanje.com/ws/getZalbaNaCutanjeById" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -48,7 +48,7 @@
         </wsdl:operation>
 
         <wsdl:operation name="getAll">
-            <soap:operation soapAction="http://www.zalbanaodluku.com/ws/getAll" />
+            <soap:operation soapAction="http://www.zalbanacutanje.com/ws/getAll" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

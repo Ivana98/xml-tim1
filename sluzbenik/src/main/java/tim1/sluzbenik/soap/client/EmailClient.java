@@ -1,11 +1,6 @@
 package tim1.sluzbenik.soap.client;
 import javax.xml.ws.Service;
-
-import java.net.MalformedURLException;
 import java.net.URL;
-
-import javax.xml.bind.JAXBException;
-
 import javax.xml.namespace.QName;
 
 @org.springframework.stereotype.Service
@@ -37,9 +32,9 @@ public class EmailClient {
     System.out.println(response);
   }
 
-  public static void main(String[] args) throws Exception {
-    EmailClient client = new EmailClient();
-    // client.odbijZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odbija" , " Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
-    client.odobriZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odobrava" , "Odobreno", "asdf.pdf", "asdf.html");
-  }
+  // public static void main(String[] args) throws Exception {
+  //   EmailClient client = new EmailClient();
+  //   // client.odbijZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odbija" , " Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
+  //   client.odobriZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odobrava" , "Odobreno", "asdf.pdf", "asdf.html");
+  // }
 }
