@@ -1,0 +1,81 @@
+<div class="dashboard-container">
+    <form class="example-form">
+        <table>
+            <tr>
+                <h3>Organ:</h3>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Naziv organa</mat-label>
+                        <input matInput [(ngModel)]="nazivOrgana" name="nazivOrgana">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Datum podnosenja zahteva</mat-label>
+                        <input matInput [(ngModel)]="datumPodnosenjaZahteva" name="datumPodnosenjaZahteva">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Podaci o zahtevu</mat-label>
+                        <input matInput [(ngModel)]="podaciOZahtevu" name="podaciOZahtevu">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                Zalilac:
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Ime</mat-label>
+                        <input matInput [(ngModel)]="ime" name="ime">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Prezime</mat-label>
+                        <input matInput [(ngModel)]="prezime" name="prezime">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Adresa</mat-label>
+                        <input matInput [(ngModel)]="adresa" name="adresa">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Kontakt</mat-label>
+                        <input matInput [(ngModel)]="kontakt" name="kontakt">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Mesto podnosenja</mat-label>
+                        <input matInput [(ngModel)]="mestoPodnosenja" name="mestoPodnosenja">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Datum podnosenja</mat-label>
+                        <input matInput [(ngModel)]="datumPodnosenja" name="datumPodnosenja">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button mat-raised-button color="primary" (click)="send()">Podnesi</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
