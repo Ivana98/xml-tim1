@@ -34,4 +34,18 @@ public class EmailController {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
+
+  @PostMapping(path = "odbijZahtev", consumes = "multipart/form-data")
+  public ResponseEntity<?> sendEmail2(@RequestPart("email") String email, @RequestPart("id") String id){
+    System.out.println(email);
+    System.out.println("======================");
+    try{
+      emailService.posaljiMejl(email, "zahtev odbijen", "");
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+    catch(Exception e){
+      e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
 }
