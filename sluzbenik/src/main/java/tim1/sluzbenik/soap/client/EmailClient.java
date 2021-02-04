@@ -11,8 +11,7 @@ import javax.xml.namespace.QName;
 @org.springframework.stereotype.Service
 public class EmailClient {
   
-  public String odbijZahtev(String to, String from, String subject, String content ) throws Exception {
-    //TODO: NAPRAVITI KONEKCIJU SA MEJLOM.
+  public void odobriZahtev(String to, String from, String subject, String content ) throws Exception {
     URL wsdlLocation = new URL("http://localhost:8092/ws/sendEmail?wsdl");
     QName serviceName = new QName("http://www.ftn.uns.ac.rs/email", "EmailService");
     QName portName = new QName("http://www.ftn.uns.ac.rs/email", "EmailServiceSoapBinding");
@@ -21,18 +20,25 @@ public class EmailClient {
 
     EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
 
-    String response = ePortType.sendEmail("konstrukcijaitestiranje@gmail.com", "zika", "subject", "content");
+    String response = ePortType.sendEmail("konstrukcijaitestiranje@gmail.com", "", "Vas zahtev se odbija", "Ovo je text mejla");
     System.out.println(response);
-    if(response.equals("POSLATO")){
-      System.out.println("mejl poslat");
-    }
-    else{
-      System.out.println("mejl nije poslat");
-    }
-    return null;
   }
+
+  public void odbijZahtev(String emailTo, String subject, String content ) throws Exception {
+    URL wsdlLocation = new URL("http://localhost:8092/ws/sendEmail?wsdl");
+    QName serviceName = new QName("http://www.ftn.uns.ac.rs/email", "EmailService");
+    QName portName = new QName("http://www.ftn.uns.ac.rs/email", "EmailServiceSoapBinding");
+
+    Service service = Service.create(wsdlLocation, serviceName);
+
+    EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
+
+    String response = ePortType.sendEmail(emailTo, "", subject, content);
+    System.out.println(response);
+  }
+
   public static void main(String[] args) throws Exception {
     EmailClient client = new EmailClient();
-    client.odbijZahtev(null,null,null,null);
+    client.odbijZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odbija" , " Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
   }
 }

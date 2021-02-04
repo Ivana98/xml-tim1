@@ -43,10 +43,7 @@ public class EmailServiceSoapBindingImpl implements EmailServicePortType {
      */
     public java.lang.String sendEmail(java.lang.String to, java.lang.String from, java.lang.String subject, java.lang.String content) { 
         LOG.info("Executing operation sendEmail");
-        System.out.println(to);
-        System.out.println(from);
-        System.out.println(subject);
-        System.out.println(content);
+        // from nicemu za sad ne sluzi
         try {
             emailService.posaljiMejl(to, subject, content);
             return "POSLATO";
