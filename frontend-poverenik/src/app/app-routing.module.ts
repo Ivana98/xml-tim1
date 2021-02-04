@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'zalbe/:id', component: PrikazZalbeComponent },
       { path: 'resenja/:id', component: PrikazResenjaComponent },
       { path: 'podnosenje-zalbe', component: KreiranjeZalbeComponent },
-      { path: 'zalbe/:id/podnosenje-resenja', component: KreiranjeResenjaComponent },
+      { path: 'podnosenje-resenja-za-zalbu/:id', component: KreiranjeResenjaComponent },
     ]
   },
   { path: '404', component: PageNotFoundComponent },

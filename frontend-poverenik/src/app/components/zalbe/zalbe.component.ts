@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'resenje'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
