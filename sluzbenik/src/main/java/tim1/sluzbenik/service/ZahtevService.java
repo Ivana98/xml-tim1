@@ -69,4 +69,31 @@ public class ZahtevService extends AbstractService {
 		}
     }
 
+    public String generateHTML2(String content, String id) throws XMLDBException {
+		XSLFORTransformer transformer = null;
+
+		try {
+			transformer = new XSLFORTransformer();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+        
+		String doc_str = content;
+		boolean ok = false;
+		String html_path = SAVE_HTML + "zahtev_" + id + ".html";
+
+		try {
+			ok = transformer.generateHTML(doc_str, html_path, ZAHTEV_XSL);
+			if (ok)
+				return html_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
+
 }

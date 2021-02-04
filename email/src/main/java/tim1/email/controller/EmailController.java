@@ -21,7 +21,7 @@ public class EmailController {
   private EmailService emailService;
 
   @PostMapping(path = "odobriZahtev", consumes = "multipart/form-data")
-  public ResponseEntity<?> sendEmail(@RequestPart("email") String email ,@RequestPart("content") String content){
+  public ResponseEntity<?> sendEmail(@RequestPart("email") String email, @RequestPart("content") String content){
     System.out.println(email);
     System.out.println("======================");
     System.out.println(content);

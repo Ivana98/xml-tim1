@@ -27,7 +27,7 @@
     </opis_zahteva>
     <mesto property="pred:mesto" datatype="xs:string">Novi Sad</mesto>
     <datum property="pred:datum" datatype="xs:date">2021-01-30+01:00</datum>
-    <trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac">
+    <trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac" email="">
         <ime_i_prezime property="pred:ime-prezime" datatype="xs:string">Nikola Jokic</ime_i_prezime>
         <adresa property="pred:mesto" datatype="xs:string">Sombor, somborska 5</adresa>
         <kontakt>063 645658</kontakt>
