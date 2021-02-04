@@ -11,7 +11,7 @@ import javax.xml.namespace.QName;
 @org.springframework.stereotype.Service
 public class EmailClient {
   
-  public void odobriZahtev(String to, String from, String subject, String content ) throws Exception {
+  public void odobriZahtev(String to, String subject, String content, String pdfPath, String htmlPath ) throws Exception {
     URL wsdlLocation = new URL("http://localhost:8092/ws/sendEmail?wsdl");
     QName serviceName = new QName("http://www.ftn.uns.ac.rs/email", "EmailService");
     QName portName = new QName("http://www.ftn.uns.ac.rs/email", "EmailServiceSoapBinding");
@@ -20,7 +20,7 @@ public class EmailClient {
 
     EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
 
-    String response = ePortType.sendEmail("konstrukcijaitestiranje@gmail.com", "", "Vas zahtev se odbija", "Ovo je text mejla");
+    String response = ePortType.sendEmail(to, subject, content, pdfPath, htmlPath);
     System.out.println(response);
   }
 
@@ -33,12 +33,13 @@ public class EmailClient {
 
     EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
 
-    String response = ePortType.sendEmail(emailTo, "", subject, content);
+    String response = ePortType.sendEmail(emailTo, subject, content, "", "");
     System.out.println(response);
   }
 
   public static void main(String[] args) throws Exception {
     EmailClient client = new EmailClient();
-    client.odbijZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odbija" , " Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
+    // client.odbijZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odbija" , " Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
+    client.odobriZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odobrava" , "Odobreno", "asdf.pdf", "asdf.html");
   }
 }

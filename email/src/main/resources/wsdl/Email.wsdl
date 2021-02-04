@@ -8,9 +8,10 @@
 
     <wsdl:message name="getEmailRequest">
         <wsdl:part name="to" type="xsd:string" />
-        <wsdl:part name="from" type="xsd:string" />
         <wsdl:part name="subject" type="xsd:string" />
         <wsdl:part name="content" type="xsd:string" />
+        <wsdl:part name="pdfPath" type="xsd:string" />
+        <wsdl:part name="htmlPath" type="xsd:string" />
     </wsdl:message>
 
     <wsdl:message name="getEmailResponse">
