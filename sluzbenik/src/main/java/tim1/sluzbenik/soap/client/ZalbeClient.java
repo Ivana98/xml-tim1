@@ -20,8 +20,15 @@ public class ZalbeClient {
     return listaZalbi;
   }
 
-  // public static void main(String[] args)throws Exception {
-  //   ZalbeClient client = new ZalbeClient();
-  //   client.getAllZalbaNaCutanje();
-  // }
+  public String getAllZalbaNaOdluku() throws Exception{
+    URL wsdlLocation = new URL("http://localhost:8090/api/ws/zalba-na-odluku?wsdl");
+    QName serviceName = new QName("http://www.ftn.uns.ac.rs/zalba-na-odluku", "ZalbaNaOdlukuService");
+    QName portName = new QName("http://www.ftn.uns.ac.rs/zalba-na-odluku", "ZalbaNaOdlukuServiceSoapBinding");
+
+    Service service = Service.create(wsdlLocation, serviceName);
+
+    ZalbaNaOdlukuServicePortType zPortType = service.getPort(portName, ZalbaNaOdlukuServicePortType.class);
+    String listaZalbi = zPortType.getAll();
+    return listaZalbi;
+  }
 }
