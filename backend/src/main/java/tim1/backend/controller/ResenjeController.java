@@ -42,6 +42,9 @@ public class ResenjeController {
         try {
             resenjeService.saveXML(documentId, content);
             resenjeService.saveRDF(content, documentId);
+
+            //TODO: POSLATI MEJL DA JE RESENJE NAPRAVLJENO
+            
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
