@@ -169,13 +169,22 @@
 									<wsdlLocation>classpath:wsdl/ZalbaNaOdluku.wsdl</wsdlLocation>
 								</wsdlOption> -->
 
-								<wsdlOption>
+								<!-- <wsdlOption>
 									<wsdl>${basedir}/src/main/resources/wsdl/ZalbaNaCutanje.wsdl</wsdl>
 									<extraargs>
 										<extraarg>-impl</extraarg> 
 										<extraarg>-verbose</extraarg>
 									</extraargs>
 									<wsdlLocation>classpath:wsdl/ZalbaNaCutanje.wsdl</wsdlLocation>
+								</wsdlOption> -->
+
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/Resenje.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg> 
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/Resenje.wsdl</wsdlLocation>
 								</wsdlOption>
 
 

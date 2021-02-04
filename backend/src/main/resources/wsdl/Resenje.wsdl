@@ -2,20 +2,20 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
-                  xmlns:tns="http://www.ftn.uns.ac.rs/zalba-na-cutanje"
-                  name="ZalbaNaOdlukuService">
+                  targetNamespace="http://www.ftn.uns.ac.rs/resenje"
+                  xmlns:tns="http://www.ftn.uns.ac.rs/resenje"
+                  name="ResenjeService">
     <wsdl:types>
         <xsd:schema>
-            <xsd:import namespace="http://www.ftn.uns.ac.rs/zalba-na-cutanje" schemaLocation="../documents/xsd_documents/zalbacutanjecir.xsd"/>
+            <xsd:import namespace="http://www.ftn.uns.ac.rs/resenje" schemaLocation="../documents/xsd_documents/resenje.xsd"/>
         </xsd:schema>
     </wsdl:types>
 
-    <wsdl:message name="getZalbaNaCutanjeRequest">
+    <wsdl:message name="getResenjeRequest">
         <wsdl:part name="id" type="xsd:string" />
     </wsdl:message>
-    <wsdl:message name="getZalbaNaCutanjeResponse">
-        <wsdl:part name="zalba_cutanje" type="xsd:string" />
+    <wsdl:message name="getResenjeResponse">
+        <wsdl:part name="resenje_response" type="xsd:string" />
     </wsdl:message>
 
     <wsdl:message name="getAllRequest"/>
@@ -23,10 +23,10 @@
         <wsdl:part name="response" type="xsd:string" />
     </wsdl:message>
 
-    <wsdl:portType name="ZalbaNaCutanjeServicePortType">
-        <wsdl:operation name="getZalbaNaCutanjeById">
-            <wsdl:input message="tns:getZalbaNaCutanjeRequest" />
-            <wsdl:output message="tns:getZalbaNaCutanjeResponse" />
+    <wsdl:portType name="ResenjeServicePortType">
+        <wsdl:operation name="getResenjeById">
+            <wsdl:input message="tns:getResenjeRequest" />
+            <wsdl:output message="tns:getResenjeResponse" />
         </wsdl:operation>
 
         <wsdl:operation name="getAll">
@@ -35,10 +35,10 @@
         </wsdl:operation>
     </wsdl:portType>
 
-    <wsdl:binding name="ZalbaNaCutanjeServiceSoapBinding" type="tns:ZalbaNaCutanjeServicePortType">
+    <wsdl:binding name="ResenjeServiceSoapBinding" type="tns:ResenjeServicePortType">
         <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
-        <wsdl:operation name="getZalbaNaCutanjeById">
-            <soap:operation soapAction="http://www.zalbanacutanje.com/ws/getZalbaNaCutanjeById" />
+        <wsdl:operation name="getResenjeById">
+            <soap:operation soapAction="" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -48,7 +48,7 @@
         </wsdl:operation>
 
         <wsdl:operation name="getAll">
-            <soap:operation soapAction="http://www.zalbanacutanje.com/ws/getAll" />
+            <soap:operation soapAction="" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -58,9 +58,9 @@
         </wsdl:operation>
 
     </wsdl:binding>
-    <wsdl:service name="ZalbaNaOdlukuCutanje">
-        <wsdl:port name="ZalbaNaCutanjeServiceSoapBinding" binding="tns:ZalbaNaCutanjeServiceSoapBinding">
-            <soap:address location="http://localhost:8080/ZalbaNaCutanjeServicePortType" />
+    <wsdl:service name="ResenjeService">
+        <wsdl:port name="ResenjeServiceSoapBinding" binding="tns:ResenjeServiceSoapBinding">
+            <soap:address location="http://localhost:8080/ResenjePort" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

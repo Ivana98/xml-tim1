@@ -1,10 +1,19 @@
 package tim1.sluzbenik.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -31,7 +40,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ZahtevService;
-
+import tim1.sluzbenik.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/zahtevi")
@@ -39,6 +48,9 @@ public class ZahtevController {
 
     @Autowired
     private ZahtevService zahtevService;
+
+    @Autowired
+    private EmailClient emailClient;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) throws XMLDBException {
@@ -75,7 +87,7 @@ public class ZahtevController {
         }
 
         try {
-            
+
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -87,7 +99,7 @@ public class ZahtevController {
     @PutMapping(path = "/xml/{idZahteva}", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZahteva) {
         try {
-            
+
             zahtevService.saveXML(idZahteva, content);
             zahtevService.saveRDF(content, idZahteva);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -117,9 +129,9 @@ public class ZahtevController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<Zahtev>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<Zahtev>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<Zahtev> lista = zahtevService.findAllFromCollection();
@@ -130,23 +142,66 @@ public class ZahtevController {
         }
     }
 
+    @PostMapping(path = "/odbijanje/{idZahteva}", consumes = "application/xml")
+    public ResponseEntity<?> odbijanjeZahteva(@RequestBody String content, @PathVariable String idZahteva) {
+        // TODO: Marija trebas da ubacis ovde emailTo je email korisnika, subject
+        // promeni, i u content ubaci idZahteva.
+        // Ne zaboravi moras imati pokrenute aplikacije email i sluzbenik.
+        try {
+            // emailClient.odbijZahtev(emailTo, subject, content);
+            emailClient.odbijZahtev("konstrukcijaitestiranje@gmail.com", "Vas zahtev se odbija","Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(path = "/odobravanje/{idZahteva}", consumes = "application/xml")
+    public ResponseEntity<?> odobravanjeZahteva(@RequestBody String content, @PathVariable String idZahteva) {
+        // TODO: Marija trebas da ubacis ovde emailTo je email korisnika, subject
+        // promeni, i u content ubaci idZahteva. Takodje dodaj lokalne putanje do pdf i
+        // html fajlova. Putanje dobijes kada pozoves:
+        // this.zahtevService.generateHTML(id); to je ivana pravila
+        // Ne zaboravi moras imati pokrenute aplikacije email i sluzbenik.
+        try {
+            // emailClient.odobriZahtev(to, subject, content, pdfPath, htmlPath);
+            emailClient.odobriZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odobrava" , "Odobreno", "asdf.pdf", "asdf.html");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping("/generateHTML/{id}")
-	public ResponseEntity<byte[]> generateHTML(@PathVariable("id") String id) throws XMLDBException {
+    public ResponseEntity<byte[]> generisiHTML(@PathVariable("id") String id) throws XMLDBException {
 
-        //uses id of zahtev
-		String file_path = this.zahtevService.generateHTML(id);
+        // uses id of zahtev
+        String file_path = this.zahtevService.generateHTML(id);
 
-		try {
-			File file = new File(file_path);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+        try {
+            File file = new File(file_path);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
     }
 
+    public static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+            result.append("&");
+        }
+
+        String resultString = result.toString();
+        return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
+    }
 
 }

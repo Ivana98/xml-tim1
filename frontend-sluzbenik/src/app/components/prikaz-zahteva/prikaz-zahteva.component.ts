@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
 
 @Component({
   selector: 'app-prikaz-zahteva',
@@ -7,12 +9,16 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./prikaz-zahteva.component.scss']
 })
 export class PrikazZahtevaComponent implements OnInit {
-
+  zahtevId: string;
   role = '';
 
   constructor(
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private zahtevService: ZahtevService,
+    private _Activatedroute: ActivatedRoute,
+  ) { 
+    this.zahtevId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
+  }
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
@@ -23,7 +29,7 @@ export class PrikazZahtevaComponent implements OnInit {
   }
 
   refuse(): void {
-
+    this.zahtevService.odbijZahtev(this.zahtevId);
   }
 
 
