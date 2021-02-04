@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://www.ftn.uns.ac.rs/email"
+                  xmlns:tns="http://www.ftn.uns.ac.rs/email"
+                  name="EmailService">
+
+    <wsdl:message name="getEmailRequest">
+        <wsdl:part name="to" type="xsd:string" />
+        <wsdl:part name="from" type="xsd:string" />
+        <wsdl:part name="subject" type="xsd:string" />
+        <wsdl:part name="content" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:message name="getEmailResponse">
+        <wsdl:part name="statusSlanja" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:portType name="EmailServicePortType">
+        <wsdl:operation name="sendEmail">
+            <wsdl:input message="tns:getEmailRequest" />
+            <wsdl:output message="tns:getEmailResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="EmailServiceSoapBinding" type="tns:EmailServicePortType">
+        <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="sendEmail">
+            <soap:operation soapAction="http://www.ftn.uns.ac.rs/email/ws/sendEmail" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="EmailService">
+        <wsdl:port name="EmailServiceSoapBinding" binding="tns:EmailServiceSoapBinding">
+            <soap:address location="http://localhost:8080/EmailServiceSoapBinding" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
