@@ -43,6 +43,7 @@ public class ObavestenjeService extends AbstractService {
 		String doc_str = xmlRes.getContent().toString();
 		boolean ok = false;
 		String html_path = SAVE_HTML + "obavestenje_" + id + ".html";
+		System.out.println(doc_str);
 
 		try {
 			ok = transformer.generateHTML(doc_str, html_path, OBAVESTENJE_XSL);
@@ -68,18 +69,18 @@ public class ObavestenjeService extends AbstractService {
 
         XMLResource xmlRes = this.readXML(id);
         String doc_str = "";
-
-        try {
-            doc_str = xmlRes.getContent().toString();
-        } catch (XMLDBException e1) {
-            e1.printStackTrace();
-        }
+		try {
+			doc_str = xmlRes.getContent().toString();
+			System.out.println(doc_str);
+		} catch (XMLDBException e1) {
+			e1.printStackTrace();
+		}
 
 		boolean ok = false;
         String pdf_path = SAVE_PDF + "obavestenje_" + id + ".pdf";
 
 		try {
-			ok = transformer.generateHTML(doc_str, pdf_path, OBAVESTENJE_XSL_FO);
+			ok = transformer.generatePDF(doc_str, pdf_path, OBAVESTENJE_XSL_FO);
 			if (ok)
 				return pdf_path;
 			else
