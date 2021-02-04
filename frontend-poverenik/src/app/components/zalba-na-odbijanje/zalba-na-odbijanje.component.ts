@@ -38,8 +38,6 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
   }
 
   send() {
-    //${this.}
-    //TODO: ovde ubaciti realne vrednosti - promenljive
     var zalba = `<?xml version="1.0" encoding="UTF-8"?>
     <zalba_na_odluku
         xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"

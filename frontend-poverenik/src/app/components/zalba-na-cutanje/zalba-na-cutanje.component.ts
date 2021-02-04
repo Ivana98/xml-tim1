@@ -10,6 +10,16 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
 export class ZalbaNaCutanjeComponent implements OnInit {
 
   zahtevId;
+  nazivOrgana = "";
+  datumPodnosenjaZahteva = "";
+  podaciOZahtevu = "";
+  ime = "";
+  prezime = "";
+  adresa = "";
+  kontakt = "";
+  mestoPodnosenja = "";
+  datumPodnosenja = "";
+
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +31,6 @@ export class ZalbaNaCutanjeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.zahtevId = +params.get('id');
     });
-
-    this.send();
   }
 
   send() {
@@ -80,7 +88,7 @@ export class ZalbaNaCutanjeComponent implements OnInit {
     this.zalbaService.addNewCutanje(zalba)
       .subscribe(
         data => {
-
+          console.log("Trebalo bi da upise")
         }
       )
   }
