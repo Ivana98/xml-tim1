@@ -45,9 +45,13 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
     this.obavestenjaService.addNew(text)
     .subscribe(
       data => {
-        console.log("dodato valjda")
+        console.log("dodato")
+      },
+      error => {
+        console.log(error);
       }
     );
+
   }
 
 }

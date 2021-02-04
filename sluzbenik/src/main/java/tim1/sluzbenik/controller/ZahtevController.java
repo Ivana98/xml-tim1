@@ -27,6 +27,7 @@ import javax.xml.bind.Unmarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.sluzbenik.model.korisnici.Korisnik;
 import tim1.sluzbenik.model.liste.JaxbLista;
+import tim1.sluzbenik.model.obavestenje.Obavestenje;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ZahtevService;
 import tim1.sluzbenik.soap.client.EmailClient;
@@ -142,34 +145,120 @@ public class ZahtevController {
         }
     }
 
-    @PostMapping(path = "/odbijanje/{idZahteva}", consumes = "application/xml")
-    public ResponseEntity<?> odbijanjeZahteva(@RequestBody String content, @PathVariable String idZahteva) {
+    @GetMapping(path = "/odbijanje/{idZahteva}", produces = "application/xml")
+    public ResponseEntity<?> odbijanjeZahteva(@PathVariable String idZahteva) {
         // TODO: Marija trebas da ubacis ovde emailTo je email korisnika, subject
         // promeni, i u content ubaci idZahteva.
         // Ne zaboravi moras imati pokrenute aplikacije email i sluzbenik.
+        XMLResource zahtevxml = zahtevService.readXML(idZahteva);
+        //InputStream inputStream = new ReaderInputStream(new StringReader(content));
         try {
-            // emailClient.odbijZahtev(emailTo, subject, content);
-            emailClient.odbijZahtev("konstrukcijaitestiranje@gmail.com", "Vas zahtev se odbija","Vas zahtev se odbija jer ne zelimo da vam isporucimo dokumenta");
-            return new ResponseEntity<>(HttpStatus.OK);
+            InputStream inputStream = new ReaderInputStream(new StringReader(zahtevxml.getContent().toString()));
+            JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
+            Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+            Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream);
+            String email;
+            System.out.println(zahtev.getTrazilac().getEmail());
+            if(zahtev.getTrazilac().getEmail() != null){
+                email = zahtev.getTrazilac().getEmail();  
+                if(email.equals("")){
+                    email = "konstrukcijaitestiranje@gmail.com";
+                }  
+            }
+            else {
+                email = "konstrukcijaitestiranje@gmail.com";
+            }
+
+            emailClient.odbijZahtev(email, "Vas zahtev se odbija", "Vas zahtev "+ idZahteva + " se odbija jer ne zelimo da vam isporucimo dokumenta");
+            zahtev.setContent("odbijen");
+
+            Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+            marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            marshallerZahtev.marshal(zahtev, stream);
+            String finalStringZahtev = new String(stream.toByteArray());
+
+            zahtevService.saveXML(idZahteva, finalStringZahtev);
+            zahtevService.saveRDF(finalStringZahtev, idZahteva);
+
+        } catch (XMLDBException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
-    @PostMapping(path = "/odobravanje/{idZahteva}", consumes = "application/xml")
-    public ResponseEntity<?> odobravanjeZahteva(@RequestBody String content, @PathVariable String idZahteva) {
+    @PostMapping(path = "/odobravanje", consumes = "application/xml")
+    public ResponseEntity<?> odobravanjeZahteva(@RequestBody String content) {
         // TODO: Marija trebas da ubacis ovde emailTo je email korisnika, subject
         // promeni, i u content ubaci idZahteva. Takodje dodaj lokalne putanje do pdf i
         // html fajlova. Putanje dobijes kada pozoves:
         // this.zahtevService.generateHTML(id); to je ivana pravila
         // Ne zaboravi moras imati pokrenute aplikacije email i sluzbenik.
+        // Korisnik user = (Korisnik) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // System.out.println(user.getKorisnickoIme());
+        InputStream inputStream = new ReaderInputStream(new StringReader(content));
         try {
-            // emailClient.odobriZahtev(to, subject, content, pdfPath, htmlPath);
-            emailClient.odobriZahtev("konstrukcijaitestiranje@gmail.com","Vas zahtev se odobrava" , "Odobreno", "asdf.pdf", "asdf.html");
-            return new ResponseEntity<>(HttpStatus.OK);
+            JAXBContext context = JAXBContext.newInstance(Obavestenje.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(inputStream);
+
+            String idZahteva = obavestenje.getIdZahteva();
+            XMLResource zahtevxml = zahtevService.readXML(idZahteva);
+            InputStream inputStream1;
+            try {
+                inputStream1 = new ReaderInputStream(new StringReader(zahtevxml.getContent().toString()));
+                JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
+                Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+                Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream1);
+
+                String email;
+                if(zahtev.getTrazilac().getEmail() != null){
+                    email = zahtev.getTrazilac().getEmail();  
+                    if(email.equals("")){
+                        email = "konstrukcijaitestiranje@gmail.com";
+                    }  
+                }
+                else {
+                    email = "konstrukcijaitestiranje@gmail.com";
+                }
+
+                String htmlPath = this.zahtevService.generateHTML(obavestenje.getId());
+                
+                emailClient.odobriZahtev(email,"Vas zahtev se odobrava" , "Zahtev " + idZahteva + "je odobren.", "asdf.pdf", htmlPath);
+                zahtev.setContent("odobren");
+
+                Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+                marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                marshallerZahtev.marshal(zahtev, stream1);
+                String finalStringZahtev = new String(stream1.toByteArray());
+
+                zahtevService.saveXML(zahtev.getId(), finalStringZahtev);
+                zahtevService.saveRDF(finalStringZahtev, zahtev.getId());
+
+            } catch (XMLDBException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("save xml exception");
+                e.printStackTrace();
+            }
+
+        } catch (JAXBException e1) {
+            // TODO Auto-generated catch block
+            System.out.println("unmarshaller error");
+            e1.printStackTrace();
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @GetMapping("/generateHTML/{id}")

@@ -29,7 +29,13 @@ export class PrikazZahtevaComponent implements OnInit {
   }
 
   refuse(): void {
-    this.zahtevService.odbijZahtev(this.zahtevId);
+    this.zahtevService.odbijZahtev(this.zahtevId).subscribe(response => {
+      console.log(response);
+    },
+    error => {
+      console.log(error);
+    })
+    console.log("odbijen");
   }
 
 

@@ -24,7 +24,7 @@ export class ZahtevService {
   
   httpOptions2 = {
     headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data',
+      
     })
   };
   
@@ -37,13 +37,15 @@ export class ZahtevService {
     return this.http.post<any>(this.apiUrl + '/zahtevi/xml', zahtev, this.httpOptions);
   }
 
-  odbijZahtev(idZahteva: string): any {
-    // console.log(idZahteva);
-    // const formData = new FormData();
-    // formData.append('email', this.email);
-    // formData.append('id', idZahteva);
-    // return this.http.post<any>('http://localhost:8092/emails/odbijZahtev', formData);
-    return this.http.post<any>(this.apiUrl + '/zahtevi/odbijanje/' + idZahteva, "", this.httpOptions);
+  odbijZahtev(idZahteva: string): Observable<any> {
+    return this.http.get<any>('http://localhost:8091/api/zahtevi/odbijanje/' + idZahteva, this.httpOptions);
+  }
+
+  odobriZahtev(obavestenje: string): Observable<any> {
+
+    let str = 'http://localhost:8091/api/zahtevi/odobravanje';
+    console.log(str);
+    return this.http.post<any>('http://localhost:8091/api/zahtevi/odobravanje', obavestenje, this.httpOptions);
   }
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>

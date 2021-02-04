@@ -32,6 +32,7 @@ import tim1.sluzbenik.model.obavestenje.Obavestenje;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ObavestenjeService;
 import tim1.sluzbenik.service.ZahtevService;
+import tim1.sluzbenik.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/obavestenja")
@@ -42,6 +43,9 @@ public class ObavestenjeController {
 
     @Autowired
     private ZahtevService zahtevService;
+
+    @Autowired
+    private EmailClient emailClient;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -75,6 +79,11 @@ public class ObavestenjeController {
             String finalString = new String(stream.toByteArray());
             System.out.println(finalString);
             content = finalString;
+            obavestenjeService.saveXML(documentId, content);
+            obavestenjeService.saveRDF(content, documentId);
+
+            System.out.println("----------------------------------------");
+            System.out.println(content);
 
             String idZahteva = obavestenje.getIdZahteva();
             XMLResource zahtevxml = zahtevService.readXML(idZahteva);
@@ -84,7 +93,27 @@ public class ObavestenjeController {
                 JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
                 Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
                 Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream1);
-                zahtev.setContent("prihvacen");
+
+                String email;
+                if(zahtev.getTrazilac().getEmail() != null){
+                    email = zahtev.getTrazilac().getEmail();  
+                    if(email.equals("")){
+                        email = "konstrukcijaitestiranje@gmail.com";
+                    }  
+                }
+                else {
+                    email = "konstrukcijaitestiranje@gmail.com";
+                }
+
+                System.out.println(email);
+                System.out.println("obavestenje id:");
+                System.out.println(documentId);
+
+                String htmlPath = this.zahtevService.generateHTML2(content, documentId);
+                
+                emailClient.odobriZahtev(email,"Vas zahtev se odobrava" , "Zahtev " + idZahteva + " je odobren.", "asdf.pdf", htmlPath);
+                zahtev.setContent("odobren");
+
                 Marshaller marshallerZahtev = contextZahtev.createMarshaller();
                 marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
                 ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
@@ -107,12 +136,16 @@ public class ObavestenjeController {
             // TODO Auto-generated catch block
             System.out.println("unmarshaller error");
             e1.printStackTrace();
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         }
         try {
             
-            obavestenjeService.saveXML(documentId, content);
-            obavestenjeService.saveRDF(content, documentId);
+            
             System.out.println("1111111111111111111111111");
+            //return new ResponseEntity<>(content, HttpStatus.CREATED);
+            XMLResource obavestenje = obavestenjeService.readXML(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
