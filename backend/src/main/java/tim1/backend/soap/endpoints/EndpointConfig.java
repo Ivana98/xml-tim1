@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import tim1.backend.soap.Resenje.ResenjeServiceSoapBindingImpl;
 import tim1.backend.soap.ZalbaNaCutanje.ZalbaNaCutanjeServiceSoapBindingImpl;
 import tim1.backend.soap.ZalbaNaOdluku.ZalbaNaOdlukuServiceSoapBindingImpl;
 import tim1.backend.soap.hello.HelloDocumentImpl;
@@ -27,6 +28,9 @@ public class EndpointConfig {
 	@Autowired
 	private ZalbaNaOdlukuServiceSoapBindingImpl zalbaNaOdlukuServiceSoapBindingImpl;
 
+	@Autowired
+	private ResenjeServiceSoapBindingImpl resenjeServiceSoapBindingImpl;
+
 	@Bean
 	public Endpoint helloEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, new HelloDocumentImpl());
@@ -44,6 +48,13 @@ public class EndpointConfig {
 	public Endpoint zalbaNaOdluku(){
 		EndpointImpl endpoint = new EndpointImpl(bus, zalbaNaOdlukuServiceSoapBindingImpl);
 		endpoint.publish("/zalba-na-odluku");
+		return endpoint;
+	}
+
+	@Bean
+	public Endpoint resenje(){
+		EndpointImpl endpoint = new EndpointImpl(bus, resenjeServiceSoapBindingImpl);
+		endpoint.publish("/resenje");
 		return endpoint;
 	}
 }
