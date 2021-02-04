@@ -71,7 +71,7 @@ public class ZalbaNaOdlukuServiceSoapBindingImpl implements ZalbaNaOdlukuService
      */
     public java.lang.String getZalbaNaOdlukuById(java.lang.String id) { 
         LOG.info("Executing operation getZalbaNaOdlukuById");
-        System.out.println(id);
+
         try {
             String documentId = id;
             XMLResource xml = zalbaNaOdlukuService.readXML(documentId);
