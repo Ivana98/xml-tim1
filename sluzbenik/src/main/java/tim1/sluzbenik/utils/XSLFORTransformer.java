@@ -88,4 +88,39 @@ public class XSLFORTransformer {
 		}
 	}
 
+	public boolean generatePDF(String xml_path, String output_file, String xsl_path) {
+		try {
+			File xslFile = new File(xsl_path);
+
+			StreamSource transformSource = new StreamSource(xslFile);
+
+			StringReader r = new StringReader(xml_path);
+
+			StreamSource source = new StreamSource(r);
+
+			FOUserAgent userAgent = fopFactory.newFOUserAgent();
+
+			ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+
+			Transformer transformer = transformerFactory.newTransformer(transformSource);
+
+			Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, outStream);
+
+			Result res = new SAXResult(fop.getDefaultHandler());
+
+			transformer.transform(source, res);
+
+			File pdfFile = new File(output_file);
+
+			OutputStream out = new BufferedOutputStream(new FileOutputStream(pdfFile));
+			out.write(outStream.toByteArray());
+			out.close();
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }
