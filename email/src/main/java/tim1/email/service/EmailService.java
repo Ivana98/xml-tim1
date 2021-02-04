@@ -30,12 +30,11 @@ public class EmailService {
 
   @Async
   public void posaljiMejl(String email, String subject, String content) throws Exception {
-    
+
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
     simpleMailMessage.setTo(email);
     simpleMailMessage.setFrom(env.getProperty("spring.mail.username"));
     simpleMailMessage.setSubject(subject);
-
 
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -43,19 +42,38 @@ public class EmailService {
     helper.setFrom(simpleMailMessage.getFrom());
     helper.setTo(simpleMailMessage.getTo());
     helper.setSubject(simpleMailMessage.getSubject());
-    helper.setText("Dokumenti se nalaze u prilogu ");
-
-    //pdf
-    FileSystemResource pdf = new FileSystemResource("asdf.pdf");
-    System.out.println(pdf.exists());
-    helper.addAttachment(pdf.getFilename(), pdf);
-
-    //html
-    FileSystemResource xhtml = new FileSystemResource("asdf.html");
-    System.out.println(xhtml.exists());
-    helper.addAttachment(xhtml.getFilename(), xhtml);
-
+    helper.setText(content);
 
     mailSender.send(message);
   }
+
+  @Async
+  public void posaljiMejl(String email, String subject, String content, String pdfPath, String htmlPath)
+      throws Exception {
+
+    SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+    simpleMailMessage.setTo(email);
+    simpleMailMessage.setFrom(env.getProperty("spring.mail.username"));
+    simpleMailMessage.setSubject(subject);
+
+    MimeMessage message = mailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+    helper.setFrom(simpleMailMessage.getFrom());
+    helper.setTo(simpleMailMessage.getTo());
+    helper.setSubject(simpleMailMessage.getSubject());
+    helper.setText( content + "\nDokumenti se nalaze u prilogu ");
+
+    // pdf
+    FileSystemResource pdf = new FileSystemResource(pdfPath);
+    System.out.println(pdf.exists()); // ovo je provera da li postoji pdf
+    helper.addAttachment(pdf.getFilename(), pdf);
+
+    // html
+    FileSystemResource xhtml = new FileSystemResource(htmlPath);
+    System.out.println(xhtml.exists());
+    helper.addAttachment(xhtml.getFilename(), xhtml);
+    mailSender.send(message);
+  }
+
 }
