@@ -55,4 +55,38 @@ public class ObavestenjeService extends AbstractService {
 			return null;
 		}
     }
+
+    public String generatePDF(String id) {
+		XSLFORTransformer transformer = null;
+
+		try {
+			transformer = new XSLFORTransformer();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+        XMLResource xmlRes = this.readXML(id);
+        String doc_str = "";
+
+        try {
+            doc_str = xmlRes.getContent().toString();
+        } catch (XMLDBException e1) {
+            e1.printStackTrace();
+        }
+
+		boolean ok = false;
+        String pdf_path = SAVE_PDF + "obavestenje_" + id + ".pdf";
+
+		try {
+			ok = transformer.generateHTML(doc_str, pdf_path, OBAVESTENJE_XSL_FO);
+			if (ok)
+				return pdf_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
