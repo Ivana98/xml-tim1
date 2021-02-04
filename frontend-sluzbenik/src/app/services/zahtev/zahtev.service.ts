@@ -51,6 +51,7 @@ export class ZahtevService {
   xsi:schemaLocation="http://www.ftn.uns.ac.rs/zahtev ../xsd_documents/zahtev.xsd"
   xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
   about="http://www.ftn.uns.ac.rs/rdf/zahtev/Zahtev"
+  id=""
   property="pred:status" datatype="xs:string" content="na cekanju">
   <info_organa about="http://www.ftn.uns.ac.rs/rdf/zahtev/Organ">
       <naziv property="pred:naziv" datatype="xs:string"> </naziv>

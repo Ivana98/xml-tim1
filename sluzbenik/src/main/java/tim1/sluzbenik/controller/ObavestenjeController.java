@@ -24,11 +24,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.InputSource;
+import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.model.obavestenje.Obavestenje;
+import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ObavestenjeService;
+import tim1.sluzbenik.service.ZahtevService;
 
 @RestController
 @RequestMapping(value = "/obavestenja")
@@ -36,6 +39,9 @@ public class ObavestenjeController {
 
     @Autowired
     private ObavestenjeService obavestenjeService;
+
+    @Autowired
+    private ZahtevService zahtevService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -69,12 +75,41 @@ public class ObavestenjeController {
             String finalString = new String(stream.toByteArray());
             System.out.println(finalString);
             content = finalString;
+
+            String idZahteva = obavestenje.getIdZahteva();
+            XMLResource zahtevxml = zahtevService.readXML(idZahteva);
+            InputStream inputStream1;
+            try {
+                inputStream1 = new ReaderInputStream(new StringReader(zahtevxml.getContent().toString()));
+                JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
+                Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+                Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream1);
+                zahtev.setContent("prihvacen");
+                Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+                marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                marshallerZahtev.marshal(zahtev, stream1);
+                String finalStringZahtev = new String(stream1.toByteArray());
+
+                zahtevService.saveXML(zahtev.getId(), finalStringZahtev);
+                zahtevService.saveRDF(finalStringZahtev, zahtev.getId());
+
+            } catch (XMLDBException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("save xml exception");
+                e.printStackTrace();
+            }
+            
+            
         } catch (JAXBException e1) {
             // TODO Auto-generated catch block
             System.out.println("unmarshaller error");
             e1.printStackTrace();
         }
         try {
+            
             obavestenjeService.saveXML(documentId, content);
             obavestenjeService.saveRDF(content, documentId);
             System.out.println("1111111111111111111111111");

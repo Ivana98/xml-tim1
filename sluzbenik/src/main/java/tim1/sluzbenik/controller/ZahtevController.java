@@ -1,12 +1,14 @@
 package tim1.sluzbenik.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.tools.ant.util.ReaderInputStream;
-
 
 import javax.websocket.server.PathParam;
 import javax.xml.bind.JAXBContext;
@@ -20,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +32,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ZahtevService;
+
 
 @RestController
 @RequestMapping(value = "/zahtevi")
@@ -81,6 +85,18 @@ public class ZahtevController {
         }
     }
 
+    @PutMapping(path = "/xml/{idZahteva}", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZahteva) {
+        try {
+            
+            zahtevService.saveXML(idZahteva, content);
+            zahtevService.saveRDF(content, idZahteva);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping(path = "/rdf-xml/{uri}", produces = "application/xml")
     public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
@@ -114,4 +130,24 @@ public class ZahtevController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/generateHTML/{id}")
+	public ResponseEntity<byte[]> generisiHTML(@PathVariable("id") String id) throws XMLDBException {
+
+        //uses id of zahtev
+		String file_path = this.zahtevService.generateHTML(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+    }
+
+
 }

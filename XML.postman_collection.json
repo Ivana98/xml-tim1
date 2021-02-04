@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "29b62ae7-f360-4c43-a9a8-c9da63c25560",
+		"_postman_id": "d4e6876f-139a-4165-8f8a-b2b97c5eb6d3",
 		"name": "XML Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -909,7 +909,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zalba_na_odluku\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-odluku\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">>\r\n    <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>\r\n    \r\n    <podaci_o_povereniku>\r\n        <namena> \r\n            Поверенику за информације од јавног значаја и заштиту података о личности \r\n        </namena>\r\n        <adresa>\r\n            <grad property=\"pred:grad\" datatype=\"xs:string\"> Београд </grad>\r\n            <ulica property=\"pred:ulica\" datatype=\"xs:string\"> Булевар краља Александрa </ulica>\r\n            <broj>15</broj>\r\n        </adresa>\r\n    </podaci_o_povereniku>\r\n    \r\n    <zalba>\r\n        Ж А Л Б А  \r\n        <zalilac type = \"TFizickoLice\">\r\n            <adresa>\r\n                <grad></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <sediste></sediste>\r\n            <ime></ime>\r\n            <prezime></prezime>\r\n        </zalilac>\r\n        против решења-закључка \r\n        \r\n        <naziv_organa></naziv_organa>\r\n        Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.\r\n        \r\n        <sadrzaj>\r\n            Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми \r\n            са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-\r\n            упутио/ла дана <datum>2020-12-10</datum> године и тако ми ускраћено-онемогућено остваривање уставног и\r\n            законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у\r\n            целости, односно у делу којим <deo_odluke> </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.\r\n            На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи\r\n            одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.\r\n            Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   \r\n        </sadrzaj>\r\n        \r\n        <podnosilac>\r\n            <ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Imenko</ime>\r\n            <prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Prezimenic</prezime>\r\n            <adresa>\r\n                <grad property=\"pred:gradPodnosioca\" datatype=\"xs:string\"></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <kontakt_podaci>0651122123</kontakt_podaci>\r\n        </podnosilac>\r\n        \r\n        <vreme_i_mesto>\r\n            <grad property=\"pred:mestoPodnosenja\" datatype=\"xs:string\"></grad>\r\n            <datum property=\"pred:datumPodnosenja\" datatype=\"xs:date\">2020-12-01</datum>\r\n        </vreme_i_mesto>\r\n        \r\n    </zalba>\r\n    \r\n    <napomene>\r\n        Напомена: \r\n        <napomena id=\"1\">\r\n            У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив\r\n            органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у\r\n            жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити.\r\n            Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити. \r\n        </napomena>\r\n        <napomena id=\"2\">\r\n            Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу\r\n            као и копију одлуке органа која се оспорава жалбом.\r\n        </napomena>\r\n    </napomene>\r\n    \r\n</zalba_na_odluku>",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zalba_na_odluku\r\n    xmlns=\"http://www.ftn.uns.ac.rs/zalba-na-odluku\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd\"\r\n    xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\">\r\n    <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>\r\n    \r\n    <podaci_o_povereniku>\r\n        <namena> \r\n            Поверенику за информације од јавног значаја и заштиту података о личности \r\n        </namena>\r\n        <adresa about=\"http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaPoverenika\">\r\n            <grad property=\"pred:grad\" datatype=\"xs:string\"> Београд </grad>\r\n            <ulica property=\"pred:ulica\" datatype=\"xs:string\"> Булевар краља Александрa </ulica>\r\n            <broj>15</broj>\r\n        </adresa>\r\n    </podaci_o_povereniku>\r\n    \r\n    <zalba>\r\n        Ж А Л Б А  \r\n        <zalilac xsi:type=\"TFizickoLice\" about=\"http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Zalilac\">\r\n            <adresa about=\"http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaZalioca\">\r\n                <grad property=\"pred:grad\" datatype=\"xs:string\"></grad>\r\n                <ulica property=\"pred:grad\" datatype=\"xs:string\"></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <sediste property=\"pred:sediste\" datatype=\"xs:string\"></sediste>\r\n            <ime property=\"pred:ime\" datatype=\"xs:string\"></ime>\r\n            <prezime property=\"pred:prezime\" datatype=\"xs:string\"></prezime>\r\n        </zalilac>\r\n        против решења-закључка \r\n        \r\n        <naziv_organa></naziv_organa>\r\n        Број <broj_zahteva>3</broj_zahteva> од <godina>2020</godina> године.\r\n        \r\n        <sadrzaj>\r\n            Наведеном одлуком органа власти (решењем, закључком, обавештењем у писаној форми \r\n            са елементима одлуке) , супротно закону, одбијен-одбачен је мој захтев који сам поднео/ла-\r\n            упутио/ла дана <datum>2020-12-10</datum> године и тако ми ускраћено-онемогућено остваривање уставног и\r\n            законског права на слободан приступ информацијама од јавног значаја. Oдлуку побијам у\r\n            целости, односно у делу којим <deo_odluke> </deo_odluke> јер није заснована на Закону о слободном приступу информацијама од јавног значаја.\r\n            На основу изнетих разлога, предлажем да Повереник уважи моју жалбу,  поништи\r\n            одлука првостепеног органа и омогући ми приступ траженој/им  информацији/ма.\r\n            Жалбу подносим благовремено, у законском року утврђеном у <zakon>члану 22. ст. 1. Закона о слободном приступу информацијама од јавног значаја.</zakon>   \r\n        </sadrzaj>\r\n        \r\n        <podnosilac about=\"http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosilac\">\r\n            <ime property=\"pred:imePodnosioca\" datatype=\"xs:string\">Imenko</ime>\r\n            <prezime property=\"pred:prezimePodnosioca\" datatype=\"xs:string\">Prezimenic</prezime>\r\n            <adresa>\r\n                <grad property=\"pred:gradPodnosioca\" datatype=\"xs:string\"></grad>\r\n                <ulica></ulica>\r\n                <broj></broj>\r\n            </adresa>\r\n            <kontakt_podaci>0651122123</kontakt_podaci>\r\n        </podnosilac>\r\n        \r\n        <vreme_i_mesto about=\"http://www.ftn.uns.ac.rs/rdf/zalbaodluka/Podnosenje\">\r\n            <grad property=\"pred:mesto\" datatype=\"xs:string\"></grad>\r\n            <datum property=\"pred:datum\" datatype=\"xs:date\">2020-12-01</datum>\r\n        </vreme_i_mesto>\r\n        \r\n    </zalba>\r\n    \r\n    <napomene>\r\n        Напомена: \r\n        <napomena id=\"1\">\r\n            У жалби се мора навести одлука која се побија (решење, закључак, обавештење), назив\r\n            органа који је одлуку донео, као и број и датум одлуке. Довољно је да жалилац наведе у\r\n            жалби у ком погледу је незадовољан одлуком, с тим да жалбу не мора посебно образложити.\r\n            Ако жалбу изјављује на овом обрасцу, додатно образложење може  посебно приложити. \r\n        </napomena>\r\n        <napomena id=\"2\">\r\n            Уз жалбу обавезно приложити копију поднетог захтева и доказ о његовој предаји-упућивању органу\r\n            као и копију одлуке органа која се оспорава жалбом.\r\n        </napomena>\r\n    </napomene>\r\n    \r\n</zalba_na_odluku>\r\n",
 									"options": {
 										"raw": {
 											"language": "xml"
@@ -1107,6 +1107,178 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "MAIL",
+			"item": [
+				{
+					"name": "odobri zahtev",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "konstrukcijaitestiranje@gmail.com",
+									"contentType": "text/plain",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<c> asdf </c>",
+									"contentType": "application/xml",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8092/emails/odobriZahtev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8092",
+							"path": [
+								"emails",
+								"odobriZahtev"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "soap",
+			"item": [
+				{
+					"name": "getZalbaNaOdlukuById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <id>b400c0e7-979e-4518-be62-ed27f60358c1</id>\r\n    </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ws/zalba-na-odluku",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ws",
+								"zalba-na-odluku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll zalba na odluku",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n       <getAll xmlns=\"http://www.zalbanaodluku.com\"></getAll>\r\n    </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ws/zalba-na-odluku",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ws",
+								"zalba-na-odluku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getZalbaNaCutanjeById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <id>123</id>\r\n    </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ws/zalba-na-cutanje",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ws",
+								"zalba-na-cutanje"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll zalba na cutanje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n       <getAll xmlns=\"http://www.zalbanacutanje.com\"></getAll>\r\n    </soap:Body>\r\n</soap:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/ws/zalba-na-cutanje",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"ws",
+								"zalba-na-cutanje"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
