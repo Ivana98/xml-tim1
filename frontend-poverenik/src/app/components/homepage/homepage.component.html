@@ -1,5 +1,3 @@
-<!-- navbar -->
-
 <p>
     <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Homepage" [routerLink]="'/homepage'">
@@ -8,10 +6,6 @@
         <span>Portal poverenika</span>
 
         <span *ngIf="role=='GRADJANIN'">
-            <button mat-button class="example-icon btn_spacing" aria-label="Podnosenje zalbe"
-            [routerLink]="'/homepage/podnosenje-zalbe'">
-                Podnosenje zalbe
-            </button>
             <button mat-button class="example-icon btn_spacing" aria-label="Zalbe" [routerLink]="'/homepage/zalbe'">
                 Zalbe
             </button>
