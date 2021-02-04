@@ -11,9 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import tim1.backend.soap.Resenje.ResenjeServiceSoapBindingImpl;
 import tim1.backend.soap.ZalbaNaCutanje.ZalbaNaCutanjeServiceSoapBindingImpl;
 import tim1.backend.soap.ZalbaNaOdluku.ZalbaNaOdlukuServiceSoapBindingImpl;
-import tim1.backend.soap.hello.HelloDocumentImpl;
-
-
 
 
 @Configuration
@@ -30,13 +27,6 @@ public class EndpointConfig {
 
 	@Autowired
 	private ResenjeServiceSoapBindingImpl resenjeServiceSoapBindingImpl;
-
-	@Bean
-	public Endpoint helloEndpoint() {
-		EndpointImpl endpoint = new EndpointImpl(bus, new HelloDocumentImpl());
-		endpoint.publish("/hello");
-		return endpoint;
-	}
 
 	@Bean
 	public Endpoint zalbaNaCutanje(){
