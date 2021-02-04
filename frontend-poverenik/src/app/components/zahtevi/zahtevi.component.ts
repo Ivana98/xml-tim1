@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Resenje } from 'src/app/model/resenje';
 import { Zahtev } from 'src/app/model/zahtev';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
@@ -47,6 +48,8 @@ export class ZahteviComponent implements OnInit {
     },
   ]
 
+  zahtevi: Zahtev[] = [];
+
   constructor(
     private authService: AuthService,
     private zahtevService: ZahtevService
@@ -54,16 +57,23 @@ export class ZahteviComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
-    this.dataSource = new MatTableDataSource<Zahtev>(this.resenja);
+    this.getAll();
   }
 
   getAll() {
     this.zahtevService.getAll()
-    .subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+      .subscribe(
+        data => {
+          this.zahtevi = [];  // clear list
+          data["jaxbLista"]["ns4:zahtev"].forEach(element => {
+            //TODO: uprava cuti - treba proveriti datum koliko je star
+            //TODO: odbijen - treba proveriti da li je odbijen
+            this.zahtevi.push(new Zahtev(1, element["ns4:info_organa"]["ns4:naziv"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], true, true))
+          });
+
+          this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
+        }
+      )
   }
 
   requestPage(): void {

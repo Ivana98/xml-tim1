@@ -35,7 +35,7 @@ export class ZalbaNaCutanjeComponent implements OnInit {
 
   send() {
     //TODO: ovde ubaciti realne vrednosti - promenljive
-    var zalba = `
+    let zalba = `
     <?xml version="1.0" encoding="UTF-8"?>
     <Zalba_na_cutanje 
         naslov="ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)"
@@ -89,8 +89,11 @@ export class ZalbaNaCutanjeComponent implements OnInit {
       .subscribe(
         data => {
           console.log("Trebalo bi da upise")
-        }
+        },
+        error => console.log(error)
+        
       )
+      
   }
 
 }

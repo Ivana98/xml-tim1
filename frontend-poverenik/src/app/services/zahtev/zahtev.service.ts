@@ -26,7 +26,7 @@ export class ZahtevService {
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
     return this.http
-    .get(this.apiUrl + '/zalbe-na-cutenje/xml', { responseType: "text" })
+    .get(this.apiUrl + '/zahtevi/xml', { responseType: "text" })
     .pipe(
       switchMap(async xml => await this.parseXmlToJson(xml))
     );

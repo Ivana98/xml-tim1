@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ZalbaService {
     return this.http.post<any>(this.apiUrl + '/zalbe-na-odluku/xml', zalba, this.httpOptions);
   }
 
-  addNewCutanje(zalba) {
+  addNewCutanje(zalba): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/zalbe-na-cutanje/xml', zalba, this.httpOptions);
   }
 }
