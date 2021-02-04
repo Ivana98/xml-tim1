@@ -16,6 +16,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
+import tim1.backend.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/resenja")
@@ -24,8 +25,8 @@ public class ResenjeController {
     @Autowired
     private ResenjeService resenjeService;
 
-    // @Autowired
-    // private EmailClient emailClient;
+    @Autowired
+    private EmailClient emailClient;
     
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
@@ -45,9 +46,26 @@ public class ResenjeController {
         String documentId = UUID.randomUUID().toString();
         try {
             resenjeService.saveXML(documentId, content);
+            resenjeService.saveRDF(content, documentId);            
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(path = "/xml/{idZalbe}", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZalbe) {
+        String documentId = UUID.randomUUID().toString();
+        try {
+            resenjeService.saveXML(documentId, content);
             resenjeService.saveRDF(content, documentId);
 
-            //TODO: POSLATI MEJL DA JE RESENJE NAPRAVLJENO
+            String sadrzajMejla = "U prilogu se nalazi resenje za zalbu broj: " + idZalbe;
+            //TODO: POSLATI MEJL PRAVOM KORISNIKU
+            //TODO: POSLATI I PDF I HTML
+            emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com","Resenje" , sadrzajMejla , "asdf.pdf", "asdf.html");
+            emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com","Resenje" , sadrzajMejla, "asdf.pdf", "asdf.html");
 
             
             return new ResponseEntity<>(HttpStatus.CREATED);
