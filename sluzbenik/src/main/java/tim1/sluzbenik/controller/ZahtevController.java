@@ -132,7 +132,7 @@ public class ZahtevController {
     }
 
     @GetMapping("/generateHTML/{id}")
-	public ResponseEntity<byte[]> generisiHTML(@PathVariable("id") String id) throws XMLDBException {
+	public ResponseEntity<byte[]> generateHTML(@PathVariable("id") String id) throws XMLDBException {
 
         //uses id of zahtev
 		String file_path = this.zahtevService.generateHTML(id);

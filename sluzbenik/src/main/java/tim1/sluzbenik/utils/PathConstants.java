@@ -36,6 +36,7 @@ public class PathConstants {
 
     public static final String SAVE_HTML = "./../documents/html_documents/";
     public static final String ZAHTEV_XSL = "./../documents/xsl_documents/zahtev.xsl";
+    public static final String OBAVESTENJE_XSL = "./../documents/xsl_documents/obavestenje.xsl";
 
     public static final String FOP_XCONF = "src/main/resources/fop.xconf";
 
