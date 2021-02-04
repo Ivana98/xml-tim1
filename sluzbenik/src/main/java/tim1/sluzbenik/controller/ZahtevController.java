@@ -143,7 +143,7 @@ public class ZahtevController {
             url = new URL("http://localhost:8092/emails/odbijZahtev");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
-            //con.setRequestProperty("Content-Type", "multipart/form-data");
+            con.setRequestProperty("Content-Type", "multipart/form-data");
 
             Map<String, String> parameters = new HashMap<>();
             parameters.put("email", "konstrukcijaitestiranje@gmail.com");
