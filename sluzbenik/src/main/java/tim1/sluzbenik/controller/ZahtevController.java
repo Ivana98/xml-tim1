@@ -3,6 +3,8 @@ package tim1.sluzbenik.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.tools.ant.util.ReaderInputStream;
 
 import javax.websocket.server.PathParam;
@@ -38,6 +41,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.service.ZahtevService;
+
 
 @RestController
 @RequestMapping(value = "/zahtevi")
@@ -166,6 +170,22 @@ public class ZahtevController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         }
+    }
+    @GetMapping("/generateHTML/{id}")
+	public ResponseEntity<byte[]> generisiHTML(@PathVariable("id") String id) throws XMLDBException {
+
+        //uses id of zahtev
+		String file_path = this.zahtevService.generateHTML(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 
     }
 
