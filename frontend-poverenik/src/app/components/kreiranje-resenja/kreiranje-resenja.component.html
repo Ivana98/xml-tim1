@@ -4,11 +4,44 @@
     </mat-card-title>
 
     <mat-card-content>
-        <p>
-            Sadrzaj...
-            <!--{{sadrzaj resenja}}-->
-            <!-- ovde ide i xonomy -->
-        </p>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Sadrzaj obrazlozenja</mat-label>
+                        <input matInput [(ngModel)]="sadrzajObrazlozenja" name="sadrzajObrazlozenja">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Ime</mat-label>
+                        <input matInput [(ngModel)]="ime" name="ime">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Prezime</mat-label>
+                        <input matInput [(ngModel)]="prezime" name="prezime">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Datum</mat-label>
+                        <input matInput [(ngModel)]="datum" name="datum">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Cena</mat-label>
+                        <input matInput [(ngModel)]="cena" name="cena">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
 
         <button [routerLink]="['/homepage/zalbe']"
         mat-raised-button color="primary" aria-label="Obustavi"  id="cancelBtn"
