@@ -74,7 +74,7 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      // this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
     });
   }
 
@@ -90,7 +90,7 @@ export class ZalbeComponent implements OnInit {
     // gradjanin moze da vidi samo svoje zalbe
     // dok poverenik moze da vidi sve zalbe
     if (this.role == "GRADJANIN") {
-      // lista = lista.filter(zalba => zalba["ns4:zalba"]["ns4:podnosilac"]["$"]["email"] == this.email);
+      lista = lista.filter(zalba => zalba["ns4:zalba"]["ns4:podnosilac"]["$"]["email"] == this.email);
     }
 
     lista.forEach(element => {
