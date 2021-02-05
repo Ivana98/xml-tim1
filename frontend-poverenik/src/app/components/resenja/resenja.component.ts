@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Resenje } from 'src/app/model/resenje';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ResenjaService } from 'src/app/services/resenja/resenja.service';
 
 @Component({
   selector: 'app-resenja',
@@ -31,7 +32,8 @@ export class ResenjaComponent implements OnInit {
 
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private resenjaService: ResenjaService
   ) {
     this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
   }
@@ -59,6 +61,24 @@ export class ResenjaComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.length = this.resenja.length;
     return event;
+  }
+
+  getHtml(id: string){
+    this.resenjaService.getHtml(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'text/html' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `resenje_${id}.html`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
   }
 
 }

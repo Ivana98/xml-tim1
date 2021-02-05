@@ -20,4 +20,8 @@ export class ResenjaService {
   addResenje(resenjeXml: string): Observable<any>{
     return this.http.post<string>(this.apiUrl + "/resenja/xml", resenjeXml, this.httpOptions);
   }
+
+  getHtml(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
 }

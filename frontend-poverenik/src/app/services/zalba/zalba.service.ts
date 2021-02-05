@@ -56,4 +56,12 @@ export class ZalbaService {
       });
   }
 
+  getHtmlCutanje(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-cutenje/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getHtmlOdluka(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-odluku/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
 }
