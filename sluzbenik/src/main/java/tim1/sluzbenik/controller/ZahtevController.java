@@ -74,12 +74,12 @@ public class ZahtevController {
         try {
             JAXBContext context = JAXBContext.newInstance(Zahtev.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Zahtev obavestenje = (Zahtev) unmarshaller.unmarshal(inputStream);
-            obavestenje.setId(documentId);
+            Zahtev zahtev = (Zahtev) unmarshaller.unmarshal(inputStream);
+            zahtev.setId(documentId);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            marshaller.marshal(obavestenje, stream);
+            marshaller.marshal(zahtev, stream);
             String finalString = new String(stream.toByteArray());
             System.out.println(finalString);
             content = finalString;

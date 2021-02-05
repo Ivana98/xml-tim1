@@ -1,7 +1,16 @@
 package tim1.backend.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.UUID;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import org.apache.tools.ant.util.ReaderInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +48,24 @@ public class ZalbaNaOdlukuController {
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
         String documentId = UUID.randomUUID().toString();
+        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+        try {
+            JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(inputStream);
+            zalbaNaOdluku.setId(documentId);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            marshaller.marshal(zalbaNaOdluku, stream);
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+            content = finalString;
+        } catch (JAXBException e1) {
+            // TODO Auto-generated catch block
+            System.out.println("unmarshaller error");
+            e1.printStackTrace();
+        }
         try {
             zalbaService.saveXML(documentId, content);
             zalbaService.saveRDF(content,documentId);
