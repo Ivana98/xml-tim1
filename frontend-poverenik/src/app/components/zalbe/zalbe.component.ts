@@ -11,7 +11,7 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'korisnik', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'korisnik', 'izvoz', 'resenje'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
