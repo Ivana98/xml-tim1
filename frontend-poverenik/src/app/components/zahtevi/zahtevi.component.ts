@@ -37,17 +37,37 @@ export class ZahteviComponent implements OnInit {
     this.zahtevService.getAll()
       .subscribe(
         data => {
-          console.log(data)
           this.zahtevi = [];  // clear list
-          data["jaxbLista"]["ns4:zahtev"].forEach(element => {
-            //TODO: uprava cuti - treba proveriti datum koliko je star
-            //TODO: odbijen - treba proveriti da li je odbijen
-            this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:info_organa"]["ns4:naziv"]["_"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], true, true))
+
+          let lista = data["jaxbLista"]["ns4:zahtev"];
+          console.log(lista)
+          lista.forEach(element => {
+
+            let dozvole = this.getDozvoleZaZalbu(element["$"]["content"]);
+
+            this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:info_organa"]["ns4:naziv"]["_"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], dozvole[0], dozvole[1]))
           });
 
           this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
         }
       )
+  }
+
+  getDozvoleZaZalbu(content) {
+    console.log(content);
+    switch (content) {
+      case "na cekanju":
+        return [false, false];
+      case "nema odgovora":
+        return [true, false];
+      case "odbijen":
+        return [false, true];
+      case "odobren":
+        return [false, false];
+      default:
+        console.log("GRESKA !!! Promeni resenja u bazi.");
+        return [false, false];
+    }
   }
 
   requestPage(): void {
