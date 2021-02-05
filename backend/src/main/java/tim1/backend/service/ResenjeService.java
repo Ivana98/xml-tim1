@@ -1,13 +1,17 @@
 package tim1.backend.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.tools.ant.util.ReaderInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.method.annotation.ExceptionHandlerMethodResolver;
@@ -15,7 +19,8 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.JaxbLista;
-import tim1.backend.model.resenje.Resenje;
+//import tim1.backend.model.resenje.Resenje;
+import tim1.backend.model.resenje.ResenjeObrazac;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.backend.model.zalbacutanje.PodnosilacZalbe.Ime;
 import tim1.backend.model.zalbaodluka.Podnosilac;
@@ -43,10 +48,39 @@ public class ResenjeService extends AbstractService {
 		super(repository, "/db/poverenik/resenje/", "/resenje/");
 	}
 
-	public JaxbLista<Resenje> findAllFromCollection() throws Exception {
 
-		List<Resenje> listaZalbi = this.findAllFromCollection(Resenje.class);
-		JaxbLista<Resenje> listaObj = new JaxbLista<Resenje>(listaZalbi);
+	@Override
+    public void saveXML(String documentId, String content) throws Exception {
+
+        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+
+        JAXBContext context = JAXBContext.newInstance(ResenjeObrazac.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        ResenjeObrazac resenje = (ResenjeObrazac) unmarshaller.unmarshal(inputStream);
+
+        resenje.setId(documentId);
+
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        
+        marshaller.marshal(resenje, stream);
+        
+        String finalString = new String(stream.toByteArray());
+        System.out.println(finalString);
+        
+        content = finalString;
+        
+        repository.saveXML(documentId, collectionId, content);
+        repository.saveRDF(content, documentId);
+    }
+
+	public JaxbLista<ResenjeObrazac> findAllFromCollection() throws Exception {
+
+		List<ResenjeObrazac> listaZalbi = this.findAllFromCollection(ResenjeObrazac.class);
+		JaxbLista<ResenjeObrazac> listaObj = new JaxbLista<ResenjeObrazac>(listaZalbi);
 		return listaObj;
 	}
 
