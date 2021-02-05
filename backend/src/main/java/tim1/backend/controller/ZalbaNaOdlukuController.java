@@ -29,6 +29,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.zalbaodluka.ZalbaNaOdluku;
 import tim1.backend.service.ZalbaNaOdlukuService;
+import tim1.backend.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/zalbe-na-odluku")
@@ -36,6 +37,9 @@ public class ZalbaNaOdlukuController {
 
     @Autowired
     private ZalbaNaOdlukuService zalbaService;
+
+    @Autowired
+    EmailClient emailClient;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -51,17 +55,25 @@ public class ZalbaNaOdlukuController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        
+        String documentId = UUID.randomUUID().toString();
+
         try {
-            zalbaService.saveXML(UUID.randomUUID().toString(), content);
+            zalbaService.saveXML(documentId, content);
+
+            // nakon podnosenja zalbe treba obavestiti sluzbenika da je zalba podneta
+
+            String subject = "Obavestenje o podnosenju zalbe broj: " + documentId;
+            String emailContent = "Podneta je nova zalba na odluku. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
+
+            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
+
     }
 
-    @GetMapping(path= "/rdf-xml/{uri}", produces = "application/xml")
+    @GetMapping(path = "/rdf-xml/{uri}", produces = "application/xml")
     public ResponseEntity<String> getRdfAsXML(@PathVariable("uri") String uri) {
 
         try {
@@ -83,9 +95,8 @@ public class ZalbaNaOdlukuController {
         }
     }
 
-    
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<ZalbaNaOdluku>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ZalbaNaOdluku>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<ZalbaNaOdluku> lista = zalbaService.findAllFromCollection();
@@ -97,20 +108,20 @@ public class ZalbaNaOdlukuController {
     }
 
     @GetMapping("/generateHTML/{id}")
-	public ResponseEntity<byte[]> generateHTML(@PathVariable("id") String id) throws XMLDBException {
+    public ResponseEntity<byte[]> generateHTML(@PathVariable("id") String id) throws XMLDBException {
 
-        //uses id of obavestenje
-		String file_path = this.zalbaService.generateHTML(id);
+        // uses id of obavestenje
+        String file_path = this.zalbaService.generateHTML(id);
 
-		try {
-			File file = new File(file_path);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+        try {
+            File file = new File(file_path);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
     }
 }

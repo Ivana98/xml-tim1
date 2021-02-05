@@ -84,6 +84,7 @@
             <xs:attribute name="naslov" type="xs:string"/>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="idZahteva" type="xs:string"/>
+            <xs:attribute name="status" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Podnosilac_zalbe">

@@ -23,6 +23,7 @@ import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.resenje.Resenje;
+import tim1.backend.model.resenje.ResenjeObrazac;
 import tim1.backend.service.ResenjeService;
 
 /**
@@ -48,7 +49,8 @@ public class ResenjeServiceSoapBindingImpl implements ResenjeServicePortType {
     public java.lang.String getAll() { 
         LOG.info("Executing operation getAll");
         try {
-            JaxbLista<Resenje> lista = resenjeService.findAllFromCollection();
+
+            JaxbLista<ResenjeObrazac> lista = resenjeService.findAllFromCollection();
             JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

@@ -11,6 +11,7 @@ import { ResenjaService } from 'src/app/services/resenja/resenja.service';
   styleUrls: ['./resenja.component.scss']
 })
 export class ResenjaComponent implements OnInit {
+
   displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
   dataSource: MatTableDataSource<Resenje>;
   pageIndex: number = 0;
@@ -19,27 +20,34 @@ export class ResenjaComponent implements OnInit {
 
   role = "";
 
-  resenja: Resenje[] = [
-    {
-      id: 1,
-      naziv: 'Resenje 1',
-    },
-    {
-      id: 2,
-      naziv: 'Resenje 2',
-    },
-  ]
+  resenja: Resenje[] = []
 
 
   constructor(
     private authService: AuthService,
     private resenjaService: ResenjaService
-  ) {
-    this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-  }
+  ) { }
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
+    this.getAll();
+  }
+
+  getAll() {
+    this.resenja = [];
+
+    this.resenjaService.getAll()
+      .subscribe(
+        data => {
+          let lista = data["jaxbLista"]["ns6:Resenje_obrazac"];
+
+          lista.forEach(element => {
+            this.resenja.push(new Resenje(element["$"]["id"], element["$"]["broj"]))
+          });
+
+          this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
+        }
+      )
   }
 
   requestPage(): void {

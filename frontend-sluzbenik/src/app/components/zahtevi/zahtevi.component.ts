@@ -19,6 +19,7 @@ export class ZahteviComponent implements OnInit {
   length: number = 0;
 
   role = '';
+  email = "";
 
   zahtevi: Zahtev[] = [];
 
@@ -26,42 +27,52 @@ export class ZahteviComponent implements OnInit {
     private router: Router,
     private zahtevService: ZahtevService,
     private authService: AuthService
-    ) { 
+  ) {
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    
+
   }
 
   ngOnInit(): void {
     console.log("On init");
-    this.role == this.authService.getRole();
-    console.log("ROLE");
-    console.log(this.role);
+    this.role = this.authService.getRole();
+    this.email = this.authService.getEmail();
+    console.log(this.email);
     this.getAll();
   }
 
-  getAll(){
-    this.zahtevService.getAll().subscribe(result => {
-      console.log(result);
-      //this.dataSource = new MatTableDataSource<Zahtev>(result.body.zahtevi);
-    })
-    //this.role == this.authService.getRole();
-    this.zahtevService.getAll()
-    .subscribe(
-      data => {
-        data["jaxbLista"]["ns4:zahtev"].forEach(element => {
-          this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"])); 
-        });
+  async getAll() {
 
-        this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-      }
-    );
+    let lista = await this.zahtevService.getAll().toPromise();
+    lista = lista["jaxbLista"]["ns4:zahtev"];
+
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
+
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
+
+    // gradjanin moze da vidi samo svoje zalbe
+    // dok poverenik moze da vidi sve zalbe
+    if (this.role == "GRADJANIN") {
+      lista = lista.filter(zalba => zalba["ns4:trazilac"]["$"]["email"] == this.email);
+    }
+
+
+    lista.forEach(element => {
+      console.log(element["ns4:trazilac"]["$"]["email"]);
+      this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"]));
+    })
+
+    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
   }
 
   requestPage(): void {
     let event = new PageEvent();
     event.pageIndex = this.pageIndex;
     event.pageSize = this.pageSize;
-    
+
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
