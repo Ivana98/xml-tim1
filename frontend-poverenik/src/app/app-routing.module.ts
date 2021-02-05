@@ -29,7 +29,7 @@ const routes: Routes = [
       { path: 'zalba-odbijanje/:id', component: ZalbaNaOdbijanjeComponent },
       { path: 'zalba-cutanje/:id', component: ZalbaNaCutanjeComponent },
       { path: 'podnosenje-zalbe', component: KreiranjeZalbeComponent },
-      { path: 'zalbe/:id/podnosenje-resenja', component: KreiranjeResenjaComponent },
+      { path: 'podnosenje-resenja-za-zalbu/:id', component: KreiranjeResenjaComponent },
     ]
   },
   { path: '404', component: PageNotFoundComponent },

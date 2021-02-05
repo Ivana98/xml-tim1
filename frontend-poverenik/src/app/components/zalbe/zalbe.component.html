@@ -32,8 +32,8 @@
         <td mat-cell *matCellDef="let element"> <a [routerLink]="[':id']"> {{element.naziv}} </a> </td>
       </ng-container>
 
-      <ng-container matColumnDef="korisnik">
-        <th mat-header-cell *matHeaderCellDef> Korisnik </th>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
         <td mat-cell *matCellDef="let element"> {{element.korisnik}} </td>
       </ng-container>
 
@@ -45,6 +45,16 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="resenje">
+        <th mat-header-cell *matHeaderCellDef> Novo Resenje </th>
+        <td mat-cell *matCellDef="let element" class="action-cell">
+          <button 
+          [routerLink]="['/homepage/podnosenje-resenja-za-zalbu/', element.id]"
+          style="font-size: 25px;" class="table-button" mat-icon-button color="accent" aria-label="export action"
+          > + </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -52,4 +62,5 @@
     <mat-paginator [pageIndex]="pageIndex" [length]="length" [pageSize]="pageSize" (page)="getPage($event)"
       [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
+
 </div>

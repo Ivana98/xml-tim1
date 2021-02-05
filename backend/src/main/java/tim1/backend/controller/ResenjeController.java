@@ -2,6 +2,7 @@ package tim1.backend.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.StringReader;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -27,6 +28,7 @@ public class ResenjeController {
 
     @Autowired
     private ResenjeService resenjeService;
+    
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -45,9 +47,26 @@ public class ResenjeController {
         String documentId = UUID.randomUUID().toString();
         try {
             resenjeService.saveXML(documentId, content);
+            resenjeService.saveRDF(content, documentId);            
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(path = "/xml/{idZalbe}", consumes = "application/xml")
+    public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZalbe) {
+
+        //generisi id resenja
+        String documentId = UUID.randomUUID().toString();
+        try {
+            //sacuvaj resenje u xml i rdf bazu
+            resenjeService.saveXML(documentId, content);
             resenjeService.saveRDF(content, documentId);
 
-            //TODO: POSLATI MEJL DA JE RESENJE NAPRAVLJENO
+            //obavesti sluzbenika i gradjanina
+            resenjeService.posaljiMejlove(idZalbe, documentId);
             
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {

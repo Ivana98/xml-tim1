@@ -12,8 +12,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -93,11 +96,14 @@ public class ZahtevController {
 
             zahtevService.saveXML(documentId, content);
             zahtevService.saveRDF(content, documentId);
+
+            this.timer(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @PutMapping(path = "/xml/{idZahteva}", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZahteva) {
@@ -292,5 +298,95 @@ public class ZahtevController {
         String resultString = result.toString();
         return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
     }
+
+    public void timer(String id) {
+
+        TimerTask task = new TimerTask() {
+
+            public void run() {
+                this.cutanje(id);
+                System.out.println("Task performed on: " + new Date() + "n" +
+                "Thread's name: " + Thread.currentThread().getName());
+            }
+
+            private void cutanje(String id) {
+                XMLResource zahtevxml = zahtevService.readXML(id);
+                InputStream inputStream1;
+                try {
+                    inputStream1 = new ReaderInputStream(new StringReader(zahtevxml.getContent().toString()));
+                    JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
+                    Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+                    Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream1);
+                    if(zahtev.getContent().equals("na cekanju")){
+                        zahtev.setContent("nema odgovora");
+                        
+                        Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+                        marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                        marshallerZahtev.marshal(zahtev, stream1);
+                        String finalStringZahtev = new String(stream1.toByteArray());
+
+                        zahtevService.saveXML(zahtev.getId(), finalStringZahtev);
+                        zahtevService.saveRDF(finalStringZahtev, zahtev.getId());
+                    }
+
+                } catch (XMLDBException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Timer timer = new Timer("Timer");
+        
+        long delay = 2 * 60 * 1000L; //2 minuta
+        timer.schedule(task, delay);
+    }
+
+
+    public void cutanjeTask(String idZahteva){
+        
+        XMLResource zahtevxml = zahtevService.readXML(idZahteva);
+        InputStream inputStream1;
+        try {
+            inputStream1 = new ReaderInputStream(new StringReader(zahtevxml.getContent().toString()));
+            JAXBContext contextZahtev = JAXBContext.newInstance(Zahtev.class);
+            Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+            Zahtev zahtev = (Zahtev) unmarshallerZahtev.unmarshal(inputStream1);
+
+            // String email;
+            // if(zahtev.getTrazilac().getEmail() != null){
+            //     email = zahtev.getTrazilac().getEmail();  
+            //     if(email.equals("")){
+            //         email = "konstrukcijaitestiranje@gmail.com";
+            //     }  
+            // }
+            // else {
+            //     email = "konstrukcijaitestiranje@gmail.com";
+            // }
+            // emailClient.odobriZahtev(email,"Vas zahtev se odobrava" , "Zahtev " + idZahteva + "je odobren.", "asdf.pdf", htmlPath);
+            
+            if(zahtev.getContent().equals("na cekanju")){
+                zahtev.setContent("nema odgovora");
+                
+                Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+                marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                marshallerZahtev.marshal(zahtev, stream1);
+                String finalStringZahtev = new String(stream1.toByteArray());
+    
+                zahtevService.saveXML(zahtev.getId(), finalStringZahtev);
+                zahtevService.saveRDF(finalStringZahtev, zahtev.getId());
+            }
+
+        } catch (XMLDBException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

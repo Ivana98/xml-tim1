@@ -12,11 +12,11 @@
         </p>
 
         <div *ngIf="role=='SLUZBENIK'">
-            <button mat-raised-button color="primary" aria-label="Prihvati" [routerLink]="['podnosenje-obavestenja']" id="acceptBtn"
+            <button *ngIf="naCekanju || nemaOdgovora" mat-raised-button color="primary" aria-label="Prihvati" [routerLink]="['podnosenje-obavestenja']" id="acceptBtn"
             class="btn-spacing">
                 Prihvati
             </button>
-            <button mat-raised-button color="primary" aria-label="Odbij" (click)="refuse()" id="refuseBtn">
+            <button *ngIf="naCekanju || nemaOdgovora" mat-raised-button color="primary" aria-label="Odbij" (click)="refuse()" id="refuseBtn">
                 Odbij
             </button>
         </div>

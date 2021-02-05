@@ -24,7 +24,9 @@ export class ZahtevService {
   
   httpOptions2 = {
     headers: new HttpHeaders({
-      
+      'Accept': 'text/xml',
+      'Content-Type': 'text/xml',
+      //'Response-Type': 'application/xml'
     })
   };
   
@@ -52,6 +54,12 @@ export class ZahtevService {
     return this.http
     .get(this.apiUrl + '/zahtevi/xml', { responseType: "text" })
     .pipe(
+      switchMap(async xml => await this.parseXmlToJson(xml))
+    );
+  }
+
+  getZahtev(id: string): Observable<any> {
+    return this.http.get('http://localhost:8091/api/zahtevi/xml/' + id, { responseType: 'text' }).pipe(
       switchMap(async xml => await this.parseXmlToJson(xml))
     );
   }
