@@ -44,7 +44,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
   }
 
   send() {
-    var zalba = `<?xml version="1.0" encoding="UTF-8"?>
+    let zalba = `<?xml version="1.0" encoding="UTF-8"?>
     <zalba_na_odluku
         xmlns="http://www.ftn.uns.ac.rs/zalba-na-odluku"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -57,7 +57,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
             <namena> 
                 Поверенику за информације од јавног значаја и заштиту података о личности 
             </namena>
-            <adresa>
+            <adresa about="http://www.ftn.uns.ac.rs/rdf/zalbaodluka/AdresaPoverenika">
                 <grad property="pred:grad" datatype="xs:string">${this.grad}</grad>
                 <ulica property="pred:ulica" datatype="xs:string">${this.ulica}</ulica>
                 <broj>${this.broj}</broj>
