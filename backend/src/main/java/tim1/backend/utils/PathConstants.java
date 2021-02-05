@@ -39,6 +39,8 @@ public class PathConstants {
     public static final String SAVE_PDF = "./../documents/pdf_documents/";
 
     public static final String RESENJE_XSL = "./../documents/xsl_documents/resenje.xsl";
+    public static final String ZALBA_ODLUKA_XSL = "./../documents/xsl_documents/zalba_odluka.xsl";
+    public static final String ZALBA_CUTANJE_XSL = "./../documents/xsl_documents/zalba_cutanje.xsl";
 
     public static final String FOP_XCONF = "src/main/resources/fop.xconf";
 

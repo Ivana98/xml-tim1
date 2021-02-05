@@ -11,7 +11,7 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz','email', 'resenje'];
+  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email', 'resenje'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
@@ -37,7 +37,6 @@ export class ZalbeComponent implements OnInit {
     this.zalbe = []; //praznimo listu svaki put kada je ponovo punimo
     await this.getAllCutanje();
 
-    //TODO: ovo baca gresku neku. pogledati sam marijom
     await this.getAllOdbijanje();
 
     this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
@@ -47,19 +46,27 @@ export class ZalbeComponent implements OnInit {
 
   async getAllCutanje() {
     let lista = await this.zalbeService.getAllCutanje().toPromise();
+    // console.log(lista)
     lista = lista["jaxbLista"]["ns3:Zalba_na_cutanje"];
-    // console.log(lista);
     this.dodajZalbeNaCutanje(lista);
   }
 
   async getAllOdbijanje() {
     let lista = await this.zalbeService.getAllOdbijanje().toPromise();
     lista = lista["jaxbLista"]["ns4:zalba_na_odluku"];
-    console.log(lista);
+    // console.log(lista);
     this.dodajZalbeNaOdluku(lista);
   }
 
-  dodajZalbeNaCutanje(lista: any[]) {
+  dodajZalbeNaCutanje(lista: any) {
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
+
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
+
     // gradjanin moze da vidi samo svoje zalbe
     // dok poverenik moze da vidi sve zalbe
     if (this.role == "GRADJANIN") {
@@ -67,15 +74,23 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      // this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
     });
   }
 
-  dodajZalbeNaOdluku(lista: any[]) {
+  dodajZalbeNaOdluku(lista: any) {
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
+
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
+
     // gradjanin moze da vidi samo svoje zalbe
     // dok poverenik moze da vidi sve zalbe
     if (this.role == "GRADJANIN") {
-      lista = lista.filter(zalba => zalba["ns4:zalba"]["ns4:podnosilac"]["$"]["email"] == this.email);
+      // lista = lista.filter(zalba => zalba["ns4:zalba"]["ns4:podnosilac"]["$"]["email"] == this.email);
     }
 
     lista.forEach(element => {

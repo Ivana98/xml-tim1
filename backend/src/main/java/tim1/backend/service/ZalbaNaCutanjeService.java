@@ -13,10 +13,15 @@ import javax.xml.bind.Unmarshaller;
 import org.apache.tools.ant.util.ReaderInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.backend.repository.ZalbaNaCutanjeRepository;
+import tim1.backend.utils.XSLFORTransformer;
+
+import static tim1.backend.utils.PathConstants.*;
 
 @Service
 public class ZalbaNaCutanjeService extends AbstractService {
@@ -59,6 +64,34 @@ public class ZalbaNaCutanjeService extends AbstractService {
         List<ZalbaNaCutanje> listaZalbi = this.findAllFromCollection(ZalbaNaCutanje.class);
         JaxbLista<ZalbaNaCutanje> listaObj = new JaxbLista<ZalbaNaCutanje>(listaZalbi);
         return listaObj;
+    }
+
+    public String generateHTML(String id) throws XMLDBException {
+		XSLFORTransformer transformer = null;
+
+		try {
+			transformer = new XSLFORTransformer();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+        XMLResource xmlRes = this.readXML(id);
+		String doc_str = xmlRes.getContent().toString();
+		boolean ok = false;
+		String html_path = SAVE_HTML + "zalba_cutanje_" + id + ".html";
+		System.out.println(doc_str);
+
+		try {
+			ok = transformer.generateHTML(doc_str, html_path, ZALBA_CUTANJE_XSL);
+			if (ok)
+				return html_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
     }
 
 }
