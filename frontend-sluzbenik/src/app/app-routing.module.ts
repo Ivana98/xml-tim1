@@ -10,8 +10,10 @@ import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podn
 import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
 import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
+import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   {
     path: 'homepage', component: HomepageComponent,
     children: [
+      { path: 'zalbe', component: ZalbeComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      { path: 'zalbe/:id', component: PrikazZalbeComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
       { path: 'zahtevi', component: ZahteviComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
       { path: 'zahtevi/:id', component: PrikazZahtevaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
       { path: 'obavestenja', component: ObavestenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },

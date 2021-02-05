@@ -159,6 +159,8 @@ public class ZalbaNaCutanje {
     protected String id;
     @XmlAttribute(name = "idZahteva")
     protected String idZahteva;
+    @XmlAttribute(name = "status")
+    protected String status;
 
     /**
      * Gets the value of the namena property.
@@ -351,6 +353,30 @@ public class ZalbaNaCutanje {
      */
     public void setIdZahteva(String value) {
         this.idZahteva = value;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 
