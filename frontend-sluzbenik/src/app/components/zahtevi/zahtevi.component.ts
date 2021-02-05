@@ -35,13 +35,8 @@ export class ZahteviComponent implements OnInit {
   ngOnInit(): void {
     console.log("On init");
     this.role = this.authService.getRole();
-<<<<<<< HEAD
-    console.log("ROLE");
-    console.log(this.role);
-=======
     this.email = this.authService.getEmail();
     console.log(this.email);
->>>>>>> main
     this.getAll();
   }
 
