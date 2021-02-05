@@ -19,7 +19,8 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import tim1.backend.model.liste.JaxbLista;
-import tim1.backend.model.resenje.Resenje;
+import tim1.backend.model.resenje.ResenjeObrazac;
+//import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
 
 @RestController
@@ -45,6 +46,7 @@ public class ResenjeController {
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
         String documentId = UUID.randomUUID().toString();
+
         try {
             resenjeService.saveXML(documentId, content);
             resenjeService.saveRDF(content, documentId);            
@@ -98,10 +100,10 @@ public class ResenjeController {
     }
     
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<Resenje>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ResenjeObrazac>> findAllFromCollection() throws Exception{
 
         try {
-            JaxbLista<Resenje> lista = resenjeService.findAllFromCollection();
+            JaxbLista<ResenjeObrazac> lista = resenjeService.findAllFromCollection();
             return new ResponseEntity<>(lista, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
