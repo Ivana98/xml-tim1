@@ -12,24 +12,28 @@ import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resen
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Don't use prefix becasue empty path is a prefix to any path
   { path: 'login', component: LoginComponent },
-  { path: 'homepage', component: HomepageComponent,
+  {
+    path: 'homepage', component: HomepageComponent,
     children: [
-      { path: 'zahtevi', component: ZahteviComponent },
-      { path: 'zahtevi/:id', component: PrikazZahtevaComponent },
-      { path: 'obavestenja', component: ObavestenjaComponent },
-      { path: 'obavestenja/:id', component: PrikazObavestenjaComponent },
-      { path: 'resenja', component: ResenjaComponent },
-      { path: 'resenja/:id', component: PrikazResenjaComponent },
-      { path: 'izvestaji', component: IzvestajiComponent },
-      { path: 'podnosenje-zahteva', component: PodnosenjeZahtevaComponent },
-      { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent }
-    ]  
+      { path: 'zahtevi', component: ZahteviComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      { path: 'zahtevi/:id', component: PrikazZahtevaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      { path: 'obavestenja', component: ObavestenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      // ovo nam ne treba uopste, gledamo ga u html i pdf formatu
+      // { path: 'obavestenja/:id', component: PrikazObavestenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      { path: 'resenja', component: ResenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK" } },
+      // ovo nam ne treba uopste, gledamo ga u html i pdf formatu
+      // { path: 'resenja/:id', component: PrikazResenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK" } },
+      { path: 'izvestaji', component: IzvestajiComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK|GRADJANIN" } },
+      { path: 'podnosenje-zahteva', component: PodnosenjeZahtevaComponent, canActivate: [RoleGuard], data: { expectedRoles: "GRADJANIN" } },
+      { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "SLUZBENIK" } }
+    ]
   },
-  
+
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' }
 ];
