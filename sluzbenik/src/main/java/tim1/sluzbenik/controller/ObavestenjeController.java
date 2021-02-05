@@ -109,9 +109,10 @@ public class ObavestenjeController {
                 System.out.println("obavestenje id:");
                 System.out.println(documentId);
 
+                String pdfPath = obavestenjeService.generatePDF(content, documentId);
                 String htmlPath = this.zahtevService.generateHTML2(content, documentId);
                 
-                emailClient.odobriZahtev(email,"Vas zahtev se odobrava" , "Zahtev " + idZahteva + " je odobren.", "asdf.pdf", htmlPath);
+                emailClient.odobriZahtev(email,"Vas zahtev se odobrava" , "Zahtev " + idZahteva + " je odobren.", pdfPath, htmlPath);
                 zahtev.setContent("odobren");
 
                 Marshaller marshallerZahtev = contextZahtev.createMarshaller();
