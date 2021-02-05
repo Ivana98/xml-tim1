@@ -29,11 +29,14 @@ export class ZahtevService {
       //'Response-Type': 'application/xml'
     })
   };
-  
 
   constructor(
     private http: HttpClient
   ) { }
+
+  getHtml(id: string): Observable<any> {
+    return this.http.get('http://localhost:8091/api/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
 
   addNew(zahtev): any {
     return this.http.post<any>(this.apiUrl + '/zahtevi/xml', zahtev, this.httpOptions);

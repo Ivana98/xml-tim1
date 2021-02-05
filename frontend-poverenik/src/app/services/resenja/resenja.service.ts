@@ -25,6 +25,10 @@ export class ResenjaService {
     return this.http.post<string>(this.apiUrl + "/resenja/xml", resenjeXml, this.httpOptions);
   }
 
+  getHtml(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
     return this.http
     .get(this.apiUrl + '/resenja/xml', { responseType: "text" })

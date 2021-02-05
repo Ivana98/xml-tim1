@@ -44,6 +44,10 @@ export class ObavestenjaService {
     );
   }
 
+  getHtml(id: string): Observable<any> {
+    return this.http.get('http://localhost:8091/api/obavestenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
   async parseXmlToJson(xml) {
     return await xml2js
       .parseStringPromise(xml, { explicitArray: false })

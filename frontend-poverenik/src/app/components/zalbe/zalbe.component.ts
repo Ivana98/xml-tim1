@@ -124,4 +124,42 @@ export class ZalbeComponent implements OnInit {
     return event;
   }
 
+  getHtml(id: string, name: string){
+    if(name === "zalba_na_odluku"){
+      this.zalbeService.getHtmlOdluka(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'text/html' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.html`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+    else {
+      this.zalbeService.getHtmlCutanje(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'text/html' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.html`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+
+  }
+
 }

@@ -9,12 +9,14 @@
                     display: table;
                     margin-left: 10%;
                     margin-right: 10%;
-                    
+                    margin-top: 8%;
+                    margin-bottom: 8%;
                     }
                     
                     body {
                     display: table-cell;
                     vertical-align: middle;
+                    align-content: center;
                     }
                     
                     .indented {
@@ -24,12 +26,18 @@
                     .add-space-after {
                     margin-bottom: 30px;
                     }
+                    
+                    .half{
+                    width: 40%;
+                    }
                 </style>
   </head>
   <body>
-    <p>organ1, 
-                    Novi Sad</p>
-    <p class="add-space-after"> назив и седиште органа коме се захтев упућује </p>
+    <p>
+      <u>organ1, 
+                        Novi Sad</u>
+    </p>
+    <small class="add-space-after"> (назив и седиште органа коме се захтев упућује) </small>
     <h1> З А Х Т Е В </h1>
     <h2 class="add-space-after"> за приступ информацији од јавног значаја </h2>
     <p class="indented add-space-after">
@@ -55,22 +63,32 @@
     <p class="indented">
                     Овај захтев се односи на следеће информације:
                 </p>
-    <p class="indented">Trazim informaciju tu i tu pod rednim brojem tim.</p>
+    <p class="indented">
+      <u>Trazim informaciju tu i tu pod rednim brojem tim.</u>
+    </p>
     <small class="add-space-after">
                     (навести што прецизнији опис информације која се тражи као и друге податке
                     који олакшавају проналажење тражене информације)
                 </small>
     <div class="add-space-after">
-      <span>
-        <p> У Novi Sad</p>
-        <p> Datum: 2021-01-06+01:00</p>
+      <span class="half">
+        <p> У <u>Novi Sad</u>
+        </p>
+        <p> Datum: <u>2021-01-06+01:00</u>
+        </p>
       </span>
-      <span>
-        <p>Nikola Jokic</p>
+      <span class="half">
+        <p>
+          <u>Nikola Jokic</u>
+        </p>
         <small> (Тражилац информације/Име и презиме) </small>
-        <p>Sombor, somborska 5</p>
+        <p>
+          <u>Sombor, somborska 5</u>
+        </p>
         <small> (Aдреса) </small>
-        <p>063 645658</p>
+        <p>
+          <u>063 645658</u>
+        </p>
         <small> (други подаци за контакт) </small>
       </span>
     </div>
