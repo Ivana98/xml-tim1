@@ -94,4 +94,11 @@ public class ZalbaNaCutanjeService extends AbstractService {
 		}
     }
 
+    public String oznaciZalbuKaoProcitanu(String idZalbe){
+        //zalba moze da pripada i zalbi na cutanje i zalbi na odluku. svejedno je
+        
+        System.out.println(idZalbe);
+        return "zalba je uspesno oznacena";
+    }
+
 }
