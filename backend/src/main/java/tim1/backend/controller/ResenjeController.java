@@ -2,6 +2,7 @@ package tim1.backend.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.StringReader;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -20,7 +21,6 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
-import tim1.backend.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/resenja")
@@ -28,9 +28,6 @@ public class ResenjeController {
 
     @Autowired
     private ResenjeService resenjeService;
-
-    @Autowired
-    private EmailClient emailClient;
     
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
@@ -60,17 +57,16 @@ public class ResenjeController {
 
     @PostMapping(path = "/xml/{idZalbe}", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content, @PathVariable String idZalbe) {
+
+        //generisi id resenja
         String documentId = UUID.randomUUID().toString();
         try {
+            //sacuvaj resenje u xml i rdf bazu
             resenjeService.saveXML(documentId, content);
             resenjeService.saveRDF(content, documentId);
 
-            String sadrzajMejla = "U prilogu se nalazi resenje za zalbu broj: " + idZalbe;
-            //TODO: POSLATI MEJL PRAVOM KORISNIKU
-            //TODO: POSLATI I PDF I HTML
-            emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com","Resenje" , sadrzajMejla , "asdf.pdf", "asdf.html");
-            emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com","Resenje" , sadrzajMejla, "asdf.pdf", "asdf.html");
-
+            //obavesti sluzbenika i gradjanina
+            resenjeService.posaljiMejlove(idZalbe);
             
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
