@@ -66,7 +66,7 @@ public class ResenjeController {
             resenjeService.saveRDF(content, documentId);
 
             //obavesti sluzbenika i gradjanina
-            resenjeService.posaljiMejlove(idZalbe);
+            resenjeService.posaljiMejlove(idZalbe, documentId);
             
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {

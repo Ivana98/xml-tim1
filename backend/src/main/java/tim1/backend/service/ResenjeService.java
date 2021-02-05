@@ -1,5 +1,6 @@
 package tim1.backend.service;
 
+import java.io.File;
 import java.io.StringReader;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class ResenjeService extends AbstractService {
 		}
 	}
 
-	public void posaljiMejlove(String idZalbe) throws Exception {
+	public void posaljiMejlove(String idZalbe, String idResenja) throws Exception {
 		// nadji mejl korisnika i ime korisnika u zalbi na cutanje.
 		JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -81,16 +82,19 @@ public class ResenjeService extends AbstractService {
 
 		String emailGradjanina = zalba.getPodnosilacZalbe().getEmail();
 
+		// generisanje htmla
+		String htmlPath = this.generateHTML(idResenja);
+
 		String sadrzajMejla = "Postovani," + "\nU prilogu se nalazi resenje za zalbu broj: " + idZalbe;
-		// TODO: POSLATI MEJL PRAVOM KORISNIKU
-		// TODO: POSLATI I PDF I HTML
+
+		// TODO: POSLATI I PDF 
 
 		//slanje resenja sluzbeniku
 		emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com", "Resenje",
-		sadrzajMejla, "asdf.pdf", "asdf.html");
+		sadrzajMejla, "asdf.pdf", htmlPath);
 		//slanje resenja gradjaninu
 		emailClient.posaljiResenje(emailGradjanina, "Resenje", sadrzajMejla,
-		"asdf.pdf", "asdf.html");
+		"asdf.pdf", htmlPath);
 	}
 
 }
