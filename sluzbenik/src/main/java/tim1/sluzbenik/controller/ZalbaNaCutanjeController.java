@@ -1,7 +1,5 @@
 package tim1.sluzbenik.controller;
 
-import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tim1.sluzbenik.soap.client.EmailClient;
 import tim1.sluzbenik.soap.client.ZalbeClient;
 
 @RestController
@@ -21,6 +20,9 @@ public class ZalbaNaCutanjeController {
 
     @Autowired
     ZalbeClient zalbeClient;
+
+    @Autowired
+    EmailClient emailClient;
 
     @GetMapping(path = "/xml", produces = "application/xml")
     public ResponseEntity<?> findAllFromCollection() throws Exception{
@@ -32,5 +34,22 @@ public class ZalbaNaCutanjeController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    
+    @PostMapping(path = "/odgovor-povereniku-na-zalbu/{idZalbe}", consumes = "application/xml")
+    public ResponseEntity<?>  posaljiMejlPovereniku(@RequestBody String content , @PathVariable("idZalbe") String idZalbe){
+
+        try{
+            String subject = "Odgovor na zalbu broj: " + idZalbe;
+            content += "\n Zalbu pogledajte na: http://localhost:4200/homepage/zalbe/";
+            emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+            return new ResponseEntity<>( HttpStatus.OK);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
