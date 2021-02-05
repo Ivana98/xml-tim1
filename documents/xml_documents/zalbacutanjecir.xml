@@ -6,7 +6,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd"
-    id="" idZahteva="">
+    id="" idZahteva="" status="na cekanju">
     <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>
     <Adresa_za_postu
         about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Adresa">

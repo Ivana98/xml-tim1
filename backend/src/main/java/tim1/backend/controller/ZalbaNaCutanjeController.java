@@ -30,6 +30,7 @@ import org.xmldb.api.modules.XMLResource;
 import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.backend.service.ZalbaNaCutanjeService;
+import tim1.backend.soap.client.EmailClient;
 
 @RestController
 @RequestMapping(value = "/zalbe-na-cutenje")
@@ -37,6 +38,9 @@ public class ZalbaNaCutanjeController {
 
     @Autowired
     private ZalbaNaCutanjeService zalbaService;
+
+    @Autowired
+    EmailClient emailClient;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -52,9 +56,17 @@ public class ZalbaNaCutanjeController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
+        String documentId = UUID.randomUUID().toString();
 
         try {
-            zalbaService.saveXML(UUID.randomUUID().toString(), content);
+            zalbaService.saveXML(documentId, content);
+            //nakon podnosenja zalbe treba obavestiti sluzbenika da je zalba podneta
+
+            String subject = "Obavestenje o podnosenju zalbe broj: " + documentId;
+            String emailContent = "Podneta je nova zalba na cutanje. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
+
+            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
+
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
