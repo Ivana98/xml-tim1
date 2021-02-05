@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { parse } from 'js2xmlparser';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
   ) {
     this.loginForm = formBuilder.group({
       usernameField: ["", [Validators.required, Validators.email]],
@@ -50,10 +52,19 @@ export class LoginComponent implements OnInit {
             token: data.accessToken,
             role: payload.role
           }));
-
+          this.openSnackBar("Uspesno ste ulogovani");
           this.router.navigate(['/homepage']);
+        },
+        error => {
+          this.openSnackBar("Probajte ponovo");
         }
       );
+  }
+
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }
