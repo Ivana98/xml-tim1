@@ -11,6 +11,8 @@
                 <xs:element ref="ftn:zalba"/>
                 <xs:element ref="ftn:napomene"/>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="idZahteva" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="zalba">
@@ -78,6 +80,7 @@
                 <xs:element name="kontakt_podaci" type="xs:string"/>
             </xs:sequence>
             <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="email" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="napomene">

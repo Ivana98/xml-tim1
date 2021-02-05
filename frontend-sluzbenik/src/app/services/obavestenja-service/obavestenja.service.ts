@@ -25,8 +25,15 @@ export class ObavestenjaService {
     })
   };
 
-  addNew(obavestenje): any {
-    return this.http.post<any>(this.apiUrl + '/obavestenja/xml', obavestenje, this.httpOptions);
+  httpOptions2 = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Response-Type': 'text'
+    })
+  };
+
+  addNew(obavestenje): Observable<any> {
+    return this.http.post<Observable<any>>(this.apiUrl + '/obavestenja/xml', obavestenje, this.httpOptions2);
   }
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>

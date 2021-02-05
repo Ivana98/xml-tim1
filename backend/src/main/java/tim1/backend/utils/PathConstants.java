@@ -34,4 +34,12 @@ public class PathConstants {
     public static final String RESENJE_PATH_URI = "/resenje/metadata";
     public static final String OBAVESTENJE_PATH_URI = "/obavestenje/metadata";
 
+
+    public static final String SAVE_HTML = "./../documents/html_documents/";
+    public static final String SAVE_PDF = "./../documents/pdf_documents/";
+
+    public static final String RESENJE_XSL = "./../documents/xsl_documents/resenje.xsl";
+
+    public static final String FOP_XCONF = "src/main/resources/fop.xconf";
+
 }

@@ -1,8 +1,17 @@
 package tim1.backend.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.List;
 import java.util.UUID;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import org.apache.tools.ant.util.ReaderInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,13 +48,11 @@ public class ZalbaNaCutanjeController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        String documentId = UUID.randomUUID().toString();
+
         try {
-            zalbaService.saveXML(documentId, content);
-            zalbaService.saveRDF(content, documentId);
+            zalbaService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -73,7 +80,7 @@ public class ZalbaNaCutanjeController {
     }
 
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<ZalbaNaCutanje> lista = zalbaService.findAllFromCollection();
