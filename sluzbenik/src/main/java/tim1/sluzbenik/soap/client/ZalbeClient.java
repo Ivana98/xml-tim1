@@ -47,6 +47,6 @@ public class ZalbeClient {
 
     public static void main(String[] args) throws Exception {
       ZalbeClient client = new ZalbeClient();
-    System.out.println(client.oznaciZalbuKaoProcitanu("123"));
+    System.out.println(client.oznaciZalbuKaoProcitanu("21e8208c-5fa6-426f-93b9-c6a19091b1c5"));
   }
 }
