@@ -65,14 +65,8 @@ export class ZalbeComponent implements OnInit {
       lista = [lista];
     }
 
-    // gradjanin moze da vidi samo svoje zalbe
-    // dok poverenik moze da vidi sve zalbe
-    if (this.role == "GRADJANIN") {
-      lista = lista.filter(zalba => zalba["ns3:Podnosilac_zalbe"]["$"]["email"] == this.email);
-    }
-
     lista.forEach(element => {
-      // this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]));
     });
   }
 
@@ -83,12 +77,6 @@ export class ZalbeComponent implements OnInit {
     // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
     if (!(lista instanceof Array)) {
       lista = [lista];
-    }
-
-    // gradjanin moze da vidi samo svoje zalbe
-    // dok poverenik moze da vidi sve zalbe
-    if (this.role == "GRADJANIN") {
-      // lista = lista.filter(zalba => zalba["ns4:zalba"]["ns4:podnosilac"]["$"]["email"] == this.email);
     }
 
     lista.forEach(element => {
