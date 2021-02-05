@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Zalba } from 'src/app/model/zalba';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ZalbaService } from 'src/app/services/zalba/zalba.service';
 
 @Component({
   selector: 'app-zalbe',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'korisnik', 'izvoz'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
@@ -18,25 +19,48 @@ export class ZalbeComponent implements OnInit {
 
   role = "";
 
-  zalbe: Zalba[] = [
-    {
-      id: 1,
-      naziv: 'Zalba 1',
-    },
-    {
-      id: 2,
-      naziv: 'Zalba 2',
-    },
-  ]
+  zalbe: Zalba[] = []
 
   constructor(
-    private authService: AuthService
-  ) {
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-  }
+    private authService: AuthService,
+    private zalbeService: ZalbaService
+  ) { }
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
+    this.getAll()
+  }
+
+  getAll() {
+    this.getAllCutanje();
+    // this.getAllOdbijanje(); //TODO: ovo baca gresku neku. pogledati sam marijom
+  }
+
+  getAllCutanje() {
+    this.zalbeService.getAllCutanje()
+      .subscribe(
+        data => {
+          let lista = data["jaxbLista"]["ns3:Zalba_na_cutanje"];
+          console.log(lista)
+
+          lista.forEach(element => {
+            console.log(element["ns3:Podnosilac_zalbe"]["$"]["email"])
+            this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+          });
+
+          this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
+        }
+      );
+  }
+
+  getAllOdbijanje() {
+    this.zalbeService.getAllOdbijanje()
+      .subscribe(
+        data => {
+          console.log("zalbe odbijanje")
+          console.log(data);
+        }
+      );
   }
 
   requestPage(): void {
