@@ -56,7 +56,8 @@
                         Zalba 1
                     </button>
                     <button mat-raised-button color="primary"
-                    [routerLink]="['/homepage/zalba-cutanje/', element.id]">
+                    [routerLink]="['/homepage/zalba-cutanje/', element.id]"
+                    [disabled]="!element.upravaCuti">
                         Zalba 2
                 </button>
                 </td>
