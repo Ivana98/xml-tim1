@@ -48,31 +48,11 @@ public class ZalbaNaCutanjeController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        String documentId = UUID.randomUUID().toString();
-        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+
         try {
-            JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            ZalbaNaCutanje zalbaNaCutanje = (ZalbaNaCutanje) unmarshaller.unmarshal(inputStream);
-            zalbaNaCutanje.setId(documentId);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            marshaller.marshal(zalbaNaCutanje, stream);
-            String finalString = new String(stream.toByteArray());
-            System.out.println(finalString);
-            content = finalString;
-        } catch (JAXBException e1) {
-            // TODO Auto-generated catch block
-            System.out.println("unmarshaller error");
-            e1.printStackTrace();
-        }
-        try {
-            zalbaService.saveXML(documentId, content);
-            zalbaService.saveRDF(content, documentId);
+            zalbaService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -100,7 +80,7 @@ public class ZalbaNaCutanjeController {
     }
 
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception {
 
         try {
             JaxbLista<ZalbaNaCutanje> lista = zalbaService.findAllFromCollection();
