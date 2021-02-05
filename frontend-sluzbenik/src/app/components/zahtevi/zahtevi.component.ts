@@ -78,4 +78,14 @@ export class ZahteviComponent implements OnInit {
     return event;
   }
 
+  getHtml(id: string){
+    this.zahtevService.getHtml(id).subscribe(
+      data => {
+        var file = new Blob([data], { type: 'application/html' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      }
+    );
+  }
+
 }
