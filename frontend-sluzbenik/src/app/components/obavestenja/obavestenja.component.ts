@@ -61,4 +61,22 @@ export class ObavestenjaComponent implements OnInit {
     return event;
   }
 
+  getHtml(id: string){
+    this.obavestenjaService.getHtml(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'text/html' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `obavestenje_${id}.html`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
 }
