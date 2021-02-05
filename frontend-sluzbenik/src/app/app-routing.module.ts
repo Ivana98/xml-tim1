@@ -10,6 +10,7 @@ import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podn
 import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
 import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
+import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'resenja/:id', component: PrikazResenjaComponent },
       { path: 'izvestaji', component: IzvestajiComponent },
       { path: 'podnosenje-zahteva', component: PodnosenjeZahtevaComponent },
-      { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent }
+      { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent },
+      { path: 'zalbe/:id', component: PrikazZalbeComponent },
     ]
   },
 

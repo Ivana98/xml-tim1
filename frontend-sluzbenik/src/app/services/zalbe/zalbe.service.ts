@@ -40,6 +40,10 @@ export class ZalbeService {
     );
   }
 
+  odgovor(id: string, content: string): Observable<any> {
+    return this.http.post<Observable<any>>(this.apiUrl + '/zalbe-na-cutenje/odgovor-povereniku-na-zalbu/' + id, content, this.httpOptions);
+  }
+
   async parseXmlToJson(xml) {
     return await xml2js
       .parseStringPromise(xml, { explicitArray: false })

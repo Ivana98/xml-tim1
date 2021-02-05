@@ -1,0 +1,31 @@
+<mat-card class="card-position">
+    <mat-card-title>
+        Prikaz zalbe
+    </mat-card-title>
+    <mat-card-subtitle>
+        Naziv: <!--{{ime zalbe}}-->
+    </mat-card-subtitle>
+    <mat-card-content>
+        <p>
+            Sadrzaj...
+            <!--{{sadrzaj zalbe}}-->
+        </p>
+
+        <div *ngIf="role=='SLUZBENIK'">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Odgovor na zalbu</mat-label>
+                  <textarea matInput placeholder="Unesite odgovor" #input></textarea>
+                </mat-form-field>
+
+                <button *ngIf="!odgovoreno" mat-raised-button color="primary" aria-label="Odgovori" id="acceptBtn" 
+                (click)="odgovori(input.value)" class="btn-spacing">
+                    Odgovori
+                </button>
+            </form>           
+
+        </div>
+
+    </mat-card-content>
+
+</mat-card>
