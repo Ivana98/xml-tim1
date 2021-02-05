@@ -45,10 +45,11 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="resenje">
-        <th mat-header-cell *matHeaderCellDef> Novo Resenje </th>
+      <ng-container matColumnDef="resenje" >
+        <th mat-header-cell *matHeaderCellDef > Novo Resenje </th>
         <td mat-cell *matCellDef="let element" class="action-cell">
           <button 
+          *ngIf="this.role=='POVERENIK'"
           [routerLink]="['/homepage/podnosenje-resenja-za-zalbu/', element.id]"
           style="font-size: 25px;" class="table-button" mat-icon-button color="accent" aria-label="export action"
           > + </button>
