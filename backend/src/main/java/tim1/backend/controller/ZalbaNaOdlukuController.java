@@ -47,33 +47,14 @@ public class ZalbaNaOdlukuController {
 
     @PostMapping(path = "/xml", consumes = "application/xml")
     public ResponseEntity<?> saveXML(@RequestBody String content) {
-        String documentId = UUID.randomUUID().toString();
-        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+        
         try {
-            JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(inputStream);
-            zalbaNaOdluku.setId(documentId);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            marshaller.marshal(zalbaNaOdluku, stream);
-            String finalString = new String(stream.toByteArray());
-            System.out.println(finalString);
-            content = finalString;
-        } catch (JAXBException e1) {
-            // TODO Auto-generated catch block
-            System.out.println("unmarshaller error");
-            e1.printStackTrace();
-        }
-        try {
-            zalbaService.saveXML(documentId, content);
-            zalbaService.saveRDF(content,documentId);
+            zalbaService.saveXML(UUID.randomUUID().toString(), content);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        
     }
 
     @GetMapping(path= "/rdf-xml/{uri}", produces = "application/xml")
