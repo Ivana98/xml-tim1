@@ -12,13 +12,16 @@ import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resen
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
+import { ZalbeComponent } from './components/zalbe/zalbe.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Don't use prefix becasue empty path is a prefix to any path
   { path: 'login', component: LoginComponent },
-  { path: 'homepage', component: HomepageComponent,
+  {
+    path: 'homepage', component: HomepageComponent,
     children: [
       { path: 'zahtevi', component: ZahteviComponent },
+      { path: 'zalbe', component: ZalbeComponent },
       { path: 'zahtevi/:id', component: PrikazZahtevaComponent },
       { path: 'obavestenja', component: ObavestenjaComponent },
       { path: 'obavestenja/:id', component: PrikazObavestenjaComponent },
@@ -27,9 +30,9 @@ const routes: Routes = [
       { path: 'izvestaji', component: IzvestajiComponent },
       { path: 'podnosenje-zahteva', component: PodnosenjeZahtevaComponent },
       { path: 'zahtevi/:id/podnosenje-obavestenja', component: PodnosenjeObavestenjaComponent }
-    ]  
+    ]
   },
-  
+
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' }
 ];
