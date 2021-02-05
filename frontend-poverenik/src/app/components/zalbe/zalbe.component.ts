@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Zalba } from 'src/app/model/zalba';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ZalbaService } from 'src/app/services/zalba/zalba.service';
 
 @Component({
   selector: 'app-zalbe',
@@ -10,33 +11,76 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
+  displayedColumns: string[] = ['id', 'naziv', 'korisnik', 'izvoz'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
 
   role = "";
+  email = "";
 
-  zalbe: Zalba[] = [
-    {
-      id: 1,
-      naziv: 'Zalba 1',
-    },
-    {
-      id: 2,
-      naziv: 'Zalba 2',
-    },
-  ]
+  zalbe: Zalba[] = []
 
   constructor(
-    private authService: AuthService
-  ) {
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-  }
+    private authService: AuthService,
+    private zalbeService: ZalbaService
+  ) { }
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
+    this.email = this.authService.getEmail();
+    this.getAll()
+  }
+
+  getAll() {
+    this.zalbe = []; //praznimo listu svaki put kada je ponovo punimo
+    this.getAllCutanje();
+
+    //TODO: ovo baca gresku neku. pogledati sam marijom
+    // this.getAllOdbijanje(); 
+  }
+
+  getAllCutanje() {
+    this.zalbeService.getAllCutanje()
+      .subscribe(
+        data => {
+          let lista = data["jaxbLista"]["ns3:Zalba_na_cutanje"];
+
+          console.log(lista);
+
+          this.popuniListu(lista);
+        }
+      );
+  }
+
+  getAllOdbijanje() {
+    this.zalbeService.getAllOdbijanje()
+      .subscribe(
+        data => {
+          let lista = data["jaxbLista"]["ns3:Zalba_na_cutanje"];
+
+          console.log(lista);
+
+          this.popuniListu(lista);
+        }
+      );
+  }
+
+  popuniListu(lista) {
+    lista.forEach(element => {
+      // gradjanin moze da vidi samo svoje zalbe
+      // dok poverenik moze da vidi sve zalbe
+      if (this.role == "GRADJANIN") {
+        if (element["ns3:Podnosilac_zalbe"]["$"]["email"] == this.email) {
+          this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+        }
+      } else {
+        this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      }
+    });
+
+    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
   }
 
   requestPage(): void {
