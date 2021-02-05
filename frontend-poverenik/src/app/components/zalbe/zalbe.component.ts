@@ -18,6 +18,7 @@ export class ZalbeComponent implements OnInit {
   length: number = 0;
 
   role = "";
+  email = "";
 
   zalbe: Zalba[] = []
 
@@ -28,12 +29,16 @@ export class ZalbeComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
+    this.email = this.authService.getEmail();
     this.getAll()
   }
 
   getAll() {
+    this.zalbe = []; //praznimo listu svaki put kada je ponovo punimo
     this.getAllCutanje();
-    // this.getAllOdbijanje(); //TODO: ovo baca gresku neku. pogledati sam marijom
+
+    //TODO: ovo baca gresku neku. pogledati sam marijom
+    // this.getAllOdbijanje(); 
   }
 
   getAllCutanje() {
@@ -41,14 +46,10 @@ export class ZalbeComponent implements OnInit {
       .subscribe(
         data => {
           let lista = data["jaxbLista"]["ns3:Zalba_na_cutanje"];
-          console.log(lista)
 
-          lista.forEach(element => {
-            console.log(element["ns3:Podnosilac_zalbe"]["$"]["email"])
-            this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
-          });
+          console.log(lista);
 
-          this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
+          this.popuniListu(lista);
         }
       );
   }
@@ -57,10 +58,29 @@ export class ZalbeComponent implements OnInit {
     this.zalbeService.getAllOdbijanje()
       .subscribe(
         data => {
-          console.log("zalbe odbijanje")
-          console.log(data);
+          let lista = data["jaxbLista"]["ns3:Zalba_na_cutanje"];
+
+          console.log(lista);
+
+          this.popuniListu(lista);
         }
       );
+  }
+
+  popuniListu(lista) {
+    lista.forEach(element => {
+      // gradjanin moze da vidi samo svoje zalbe
+      // dok poverenik moze da vidi sve zalbe
+      if (this.role == "GRADJANIN") {
+        if (element["ns3:Podnosilac_zalbe"]["$"]["email"] == this.email) {
+          this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+        }
+      } else {
+        this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      }
+    });
+
+    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
   }
 
   requestPage(): void {
