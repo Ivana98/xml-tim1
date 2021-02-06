@@ -24,40 +24,73 @@ import org.springframework.web.bind.annotation.RestController;
 import tim1.backend.dto.AuthUserLoginResponseDTO;
 import tim1.backend.dto.UserLoginDTO;
 import tim1.backend.model.korisnici.Korisnik;
+import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.security.TokenUtils;
 
 @Service
 public class AuthenticationService {
 
-    @Autowired
-    private TokenUtils tokenUtils;
+        @Autowired
+        private TokenUtils tokenUtils;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+        @Autowired
+        private AuthenticationManager authenticationManager;
 
-    public AuthUserLoginResponseDTO createAuthenticationToken(String content) throws Exception {
+        @Autowired
+        private KorisnikService korisnikService;
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        public AuthUserLoginResponseDTO createAuthenticationToken(String content) throws Exception {
 
-            StringReader reader = new StringReader(content);
-            Korisnik korisnik = (Korisnik) unmarshaller.unmarshal(reader);
+                // dodajInicijalnogKorisnika();
 
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(korisnik.getKorisnickoIme(), korisnik.getSifra()));
-                    
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                JAXBContext jaxbContext = JAXBContext.newInstance(Korisnik.class);
+                Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-            Korisnik user = (Korisnik) authentication.getPrincipal();
+                StringReader reader = new StringReader(content);
+                Korisnik korisnik = (Korisnik) unmarshaller.unmarshal(reader);
 
-            System.out.println(user);
+                Authentication authentication = authenticationManager
+                                .authenticate(new UsernamePasswordAuthenticationToken(korisnik.getKorisnickoIme(),
+                                                korisnik.getSifra()));
 
-            String jwt = tokenUtils.generateToken(user); // prijavljujemo se na sistem sa kor imenom
-                                                                            // (email)
-            int expiresIn = tokenUtils.getExpiredIn();
+                SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            return new AuthUserLoginResponseDTO(jwt, expiresIn);
+                Korisnik user = (Korisnik) authentication.getPrincipal();
 
-    }
+                System.out.println(user);
+
+                String jwt = tokenUtils.generateToken(user); // prijavljujemo se na sistem sa kor imenom
+                                                             // (email)
+                int expiresIn = tokenUtils.getExpiredIn();
+
+                return new AuthUserLoginResponseDTO(jwt, expiresIn);
+
+        }
+
+        // private void dodajInicijalnogKorisnika() {
+        //         try {
+        //                 JaxbLista<Korisnik> lista = korisnikService.findAllFromCollection();
+                        
+        //                 for (Korisnik korisnik : lista.getLista()) {
+        //                         if (korisnik.getKorisnickoIme().equals("poverenik@gmail") && korisnik.getUloga().equals("POVERENIK")) {
+        //                                 return;
+        //                         }
+        //                 }
+
+        //                 String poverenikXml = '<korisnik' + '\n' +
+        //                 'xmlns="http://www.ftn.uns.ac.rs/korisnik"' + "\n" +
+        //                 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' + "\n" +
+        //                 'xsi:schemaLocation="http://www.ftn.uns.ac.rs/korisnik ../xsd_documents/korisnik.xsd"' + "\n" +
+        //                 'xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">' + "\n" +
+        //                 '        <korisnicko_ime>kor3@gmail</korisnicko_ime>' + "\n" +
+        //                 '        <sifra>123</sifra>' + "\n" +
+        //                 '        <ime>vejko</ime>' + "\n" +
+        //                 '        <prezime>plecas</prezime>' + "\n" +
+        //                 '        <uloga>poverenik</uloga>' + "\n" +
+        //                 '</korisnik>';
+        //         } catch (Exception e) {
+        //                 //TODO: handle exception
+        //         }
+        // }
 
 }

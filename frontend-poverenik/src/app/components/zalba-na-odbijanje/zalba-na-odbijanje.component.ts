@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZalbaService } from 'src/app/services/zalba/zalba.service';
@@ -32,14 +33,15 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private zalbaService: ZalbaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.zahtevId = params.get('id');
     });
-    
+
     this.email = this.authService.getEmail();
   }
 
@@ -50,7 +52,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-odluku ../xsd_documents/zalbanaodlukucir.xsd"
         xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
-        id="" idZahteva="${this.zahtevId}">
+        id="" idZahteva="${this.zahtevId}" status="na cekanju">
         <naslov> ЖАЛБА  ПРОТИВ  ОДЛУКЕ ОРГАНА  ВЛАСТИ КОЈОМ ЈЕ ОДБИЈЕН ИЛИ ОДБАЧЕН ЗАХТЕВ ЗА ПРИСТУП ИНФОРМАЦИЈИ </naslov>
         
         <podaci_o_povereniku>
@@ -127,11 +129,18 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     </zalba_na_odluku>
     `
     this.zalbaService.addNewOdbijanje(zalba)
-    .subscribe(
-      data => {
-        console.log("Uspesno upisano valjda")
-      }
-    )
+      .subscribe(
+        data => {
+          this.openSnackBar("Uspesno kreirana zalba na odbijanje.");
+          this.router.navigate(['/homepage/zalbe']);
+        }
+      )
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 
