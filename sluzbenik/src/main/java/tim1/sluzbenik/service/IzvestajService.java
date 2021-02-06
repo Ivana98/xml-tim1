@@ -11,6 +11,8 @@ import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
 import tim1.sluzbenik.model.izvestaj.Izvestaj;
 import tim1.sluzbenik.model.liste.JaxbLista;
@@ -22,6 +24,9 @@ import tim1.sluzbenik.repository.IzvestajRepository;
 import tim1.sluzbenik.soap.client.EmailClient;
 import tim1.sluzbenik.soap.client.ResenjeClient;
 import tim1.sluzbenik.soap.client.ZalbeClient;
+import tim1.sluzbenik.utils.XSLFORTransformer;
+
+import static tim1.sluzbenik.utils.PathConstants.*;
 
 @Service
 public class IzvestajService extends AbstractService {
@@ -47,11 +52,10 @@ public class IzvestajService extends AbstractService {
     super(repository, "db/sluzbenik/izvestaj/", "/izvestaj/");
   }
 
-
   public void podnesiIzvestaj() throws Exception {
-    // generisi podatke    
+    // generisi podatke
     generisiPodatke();
-    
+
     // setuj sve podatke na izvestaj
     Izvestaj izvestaj = new Izvestaj();
     izvestaj.setSviZahtevi(ukupanBrojZahteva);
@@ -65,7 +69,7 @@ public class IzvestajService extends AbstractService {
     // sacuvaj u bazu izvestaj
     saveXML(izvestaj);
 
-    //TODO: OTKOMENTARISATI
+    // TODO: OTKOMENTARISATI
     // posalji mejl povereniku da je napravljen novi izvestaj.
     String subject = "Godisnji izvestaj";
     String content = "Novi godisnji izvestaj je izdat.";
@@ -73,7 +77,6 @@ public class IzvestajService extends AbstractService {
 
   }
 
-  
   public void saveXML(Izvestaj izvestaj) throws Exception {
 
     JAXBContext context = JAXBContext.newInstance(Izvestaj.class);
@@ -83,11 +86,11 @@ public class IzvestajService extends AbstractService {
     jaxbMarshaller.marshal(izvestaj, stream);
 
     String content = new String(stream.toByteArray());
-    String documentId = UUID.randomUUID().toString();;
+    String documentId = UUID.randomUUID().toString();
+    ;
 
     super.saveXML(documentId, content);
   }
-
 
   private void generisiPodatke() throws Exception {
     generisiBrojZahteva();
@@ -131,15 +134,77 @@ public class IzvestajService extends AbstractService {
 
   private void generisiBrojResenja() throws Exception {
     ukupanBrojResenja = 0;
-    JaxbLista<ResenjeObrazac> jaxbListaResenja= resenjeClient.getAllResenje();
+    JaxbLista<ResenjeObrazac> jaxbListaResenja = resenjeClient.getAllResenje();
     ukupanBrojResenja = jaxbListaResenja.getLista().size();
 
   }
 
+  public JaxbLista<Izvestaj> findAllFromCollection() throws Exception {
+    List<Izvestaj> listaIzvestaja = this.findAllFromCollection(Izvestaj.class);
+    JaxbLista<Izvestaj> listaObj = new JaxbLista<Izvestaj>(listaIzvestaja);
+    return listaObj;
+  }
 
-public JaxbLista<Izvestaj> findAllFromCollection() throws Exception {
-  List<Izvestaj> listaIzvestaja = this.findAllFromCollection(Izvestaj.class);
-  JaxbLista<Izvestaj> listaObj = new JaxbLista<Izvestaj>(listaIzvestaja);
-	return listaObj;
-}
+  public String generateHTML(String id) throws XMLDBException {
+    XSLFORTransformer transformer = null;
+
+    try {
+      transformer = new XSLFORTransformer();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    XMLResource xmlRes = this.readXML(id);
+    String doc_str = xmlRes.getContent().toString();
+    boolean ok = false;
+    String html_path = SAVE_HTML + "izvestaj_" + id + ".html";
+    System.out.println(doc_str);
+
+    try {
+      ok = transformer.generateHTML(doc_str, html_path, IZVESTAJ_XSL);
+      if (ok)
+        return html_path;
+      else
+        return null;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public String generatePDF(String id) {
+    XSLFORTransformer transformer = null;
+
+    try {
+      transformer = new XSLFORTransformer();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    XMLResource xmlRes = this.readXML(id);
+    String doc_str = "";
+    try {
+      doc_str = xmlRes.getContent().toString();
+      System.out.println(doc_str);
+    } catch (XMLDBException e1) {
+      e1.printStackTrace();
+    }
+
+    boolean ok = false;
+    String pdf_path = SAVE_PDF + "izvestaj_" + id + ".pdf";
+
+    try {
+      ok = transformer.generatePDF(doc_str, pdf_path, IZVESTAJ_XSL_FO);
+      if (ok)
+        return pdf_path;
+      else
+        return null;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
 }
