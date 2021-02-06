@@ -9,6 +9,7 @@ import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obaveste
 import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
@@ -17,6 +18,7 @@ import { RoleGuard } from './guards/role.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Don't use prefix becasue empty path is a prefix to any path
   { path: 'login', component: LoginComponent },
+  { path: 'registracija', component: RegistracijaComponent },
   {
     path: 'homepage', component: HomepageComponent,
     children: [
