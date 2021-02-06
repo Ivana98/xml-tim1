@@ -28,8 +28,8 @@ public class ResenjeClient {
     JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
     Unmarshaller unmarshaller = context.createUnmarshaller();
     StringReader reader = new StringReader(listaResenje);
-    JaxbLista<ResenjeObrazac> jaxbListaZalbiNaCutanje = (JaxbLista<ResenjeObrazac>) unmarshaller.unmarshal(reader);
-    return jaxbListaZalbiNaCutanje;
+    JaxbLista<ResenjeObrazac> jaxbListaResenja = (JaxbLista<ResenjeObrazac>) unmarshaller.unmarshal(reader);
+    return jaxbListaResenja;
   }
 
   public String getOne(String id) throws Exception {

@@ -113,11 +113,7 @@ public class IzvestajService extends AbstractService {
 
   private void generisiBrojResenja() throws Exception {
     int ukupanBrojResenja = 0;
-    String listaString = resenjeClient.getAllResenje();
-    JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
-    Unmarshaller unmarshaller = context.createUnmarshaller();
-    StringReader reader = new StringReader(listaString);
-    JaxbLista<ResenjeObrazac> jaxbListaResenja = (JaxbLista<ResenjeObrazac>) unmarshaller.unmarshal(reader);
+    JaxbLista<ResenjeObrazac> jaxbListaResenja= resenjeClient.getAllResenje();
     ukupanBrojResenja = jaxbListaResenja.getLista().size();
 
     // TODO: SETOVATI BROJEVE RESENJA NA SAM OBJEKAT IZVESTAJ
