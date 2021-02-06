@@ -66,4 +66,22 @@ export class ObavestenjaComponent implements OnInit {
     );
   }
 
+  getPdf(id: string) {
+    this.obavestenjaService.getPdf(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `obavestenje_${id}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
 }

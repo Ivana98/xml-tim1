@@ -45,7 +45,11 @@ export class ObavestenjaService {
   }
 
   getHtml(id: string): Observable<any> {
-    return this.http.get('http://localhost:8091/api/obavestenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+    return this.http.get(this.apiUrl + '/obavestenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/obavestenja/generatePDF/' + id, {responseType: 'arraybuffer'});
   }
 
   async parseXmlToJson(xml) {
