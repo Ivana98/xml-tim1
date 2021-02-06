@@ -66,18 +66,22 @@ public class IzvestajService extends AbstractService {
     izvestaj.setZalbeNaOdluku(brojZalbiNaOdluku);
     izvestaj.setResenja(ukupanBrojResenja);
 
-    // sacuvaj u bazu izvestaj
-    saveXML(izvestaj);
 
-    // TODO: OTKOMENTARISATI
+    // sacuvaj u bazu izvestaj
+    String documentId = UUID.randomUUID().toString();
+    saveXML(izvestaj, documentId);
+
     // posalji mejl povereniku da je napravljen novi izvestaj.
     String subject = "Godisnji izvestaj";
     String content = "Novi godisnji izvestaj je izdat.";
-    emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+
+    String pdfPath = generatePDF(documentId);
+    String htmlPath = generateHTML(documentId);
+    emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content, pdfPath, htmlPath);
 
   }
 
-  public void saveXML(Izvestaj izvestaj) throws Exception {
+  public void saveXML(Izvestaj izvestaj, String idIzvestaja) throws Exception {
 
     JAXBContext context = JAXBContext.newInstance(Izvestaj.class);
     Marshaller jaxbMarshaller = context.createMarshaller();
@@ -86,10 +90,10 @@ public class IzvestajService extends AbstractService {
     jaxbMarshaller.marshal(izvestaj, stream);
 
     String content = new String(stream.toByteArray());
-    String documentId = UUID.randomUUID().toString();
+    
     ;
 
-    super.saveXML(documentId, content);
+    super.saveXML(idIzvestaja, content);
   }
 
   private void generisiPodatke() throws Exception {

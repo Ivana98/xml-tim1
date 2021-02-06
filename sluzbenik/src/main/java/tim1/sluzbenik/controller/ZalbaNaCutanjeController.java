@@ -53,7 +53,7 @@ public class ZalbaNaCutanjeController {
             // posalji mejl povereniku
             String subject = "Odgovor na zalbu broj: " + idZalbe;
             content += "\n Zalbu pogledajte na: http://localhost:4200/homepage/zalbe/";
-            emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+            emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content, "", "");
 
             // promeni status zalbe na procitano
             zalbeClient.oznaciZalbuKaoProcitanu(idZalbe);
