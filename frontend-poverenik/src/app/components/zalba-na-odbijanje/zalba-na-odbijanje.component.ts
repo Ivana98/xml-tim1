@@ -41,7 +41,7 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.zahtevId = params.get('id');
     });
-    
+
     this.email = this.authService.getEmail();
   }
 
@@ -129,15 +129,15 @@ export class ZalbaNaOdbijanjeComponent implements OnInit {
     </zalba_na_odluku>
     `
     this.zalbaService.addNewOdbijanje(zalba)
-    .subscribe(
-      data => {
-        this.openSnackBar("Uspesno kreirana zalba na odbijanje.");
+      .subscribe(
+        data => {
+          this.openSnackBar("Uspesno kreirana zalba na odbijanje.");
           this.router.navigate(['/homepage/zalbe']);
-      }
-    )
+        }
+      )
   }
 
-  openSnackBar(message: string): void{
+  openSnackBar(message: string): void {
     this.snackBar.open(message, 'Dismiss', {
       duration: 4000,
     });
