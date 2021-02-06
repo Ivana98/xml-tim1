@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tim1.sluzbenik.model.izvestaj.Izvestaj;
+import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.service.IzvestajService;
 
 @RestController
@@ -18,7 +19,7 @@ public class IzvestajController {
   IzvestajService izvestajService;
 
 
-  @PostMapping(path = "/podnesi-izvestaj")
+  @GetMapping(path = "/podnesi-izvestaj")
   public ResponseEntity<?> podnesiIzvestaj(){
     try{
       izvestajService.podnesiIzvestaj();
@@ -30,4 +31,15 @@ public class IzvestajController {
     }
   }
 
+  @GetMapping(path = "/xml", produces = "application/xml")
+  public ResponseEntity<JaxbLista<Izvestaj>> findAllFromCollection() throws Exception {
+
+      try {
+          JaxbLista<Izvestaj> lista = izvestajService.findAllFromCollection();
+          return new ResponseEntity<>(lista, HttpStatus.OK);
+      } catch (Exception e) {
+          e.printStackTrace();
+          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+  }
 }
