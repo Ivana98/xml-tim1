@@ -70,4 +70,40 @@ export class ZahteviComponent implements OnInit {
     }
   }
 
+  getHtml(id: string){
+    this.zahtevService.getHtml(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'text/html' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `zahtev_${id}.html`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
+  getPdf(id: string) {
+    this.zahtevService.getPdf(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `zahtev_${id}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
 }

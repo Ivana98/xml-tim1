@@ -139,4 +139,42 @@ export class ZalbeComponent implements OnInit {
 
   }
 
+  getPdf(id: string, name: string) {
+    if (name === "zalba_na_odluku") {
+      this.zalbeService.getPdfOdluka(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'application/pdf' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.pdf`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+    else {
+      this.zalbeService.getPdfCutanje(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'application/pdf' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.pdf`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+
+  }
+
 }
