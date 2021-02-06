@@ -67,9 +67,9 @@ public class IzvestajService extends AbstractService {
 
     //TODO: OTKOMENTARISATI
     // posalji mejl povereniku da je napravljen novi izvestaj.
-    // String subject = "Godisnji izvestaj";
-    // String content = "Novi godisnji izvestaj pogledajte na: http://localhost:4200/homepage/izvestaji/";
-    // emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+    String subject = "Godisnji izvestaj";
+    String content = "Novi godisnji izvestaj je izdat.";
+    emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
 
   }
 

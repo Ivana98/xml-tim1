@@ -65,10 +65,8 @@ export class IzvestajiComponent implements OnInit {
   }
 
   podnesiNoviIzvestaj() {
-    console.log("hello");
     this.izvestajService.podnesiIzvestaj().subscribe(
       response => {
-        console.log(response);
         this.openSnackBar("Izvestaj je uspesno kreiran. Poverenik je obavesten o novom izvestaju");
         this.getAll();
       },
