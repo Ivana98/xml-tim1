@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tim1.sluzbenik.model.liste.JaxbLista;
+import tim1.sluzbenik.model.resenje.ResenjeObrazac;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.sluzbenik.model.zalbaodluka.ZalbaNaOdluku;
 import tim1.sluzbenik.repository.IzvestajRepository;
+import tim1.sluzbenik.soap.client.ResenjeClient;
 import tim1.sluzbenik.soap.client.ZalbeClient;
 
 @Service
@@ -24,6 +26,9 @@ public class IzvestajService extends AbstractService {
 
   @Autowired
   private ZalbeClient zalbeClient;
+
+  @Autowired
+  private ResenjeClient resenjeClient;
 
   @Autowired
   public IzvestajService(IzvestajRepository repository) {
@@ -39,6 +44,12 @@ public class IzvestajService extends AbstractService {
   }
 
   private void generisiPodatke() throws Exception {
+    generisiBrojZahteva();
+    generisiBrojZalbi();
+    generisiBrojResenja();
+  }
+
+  private void generisiBrojZahteva() throws Exception {
     // ZAHTEVI
     int ukupanBrojZahteva = 0, brojZahtevaNaCekanju = 0, brojOdbijenihZahteva = 0, brojOdobrenihZahteva = 0;
     // content je status zahteva. moze biti: na cekanju, odbijen, odobren
@@ -60,6 +71,10 @@ public class IzvestajService extends AbstractService {
       ukupanBrojZahteva++;
     }
 
+    // TODO: SETOVATI BROJEVE ZAHTEVA NA SAM OBJEKAT IZVESTAJ
+  }
+
+  private void generisiBrojZalbi() throws Exception {
     int ukupanBrojZalbi = 0;
     int brojZalbiNaCutanje = 0;
     int brojZalbiNaOdluku = 0;
@@ -81,6 +96,19 @@ public class IzvestajService extends AbstractService {
     JaxbLista<ZalbaNaOdluku> jaxbListaZalbiNaOdluku = (JaxbLista<ZalbaNaOdluku>) unmarshaller.unmarshal(reader);
     ukupanBrojZalbi += jaxbListaZalbiNaOdluku.getLista().size();
     brojZalbiNaOdluku += jaxbListaZalbiNaOdluku.getLista().size();
+
+    // TODO: SETOVATI BROJEVE ZALBI NA SAM OBJEKAT IZVESTAJ
   }
 
+  private void generisiBrojResenja() throws Exception {
+    int ukupanBrojResenja = 0;
+    String listaString = resenjeClient.getAllResenje();
+    JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
+    Unmarshaller unmarshaller = context.createUnmarshaller();
+    StringReader reader = new StringReader(listaString);
+    JaxbLista<ResenjeObrazac> jaxbListaResenja = (JaxbLista<ResenjeObrazac>) unmarshaller.unmarshal(reader);
+    ukupanBrojResenja = jaxbListaResenja.getLista().size();
+
+    // TODO: SETOVATI BROJEVE RESENJA NA SAM OBJEKAT IZVESTAJ
+  }
 }
