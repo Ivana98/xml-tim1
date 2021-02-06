@@ -9,41 +9,37 @@ const xml2js = require("xml2js");
 @Injectable({
   providedIn: 'root'
 })
-export class ResenjaService {
+export class IzvestajiService {
 
   apiUrl = 'http://localhost:8091/api';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/xml',
     })
   };
-
+  
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
-  getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
+  podnesiIzvestaj(): Observable<any>{
+    return this.http.get(this.apiUrl + '/izvestaji/podnesi-izvestaj/');
+  }
+
+  getAll() :Observable<Array<any>>{
     return this.http
-    .get(this.apiUrl + '/resenja/xml', { responseType: "text" })
+    .get(this.apiUrl + '/izvestaji/xml', {responseType: 'text'})
     .pipe(
       switchMap(async xml => await this.parseXmlToJson(xml))
     );
   }
 
-  async parseXmlToJson(xml) {
+  
+  async parseXmlToJson(xml)  {
     return await xml2js
       .parseStringPromise(xml, { explicitArray: false })
       .then(response => {
         return response;
       });
-  }
-
-  getHtml(id: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
-  }
-
-  getPdf(id: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/resenja/generatePDF/' + id, {responseType: 'arraybuffer'});
   }
 }

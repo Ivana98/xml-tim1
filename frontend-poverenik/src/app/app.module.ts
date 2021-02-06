@@ -19,6 +19,7 @@ import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
 import { ZahteviComponent } from './components/zahtevi/zahtevi.component';
 import { ZalbaNaOdbijanjeComponent } from './components/zalba-na-odbijanje/zalba-na-odbijanje.component';
 import { ZalbaNaCutanjeComponent } from './components/zalba-na-cutanje/zalba-na-cutanje.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ZalbaNaCutanjeComponent } from './components/zalba-na-cutanje/zalba-na-
     IzvestajiComponent,
     ZahteviComponent,
     ZalbaNaOdbijanjeComponent,
-    ZalbaNaCutanjeComponent
+    ZalbaNaCutanjeComponent,
+    RegistracijaComponent
   ],
   imports: [
     MaterialModuleModule,

@@ -104,4 +104,21 @@ public class ObavestenjeController {
 		}
 
     }
+
+    @GetMapping("/generatePDF/{id}")
+	public ResponseEntity<byte[]> generatePDF(@PathVariable("id") String id) {
+
+		String file_path = this.obavestenjeService.generatePDF(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
 }

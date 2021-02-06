@@ -53,7 +53,7 @@ public class ZalbeClient {
     return jaxbListaZalbiNaCutanje;
   }
 
-  public String oznaciZalbuKaoProcitanu(String idZalbe) throws Exception{
+  public String oznaciZalbuKaoProcitanu(String idZalbe) throws Exception {
     URL wsdlLocation = new URL("http://localhost:8090/api/ws/zalba-na-cutanje?wsdl");
     QName serviceName = new QName("http://www.ftn.uns.ac.rs/zalba-na-cutanje", "ZalbaNaOdlukuCutanje");
     QName portName = new QName("http://www.ftn.uns.ac.rs/zalba-na-cutanje", "ZalbaNaCutanjeServiceSoapBinding");
@@ -66,8 +66,31 @@ public class ZalbeClient {
     return status;
   }
 
-    public static void main(String[] args) throws Exception {
-      ZalbeClient client = new ZalbeClient();
-    System.out.println(client.oznaciZalbuKaoProcitanu("21e8208c-5fa6-426f-93b9-c6a19091b1c5"));
+  public String getZalbaNaCutanjeById(String idZalbe) throws Exception {
+    URL wsdlLocation = new URL("http://localhost:8090/api/ws/zalba-na-cutanje?wsdl");
+    QName serviceName = new QName("http://www.ftn.uns.ac.rs/zalba-na-cutanje", "ZalbaNaOdlukuCutanje");
+    QName portName = new QName("http://www.ftn.uns.ac.rs/zalba-na-cutanje", "ZalbaNaCutanjeServiceSoapBinding");
+    Service service = Service.create(wsdlLocation, serviceName);
+
+    ZalbaNaCutanjeServicePortType zPortType = service.getPort(portName, ZalbaNaCutanjeServicePortType.class);
+    String zalba = zPortType.getZalbaNaCutanjeById(idZalbe);
+    return zalba;
+  }
+
+  public String getZalbaNaOdlukuById(String idZalbe) throws Exception {
+    URL wsdlLocation = new URL("http://localhost:8090/api/ws/zalba-na-odluku?wsdl");
+    QName serviceName = new QName("http://www.ftn.uns.ac.rs/zalba-na-odluku", "ZalbaNaOdlukuService");
+    QName portName = new QName("http://www.ftn.uns.ac.rs/zalba-na-odluku", "ZalbaNaOdlukuServiceSoapBinding");
+
+    Service service = Service.create(wsdlLocation, serviceName);
+
+    ZalbaNaOdlukuServicePortType zPortType = service.getPort(portName, ZalbaNaOdlukuServicePortType.class);
+    String zalba = zPortType.getZalbaNaOdlukuById(idZalbe);
+    return zalba;
+  }
+
+  public static void main(String[] args) throws Exception {
+    ZalbeClient client = new ZalbeClient();
+    System.out.println(client.getZalbaNaOdlukuById("9fe8dd9d-da34-4bed-8e6a-0658bb50fc6a"));
   }
 }

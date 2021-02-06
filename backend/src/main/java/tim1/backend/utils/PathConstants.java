@@ -42,6 +42,13 @@ public class PathConstants {
     public static final String ZALBA_ODLUKA_XSL = "./../documents/xsl_documents/zalba_odluka.xsl";
     public static final String ZALBA_CUTANJE_XSL = "./../documents/xsl_documents/zalba_cutanje.xsl";
     public static final String OBAVESTENJE_XSL = "./../documents/xsl_documents/obavestenje.xsl";
+    public static final String ZAHTEV_XSL = "./../documents/xsl_documents/zahtev.xsl";
+
+    public static final String OBAVESTENJE_XSL_FO = "./../documents/xsl_documents/obavestenjefo3.xsl";
+    public static final String ZAHTEV_XSL_FO = "./../documents/xsl_documents/zahtevfo.xsl";
+    public static final String RESENJE_XSL_FO = "./../documents/xsl_documents/resenjefo.xsl";
+    public static final String ZALBA_CUTANJE_XSL_FO = "./../documents/xsl_documents/zalba_cutanje_fo.xsl";
+    public static final String ZALBA_ODLUKA_XSL_FO = "./../documents/xsl_documents/zalba_odluka_fo.xsl";
 
     public static final String FOP_XCONF = "src/main/resources/fop.xconf";
 

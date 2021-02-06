@@ -49,6 +49,19 @@ public class ZahtevClient {
     return jaxbListaZahteva;
   }
 
+  public String getOne(String id) throws MalformedURLException, JAXBException {
+    URL wsdlLocation = new URL("http://localhost:8091/api/ws/zahtev?wsdl");
+    QName serviceName = new QName("http://www.ftn.uns.ac.rs/zahtev", "ZahtevService");
+    QName portName = new QName("http://www.ftn.uns.ac.rs/zahtev", "ZahtevServiceSoapBinding");
+
+    Service service = Service.create(wsdlLocation, serviceName);
+
+    ZahtevServicePortType zServicePortType = service.getPort(portName, ZahtevServicePortType.class);
+
+    String response = zServicePortType.getZahtevById(id);
+    return response;
+  }
+
   // public static void main(String[] args) throws MalformedURLException,
   // JAXBException {
   // ZahtevClient client = new ZahtevClient();

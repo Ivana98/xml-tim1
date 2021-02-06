@@ -174,4 +174,21 @@ public class ZalbaNaOdlukuController {
         long delay = 5 * 60 * 1000L; //5 minuta
         timer.schedule(task, delay);
     }
+
+    @GetMapping("/generatePDF/{id}")
+	public ResponseEntity<byte[]> generatePDF(@PathVariable("id") String id) {
+
+		String file_path = this.zalbaService.generatePDF(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
 }

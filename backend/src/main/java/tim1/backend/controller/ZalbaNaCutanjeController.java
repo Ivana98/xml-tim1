@@ -69,7 +69,7 @@ public class ZalbaNaCutanjeController {
             String emailContent = "Podneta je nova zalba na cutanje. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
 
             //ovo baca 400 Bad request
-            //emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
+            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
             this.timer(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -173,4 +173,21 @@ public class ZalbaNaCutanjeController {
         long delay = 5 * 60 * 1000L; //10 minuta
         timer.schedule(task, delay);
     }
+
+    @GetMapping("/generatePDF/{id}")
+	public ResponseEntity<byte[]> generatePDF(@PathVariable("id") String id) {
+
+		String file_path = this.zalbaService.generatePDF(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
 }
