@@ -46,7 +46,7 @@
         <th mat-header-cell *matHeaderCellDef> Izvoz </th>
         <td mat-cell *matCellDef="let element" class="action-cell">
           <button class="table-button" mat-icon-button color="primary" aria-label="export action" (click)="getHtml(element.id, element.naziv)">XHTML</button>
-          <button class="table-button" mat-icon-button color="primary" aria-label="export action">PDF</button>
+          <button class="table-button" mat-icon-button color="primary" aria-label="export action" (click)="getPdf(element.id, element.naziv)">PDF</button>
         </td>
       </ng-container>
 

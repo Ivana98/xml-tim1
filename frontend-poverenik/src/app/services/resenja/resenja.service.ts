@@ -31,6 +31,10 @@ export class ResenjaService {
     return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
   }
 
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generatePDF/' + id, {responseType: 'arraybuffer'});
+  }
+
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
     return this.http
     .get(this.apiUrl + '/resenja/xml', { responseType: "text" })

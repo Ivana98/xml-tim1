@@ -39,4 +39,12 @@ export class ZahtevService {
         return response;
       });
   }
+
+  getHtml(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zahtevi/generatePDF/' + id, {responseType: 'arraybuffer'});
+  }
 }
