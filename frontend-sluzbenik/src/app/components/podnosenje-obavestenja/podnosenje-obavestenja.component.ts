@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ObavestenjaService } from 'src/app/services/obavestenja-service/obavestenja.service';
 import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 declare const Xonomy: any;
 
 @Component({
@@ -17,6 +17,8 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
     private obavestenjaService: ObavestenjaService,
     private zahtevService: ZahtevService,
     private _Activatedroute: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) { 
     this.zahtevId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
 
@@ -45,13 +47,20 @@ export class PodnosenjeObavestenjaComponent implements OnInit, AfterViewInit {
     this.obavestenjaService.addNew(text)
     .subscribe(
       data => {
-        console.log("dodato")
+        this.openSnackBar("Uspesno ste odgovorili na zahtev");
+        this.router.navigate(['/homepage/zahtevi']);
       },
       error => {
-        console.log(error);
+        this.openSnackBar("Niste kreirali uspesno odgovor na zahtev");
+        this.router.navigate(['/homepage/zahtevi']);
       }
     );
 
+  }
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }
