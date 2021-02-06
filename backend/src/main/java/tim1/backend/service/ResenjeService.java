@@ -48,34 +48,33 @@ public class ResenjeService extends AbstractService {
 		super(repository, "/db/poverenik/resenje/", "/resenje/");
 	}
 
-
 	@Override
-    public void saveXML(String documentId, String content) throws Exception {
+	public void saveXML(String documentId, String content) throws Exception {
 
-        InputStream inputStream = new ReaderInputStream(new StringReader(content));
+		InputStream inputStream = new ReaderInputStream(new StringReader(content));
 
-        JAXBContext context = JAXBContext.newInstance(ResenjeObrazac.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
+		JAXBContext context = JAXBContext.newInstance(ResenjeObrazac.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-        ResenjeObrazac resenje = (ResenjeObrazac) unmarshaller.unmarshal(inputStream);
+		ResenjeObrazac resenje = (ResenjeObrazac) unmarshaller.unmarshal(inputStream);
 
-        resenje.setId(documentId);
+		resenje.setId(documentId);
 
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        
-        marshaller.marshal(resenje, stream);
-        
-        String finalString = new String(stream.toByteArray());
-        System.out.println(finalString);
-        
-        content = finalString;
-        
-        repository.saveXML(documentId, collectionId, content);
-        repository.saveRDF(content, documentId);
-    }
+		Marshaller marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+		marshaller.marshal(resenje, stream);
+
+		String finalString = new String(stream.toByteArray());
+		System.out.println(finalString);
+
+		content = finalString;
+
+		repository.saveXML(documentId, collectionId, content);
+		repository.saveRDF(content, documentId);
+	}
 
 	public JaxbLista<ResenjeObrazac> findAllFromCollection() throws Exception {
 
@@ -118,14 +117,15 @@ public class ResenjeService extends AbstractService {
 		// generisanje htmla
 		String htmlPath = this.generateHTML(idResenja);
 
+		// TODO: POSLATI I PDF
+		String pdfPath = generatePDF(idResenja);
+
 		String sadrzajMejla = "Postovani," + "\nU prilogu se nalazi resenje za zalbu broj: " + idZalbe;
 
-		// TODO: POSLATI I PDF
-
 		// slanje resenja sluzbeniku
-		emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com", "Resenje", sadrzajMejla, "asdf.pdf", htmlPath);
+		emailClient.posaljiResenje("konstrukcijaitestiranje@gmail.com", "Resenje", sadrzajMejla, pdfPath, htmlPath);
 		// slanje resenja gradjaninu
-		emailClient.posaljiResenje(emailGradjanina, "Resenje", sadrzajMejla, "asdf.pdf", htmlPath);
+		emailClient.posaljiResenje(emailGradjanina, "Resenje", sadrzajMejla, pdfPath, htmlPath);
 	}
 
 	private String getEmailGradjanina(String idZalbe) throws Exception {
@@ -173,8 +173,8 @@ public class ResenjeService extends AbstractService {
 			return null;
 		}
 
-        XMLResource xmlRes = this.readXML(id);
-        String doc_str = "";
+		XMLResource xmlRes = this.readXML(id);
+		String doc_str = "";
 		try {
 			doc_str = xmlRes.getContent().toString();
 			System.out.println(doc_str);
@@ -183,7 +183,7 @@ public class ResenjeService extends AbstractService {
 		}
 
 		boolean ok = false;
-        String pdf_path = SAVE_PDF + "resenje_" + id + ".pdf";
+		String pdf_path = SAVE_PDF + "resenje_" + id + ".pdf";
 
 		try {
 			ok = transformer.generatePDF(doc_str, pdf_path, RESENJE_XSL_FO);
@@ -196,6 +196,5 @@ public class ResenjeService extends AbstractService {
 			return null;
 		}
 	}
-
 
 }
