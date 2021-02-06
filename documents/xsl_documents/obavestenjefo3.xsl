@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns="http://www.ftn.uns.ac.rs/obavestenjecir"
+    xmlns:ns2="http://www.ftn.uns.ac.rs/obavestenjecir"
     xmlns:fo="http://www.w3.org/1999/XSL/Format"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:template match="/">
@@ -18,11 +18,11 @@
                 <fo:flow flow-name="xsl-region-body">
                     <fo:block font-family="Times New Roman" margin-top="30pt"
                         font-size="11pt" text-align="left" text-decoration="underline">
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Organ/Naziv"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Organ/ns2:Naziv"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt" text-decoration="underline">
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Organ/Sediste"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Organ/ns2:Sediste"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt">
@@ -31,27 +31,27 @@
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt" text-decoration="underline">
                         Број предмета:
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Broj_predmeta"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Broj_predmeta"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt">
                         Датум:
                         <fo:inline text-indent="8em" text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Osnovni_podaci/Datum"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Datum"></xsl:value-of>
                         </fo:inline>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt" margin-top="11pt" text-decoration="underline">
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Podnosioc_zahteva/Ime"></xsl:value-of> 
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Podnosioc_zahteva/Prezime"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Podnosioc_zahteva/ns2:Ime"></xsl:value-of> 
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Podnosioc_zahteva/ns2:Prezime"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt" text-decoration="underline">
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Podnosioc_zahteva/Naziv"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Podnosioc_zahteva/ns2:Naziv"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt" text-decoration="underline">
-                        <xsl:value-of select="/Obavestenje/Osnovni_podaci/Podnosioc_zahteva/Adresa"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Osnovni_podaci/ns2:Podnosioc_zahteva/ns2:Adresa"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman" text-align="left"
                         font-size="11pt">
@@ -78,7 +78,7 @@
                         слободан
                         приступ информацијама од
                         <fo:inline text-decoration="underline" >
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Godina"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Godina"></xsl:value-of>
                         </fo:inline>
                         год., којим сте тражили увид у
                         документ/е са информацијама о / у
@@ -86,7 +86,7 @@
                     </fo:block>
                     <fo:block font-family="Times New Roman"
                         text-align="center" font-size="11pt" text-decoration="underline" margin-top="20pt">
-                        <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Opis_informacije"></xsl:value-of>
+                        <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Opis_informacije"></xsl:value-of>
                     </fo:block>
                     <fo:block font-family="Times New Roman"
                         text-align="center" font-size="11pt">
@@ -97,41 +97,41 @@
                         margin-top="11pt">
                         Oбавештавамо вас да дана
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Datum_uvida"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Datum_uvida"></xsl:value-of>
                         </fo:inline>
                         ,
                         у
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Vreme_uvida"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Vreme_uvida"></xsl:value-of>
                         </fo:inline>
                         
                         часова,
                         односно у времену
                         од
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Pocetak_cas"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Pocetak_cas"></xsl:value-of>
                         </fo:inline>
                         до
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Kraj_cas"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Kraj_cas"></xsl:value-of>
                         </fo:inline>
                         
                         часова, у просторијама органа у
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Grad_organa"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Grad_organa"></xsl:value-of>
                         </fo:inline>
                         ул.
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Ulica_organa"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Ulica_organa"></xsl:value-of>
                         </fo:inline>
                         бр.
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Broj_organa"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Broj_organa"></xsl:value-of>
                         </fo:inline>
                         ,
                         канцеларија бр.
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Broj_kancelarije"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Broj_kancelarije"></xsl:value-of>
                         </fo:inline>
                         можете
                         <fo:inline font-weight="bold">извршити увид</fo:inline>
@@ -155,7 +155,7 @@
                         margin-top="11pt">
                         Износ укупних трошкова износи
                         <fo:inline text-decoration="underline">
-                            <xsl:value-of select="/Obavestenje/Sadrzaj/Paragraf/Iznos_troskova"></xsl:value-of>
+                            <xsl:value-of select="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Paragraf/ns2:Iznos_troskova"></xsl:value-of>
                         </fo:inline>
                         динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, 
                         с позивом на број 97 – ознака шифре
