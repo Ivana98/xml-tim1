@@ -94,7 +94,7 @@ export class ZahtevService {
       <naziv property="pred:naziv" datatype="xs:string"> </naziv>
       <sediste property="pred:sediste" datatype="xs:string"> </sediste>
   </info_organa>
-  <naslov> </naslov>
+  <naslov> Zahtev </naslov>
   <svrha_zahteva> </svrha_zahteva>
   <opis_zahteva>
       <tekst_zahteva> </tekst_zahteva>

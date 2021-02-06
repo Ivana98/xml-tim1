@@ -59,7 +59,7 @@ export class ZahteviComponent implements OnInit {
 
     lista.forEach(element => {
       // console.log(element["ns4:trazilac"]["$"]["email"]);
-      this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"]));
+      this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"], element["$"]["content"]));
     })
 
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);

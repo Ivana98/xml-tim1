@@ -162,6 +162,8 @@ public class ZalbaNaCutanjeService extends AbstractService {
     public String oznaciZalbuKaoOdgovorenu(String idZalbe) {
         // zalba moze da pripada i zalbi na cutanje i zalbi na odluku. svejedno je
         // probaj da nadjes zalbu na cutanje
+        System.out.println("------------------------------------------------------------sxfcvbnm");
+        System.out.println(idZalbe);
         try {
             JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
