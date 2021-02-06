@@ -18,7 +18,7 @@ public class IzvestajController {
   IzvestajService izvestajService;
 
 
-  @PostMapping(path = "/podnesi-izvestaj")
+  @GetMapping(path = "/podnesi-izvestaj")
   public ResponseEntity<?> podnesiIzvestaj(){
     try{
       izvestajService.podnesiIzvestaj();
