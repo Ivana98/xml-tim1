@@ -37,7 +37,11 @@ export class ZahtevService {
   ) { }
 
   getHtml(id: string): Observable<any> {
-    return this.http.get('http://localhost:8091/api/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+    return this.http.get(this.apiUrl + '/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zahtevi/generatePDF/' + id, {responseType: 'arraybuffer'});
   }
 
   addNew(zahtev): any {

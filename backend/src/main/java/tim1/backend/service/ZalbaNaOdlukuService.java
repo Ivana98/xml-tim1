@@ -92,4 +92,38 @@ public class ZalbaNaOdlukuService extends AbstractService {
 		}
     }
 
+    public String generatePDF(String id) {
+		XSLFORTransformer transformer = null;
+
+		try {
+			transformer = new XSLFORTransformer();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+        XMLResource xmlRes = this.readXML(id);
+        String doc_str = "";
+		try {
+			doc_str = xmlRes.getContent().toString();
+			System.out.println(doc_str);
+		} catch (XMLDBException e1) {
+			e1.printStackTrace();
+		}
+
+		boolean ok = false;
+        String pdf_path = SAVE_PDF + "zalba_" + id + ".pdf";
+
+		try {
+			ok = transformer.generatePDF(doc_str, pdf_path, ZALBA_ODLUKA_XSL_FO);
+			if (ok)
+				return pdf_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

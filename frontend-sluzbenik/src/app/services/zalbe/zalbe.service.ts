@@ -51,4 +51,21 @@ export class ZalbeService {
         return response;
       });
   }
+
+  getHtmlOdluka(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-odluku/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdfOdluka(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-odluku/generatePDF/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getHtmlCutanje(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-cutenje/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdfCutanje(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zalbe-na-cutenje/generatePDF/' + id, {responseType: 'arraybuffer'});
+  }
+
 }

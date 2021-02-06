@@ -38,4 +38,12 @@ export class ResenjaService {
         return response;
       });
   }
+
+  getHtml(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generatePDF/' + id, {responseType: 'arraybuffer'});
+  }
 }
