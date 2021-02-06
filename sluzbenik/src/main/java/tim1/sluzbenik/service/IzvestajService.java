@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import tim1.sluzbenik.model.liste.JaxbLista;
 import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.model.zalbacutanje.ZalbaNaCutanje;
+import tim1.sluzbenik.model.zalbaodluka.ZalbaNaOdluku;
 import tim1.sluzbenik.repository.IzvestajRepository;
 import tim1.sluzbenik.soap.client.ZalbeClient;
 
@@ -59,18 +60,27 @@ public class IzvestajService extends AbstractService {
       ukupanBrojZahteva++;
     }
 
-    // ZALBE
     int ukupanBrojZalbi = 0;
     int brojZalbiNaCutanje = 0;
     int brojZalbiNaOdluku = 0;
-    String listaString = zalbeClient.getAllZalbaNaCutanje();
 
+    // ZALBE NA CUTANJE
+    String listaString = zalbeClient.getAllZalbaNaCutanje();
     JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
     Unmarshaller unmarshaller = context.createUnmarshaller();
     StringReader reader = new StringReader(listaString);
-    JaxbLista<ZalbaNaCutanje> jaxbLista = (JaxbLista<ZalbaNaCutanje>) unmarshaller.unmarshal(reader);
-    System.out.println(jaxbLista.getLista().size());
+    JaxbLista<ZalbaNaCutanje> jaxbListaZalbiNaCutanje = (JaxbLista<ZalbaNaCutanje>) unmarshaller.unmarshal(reader);
+    ukupanBrojZalbi += jaxbListaZalbiNaCutanje.getLista().size();
+    brojZalbiNaCutanje += jaxbListaZalbiNaCutanje.getLista().size();
 
+    // ZALBE NA ODLUKU
+    listaString = zalbeClient.getAllZalbaNaOdluku();
+    context = JAXBContext.newInstance(JaxbLista.class);
+    unmarshaller = context.createUnmarshaller();
+    reader = new StringReader(listaString);
+    JaxbLista<ZalbaNaOdluku> jaxbListaZalbiNaOdluku = (JaxbLista<ZalbaNaOdluku>) unmarshaller.unmarshal(reader);
+    ukupanBrojZalbi += jaxbListaZalbiNaOdluku.getLista().size();
+    brojZalbiNaOdluku += jaxbListaZalbiNaOdluku.getLista().size();
   }
 
 }
