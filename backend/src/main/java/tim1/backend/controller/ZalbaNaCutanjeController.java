@@ -69,7 +69,7 @@ public class ZalbaNaCutanjeController {
             String emailContent = "Podneta je nova zalba na cutanje. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
 
             //ovo baca 400 Bad request
-            //emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
+            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
             this.timer(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
