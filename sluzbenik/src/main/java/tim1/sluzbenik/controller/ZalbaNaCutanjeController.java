@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tim1.sluzbenik.model.liste.JaxbLista;
+import tim1.sluzbenik.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.sluzbenik.soap.client.EmailClient;
 import tim1.sluzbenik.soap.client.ZalbeClient;
 
@@ -25,10 +27,10 @@ public class ZalbaNaCutanjeController {
     EmailClient emailClient;
 
     @GetMapping(path = "/xml", produces = "application/xml")
-    public ResponseEntity<?> findAllFromCollection() throws Exception{
+    public ResponseEntity<JaxbLista<ZalbaNaCutanje>> findAllFromCollection() throws Exception{
 
         try {
-            String listaZalbi = zalbeClient.getAllZalbaNaCutanje();
+            JaxbLista<ZalbaNaCutanje>  listaZalbi = zalbeClient.getAllZalbaNaCutanje();
             return new ResponseEntity<>(listaZalbi, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

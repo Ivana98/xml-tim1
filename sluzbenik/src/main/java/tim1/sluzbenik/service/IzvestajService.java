@@ -99,20 +99,12 @@ public class IzvestajService extends AbstractService {
     int brojZalbiNaOdluku = 0;
 
     // ZALBE NA CUTANJE
-    String listaString = zalbeClient.getAllZalbaNaCutanje();
-    JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
-    Unmarshaller unmarshaller = context.createUnmarshaller();
-    StringReader reader = new StringReader(listaString);
-    JaxbLista<ZalbaNaCutanje> jaxbListaZalbiNaCutanje = (JaxbLista<ZalbaNaCutanje>) unmarshaller.unmarshal(reader);
+    JaxbLista<ZalbaNaCutanje> jaxbListaZalbiNaCutanje = zalbeClient.getAllZalbaNaCutanje();
     ukupanBrojZalbi += jaxbListaZalbiNaCutanje.getLista().size();
     brojZalbiNaCutanje += jaxbListaZalbiNaCutanje.getLista().size();
 
     // ZALBE NA ODLUKU
-    listaString = zalbeClient.getAllZalbaNaOdluku();
-    context = JAXBContext.newInstance(JaxbLista.class);
-    unmarshaller = context.createUnmarshaller();
-    reader = new StringReader(listaString);
-    JaxbLista<ZalbaNaOdluku> jaxbListaZalbiNaOdluku = (JaxbLista<ZalbaNaOdluku>) unmarshaller.unmarshal(reader);
+    JaxbLista<ZalbaNaOdluku> jaxbListaZalbiNaOdluku = zalbeClient.getAllZalbaNaOdluku();
     ukupanBrojZalbi += jaxbListaZalbiNaOdluku.getLista().size();
     brojZalbiNaOdluku += jaxbListaZalbiNaOdluku.getLista().size();
 
