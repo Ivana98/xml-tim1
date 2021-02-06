@@ -207,7 +207,7 @@
                                                 <b> 
                                                     на други начин:*** 
                                                     <u> 
-                                                        <xsl:value-of select="/zahtev/opis_zahteva/tipovi_zahteva/tip_zahteva/nacini_slanja/nacin_slanja[@rb = '4']"></xsl:value-of> 
+                                                        <xsl:value-of select="."></xsl:value-of> 
                                                     </u>
                                                 </b>
                                             </strong>  

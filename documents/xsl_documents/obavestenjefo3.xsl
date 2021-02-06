@@ -168,14 +168,49 @@
                         Достављено:
                     </fo:block>
 
-                    <fo:block font-family="Times New Roman" font-weight="bold"
-                        text-align="left" font-size="11pt">
-                        1. Именованом
-                    </fo:block>
-                    <fo:block font-family="Times New Roman"
-                        text-align="left" font-size="11pt">
-                        2. Архиви
-                    </fo:block>
+                    <fo:list-block>
+                        
+                        <xsl:if test="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Dostavljeno/@Selected='1'">
+                            <fo:list-item text-decoration="underline">
+                                <fo:list-item-label>
+                                    <fo:block>1.</fo:block>
+                                </fo:list-item-label>
+                                <fo:list-item-body>
+                                    <fo:block>Именованом</fo:block>
+                                </fo:list-item-body>
+                            </fo:list-item>
+                            
+                            <fo:list-item>
+                                <fo:list-item-label>
+                                    <fo:block>2.</fo:block>
+                                </fo:list-item-label>
+                                <fo:list-item-body>
+                                    <fo:block>Архиви</fo:block>
+                                </fo:list-item-body>
+                            </fo:list-item>
+                        </xsl:if>
+                        
+                        <xsl:if test="/ns2:Obavestenje/ns2:Sadrzaj/ns2:Dostavljeno/@Selected='2'">
+                            <fo:list-item>
+                                <fo:list-item-label>
+                                    <fo:block>1.</fo:block>
+                                </fo:list-item-label>
+                                <fo:list-item-body>
+                                    <fo:block>Именованом</fo:block>
+                                </fo:list-item-body>
+                            </fo:list-item>
+                            
+                            <fo:list-item text-decoration="underline">
+                                <fo:list-item-label>
+                                    <fo:block>2.</fo:block>
+                                </fo:list-item-label>
+                                <fo:list-item-body>
+                                    <fo:block>Архиви</fo:block>
+                                </fo:list-item-body>
+                            </fo:list-item>
+                        </xsl:if>
+                        
+                    </fo:list-block>
                     
                 </fo:flow>
             </fo:page-sequence>
