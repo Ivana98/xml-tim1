@@ -33,7 +33,7 @@ export class ZahteviComponent implements OnInit {
     console.log("On init");
     this.role = this.authService.getRole();
     this.email = this.authService.getEmail();
-    console.log(this.email);
+    // console.log(this.email);
     this.getAll();
   }
 
@@ -58,7 +58,7 @@ export class ZahteviComponent implements OnInit {
 
 
     lista.forEach(element => {
-      console.log(element["ns4:trazilac"]["$"]["email"]);
+      // console.log(element["ns4:trazilac"]["$"]["email"]);
       this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"]));
     })
 
