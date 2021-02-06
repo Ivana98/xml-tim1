@@ -85,7 +85,7 @@ public abstract class AbstractService {
      }
    *
    */
-  public <T> List<T> findAllFromCollection( Class<T> classType) throws Exception{
+  protected <T> List<T> findAllFromCollection( Class<T> classType) throws Exception{
     System.out.println(classType);
     List<T> temp = new ArrayList<>();
     List<XMLResource> retval =  this.repository.findAllFromCollection(collectionId);
