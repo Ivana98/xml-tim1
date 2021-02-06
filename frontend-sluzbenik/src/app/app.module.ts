@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResenjaComponent } from './components/resenja/resenja.component';
 import { IzvestajiComponent } from './components/izvestaji/izvestaji.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
-import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
 import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obavestenja/podnosenje-obavestenja.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
@@ -34,7 +33,6 @@ import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.com
     ResenjaComponent,
     IzvestajiComponent,
     PrikazZahtevaComponent,
-    PrikazObavestenjaComponent,
     PodnosenjeObavestenjaComponent,
     ZalbeComponent,
     PrikazZalbeComponent

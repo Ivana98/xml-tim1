@@ -7,7 +7,6 @@ import { ObavestenjaComponent } from './components/obavestenja/obavestenja.compo
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obavestenja/podnosenje-obavestenja.component';
 import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
-import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
