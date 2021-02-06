@@ -16,6 +16,13 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public interface ZalbaNaCutanjeServicePortType {
 
+    @WebMethod(action = "http://www.zalbanacutanje.com/ws/oznaciZalbuKaoProcitanu")
+    @WebResult(name = "zalba_cutanje", targetNamespace = "", partName = "zalba_cutanje")
+    public java.lang.String oznaciZalbuKaoProcitanu(
+        @WebParam(partName = "id", name = "id", targetNamespace = "")
+        java.lang.String id
+    );
+
     @WebMethod(action = "http://www.zalbanaodluku.com/ws/getAll")
     @WebResult(name = "response", targetNamespace = "", partName = "response")
     public java.lang.String getAll();

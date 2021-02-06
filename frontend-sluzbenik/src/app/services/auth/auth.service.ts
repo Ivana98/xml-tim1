@@ -32,9 +32,6 @@ export class AuthService {
     return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).role : 'INVALID';
   }
 
-  getEmail(): string {
-    return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).username : 'INVALID';
-  }
 
   getId(): number {
     return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).id : 'INVALID';

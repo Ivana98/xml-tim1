@@ -62,6 +62,7 @@ import javax.xml.bind.annotation.XmlValue;
  *         &lt;/element&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="about" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="email" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -89,6 +90,8 @@ public class PodnosilacZalbe {
     protected PodnosilacZalbe.KontaktPodaci kontaktPodaci;
     @XmlAttribute(name = "about")
     protected String about;
+    @XmlAttribute(name = "email")
+    protected String email;
 
     /**
      * Gets the value of the ime property.
@@ -208,6 +211,30 @@ public class PodnosilacZalbe {
      */
     public void setAbout(String value) {
         this.about = value;
+    }
+
+    /**
+     * Gets the value of the email property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the value of the email property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEmail(String value) {
+        this.email = value;
     }
 
 

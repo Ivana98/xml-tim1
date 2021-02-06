@@ -43,9 +43,14 @@ public class ZalbaNaCutanjeController {
     public ResponseEntity<?>  posaljiMejlPovereniku(@RequestBody String content , @PathVariable("idZalbe") String idZalbe){
 
         try{
+            //posalji mejl povereniku
             String subject = "Odgovor na zalbu broj: " + idZalbe;
             content += "\n Zalbu pogledajte na: http://localhost:4200/homepage/zalbe/";
             emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+            
+            //promeni status zalbe na procitano
+            zalbeClient.oznaciZalbuKaoProcitanu(idZalbe);
+            
             return new ResponseEntity<>( HttpStatus.OK);
         }
         catch (Exception e) {
