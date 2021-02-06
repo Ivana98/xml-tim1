@@ -52,27 +52,6 @@ export class ResenjaComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
   }
 
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.resenja.length;
-    //this.paginator.length = result.body.count;
-
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.resenja.length;
-    return event;
-  }
-
   getHtml(id: string) {
     this.resenjaService.getHtml(id).subscribe(
       data => {

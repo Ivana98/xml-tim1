@@ -14,7 +14,7 @@ export class IzvestajiComponent implements OnInit {
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
-  
+
 
   izvestaji: Izvestaj[] = [
     {
@@ -27,32 +27,11 @@ export class IzvestajiComponent implements OnInit {
     },
   ]
 
-  constructor() { 
+  constructor() {
     this.dataSource = new MatTableDataSource<Izvestaj>(this.izvestaji);
   }
 
   ngOnInit(): void {
-  }
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-    
-    this.dataSource = new MatTableDataSource<Izvestaj>(this.izvestaji);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.izvestaji.length;
-    //this.paginator.length = result.body.count;
-
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Izvestaj>(this.izvestaji);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.izvestaji.length;
-    return event;
   }
 
 }
