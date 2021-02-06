@@ -36,6 +36,7 @@ export class ResenjaComponent implements OnInit {
     this.resenja = [];
 
     this.resenjaService.getAll()
+    //TODO: staviti da vidi samo sa svojim mejlom kad marija doda mejl u semu
       .subscribe(
         data => {
           let lista = data["jaxbLista"]["ns6:Resenje_obrazac"];
