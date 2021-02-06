@@ -111,7 +111,7 @@ public class ZalbaNaCutanjeController {
 
         String doc_str = "";
         try {
-            doc_str = this.zalbeClient.getOne(id);
+            doc_str = this.zalbeClient.getZalbaNaCutanjeById(id);
         } catch (Exception e1) {
             return null;
         }
@@ -143,7 +143,7 @@ public class ZalbaNaCutanjeController {
 
         String doc_str = "";
         try {
-            doc_str = this.zalbeClient.getOne(id);
+            doc_str = this.zalbeClient.getZalbaNaCutanjeById(id);
         } catch (Exception e1) {
             return null;
         }
