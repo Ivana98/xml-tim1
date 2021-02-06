@@ -68,7 +68,8 @@ public class ZalbaNaCutanjeController {
             String subject = "Obavestenje o podnosenju zalbe broj: " + documentId;
             String emailContent = "Podneta je nova zalba na cutanje. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
 
-            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
+            //ovo baca 400 Bad request
+            //emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
             this.timer(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
@@ -169,7 +170,7 @@ public class ZalbaNaCutanjeController {
 
         Timer timer = new Timer("Timer");
         
-        long delay = 10 * 60 * 1000L; //10 minuta
+        long delay = 5 * 60 * 1000L; //10 minuta
         timer.schedule(task, delay);
     }
 }
