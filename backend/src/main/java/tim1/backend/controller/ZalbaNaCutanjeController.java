@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
@@ -65,8 +68,9 @@ public class ZalbaNaCutanjeController {
             String subject = "Obavestenje o podnosenju zalbe broj: " + documentId;
             String emailContent = "Podneta je nova zalba na cutanje. Zalbu mozete pogledati na: http://localhost:4201/homepage/zalbe/";
 
-            emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
-
+            //ovo baca 400 Bad request
+            //emailClient.obavestiSluzbenikaONovojZalbi("konstrukcijaitestiranje@gmail.com", subject, emailContent);
+            this.timer(documentId);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -123,5 +127,50 @@ public class ZalbaNaCutanjeController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
+    }
+
+    public void timer(String id) {
+
+        TimerTask task = new TimerTask() {
+
+            public void run() {
+                this.pregledanjeZalbe(id);
+                System.out.println("Task performed on: " + new Date() + "n" +
+                "Thread's name: " + Thread.currentThread().getName());
+            }
+
+            private void pregledanjeZalbe(String id) {
+                XMLResource zalbaxml = zalbaService.readXML(id);
+                InputStream inputStream1;
+                try {
+                    inputStream1 = new ReaderInputStream(new StringReader(zalbaxml.getContent().toString()));
+                    JAXBContext contextZahtev = JAXBContext.newInstance(ZalbaNaCutanje.class);
+                    Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
+                    ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshallerZahtev.unmarshal(inputStream1);
+                    if(zalba.getStatus().equals("na cekanju")){
+                        zalba.setStatus("pregledana");
+                        
+                        Marshaller marshallerZahtev = contextZahtev.createMarshaller();
+                        marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                        marshallerZahtev.marshal(zalba, stream1);
+                        String finalStringZalba = new String(stream1.toByteArray());
+
+                        zalbaService.saveXML(zalba.getId(), finalStringZalba);
+                        zalbaService.saveRDF(finalStringZalba, zalba.getId());
+                    }
+
+                } catch (XMLDBException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Timer timer = new Timer("Timer");
+        
+        long delay = 5 * 60 * 1000L; //10 minuta
+        timer.schedule(task, delay);
     }
 }
