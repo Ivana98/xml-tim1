@@ -14,7 +14,7 @@
 
 ### tomcat server:
 - 2 fuseki aplikacije koje rade na portu 8080. Fuseki za poverenika mora biti dostupan na putanji: http://localhost:8080/fuseki_poverenik. Fuseki za sluzbenika mora biti dostupan na putanji: http://localhost:8080/fuseki_sluzbenik. Fuseki poverenik mora imati dataset Poverenik. Fuseki sluzbenik mora imati dataset Sluzbenik.
-- 2 exist aplikacije koje rade na portu 8080. Exist za poverenika mora biti dostupan na http://localhost:8080/exist_poverenik. Exist za sluzbenika mora biti dostupan na http://localhost:8080/exist_sluzbenik.
+- 2 exist aplikacije koje rade na portu 8080. Exist za poverenika mora biti dostupan na http://localhost:8080/exist_poverenik. Mora postojati poverenik sa ulogom poverenik na sledecoj dataset putanji: /db/poverenik/korisnik. Exist za sluzbenika mora biti dostupan na http://localhost:8080/exist_sluzbenik. Mora postojati sluzbenik sa ulogom sluzbenik na sledecoj dataset putanji: /db/sluzbenik/korisnik. (Gradjanin mogu da kreiraju nalog, kao i da se prijave na sistem.)
 
 ### spring aplikacije:
 - portal poverenika je potrebno pokrenuti i on radi na portu 8090 
