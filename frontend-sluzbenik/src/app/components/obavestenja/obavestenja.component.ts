@@ -42,8 +42,9 @@ export class ObavestenjaComponent implements OnInit {
       lista = [lista];
     }
 
-    lista.forEach( element =>{
-      this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));
+    lista.forEach(element => {
+      console.log(element)
+      this.obavestenja.push(new Obavestenje(element["$"]["id"], element["ns5:Sadrzaj"]["ns5:Naslov"]));
     })
     this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
   }
