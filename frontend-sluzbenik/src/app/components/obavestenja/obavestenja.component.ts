@@ -25,19 +25,27 @@ export class ObavestenjaComponent implements OnInit {
   constructor(
     private router: Router,
     private obavestenjaService: ObavestenjaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.obavestenjaService.getAll()
-      .subscribe(
-        data => {
-          data["jaxbLista"]["ns5:Obavestenje"].forEach(element => {
-            this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));  //element["ns3:Sadrzaj"]["ns3:Naslov"]
-          });
+    this.getAll()
+  }
 
-          this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-        }
-      );
+  async getAll() {
+    let lista = await this.obavestenjaService.getAll().toPromise();
+    lista = lista["jaxbLista"]["ns5:Obavestenje"];
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
+
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
+
+    lista.forEach( element =>{
+      this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));
+    })
+    this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
   }
 
   requestPage(): void {
@@ -61,7 +69,7 @@ export class ObavestenjaComponent implements OnInit {
     return event;
   }
 
-  getHtml(id: string){
+  getHtml(id: string) {
     this.obavestenjaService.getHtml(id).subscribe(
       data => {
         let file = new Blob([data], { type: 'text/html' });
