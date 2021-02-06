@@ -1,14 +1,13 @@
 <mat-card class="card-position">
     <mat-card-title>
-        Prikaz zalbe
+        Odgovori povereniku na zalbu
     </mat-card-title>
     <mat-card-subtitle>
-        Naziv: <!--{{ime zalbe}}-->
+        broj zalbe: {{zalba.id}}
     </mat-card-subtitle>
     <mat-card-content>
         <p>
-            Sadrzaj...
-            <!--{{sadrzaj zalbe}}-->
+
         </p>
 
         <div *ngIf="role=='SLUZBENIK'">
