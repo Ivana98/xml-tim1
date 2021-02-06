@@ -15,6 +15,7 @@ import tim1.sluzbenik.model.zahtev.Zahtev;
 import tim1.sluzbenik.model.zalbacutanje.ZalbaNaCutanje;
 import tim1.sluzbenik.model.zalbaodluka.ZalbaNaOdluku;
 import tim1.sluzbenik.repository.IzvestajRepository;
+import tim1.sluzbenik.soap.client.EmailClient;
 import tim1.sluzbenik.soap.client.ResenjeClient;
 import tim1.sluzbenik.soap.client.ZalbeClient;
 
@@ -31,16 +32,34 @@ public class IzvestajService extends AbstractService {
   private ResenjeClient resenjeClient;
 
   @Autowired
+  EmailClient emailClient;
+
+  @Autowired
   public IzvestajService(IzvestajRepository repository) {
     super(repository, "db/sluzbenik/izvestaj/", "/izvestaj/");
   }
 
+  /**
+   * generisi podatke,
+     sacuvaj u bazu,
+     posalji mejl povereniku da je napravljen novi izvestaj.
+   * @throws Exception
+   */
   public void podnesiIzvestaj() throws Exception {
     generisiPodatke();
-    // generisi podatke
-    // sacuvaj u bazu
-    // posalji mejl povereniku da je napravljen novi izvestaj
 
+    // sacuvaj u bazu izvestaj- TODO
+
+    String subject = "Godisnji izvestaj";
+    String content = "Novi godisnji izvestaj pogledajte na: http://localhost:4200/homepage/izvestaji/";
+    emailClient.odgovoriPovereniku("konstrukcijaitestiranje@gmail.com", subject, content);
+
+  }
+
+  @Override
+  public void saveXML(String documentId, String content) throws Exception {
+    // TODO ZAPRAVO SACUVATI IZVESTAJ
+    super.saveXML(documentId, content);
   }
 
   private void generisiPodatke() throws Exception {
