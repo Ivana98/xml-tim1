@@ -101,29 +101,6 @@ export class ZalbeComponent implements OnInit {
 
   }
 
-
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zalbe.length;
-    //this.paginator.length = result.body.count;
-
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zalbe.length;
-    return event;
-  }
-
   getHtml(id: string, name: string){
     if(name === "zalba_na_odluku"){
       this.zalbeService.getHtmlOdluka(id).subscribe(

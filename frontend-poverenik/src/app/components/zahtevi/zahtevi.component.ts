@@ -70,24 +70,4 @@ export class ZahteviComponent implements OnInit {
     }
   }
 
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    //this.paginator.length = result.body.count;
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    return event;
-  }
-
 }
