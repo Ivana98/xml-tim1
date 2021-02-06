@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 declare const require;
 const xml2js = require("xml2js");
@@ -25,12 +26,16 @@ export class IzvestajiService {
     return this.http.get(this.apiUrl + '/izvestaji/podnesi-izvestaj/');
   }
 
-  getAll() {
-    
+  getAll() :Observable<Array<any>>{
+    return this.http
+    .get(this.apiUrl + '/izvestaji/xml', {responseType: 'text'})
+    .pipe(
+      switchMap(async xml => await this.parseXmlToJson(xml))
+    );
   }
 
   
-  async parseXmlToJson(xml) {
+  async parseXmlToJson(xml)  {
     return await xml2js
       .parseStringPromise(xml, { explicitArray: false })
       .then(response => {

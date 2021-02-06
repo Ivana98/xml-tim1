@@ -27,11 +27,36 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSortDirection="asc">
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <ng-container matColumnDef="odbijeniZahtevi">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.odbijeniZahtevi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="odobreniZahtevi">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.odobreniZahtevi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="resenja">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.resenja}} </td>
+      </ng-container>
+      <ng-container matColumnDef="sveZalbe">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.sveZalbe}} </td>
+      </ng-container>
+      <ng-container matColumnDef="sviZahtevi">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.sviZahtevi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="zalbeNaCutanje">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.zalbeNaCutanje}} </td>
+      </ng-container>
+      <ng-container matColumnDef="zalbeNaOdluku">
+        <th mat-header-cell *matHeaderCellDef> odbijeni zahtevi </th>
+        <td mat-cell *matCellDef="let element"> {{element.zalbeNaOdluku}} </td>
       </ng-container>
 
+<!-- 
       <ng-container matColumnDef="naziv">
         <th mat-header-cell *matHeaderCellDef> Naziv dokumenta </th>
         <td mat-cell *matCellDef="let element"> {{element.naziv}} </td>
@@ -43,7 +68,7 @@
           <button class="table-button" mat-icon-button color="primary" aria-label="export action">XHTML</button>
           <button class="table-button" mat-icon-button color="primary" aria-label="export action">PDF</button>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
