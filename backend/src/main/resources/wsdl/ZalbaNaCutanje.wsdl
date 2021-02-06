@@ -23,6 +23,13 @@
         <wsdl:part name="response" type="xsd:string" />
     </wsdl:message>
 
+    <wsdl:message name="oznaciZalbuKaoProcitanuRequest">
+        <wsdl:part name="id" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="oznaciZalbuKaoProcitanuResponse">
+        <wsdl:part name="zalba_cutanje" type="xsd:string" />
+    </wsdl:message>
+
     <wsdl:portType name="ZalbaNaCutanjeServicePortType">
         <wsdl:operation name="getZalbaNaCutanjeById">
             <wsdl:input message="tns:getZalbaNaCutanjeRequest" />
@@ -32,6 +39,11 @@
         <wsdl:operation name="getAll">
             <wsdl:input message="tns:getAllRequest" />
             <wsdl:output message="tns:getAllResponse" />
+        </wsdl:operation>
+
+        <wsdl:operation name="oznaciZalbuKaoProcitanu">
+            <wsdl:input message="tns:oznaciZalbuKaoProcitanuRequest" />
+            <wsdl:output message="tns:oznaciZalbuKaoProcitanuResponse" />
         </wsdl:operation>
     </wsdl:portType>
 
@@ -49,6 +61,16 @@
 
         <wsdl:operation name="getAll">
             <soap:operation soapAction="http://www.zalbanacutanje.com/ws/getAll" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="oznaciZalbuKaoProcitanu">
+            <soap:operation soapAction="http://www.zalbanacutanje.com/ws/oznaciZalbuKaoProcitanu" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

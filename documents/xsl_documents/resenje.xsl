@@ -54,8 +54,9 @@
             </head>
             
             <body>
+                <p> Број: <xsl:value-of select="/Resenje_obrazac/@broj"></xsl:value-of> </p>
                 <p class="add-space-after"> 
-                    <xsl:value-of select="/Resenje_obrazac/Datum"></xsl:value-of>
+                    Датум: <xsl:value-of select="/Resenje_obrazac/Datum"></xsl:value-of>
                 </p>
                 <p class="justify indented add-space-after">
                     <xsl:value-of select="/Resenje_obrazac/Uvod"></xsl:value-of>

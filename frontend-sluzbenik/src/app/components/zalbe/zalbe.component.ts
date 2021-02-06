@@ -14,9 +14,6 @@ export class ZalbeComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email'];
   dataSource: MatTableDataSource<Zalba>;
-  pageIndex: number = 0;
-  pageSize: number = 5;
-  length: number = 0;
 
   role = "";
   email = "";
@@ -66,7 +63,9 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]));
+      if(element["$"]["status"] == "na cekanju"){
+        this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]));
+      }
     });
   }
 
@@ -80,31 +79,13 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      let id = element["$"]["id"];
-      let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
-      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik));
+      if(element["$"]["status"] == "na cekanju"){
+        let id = element["$"]["id"];
+        let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
+        this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik));
+      }
     });
 
-  }
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zalbe.length;
-    //this.paginator.length = result.body.count;
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zalbe.length;
-    return event;
   }
 
 }

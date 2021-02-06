@@ -33,24 +33,24 @@ export class ZahteviComponent implements OnInit {
     this.getAll();
   }
 
-  getAll() {
-    this.zahtevService.getAll()
-      .subscribe(
-        data => {
-          this.zahtevi = [];  // clear list
+  async getAll() {
+    let lista = await this.zahtevService.getAll().toPromise();
+    lista = lista["jaxbLista"]["ns4:zahtev"];
 
-          let lista = data["jaxbLista"]["ns4:zahtev"];
-          console.log(lista)
-          lista.forEach(element => {
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
 
-            let dozvole = this.getDozvoleZaZalbu(element["$"]["content"]);
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
 
-            this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:info_organa"]["ns4:naziv"]["_"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], dozvole[0], dozvole[1]))
-          });
+    lista.forEach(element => {
+      let dozvole = this.getDozvoleZaZalbu(element["$"]["content"]);
+      this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:info_organa"]["ns4:naziv"]["_"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], dozvole[0], dozvole[1]))
+    })
 
-          this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-        }
-      )
+    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
   }
 
   getDozvoleZaZalbu(content) {
@@ -68,26 +68,6 @@ export class ZahteviComponent implements OnInit {
         console.log("GRESKA !!! Promeni resenja u bazi.");
         return [false, false];
     }
-  }
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    //this.paginator.length = result.body.count;
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    return event;
   }
 
 }

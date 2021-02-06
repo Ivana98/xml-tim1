@@ -25,43 +25,30 @@ export class ObavestenjaComponent implements OnInit {
   constructor(
     private router: Router,
     private obavestenjaService: ObavestenjaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.obavestenjaService.getAll()
-      .subscribe(
-        data => {
-          data["jaxbLista"]["ns5:Obavestenje"].forEach(element => {
-            this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));  //element["ns3:Sadrzaj"]["ns3:Naslov"]
-          });
-
-          this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-        }
-      );
+    this.getAll()
   }
 
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
+  async getAll() {
+    let lista = await this.obavestenjaService.getAll().toPromise();
+    lista = lista["jaxbLista"]["ns5:Obavestenje"];
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
 
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
+
+    lista.forEach( element =>{
+      this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));
+    })
     this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.obavestenja.length;
-    //this.paginator.length = result.body.count;
-
   }
 
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.obavestenja.length;
-    return event;
-  }
-
-  getHtml(id: string){
+  getHtml(id: string) {
     this.obavestenjaService.getHtml(id).subscribe(
       data => {
         let file = new Blob([data], { type: 'text/html' });

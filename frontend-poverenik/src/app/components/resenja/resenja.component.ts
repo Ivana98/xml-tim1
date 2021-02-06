@@ -33,45 +33,26 @@ export class ResenjaComponent implements OnInit {
     this.getAll();
   }
 
-  getAll() {
-    this.resenja = [];
+  async getAll() {
+    let lista = await this.resenjaService.getAll().toPromise();
+    lista = lista["jaxbLista"]["ns6:Resenje_obrazac"];
 
-    this.resenjaService.getAll()
-      .subscribe(
-        data => {
-          let lista = data["jaxbLista"]["ns6:Resenje_obrazac"];
+    // ako lista ne postoji nema potrebe da se iterira i filtrira lista
+    if (lista === undefined) return;
 
-          lista.forEach(element => {
-            this.resenja.push(new Resenje(element["$"]["id"], element["$"]["broj"]))
-          });
+    // nekad je lista samo objekat i tada treba ubaciti promenljivu lista u pravu listu 
+    if (!(lista instanceof Array)) {
+      lista = [lista];
+    }
 
-          this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-        }
-      )
-  }
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
+    lista.forEach(element =>{
+      this.resenja.push(new Resenje(element["$"]["id"], element["$"]["broj"]))
+    })
 
     this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.resenja.length;
-    //this.paginator.length = result.body.count;
-
   }
 
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.resenja.length;
-    return event;
-  }
-
-  getHtml(id: string){
+  getHtml(id: string) {
     this.resenjaService.getHtml(id).subscribe(
       data => {
         let file = new Blob([data], { type: 'text/html' });

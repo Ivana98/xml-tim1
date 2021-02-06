@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 declare const Xonomy: any;
 declare const require;
@@ -31,7 +32,8 @@ export class ZahtevService {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   getHtml(id: string): Observable<any> {
@@ -112,7 +114,7 @@ export class ZahtevService {
   </opis_zahteva>
   <mesto property="pred:mesto" datatype="xs:string"> </mesto>
   <datum property="pred:datum" datatype="xs:date"> </datum>
-  <trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac">
+  <trazilac about="http://www.ftn.uns.ac.rs/rdf/zahtev/Trazilac" email="${this.authService.getEmail()}">
       <ime_i_prezime property="pred:ime-prezime" datatype="xs:string"> </ime_i_prezime>
       <adresa property="pred:mesto" datatype="xs:string"> </adresa>
       <kontakt> </kontakt>

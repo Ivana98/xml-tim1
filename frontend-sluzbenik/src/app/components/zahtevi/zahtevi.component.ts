@@ -27,16 +27,13 @@ export class ZahteviComponent implements OnInit {
     private router: Router,
     private zahtevService: ZahtevService,
     private authService: AuthService
-  ) {
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-
-  }
+  ) { }
 
   ngOnInit(): void {
     console.log("On init");
     this.role = this.authService.getRole();
     this.email = this.authService.getEmail();
-    console.log(this.email);
+    // console.log(this.email);
     this.getAll();
   }
 
@@ -61,32 +58,11 @@ export class ZahteviComponent implements OnInit {
 
 
     lista.forEach(element => {
-      console.log(element["ns4:trazilac"]["$"]["email"]);
+      // console.log(element["ns4:trazilac"]["$"]["email"]);
       this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:naslov"] + element["ns4:datum"]["_"], element["$"]["content"]));
     })
 
     this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-  }
-
-  requestPage(): void {
-    let event = new PageEvent();
-    event.pageIndex = this.pageIndex;
-    event.pageSize = this.pageSize;
-
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    //this.paginator.length = result.body.count;
-
-  }
-
-  getPage(event: PageEvent) {
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-    this.pageIndex = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.length = this.zahtevi.length;
-    return event;
   }
 
   getHtml(id: string){

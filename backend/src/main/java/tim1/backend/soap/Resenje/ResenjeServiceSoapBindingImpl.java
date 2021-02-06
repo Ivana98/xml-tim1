@@ -49,7 +49,6 @@ public class ResenjeServiceSoapBindingImpl implements ResenjeServicePortType {
     public java.lang.String getAll() { 
         LOG.info("Executing operation getAll");
         try {
-
             JaxbLista<ResenjeObrazac> lista = resenjeService.findAllFromCollection();
             JAXBContext context = JAXBContext.newInstance(JaxbLista.class);
             Marshaller marshaller = context.createMarshaller();
