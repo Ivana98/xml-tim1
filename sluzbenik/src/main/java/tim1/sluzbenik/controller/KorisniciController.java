@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmldb.api.modules.XMLResource;
 
+import tim1.sluzbenik.dto.AuthUserLoginResponseDTO;
 import tim1.sluzbenik.dto.UserDTO;
 import tim1.sluzbenik.helper.UserMapper;
 import tim1.sluzbenik.model.korisnici.Korisnik;
 import tim1.sluzbenik.model.liste.JaxbLista;
+import tim1.sluzbenik.service.AuthenticationService;
 import tim1.sluzbenik.service.KorisnikService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class KorisniciController {
 
     @Autowired
     private KorisnikService korisnikService;
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
     public ResponseEntity<String> getXML(@PathVariable("id") String id) {
@@ -59,7 +64,9 @@ public class KorisniciController {
         try {
             korisnikService.saveXML(documentId, content);
 
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            AuthUserLoginResponseDTO response = authenticationService.createAuthenticationToken(content);
+
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {

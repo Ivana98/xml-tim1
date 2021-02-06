@@ -25,6 +25,10 @@ export class AuthService {
     return this.http.post<JWT>(this.apiUrl + '/auth/login', korisnik, this.httpOptions);
   }
 
+  register(korisnik): Observable<JWT> {
+    return this.http.post<JWT>(this.apiUrl + '/korisnici', korisnik, this.httpOptions);
+  }
+
   logOut(): void {
     localStorage.removeItem('user');
   }
