@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Zalba } from 'src/app/model/zalba';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZalbeService } from 'src/app/services/zalbe/zalbe.service';
@@ -20,6 +21,8 @@ export class PrikazZalbeComponent implements OnInit {
     private authService: AuthService,
     private _Activatedroute: ActivatedRoute,
     private zalbaService: ZalbeService,
+    private router: Router,
+    private snackBar: MatSnackBar,
   ) { 
     this.zalbaId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
     this.zalba = new Zalba(this.zalbaId);
@@ -27,31 +30,25 @@ export class PrikazZalbeComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
-    // this.zalbaService.getZalba(this.zalbaId).subscribe(result => {
-    //   console.log(result);
-    //   this.zalba.status = result["ns2:zahtev"]["$"]["content"];
-    //   console.log(this.zahtev.status);
-    //   this.status = this.zahtev.status;
-    //   if(this.status == "na cekanju"){
-    //     this.naCekanju = true;
-    //   }
-    //   else if(this.status == "nema odgovora"){
-    //     this.nemaOdgovora = true;
-    //   }
-
-    // })
   }
 
   odgovori(odg: string){
     console.log(odg);
     this.zalbaService.odgovor(this.zalbaId, odg).subscribe(
       result => {
-        console.log("ok");
+          this.openSnackBar("Uspesno kreirana zalba na odbijanje.");
+        this.router.navigate(['/homepage/zalbe']);
       },
       error => {
         console.log(error);
       }
     )
+  }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }

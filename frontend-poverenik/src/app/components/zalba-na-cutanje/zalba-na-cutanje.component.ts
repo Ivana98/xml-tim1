@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZalbaService } from 'src/app/services/zalba/zalba.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-zalba-na-cutanje',
@@ -28,7 +29,8 @@ export class ZalbaNaCutanjeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private zalbaService: ZalbaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class ZalbaNaCutanjeComponent implements OnInit {
   }
 
   send() {
-    //TODO: ovde ubaciti realne vrednosti - promenljive, nisu sve napravljene
     let zalba = `<?xml version="1.0" encoding="UTF-8"?>
 <Zalba_na_cutanje 
     naslov="ЖАЛБА КАДА ОРГАН ВЛАСТИ НИЈЕ ПОСТУПИО/ није поступио у целости/ ПО ЗАХТЕВУ ТРАЖИОЦА У ЗАКОНСКОМ  РОКУ  (ЋУТАЊЕ УПРАВЕ)"
@@ -49,7 +50,7 @@ export class ZalbaNaCutanjeComponent implements OnInit {
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/predicate/"
     xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalba-na-cutanje ../xsd_documents/zalbacutanjecir.xsd"
-    id="" idZahteva="${this.zahtevId}">
+    id="" idZahteva="${this.zahtevId}" status="na cekanju">
     <Namena>Повереникy за информације од јавног значаја и заштиту података о личности</Namena>
     <Adresa_za_postu
         about="http://www.ftn.uns.ac.rs/rdf/zalbacutanje/Adresa">
@@ -93,12 +94,19 @@ export class ZalbaNaCutanjeComponent implements OnInit {
     this.zalbaService.addNewCutanje(zalba)
       .subscribe(
         data => {
-          console.log("Trebalo bi da upise")
+          this.openSnackBar("Uspesno kreirana zalba na cutanje.");
+          this.router.navigate(['/homepage/zalbe']);
         },
         error => console.log(error)
         
       )
       
+  }
+
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }

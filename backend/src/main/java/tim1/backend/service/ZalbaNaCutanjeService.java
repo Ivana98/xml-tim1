@@ -158,4 +158,102 @@ public class ZalbaNaCutanjeService extends AbstractService {
         return "zalba je uspesno oznacena";
     }
 
+  
+    public String oznaciZalbuKaoOdgovorenu(String idZalbe) {
+        // zalba moze da pripada i zalbi na cutanje i zalbi na odluku. svejedno je
+        // probaj da nadjes zalbu na cutanje
+        System.out.println("------------------------------------------------------------sxfcvbnm");
+        System.out.println(idZalbe);
+        try {
+            JAXBContext context = JAXBContext.newInstance(ZalbaNaCutanje.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            XMLResource xmlZalba = this.readXML(idZalbe);
+            String s = xmlZalba.getContent().toString();
+            StringReader reader = new StringReader(s);
+            ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(reader);
+            zalba.setStatus("odgovoreno");
+            
+            //cuvanje zalbe na cutanje
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            marshaller.marshal(zalba, stream);
+
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+
+            repository.saveXML(idZalbe, collectionId, finalString);
+            repository.saveRDF(finalString, idZalbe);
+            return "uspesno promenjen status zalbe na pregledano";
+        } catch (Exception e) {
+        }
+
+        try {
+            // else probaj da nadjes zalbu na odluku
+            JAXBContext context = JAXBContext.newInstance(ZalbaNaOdluku.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            XMLResource xmlZalba = zalbaNaOdlukuService.readXML(idZalbe);
+            String s = xmlZalba.getContent().toString();
+            StringReader reader = new StringReader(s);
+            ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(reader);
+            zalbaNaOdluku.setStatus("odgovoreno");
+            
+            //cuvanje zalbe na odluku
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            marshaller.marshal(zalbaNaOdluku, stream);
+
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+
+            repository.saveXML(idZalbe, collectionId, finalString);
+            repository.saveRDF(finalString, idZalbe);
+            return "uspesno promenjen status zalbe na pregledano";
+        } catch (Exception e) {
+        }
+
+        System.out.println(idZalbe);
+        return "zalba je uspesno oznacena";
+    }
+
+  
+  public String generatePDF(String id) {
+		XSLFORTransformer transformer = null;
+
+		try {
+			transformer = new XSLFORTransformer();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+        XMLResource xmlRes = this.readXML(id);
+        String doc_str = "";
+		try {
+			doc_str = xmlRes.getContent().toString();
+			System.out.println(doc_str);
+		} catch (XMLDBException e1) {
+			e1.printStackTrace();
+		}
+
+		boolean ok = false;
+        String pdf_path = SAVE_PDF + "zalba_" + id + ".pdf";
+
+		try {
+			ok = transformer.generatePDF(doc_str, pdf_path, ZALBA_CUTANJE_XSL_FO);
+			if (ok)
+				return pdf_path;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

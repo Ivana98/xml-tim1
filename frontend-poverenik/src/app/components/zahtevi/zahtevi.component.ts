@@ -20,6 +20,7 @@ export class ZahteviComponent implements OnInit {
   length: number = 0;
 
   role = "";
+  email = "";
 
   zahtevi: Zahtev[] = [];
 
@@ -30,6 +31,7 @@ export class ZahteviComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
+    this.email = this.authService.getEmail();
     this.getAll();
   }
 
@@ -45,6 +47,11 @@ export class ZahteviComponent implements OnInit {
       lista = [lista];
     }
 
+    if (this.role == "GRADJANIN") {
+      lista = lista.filter(zalba => zalba["ns4:trazilac"]["$"]["email"] == this.email);
+    }
+
+
     lista.forEach(element => {
       let dozvole = this.getDozvoleZaZalbu(element["$"]["content"]);
       this.zahtevi.push(new Zahtev(element["$"]["id"], element["ns4:info_organa"]["ns4:naziv"]["_"], element["ns4:info_organa"]["ns4:sediste"], element["ns4:datum"]["_"], dozvole[0], dozvole[1]))
@@ -54,7 +61,7 @@ export class ZahteviComponent implements OnInit {
   }
 
   getDozvoleZaZalbu(content) {
-    console.log(content);
+    // console.log(content);
     switch (content) {
       case "na cekanju":
         return [false, false];
@@ -68,6 +75,42 @@ export class ZahteviComponent implements OnInit {
         console.log("GRESKA !!! Promeni resenja u bazi.");
         return [false, false];
     }
+  }
+
+  getHtml(id: string){
+    this.zahtevService.getHtml(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'text/html' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `zahtev_${id}.html`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
+  getPdf(id: string) {
+    this.zahtevService.getPdf(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `zahtev_${id}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
   }
 
 }

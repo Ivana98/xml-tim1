@@ -32,7 +32,7 @@ public class EmailClient {
     System.out.println(response);
   }
 
-  public void odgovoriPovereniku(String emailTo, String subject, String content ) throws Exception {
+  public void odgovoriPovereniku(String emailTo, String subject, String content, String pdfPath, String htmlPath  ) throws Exception {
     URL wsdlLocation = new URL("http://localhost:8092/ws/sendEmail?wsdl");
     QName serviceName = new QName("http://www.ftn.uns.ac.rs/email", "EmailService");
     QName portName = new QName("http://www.ftn.uns.ac.rs/email", "EmailServiceSoapBinding");
@@ -41,7 +41,7 @@ public class EmailClient {
 
     EmailServicePortType ePortType = service.getPort(portName, EmailServicePortType.class);
 
-    String response = ePortType.sendEmail(emailTo, subject, content, "", "");
+    String response = ePortType.sendEmail(emailTo, subject, content, pdfPath, htmlPath);
     System.out.println(response);
   }
   // public static void main(String[] args) throws Exception {

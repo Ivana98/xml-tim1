@@ -23,12 +23,16 @@ export class ResenjaService {
     private http: HttpClient
   ) { }
 
-  addResenje(resenjeXml: string): Observable<any>{
-    return this.http.post<string>(this.apiUrl + "/resenja/xml", resenjeXml, this.httpOptions);
+  addResenje(resenjeXml: string, id: string): Observable<any>{
+    return this.http.post<string>(this.apiUrl + "/resenja/xml/" + id, resenjeXml, this.httpOptions);
   }
 
   getHtml(id: string): Observable<any> {
     return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/resenja/generatePDF/' + id, {responseType: 'arraybuffer'});
   }
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>

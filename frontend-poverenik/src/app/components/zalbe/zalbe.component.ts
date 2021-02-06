@@ -11,7 +11,7 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email', 'resenje'];
+  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email', 'status', 'resenje'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
@@ -38,6 +38,8 @@ export class ZalbeComponent implements OnInit {
     await this.getAllCutanje();
 
     await this.getAllOdbijanje();
+
+    console.log(this.zalbe);
 
     this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
 
@@ -74,7 +76,7 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"], element["$"]["status"]))
     });
   }
 
@@ -96,7 +98,7 @@ export class ZalbeComponent implements OnInit {
     lista.forEach(element => {
       let id = element["$"]["id"];
       let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
-      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik))
+      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik,  element["$"]["status"]));
     });
 
   }
@@ -130,6 +132,44 @@ export class ZalbeComponent implements OnInit {
           a.setAttribute('style', 'display: none');
           a.href = fileURL;
           a.download = `zalba_${id}.html`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+
+  }
+
+  getPdf(id: string, name: string) {
+    if (name === "zalba_na_odluku") {
+      this.zalbeService.getPdfOdluka(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'application/pdf' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.pdf`;
+          a.click();
+          window.URL.revokeObjectURL(fileURL);
+          a.remove();
+        }
+      );
+    }
+    else {
+      this.zalbeService.getPdfCutanje(id).subscribe(
+        data => {
+          let file = new Blob([data], { type: 'application/pdf' });
+          var fileURL = URL.createObjectURL(file);
+
+          let a = document.createElement('a');
+          document.body.appendChild(a);
+          a.setAttribute('style', 'display: none');
+          a.href = fileURL;
+          a.download = `zalba_${id}.pdf`;
           a.click();
           window.URL.revokeObjectURL(fileURL);
           a.remove();

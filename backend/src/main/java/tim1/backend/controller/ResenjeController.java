@@ -22,6 +22,8 @@ import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.resenje.ResenjeObrazac;
 //import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
+import tim1.backend.service.ZalbaNaCutanjeService;
+import tim1.backend.soap.ZalbaNaOdluku.ZalbaNaOdlukuService;
 
 @RestController
 @RequestMapping(value = "/resenja")
@@ -29,6 +31,9 @@ public class ResenjeController {
 
     @Autowired
     private ResenjeService resenjeService;
+
+    @Autowired
+    private ZalbaNaCutanjeService zalbaService;
     
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
@@ -65,7 +70,9 @@ public class ResenjeController {
         try {
             //sacuvaj resenje u xml i rdf bazu
             resenjeService.saveXML(documentId, content);
-            resenjeService.saveRDF(content, documentId);
+            //resenjeService.saveRDF(content, documentId);
+
+            zalbaService.oznaciZalbuKaoOdgovorenu(idZalbe);
 
             //obavesti sluzbenika i gradjanina
             resenjeService.posaljiMejlove(idZalbe, documentId);
@@ -128,5 +135,22 @@ public class ResenjeController {
 		}
 
     }
+
+    @GetMapping("/generatePDF/{id}")
+	public ResponseEntity<byte[]> generatePDF(@PathVariable("id") String id) {
+
+		String file_path = this.resenjeService.generatePDF(id);
+
+		try {
+			File file = new File(file_path);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			return new ResponseEntity<byte[]>(IOUtils.toByteArray(fileInputStream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
 
 }

@@ -31,10 +31,20 @@
                 </small>
             </div>
 
-            <button mat-raised-button color="primary" aria-label="Prijava" type="submit"
-                [disabled]="loginForm.invalid" id="loginBtn" class="example-full-width">
-                Prijava
-            </button>
+            <div
+            style="padding-bottom: 1em;">
+                <button mat-raised-button color="primary" aria-label="Prijava" type="submit"
+                    [disabled]="loginForm.invalid" id="loginBtn" class="example-full-width">
+                    Prijava
+                </button>
+            </div>
+
+            <div>
+                <button mat-raised-button color="primary" aria-label="Registracija" class="example-full-width"
+                    [routerLink]="'/registracija'">
+                    Registracija
+                </button>
+            </div>
 
         </form>
 

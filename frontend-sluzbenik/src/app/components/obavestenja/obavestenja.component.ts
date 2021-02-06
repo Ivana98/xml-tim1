@@ -42,8 +42,9 @@ export class ObavestenjaComponent implements OnInit {
       lista = [lista];
     }
 
-    lista.forEach( element =>{
-      this.obavestenja.push(new Obavestenje(1, element["ns5:Sadrzaj"]["ns5:Naslov"]));
+    lista.forEach(element => {
+      console.log(element)
+      this.obavestenja.push(new Obavestenje(element["$"]["id"], element["ns5:Sadrzaj"]["ns5:Naslov"]));
     })
     this.dataSource = new MatTableDataSource<Obavestenje>(this.obavestenja);
   }
@@ -59,6 +60,24 @@ export class ObavestenjaComponent implements OnInit {
         a.setAttribute('style', 'display: none');
         a.href = fileURL;
         a.download = `obavestenje_${id}.html`;
+        a.click();
+        window.URL.revokeObjectURL(fileURL);
+        a.remove();
+      }
+    );
+  }
+
+  getPdf(id: string) {
+    this.obavestenjaService.getPdf(id).subscribe(
+      data => {
+        let file = new Blob([data], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = fileURL;
+        a.download = `obavestenje_${id}.pdf`;
         a.click();
         window.URL.revokeObjectURL(fileURL);
         a.remove();

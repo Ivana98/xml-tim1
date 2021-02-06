@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { parse } from 'js2xmlparser';
 import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 declare const Xonomy: any;
 
 @Component({
@@ -14,7 +14,8 @@ export class PodnosenjeZahtevaComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private zahtevService: ZahtevService
+    private zahtevService: ZahtevService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -35,10 +36,21 @@ export class PodnosenjeZahtevaComponent implements OnInit, AfterViewInit {
     this.zahtevService.addNew(text)
       .subscribe(
         response => {
-          console.log('poslat zahtev');
+          this.openSnackBar("Uspesno ste kreirali zahtev");
+          this.router.navigate(['/homepage/zahtevi']);
+        },
+        error =>{
+          this.openSnackBar("Niste uspesno ste kreirali zahtev");
+          this.router.navigate(['/homepage/zahtevi']);
         }
       );
 
+  }
+
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
   }
 
 }

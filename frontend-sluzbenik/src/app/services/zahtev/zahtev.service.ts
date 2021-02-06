@@ -37,7 +37,11 @@ export class ZahtevService {
   ) { }
 
   getHtml(id: string): Observable<any> {
-    return this.http.get('http://localhost:8091/api/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+    return this.http.get(this.apiUrl + '/zahtevi/generateHTML/' + id, {responseType: 'arraybuffer'});
+  }
+
+  getPdf(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/zahtevi/generatePDF/' + id, {responseType: 'arraybuffer'});
   }
 
   addNew(zahtev): any {
@@ -90,7 +94,7 @@ export class ZahtevService {
       <naziv property="pred:naziv" datatype="xs:string"> </naziv>
       <sediste property="pred:sediste" datatype="xs:string"> </sediste>
   </info_organa>
-  <naslov> </naslov>
+  <naslov> Zahtev </naslov>
   <svrha_zahteva> </svrha_zahteva>
   <opis_zahteva>
       <tekst_zahteva> </tekst_zahteva>
