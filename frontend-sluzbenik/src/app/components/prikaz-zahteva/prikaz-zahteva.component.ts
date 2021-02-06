@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Zahtev } from 'src/app/model/zahtev';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ZahtevService } from 'src/app/services/zahtev/zahtev.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-prikaz-zahteva',
   templateUrl: './prikaz-zahteva.component.html',
@@ -21,6 +21,8 @@ export class PrikazZahtevaComponent implements OnInit {
     private authService: AuthService,
     private zahtevService: ZahtevService,
     private _Activatedroute: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) { 
     this.zahtevId = this._Activatedroute.snapshot.paramMap.get('id') || "1";
     this.zahtev = new Zahtev(this.zahtevId);
@@ -48,14 +50,20 @@ export class PrikazZahtevaComponent implements OnInit {
   }
 
   refuse(): void {
-    this.zahtevService.odbijZahtev(this.zahtevId).subscribe(response => {
-      console.log(response);
+    this.zahtevService.odbijZahtev(this.zahtevId).subscribe(
+      response => {
+      this.openSnackBar("Uspesno ste odbili Zahtev");
+      this.router.navigate(['/homepage/zahtevi']);
     },
-    error => {
-      console.log(error);
+    error =>{
+      this.openSnackBar("Niste uspesno odbili zahtev");
+      this.router.navigate(['/homepage/zahtevi']);
     })
-    console.log("odbijen");
   }
-
+  openSnackBar(message: string): void{
+    this.snackBar.open(message, 'Dismiss', {
+      duration: 4000,
+    });
+  }
 
 }
