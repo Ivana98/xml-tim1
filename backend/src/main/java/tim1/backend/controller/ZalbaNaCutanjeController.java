@@ -148,7 +148,7 @@ public class ZalbaNaCutanjeController {
                     Unmarshaller unmarshallerZahtev = contextZahtev.createUnmarshaller();
                     ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshallerZahtev.unmarshal(inputStream1);
                     if(zalba.getStatus().equals("na cekanju")){
-                        zalba.setStatus("pregledana");
+                        zalba.setStatus("pregledano");
                         
                         Marshaller marshallerZahtev = contextZahtev.createMarshaller();
                         marshallerZahtev.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

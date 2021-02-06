@@ -22,6 +22,8 @@ import tim1.backend.model.liste.JaxbLista;
 import tim1.backend.model.resenje.ResenjeObrazac;
 //import tim1.backend.model.resenje.Resenje;
 import tim1.backend.service.ResenjeService;
+import tim1.backend.service.ZalbaNaCutanjeService;
+import tim1.backend.soap.ZalbaNaOdluku.ZalbaNaOdlukuService;
 
 @RestController
 @RequestMapping(value = "/resenja")
@@ -29,6 +31,9 @@ public class ResenjeController {
 
     @Autowired
     private ResenjeService resenjeService;
+
+    @Autowired
+    private ZalbaNaCutanjeService zalbaService;
     
 
     @GetMapping(path = "/xml/{id}", produces = "application/xml")
@@ -66,6 +71,8 @@ public class ResenjeController {
             //sacuvaj resenje u xml i rdf bazu
             resenjeService.saveXML(documentId, content);
             //resenjeService.saveRDF(content, documentId);
+
+            zalbaService.oznaciZalbuKaoOdgovorenu(idZalbe);
 
             //obavesti sluzbenika i gradjanina
             resenjeService.posaljiMejlove(idZalbe, documentId);
