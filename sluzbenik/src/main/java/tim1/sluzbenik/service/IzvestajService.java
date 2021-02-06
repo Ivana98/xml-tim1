@@ -135,4 +135,11 @@ public class IzvestajService extends AbstractService {
     ukupanBrojResenja = jaxbListaResenja.getLista().size();
 
   }
+
+
+public JaxbLista<Izvestaj> findAllFromCollection() throws Exception {
+  List<Izvestaj> listaIzvestaja = this.findAllFromCollection(Izvestaj.class);
+  JaxbLista<Izvestaj> listaObj = new JaxbLista<Izvestaj>(listaIzvestaja);
+	return listaObj;
+}
 }
