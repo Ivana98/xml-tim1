@@ -20,6 +20,7 @@
 - portal poverenika je potrebno pokrenuti i on radi na portu 8090 
 - portal sluzbenika je potrebno pokrenuti i on radi na portu 8091
 - email aplikaciju je potrebno pokrenuti i ona radi na portu 8092
+
 Prethodno napravljena podesavanja nalaze se u application.properties fajlovima.
 
 ### angular aplikacije:
