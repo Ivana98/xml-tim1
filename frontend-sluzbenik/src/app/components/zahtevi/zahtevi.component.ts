@@ -27,10 +27,7 @@ export class ZahteviComponent implements OnInit {
     private router: Router,
     private zahtevService: ZahtevService,
     private authService: AuthService
-  ) {
-    this.dataSource = new MatTableDataSource<Zahtev>(this.zahtevi);
-
-  }
+  ) { }
 
   ngOnInit(): void {
     console.log("On init");

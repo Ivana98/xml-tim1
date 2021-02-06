@@ -1,14 +1,13 @@
-<mat-card class="card-position">
+<mat-card class="card-position" style="width: 80%;">
     <mat-card-title>
-        Prikaz zahteva
+        Zahtev broj: {{zahtev.id}}
     </mat-card-title>
     <mat-card-subtitle>
-        Naziv: <!--{{ime zahteva}}-->
+       
     </mat-card-subtitle>
     <mat-card-content>
         <p>
-            Sadrzaj...
-            <!--{{sadrzaj zahteva}}-->
+            Status zahteva: {{status}}
         </p>
 
         <div *ngIf="role=='SLUZBENIK'">
