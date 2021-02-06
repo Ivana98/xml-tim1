@@ -39,7 +39,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Resenja:
                                         </fo:block>
                                     </fo:table-cell>
@@ -53,7 +53,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Svi zahtevi:
                                         </fo:block>
                                     </fo:table-cell>
@@ -67,7 +67,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Odbijeni zahtevi:
                                         </fo:block>
                                     </fo:table-cell>
@@ -81,7 +81,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Odobreni zahtevi:
                                         </fo:block>
                                     </fo:table-cell>
@@ -95,7 +95,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Sve zalbe:
                                         </fo:block>
                                     </fo:table-cell>
@@ -109,7 +109,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Zalbe na odluku:
                                         </fo:block>
                                     </fo:table-cell>
@@ -123,7 +123,7 @@
                                 
                                 <fo:table-row border="1px solid">
                                     <fo:table-cell padding="10px">
-                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="1pt" font-weight="bold">
+                                        <fo:block font-family="Times New Roman" text-align="center"	font-size="12pt" font-weight="bold">
                                             Zalbe na cutanje:
                                         </fo:block>
                                     </fo:table-cell>
