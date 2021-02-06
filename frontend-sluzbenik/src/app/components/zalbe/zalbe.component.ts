@@ -44,12 +44,14 @@ export class ZalbeComponent implements OnInit {
   async getAllCutanje() {
     let lista = await this.zalbeService.getAllCutanje().toPromise();
     lista = lista["jaxbLista"]["ns3:Zalba_na_cutanje"];
+    console.log(lista)
     this.dodajZalbeNaCutanje(lista);
   }
 
   async getAllOdbijanje() {
     let lista = await this.zalbeService.getAllOdbijanje().toPromise();
     lista = lista["jaxbLista"]["ns4:zalba_na_odluku"];
+    console.log(lista)
     this.dodajZalbeNaOdluku(lista);
   }
 

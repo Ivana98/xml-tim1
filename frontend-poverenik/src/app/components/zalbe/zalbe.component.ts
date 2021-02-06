@@ -39,6 +39,8 @@ export class ZalbeComponent implements OnInit {
 
     await this.getAllOdbijanje();
 
+    console.log(this.zalbe);
+
     this.dataSource = new MatTableDataSource<Zalba>(this.zalbe);
 
 
