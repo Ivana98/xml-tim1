@@ -27,8 +27,8 @@ const routes: Routes = [
       { path: 'izvestaji', component: IzvestajiComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK" } },
       // { path: 'zalbe/:id', component: PrikazZalbeComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK|GRADJANIN" } },
       // { path: 'resenja/:id', component: PrikazResenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK|GRADJANIN" } },
-      // { path: 'zalba-odbijanje/:id', component: ZalbaNaOdbijanjeComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK|GRADJANIN" } },
-      // { path: 'zalba-cutanje/:id', component: ZalbaNaCutanjeComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK|GRADJANIN" } },
+      { path: 'zalba-odbijanje/:id', component: ZalbaNaOdbijanjeComponent, canActivate: [RoleGuard], data: { expectedRoles: "GRADJANIN" } },
+      { path: 'zalba-cutanje/:id', component: ZalbaNaCutanjeComponent, canActivate: [RoleGuard], data: { expectedRoles: "GRADJANIN" } },
       { path: 'podnosenje-zalbe', component: KreiranjeZalbeComponent, canActivate: [RoleGuard], data: { expectedRoles: "GRADJANIN" } },
       { path: 'podnosenje-resenja-za-zalbu/:id', component: KreiranjeResenjaComponent, canActivate: [RoleGuard], data: { expectedRoles: "POVERENIK" } },
     ]

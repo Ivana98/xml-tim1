@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 declare const require;
 const xml2js = require("xml2js");
@@ -10,26 +10,18 @@ const xml2js = require("xml2js");
   providedIn: 'root'
 })
 export class ResenjaService {
-  
-  apiUrl = 'http://localhost:8090/api';
+
+  apiUrl = 'http://localhost:8091/api';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/xml',
     })
   };
-  
+
   constructor(
     private http: HttpClient
   ) { }
-
-  addResenje(resenjeXml: string): Observable<any>{
-    return this.http.post<string>(this.apiUrl + "/resenja/xml", resenjeXml, this.httpOptions);
-  }
-
-  getHtml(id: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/resenja/generateHTML/' + id, {responseType: 'arraybuffer'});
-  }
 
   getAll(): Observable<Array<any>> {  //: Observable<Array<any>>
     return this.http

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Resenje } from 'src/app/model/resenje';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ResenjaService } from 'src/app/services/resenja/resenja.service';
 
 @Component({
   selector: 'app-resenja',
@@ -9,36 +11,51 @@ import { Resenje } from 'src/app/model/resenje';
   styleUrls: ['./resenja.component.scss']
 })
 export class ResenjaComponent implements OnInit {
+
   displayedColumns: string[] = ['id', 'naziv', 'izvoz'];
   dataSource: MatTableDataSource<Resenje>;
   pageIndex: number = 0;
   pageSize: number = 5;
   length: number = 0;
 
-  resenja: Resenje[] = [
-    {
-      id: 1,
-      naziv: 'Resenje 1',
-    },
-    {
-      id: 2,
-      naziv: 'Resenje 2',
-    },
-  ]
+  role = "";
 
+  resenja: Resenje[] = []
 
-  constructor() { 
-    this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
-  }
+  constructor(
+    private authService: AuthService,
+    private resenjaService: ResenjaService
+  ) { }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
+    this.getAll();
+  }
+
+  getAll() {
+    this.resenja = [];
+
+    this.resenjaService.getAll()
+    //TODO: staviti da vidi samo sa svojim mejlom kad marija doda mejl u semu
+      .subscribe(
+        data => {
+          let lista = data["jaxbLista"]["ns6:Resenje_obrazac"];
+          console.log(lista)
+
+          lista.forEach(element => {
+            this.resenja.push(new Resenje(element["$"]["id"], element["$"]["broj"]))
+          });
+
+          this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
+        }
+      )
   }
 
   requestPage(): void {
     let event = new PageEvent();
     event.pageIndex = this.pageIndex;
     event.pageSize = this.pageSize;
-    
+
     this.dataSource = new MatTableDataSource<Resenje>(this.resenja);
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
