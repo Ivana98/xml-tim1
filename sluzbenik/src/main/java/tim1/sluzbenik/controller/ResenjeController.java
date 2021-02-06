@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tim1.sluzbenik.model.liste.JaxbLista;
+import tim1.sluzbenik.model.resenje.ResenjeObrazac;
 import tim1.sluzbenik.soap.client.ResenjeClient;
 
 @RestController
@@ -16,10 +18,10 @@ public class ResenjeController {
   private ResenjeClient client;
 
   @GetMapping(path = "/xml", produces = "application/xml")
-  public ResponseEntity<?> findAllFromCollection() throws Exception{
+  public ResponseEntity<JaxbLista<ResenjeObrazac>> findAllFromCollection() throws Exception{
 
       try {
-          String listaResenje = client.getAllResenje();
+        JaxbLista<ResenjeObrazac> listaResenje = client.getAllResenje();
           return new ResponseEntity<>(listaResenje, HttpStatus.OK);
       } catch (Exception e) {
           e.printStackTrace();
