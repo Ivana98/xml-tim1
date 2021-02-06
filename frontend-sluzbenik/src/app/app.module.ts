@@ -19,6 +19,7 @@ import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahte
 import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obavestenja/podnosenje-obavestenja.component';
 import { ZalbeComponent } from './components/zalbe/zalbe.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.com
     PrikazZahtevaComponent,
     PodnosenjeObavestenjaComponent,
     ZalbeComponent,
-    PrikazZalbeComponent
+    PrikazZalbeComponent,
+    RegistracijaComponent
   ],
   imports: [
     MaterialModuleModule,

@@ -1,0 +1,67 @@
+<mat-card class="card-position">
+    <mat-card-title>
+        Registracija korisnika
+    </mat-card-title>
+    <mat-card-content>
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="example-form">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Ime</mat-label>
+                <input matInput type="ime" id="imeField" name="imeField" formControlName="imeField">
+            </mat-form-field>
+            <div
+                *ngIf="registerForm.controls.imeField.invalid && (registerForm.controls.imeField.touched || registerForm.controls.imeField.dirty)">
+                <small class="red" *ngIf="registerForm.controls.imeField.errors?.required">
+                    Obavezno je uneti ime.
+                </small>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Prezime</mat-label>
+                <input matInput type="prezime" id="prezimeField" name="prezimeField" formControlName="prezimeField">
+            </mat-form-field>
+            <div
+                *ngIf="registerForm.controls.prezimeField.invalid && (registerForm.controls.prezimeField.touched || registerForm.controls.prezimeField.dirty)">
+                <small class="red" *ngIf="registerForm.controls.prezimeField.errors?.required">
+                    Obavezno je uneti ime.
+                </small>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Korisnicko ime</mat-label>
+                <input matInput type="email" id="usernameField" name="usernameField" formControlName="usernameField">
+            </mat-form-field>
+            <div
+                *ngIf="registerForm.controls.usernameField.invalid && (registerForm.controls.usernameField.touched || registerForm.controls.usernameField.dirty)">
+                <small class="red" *ngIf="registerForm.controls.usernameField.errors?.required">
+                    Obavezno je uneti korisnicko ime.
+                </small>
+                <small class="red" *ngIf="registerForm.controls.usernameField.errors?.email">
+                    Korisnicko ime je email adresa.
+                </small>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Lozinka</mat-label>
+                <input matInput type="password" id="passField" name="passField" formControlName="passField">
+            </mat-form-field>
+            <div
+                *ngIf="registerForm.controls.passField.invalid && (registerForm.controls.passField.touched || registerForm.controls.passField.dirty)">
+                <small class="red" *ngIf="registerForm.controls.passField.errors?.required">
+                    Obavezno je uneti lozinku.
+                </small>
+            </div>
+
+            <div style="padding-bottom: 1em;">
+                <button mat-raised-button color="primary" aria-label="Prijava" type="submit"
+                    [disabled]="registerForm.invalid" id="loginBtn" class="example-full-width">
+                    Registruje se
+                </button>
+            </div>
+
+        </form>
+
+    </mat-card-content>
+
+</mat-card>
