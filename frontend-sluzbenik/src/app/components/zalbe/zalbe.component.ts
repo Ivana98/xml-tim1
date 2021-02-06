@@ -66,7 +66,9 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]));
+      if(element["$"]["status"] == "na cekanju"){
+        this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]));
+      }
     });
   }
 
@@ -80,9 +82,11 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      let id = element["$"]["id"];
-      let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
-      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik));
+      if(element["$"]["status"] == "na cekanju"){
+        let id = element["$"]["id"];
+        let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
+        this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik));
+      }
     });
 
   }

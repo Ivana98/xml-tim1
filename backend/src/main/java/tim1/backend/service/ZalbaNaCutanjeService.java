@@ -110,7 +110,19 @@ public class ZalbaNaCutanjeService extends AbstractService {
             ZalbaNaCutanje zalba = (ZalbaNaCutanje) unmarshaller.unmarshal(reader);
             zalba.setStatus("pregledano");
             
-            //TODO SACUVATI ZALBU
+            //cuvanje zalbe na cutanje
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            marshaller.marshal(zalba, stream);
+
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+
+            repository.saveXML(idZalbe, collectionId, finalString);
+            repository.saveRDF(finalString, idZalbe);
             return "uspesno promenjen status zalbe na pregledano";
         } catch (Exception e) {
         }
@@ -125,7 +137,19 @@ public class ZalbaNaCutanjeService extends AbstractService {
             ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller.unmarshal(reader);
             zalbaNaOdluku.setStatus("pregledano");
             
-             //TODO SACUVATI ZALBU
+            //cuvanje zalbe na odluku
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            marshaller.marshal(zalbaNaOdluku, stream);
+
+            String finalString = new String(stream.toByteArray());
+            System.out.println(finalString);
+
+            repository.saveXML(idZalbe, collectionId, finalString);
+            repository.saveRDF(finalString, idZalbe);
             return "uspesno promenjen status zalbe na pregledano";
         } catch (Exception e) {
         }
