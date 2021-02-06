@@ -11,7 +11,7 @@ import { ZalbaService } from 'src/app/services/zalba/zalba.service';
   styleUrls: ['./zalbe.component.scss']
 })
 export class ZalbeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email', 'resenje'];
+  displayedColumns: string[] = ['id', 'naziv', 'izvoz', 'email', 'status', 'resenje'];
   dataSource: MatTableDataSource<Zalba>;
   pageIndex: number = 0;
   pageSize: number = 5;
@@ -74,7 +74,7 @@ export class ZalbeComponent implements OnInit {
     }
 
     lista.forEach(element => {
-      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"]))
+      this.zalbe.push(new Zalba(element["$"]["id"], "Zalba na cutanje", element["ns3:Podnosilac_zalbe"]["$"]["email"], element["$"]["status"]))
     });
   }
 
@@ -96,7 +96,7 @@ export class ZalbeComponent implements OnInit {
     lista.forEach(element => {
       let id = element["$"]["id"];
       let korisnik = element["ns4:zalba"]["ns4:podnosilac"]["$"]["email"];
-      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik))
+      this.zalbe.push(new Zalba(id, "Zalba na odluku", korisnik,  element["$"]["status"]));
     });
 
   }

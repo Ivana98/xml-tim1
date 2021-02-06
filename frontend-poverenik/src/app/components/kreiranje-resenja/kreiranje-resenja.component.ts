@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class KreiranjeResenjaComponent implements OnInit {
 
   idZalbe = "";
-
+  brojResenja = "";
   datum = "";
   sadrzajObrazlozenja = "";
   ime = "";
@@ -41,9 +41,9 @@ export class KreiranjeResenjaComponent implements OnInit {
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd"
 naslov="Решење када је жалба основана – налаже се:"
-broj="071-01-1114/2020-03"
+broj="${this.brojResenja}"
 xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
-id="" idZalbe="">
+id="" idZalbe="${this.idZalbe}">
     <Datum property="pred:datumResenja" datatype="xs:date">${this.datum}</Datum>
     <Uvod>
         Повереник за информације од јавног значаја и заштиту података о личности, у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета у Призрену са привременим седиштем у Лепосавићу, ул. Немањина бб, по његовом захтеву од 16.04.2020. године за приступ информацијама од јавног значаја, на основу члана 35. став 1. тачка 5. Закона о слободном приступу информацијама од јавног значаја („Сл. гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10), а у вези са чланом 4. тачка 22. Закона о заштити података о личности („Сл. гласник РС“, број 87/18), као и члана 23. и члана 24. став 4. Закона о слободном приступу информацијама од јавног значаја и члана 173. став 2. Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), доноси
