@@ -8,7 +8,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PodnosenjeObavestenjaComponent } from './components/podnosenje-obavestenja/podnosenje-obavestenja.component';
 import { PodnosenjeZahtevaComponent } from './components/podnosenje-zahteva/podnosenje-zahteva.component';
 import { PrikazObavestenjaComponent } from './components/prikaz-obavestenja/prikaz-obavestenja.component';
-import { PrikazResenjaComponent } from './components/prikaz-resenja/prikaz-resenja.component';
 import { PrikazZahtevaComponent } from './components/prikaz-zahteva/prikaz-zahteva.component';
 import { PrikazZalbeComponent } from './components/prikaz-zalbe/prikaz-zalbe.component';
 import { ResenjaComponent } from './components/resenja/resenja.component';
