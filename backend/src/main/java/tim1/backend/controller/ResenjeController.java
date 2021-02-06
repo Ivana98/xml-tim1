@@ -65,7 +65,7 @@ public class ResenjeController {
         try {
             //sacuvaj resenje u xml i rdf bazu
             resenjeService.saveXML(documentId, content);
-            resenjeService.saveRDF(content, documentId);
+            //resenjeService.saveRDF(content, documentId);
 
             //obavesti sluzbenika i gradjanina
             resenjeService.posaljiMejlove(idZalbe, documentId);

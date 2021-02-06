@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class KreiranjeResenjaComponent implements OnInit {
 
   idZalbe = "";
-
+  brojResenja = "";
   datum = "";
   sadrzajObrazlozenja = "";
   ime = "";
@@ -41,7 +41,7 @@ export class KreiranjeResenjaComponent implements OnInit {
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.ftn.uns.ac.rs/resenje ../xsd_documents/resenje.xsd"
 naslov="Решење када је жалба основана – налаже се:"
-broj="071-01-1114/2020-03"
+broj="${this.brojResenja}"
 xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
 id="" idZalbe="">
     <Datum property="pred:datumResenja" datatype="xs:date">${this.datum}</Datum>
